@@ -231,7 +231,7 @@ public class AltaRaza extends javax.swing.JDialog{
         jLabel5.setText("Tamaño(*)");
 
         jComboBoxTAMAÑO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxTAMAÑO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Tamaño", "Pequeño", "Mediano", "Grande", " " }));
+        jComboBoxTAMAÑO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Tamaño", "PEQUEÑO", "MEDIANO", "GRANDE", " " }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

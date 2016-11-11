@@ -47,15 +47,15 @@ public class IngresoSistema extends javax.swing.JFrame {
 
         panelRectTranslucido1 = new org.edisoncor.gui.panel.PanelRectTranslucido();
         jLabel3 = new javax.swing.JLabel();
-        panelImageReflect1 = new org.edisoncor.gui.panel.PanelImageReflect();
+        buttonTaskINGRESAR = new org.edisoncor.gui.button.ButtonTask();
+        buttonTask1 = new org.edisoncor.gui.button.ButtonTask();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TextField_usuario = new javax.swing.JTextField();
         JPasswordcontraseña = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        buttonTaskINGRESAR = new org.edisoncor.gui.button.ButtonTask();
-        buttonTask1 = new org.edisoncor.gui.button.ButtonTask();
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -65,7 +65,29 @@ public class IngresoSistema extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("INGRESO AL SISTEMA");
 
-        panelImageReflect1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/clinica-veterinaria-banner-4.jpg"))); // NOI18N
+        buttonTaskINGRESAR.setForeground(new java.awt.Color(255, 255, 255));
+        buttonTaskINGRESAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/tarjeta-de-informacion-del-usuario-icono-7370-48.png"))); // NOI18N
+        buttonTaskINGRESAR.setText("INGRESAR");
+        buttonTaskINGRESAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonTaskINGRESAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        buttonTaskINGRESAR.setDescription(".");
+        buttonTaskINGRESAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTaskINGRESARActionPerformed(evt);
+            }
+        });
+
+        buttonTask1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonTask1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/rescindir-rojo-icono-6989-32.png"))); // NOI18N
+        buttonTask1.setText("CANCELAR");
+        buttonTask1.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonTask1.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        buttonTask1.setDescription(".");
+        buttonTask1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTask1ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "DATOS DE INGRESO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -106,11 +128,15 @@ public class IngresoSistema extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(14, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TextField_usuario)
                             .addComponent(JPasswordcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -134,49 +160,37 @@ public class IngresoSistema extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelImageReflect1.add(jPanel2);
-        jPanel2.setBounds(0, 280, 370, 100);
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/clinica-veterinaria-banner-4.jpg"))); // NOI18N
 
-        buttonTaskINGRESAR.setForeground(new java.awt.Color(255, 255, 255));
-        buttonTaskINGRESAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/tarjeta-de-informacion-del-usuario-icono-7370-48.png"))); // NOI18N
-        buttonTaskINGRESAR.setText("INGRESAR");
-        buttonTaskINGRESAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        buttonTaskINGRESAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
-        buttonTaskINGRESAR.setDescription(".");
-        buttonTaskINGRESAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTaskINGRESARActionPerformed(evt);
-            }
-        });
-        panelImageReflect1.add(buttonTaskINGRESAR);
-        buttonTaskINGRESAR.setBounds(10, 390, 180, 46);
-
-        buttonTask1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonTask1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/rescindir-rojo-icono-6989-32.png"))); // NOI18N
-        buttonTask1.setText("CANCELAR");
-        buttonTask1.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        buttonTask1.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
-        buttonTask1.setDescription(".");
-        buttonTask1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTask1ActionPerformed(evt);
-            }
-        });
-        panelImageReflect1.add(buttonTask1);
-        buttonTask1.setBounds(200, 390, 170, 46);
+        javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
+        panelImage1.setLayout(panelImage1Layout);
+        panelImage1Layout.setHorizontalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 361, Short.MAX_VALUE)
+        );
+        panelImage1Layout.setVerticalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 342, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout panelRectTranslucido1Layout = new javax.swing.GroupLayout(panelRectTranslucido1);
         panelRectTranslucido1.setLayout(panelRectTranslucido1Layout);
         panelRectTranslucido1Layout.setHorizontalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(162, 162, 162))
-            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelImageReflect1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                                .addComponent(buttonTaskINGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(49, 49, 49))
         );
         panelRectTranslucido1Layout.setVerticalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +198,14 @@ public class IngresoSistema extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelImageReflect1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
+                .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonTaskINGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,7 +216,9 @@ public class IngresoSistema extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -337,7 +360,7 @@ int IDROL,IDUSUARIO;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private org.edisoncor.gui.panel.PanelImageReflect panelImageReflect1;
+    private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
 

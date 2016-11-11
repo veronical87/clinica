@@ -592,11 +592,11 @@ public class AltaFichaMedica extends javax.swing.JDialog {
             }
         });
         jDateChooser.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                jDateChooserCaretPositionChanged(evt);
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jDateChooserInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                jDateChooserCaretPositionChanged(evt);
             }
         });
         jDateChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -623,7 +623,7 @@ public class AltaFichaMedica extends javax.swing.JDialog {
         jLabelTiempoTranscurrido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTiempoTranscurrido.setOpaque(true);
 
-        jLabelSITUACIONPESO.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelSITUACIONPESO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         try {
             jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###")));
@@ -2366,8 +2366,7 @@ if(!jTextField_Apellido.getText().equals("")){
    case "PESO BAJO":
        jLabelSITUACIONPESO.setForeground(new Color(255,102,0));
        break;
-       }
-  
+       }  
     }//GEN-LAST:event_jFormattedTextField2FocusLost
 
     private void jTableAFECCIONMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAFECCIONMouseClicked

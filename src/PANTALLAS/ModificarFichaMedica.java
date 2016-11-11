@@ -112,6 +112,7 @@ public class ModificarFichaMedica extends javax.swing.JDialog {
         jLabelSITUACIONPESO = new javax.swing.JLabel();
         jFormattedTextField = new javax.swing.JFormattedTextField();
         jLabelSituacionPeso2 = new javax.swing.JLabel();
+        jLabelSituacionPeso3 = new javax.swing.JLabel();
         buttonTaskAGREGARMASCOTA = new org.edisoncor.gui.button.ButtonTask();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -453,7 +454,7 @@ public class ModificarFichaMedica extends javax.swing.JDialog {
         });
 
         jComboBoxSEXO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxSEXO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Hembra", "Macho" }));
+        jComboBoxSEXO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "HEMBRA", "MACHO" }));
         jComboBoxSEXO.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBoxSEXOFocusGained(evt);
@@ -511,7 +512,7 @@ public class ModificarFichaMedica extends javax.swing.JDialog {
         jLabel23.setText("Tamaño(*)");
 
         jComboBoxTAMANO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxTAMANO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Tamaño", "Chico", "Mediano", "Grande" }));
+        jComboBoxTAMANO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Tamaño", "PEQUEÑO", "MEDIANO", "GRANDE" }));
         jComboBoxTAMANO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTAMANOActionPerformed(evt);
@@ -551,7 +552,6 @@ public class ModificarFichaMedica extends javax.swing.JDialog {
         jLabelTiempoTranscurrido.setOpaque(true);
 
         jLabelSITUACIONPESO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelSITUACIONPESO.setText("jLabel2");
 
         try {
             jFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###")));
@@ -579,6 +579,8 @@ public class ModificarFichaMedica extends javax.swing.JDialog {
 
         jLabelSituacionPeso2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
 
+        jLabelSituacionPeso3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -587,44 +589,46 @@ public class ModificarFichaMedica extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel23))
+                        .addComponent(jLabel23)
                         .addGap(57, 57, 57)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jComboBoxESPECIE, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBoxSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBoxTAMANO, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                        .addComponent(jComboBoxTAMANO, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxRAZA, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelSITUACIONPESO, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldPELAJE))
+                                .addComponent(jLabelSITUACIONPESO, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldPELAJE, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(150, 150, 150))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabelEDADMASCOTA1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelEDAD, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelTiempoTranscurrido, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jComboBoxESPECIE, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(146, 146, 146))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelEDADMASCOTA1)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelEDAD, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelTiempoTranscurrido, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabelMostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -632,59 +636,65 @@ public class ModificarFichaMedica extends javax.swing.JDialog {
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(buttonActionSELECCIONARIMAGEN, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelSituacionPeso2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(129, 129, 129))))
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabelSituacionPeso2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelSituacionPeso3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(80, 80, 80))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(jTextFieldMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelSituacionPeso2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jTextFieldMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabelEDADMASCOTA1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelEDAD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelTiempoTranscurrido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jComboBoxSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jComboBoxESPECIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(11, 11, 11)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabelEDADMASCOTA1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelEDAD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelTiempoTranscurrido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23)
+                            .addComponent(jComboBoxTAMANO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(jComboBoxRAZA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(jTextFieldPELAJE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(jFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelSITUACIONPESO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jComboBoxSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(jComboBoxESPECIE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabelMostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(jComboBoxTAMANO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(jComboBoxRAZA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(jTextFieldPELAJE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabelSITUACIONPESO)
-                    .addComponent(jFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(buttonActionSELECCIONARIMAGEN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabelSituacionPeso2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonActionSELECCIONARIMAGEN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabelSituacionPeso3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(15, 15, 15))
         );
 
         buttonTaskAGREGARMASCOTA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/agregar-icono-5633-32.png"))); // NOI18N
@@ -1585,7 +1595,7 @@ int resultadoaño,resultadomes,resultadofinal;String seleccionEspecie; boolean b
     }//GEN-LAST:event_TABLAMouseClicked
 int opcionVacunas;int opcionParasitos;int opcionDesparasitado;int opcionProbResp;int opcionSarna;int opcionParvovirus;int opcionLeishmaniasis;int opcionMoquillo;int opcionGusanoCorazon;int opcionAlergias;int opcionPreñada;
     private void buttonTaskEDITARMASCOTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskEDITARMASCOTAActionPerformed
-if("".equals(this.jTextField_Apellido.getText()) || "".equals(this.jTextField_Nombre.getText()) || "".equals(this.jTextFieldDomicilio.getText()) || "".equals(this.jTextFieldCodigoArea.getText()) || "".equals(this.jTextFieldNroTelefono.getText())|| jTextFieldcorreo.getText().equals("")|| jTextFieldMASCOTA.getText().equals("")||jDateChooser.getDate()!=null || jComboBoxSEXO.getModel().getSelectedItem().equals("")||jTextFieldPELAJE.getText().equals("")||jFormattedTextField.getValue().equals("")||jComboBoxTAMANO.getModel().getSelectedItem().equals("")|| jComboBoxESPECIE.getModel().getSelectedItem().equals("")){
+if(jTextField_Apellido.getText().equals("") || jTextField_Nombre.getText().equals("")  || jTextFieldDomicilio.getText().equals("") || jTextFieldCodigoArea.getText().equals("") || jTextFieldNroTelefono.getText().equals("") || jTextFieldcorreo.getText().equals("")|| jTextFieldMASCOTA.getText().equals("")||jDateChooser.getDate()==null || jComboBoxSEXO.getModel().getSelectedItem().equals("")||jTextFieldPELAJE.getText().equals("")||jFormattedTextField.getValue().equals("")||jComboBoxTAMANO.getModel().getSelectedItem().equals("")|| jComboBoxESPECIE.getModel().getSelectedItem().equals("")){
        JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención", JOptionPane.WARNING_MESSAGE);
     }else{        
         ModificarDatosDueño();   
@@ -1622,21 +1632,20 @@ if("".equals(this.jTextField_Apellido.getText()) || "".equals(this.jTextField_No
                 this.BuscarIDEspecie(especie);
             }
             
-            if(datoImagen == null){
-                if (idEspecie==1){
-                    datoImagen="C:/Users/Vero/Documents/NetBeansProjects/ClinicaVet/src/ICONOS/Imagenes-Razas/silueta perro.jpg";
-
-                }
-                if ( idEspecie==2){
-                    datoImagen="C:/Users/Vero/Documents/NetBeansProjects/ClinicaVet/src/ICONOS/Imagenes-Razas/silueta gato.jpg";
-                }              
-            }else{
+            if(datoImagen != null){
                 JFileChooser archivo= new JFileChooser();
                 File file=archivo.getSelectedFile();
                 datoImagen=String.valueOf(file);
                 Image im= getToolkit().getImage(datoImagen);
                 im=im.getScaledInstance(110,110, Image.SCALE_DEFAULT);
-                jLabelMostrarImagen.setIcon(new ImageIcon(im));                 
+                jLabelMostrarImagen.setIcon(new ImageIcon(im));                            
+            }else{
+                 if (idEspecie==1){
+                    datoImagen="C:/Users/Vero/Documents/NetBeansProjects/ClinicaVet/src/ICONOS/Imagenes-Razas/silueta perro.jpg";
+                }
+                if ( idEspecie==2){
+                    datoImagen="C:/Users/Vero/Documents/NetBeansProjects/ClinicaVet/src/ICONOS/Imagenes-Razas/silueta gato.jpg";
+                }            
             }
 
             ficha.ModificarDatosMascota(idFicha,idPropietario,nombremascota,fechaNacimiento,idraza,sexo,pelaje,kilaje,edad,tiemponac,situacionpeso,datoImagen);
@@ -1876,77 +1885,11 @@ if("".equals(this.jTextField_Apellido.getText()) || "".equals(this.jTextField_No
     }//GEN-LAST:event_jFormattedTextFieldKeyTyped
 
     private void jFormattedTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldFocusLost
-        String sexo =String.valueOf(this.jComboBoxSEXO.getModel().getSelectedItem());
-        double PESOACTUAL =Double.parseDouble(this.jFormattedTextField.getText());
-        //     String minPe="200 GRAMOS",maxPe="3 KILOS",minMed="2 KILOS",maxMed="5 KILOS",minGra="5 KILOS",maxGra="13 KILOS";
-        //     String nl = System.getProperty("line.separator");
-        DatosRaza(idraza);
-
-        if(resultadomes==2 || resultadomes<2){
-            switch (seleccionTamaño) {
-                case "Pequeño":
-                if(PESOACTUAL<1){
-                    if(PESOACTUAL<0.20){
-                        situacionpeso="PESO BAJO";
-                    }
-                }else if(PESOACTUAL>0.20 & PESOACTUAL<3 || PESOACTUAL==3){
-                    situacionpeso="NORMAL";
-                }else if(PESOACTUAL>3){
-                    situacionpeso="SOBREPESO";
-                }
-                break;
-                case "Mediano":
-                if(PESOACTUAL<2){
-                    situacionpeso="PESO BAJO";
-                }else if(PESOACTUAL>2 & PESOACTUAL<5 || PESOACTUAL==5){
-                    situacionpeso="NORMAL";
-                }else if(PESOACTUAL>5){
-                    situacionpeso="SOBREPESO";
-                }
-                break;
-                case "Grande":
-                if(PESOACTUAL<5){
-                    situacionpeso="PESO BAJO";
-                }else if(PESOACTUAL>5 & PESOACTUAL<13 || PESOACTUAL==13){
-                    situacionpeso="NORMAL";
-                }else if(PESOACTUAL>13){
-                    situacionpeso="SOBREPESO";
-                }
-                break;
-            }
-
-        }else{
-            if(sexo.equals("Hembra")){
-                if(PESOACTUAL<pesominhembra){
-                    situacionpeso="PESO BAJO";
-                }else if(PESOACTUAL>pesomaxhembra){
-                    situacionpeso="SOBREPESO";
-                }else{
-                    situacionpeso="NORMAL";
-                }
-            }else if(sexo.equals("Macho")){
-                if(PESOACTUAL<pesominmacho){
-                    situacionpeso="PESO BAJO";
-
-                }else if(PESOACTUAL>pesomaxmacho){
-                    situacionpeso="SOBREPESO";
-                }else {
-                    situacionpeso="NORMAL";
-                }
-            }
-        }
-        switch (situacionpeso) {
-            case "SOBREPESO":
-            jLabelSITUACIONPESO.setForeground(Color.red);
-            break;
-            case "NORMAL":
-            jLabelSITUACIONPESO.setForeground(Color.GREEN);
-            break;
-            case "PESO BAJO":
-            jLabelSITUACIONPESO.setForeground(Color.ORANGE);
-            break;
-        }
-        this.jLabelSITUACIONPESO.setText("Segun el Tamaño,La Situacion del Peso es "+situacionpeso);
+String sexo =String.valueOf(this.jComboBoxSEXO.getModel().getSelectedItem());
+double PESOACTUAL =Double.parseDouble(this.jFormattedTextField.getText()); 
+DatosRaza(idraza);
+ 
+controlPeso(sexo,PESOACTUAL);
     }//GEN-LAST:event_jFormattedTextFieldFocusLost
 
     private void jFormattedTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldFocusGained
@@ -1958,7 +1901,8 @@ if("".equals(this.jTextField_Apellido.getText()) || "".equals(this.jTextField_No
     }//GEN-LAST:event_jFormattedTextFieldCaretUpdate
 
     private void jDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserPropertyChange
-        if(jDateChooser.getDate()==null){
+        if(!jTextField_Apellido.getText().isEmpty()){
+            if(jDateChooser.getDate()==null){
             JOptionPane.showMessageDialog(null, "La Fecha de Nacimiento No Puede estar Vacio","Atencion",JOptionPane.WARNING_MESSAGE);
         }else{
             int resultadoaño;
@@ -2143,6 +2087,8 @@ if("".equals(this.jTextField_Apellido.getText()) || "".equals(this.jTextField_No
                 jLabelTiempoTranscurrido.setText("AÑOS");
             }
         }
+        }
+       
     }//GEN-LAST:event_jDateChooserPropertyChange
 
     private void jDateChooserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jDateChooserFocusLost
@@ -2411,6 +2357,7 @@ int idrol,idusuario;
     private javax.swing.JLabel jLabelPreñada;
     public javax.swing.JLabel jLabelSITUACIONPESO;
     private javax.swing.JLabel jLabelSituacionPeso2;
+    private javax.swing.JLabel jLabelSituacionPeso3;
     private javax.swing.JLabel jLabelTiempoTranscurrido;
     public javax.swing.JLabel jLabelVETERINARIO;
     private javax.swing.JPanel jPanel1;
@@ -2780,10 +2727,10 @@ g.IDROL=IDROL;
     ResultSet rs = st.executeQuery(sql);
 
     while(rs.next()){
-            LEC=rs.getInt("L_MASCOTA");
-            ESC=rs.getInt("ESC_MASCOTA");
-            MOD=rs.getInt("MOD_MASCOTA");
-            ELI=rs.getInt("ELIM_MASCOTA");
+            LEC=rs.getInt("L_FICHAMEDICA");
+            ESC=rs.getInt("ESC_FICHAMEDICA");
+            MOD=rs.getInt("MOD_FICHAMEDICA");
+            ELI=rs.getInt("ELIM_FICHAMEDICA");
         }                              
    }catch (SQLException ex){
           JOptionPane.showMessageDialog(null, ex);
@@ -2865,11 +2812,14 @@ private void BuscarDatosMascota(String mascota) {
             this.jComboBoxSEXO.getModel().setSelectedItem(sexo);
             jComboBoxTAMANO.getModel().setSelectedItem(tamano);
             jComboBoxESPECIE.getModel().setSelectedItem(especie); 
-            jComboBoxRAZA.setSelectedItem(raza);
-                     
-            jTextFieldPELAJE.setText(pelaje);           
-            jFormattedTextField.setText(String.valueOf(kilaje));
+            jComboBoxRAZA.setSelectedItem(raza);                     
+            jTextFieldPELAJE.setText(pelaje); 
             
+            if(kilaje<10){
+              jFormattedTextField.setValue("0"+kilaje);
+            }else{
+            jFormattedTextField.setValue(kilaje);}
+            controlPeso(sexo, kilaje);
 //            JFileChooser archivo= new JFileChooser();
 //            File file=archivo.getSelectedFile();
 //            datoImagen=String.valueOf(file);
@@ -2900,11 +2850,12 @@ private void BuscarDatosMascota(String mascota) {
    this.jComboBoxSEXO.getModel().setSelectedItem("");
    this.jComboBoxRAZA.getModel().setSelectedItem("Seleccionar");
    this.jTextFieldPELAJE.setText("");
-   this.jFormattedTextField.setValue(00.000);
+   this.jFormattedTextField.setValue("00.000");
    this.jComboBoxTAMANO.getModel().setSelectedItem("Seleccionar Tipo Tamaño");
    this.jLabelTiempoTranscurrido.setText("");
-   this.jDateChooser.setCalendar(null);              
-   this.jLabelMostrarImagen.setVisible(false);
+   this.jDateChooser.setCalendar(null);         
+   this.jLabelSITUACIONPESO.setText("");
+   this.jLabelSituacionPeso2.setText("");
    }
 
      private void LimpiarHC() {
@@ -2969,11 +2920,11 @@ private void BuscarDatosMascota(String mascota) {
     }
 
     private void BuscarDatosHistorial(int idFicha) {
-        String nombremascota = null,parasitos= null,alergias= null,tiempodespar= null;int nrohistorial=0,opcionvacunas=0,opcionparasitos=0,opcionalergias=0,opciondesparasitado=0,cantdespar=0,opcionproblemasresp=0,opcionpreñada=0,opcionsarna=0,opcionlesmaniasis=0,opciongusanocorazon=0,opcionmoquillo=0,opcionparvovirus=0;
+        String nombremascota = null,parasitos= null,alergias= null,tiempodespar= null;int nrohistorial=0,opcionvacunas=0,opcionparasitos=0,opcionalergias=0,opciondesparasitado=0,cantdespar=0,opcionproblemasresp=0,opcionpreñada=0;
     try {
        cn=cm.Conectar();
        Statement st = (Statement) cn.createStatement(); 
-       ResultSet rs = st.executeQuery("SELECT CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,nrohistorial,opcionvacunas,opcionparasitos,parasitos,opcionalergias,alergias,opciondesparasitado,cantdespar,tiempodespar,opcionproblemasresp,opcionpreñada,opcionsarna,opcionlesmaniasis,opciongusanocorazon,opcionmoquillo,opcionparvovirus FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN historialclinico ON historialclinico.idficha=fichamedica.id WHERE historialclinico.idficha="+idFicha); 
+       ResultSet rs = st.executeQuery("SELECT CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,nrohistorial,opcionvacunas,opcionparasitos,parasitos,opcionalergias,alergias,opciondesparasitado,cantdespar,tiempodespar,opcionproblemasresp,opcionpreñada FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN historialclinico ON historialclinico.idficha=fichamedica.id WHERE historialclinico.idficha="+idFicha); 
             while (rs.next()) {
               nombredueño=rs.getString("dueño");
               nombremascota=rs.getString("mascota");
@@ -2989,11 +2940,7 @@ private void BuscarDatosMascota(String mascota) {
               tiempodespar=rs.getString("tiempodespar");
               opcionproblemasresp=rs.getInt("opcionproblemasresp");
               opcionpreñada=rs.getInt("opcionpreñada");
-              opcionsarna=rs.getInt("opcionsarna");
-              opcionlesmaniasis=rs.getInt("opcionlesmaniasis");
-              opciongusanocorazon=rs.getInt("opciongusanocorazon");
-              opcionmoquillo=rs.getInt("opcionmoquillo");
-              opcionparvovirus=rs.getInt("opcionparvovirus");
+             
             }
             rs.close();
             
@@ -3059,7 +3006,7 @@ private void BuscarDatosMascota(String mascota) {
         }       
     }
     
-    private void LlenarComboVacunas() {
+private void LlenarComboVacunas() {
    try {            
     DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     cn=cm.Conectar();
@@ -3174,6 +3121,99 @@ private void BuscarIDAfeccion(String afeccion) {
     } catch (SQLException ex) {
         ex.getMessage();
     } 
+    }
+
+private void controlPeso(String sexo,double PESOACTUAL) {
+   if(resultadoaño!=0){
+      if(sexo.equals("HEMBRA")){
+       if(PESOACTUAL<pesominhembra){
+               situacionpeso="PESO BAJO"; 
+                jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+                this.jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de "+pesominhembra+" Kilos");
+           }else if(PESOACTUAL>pesomaxhembra){               
+               situacionpeso="SOBREPESO";
+               jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+               jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de "+pesomaxhembra+" Kilos");
+           }else{
+               situacionpeso="NORMAL";   
+               jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+           }
+       
+    }else if(sexo.equals("MACHO")){ 
+       if(PESOACTUAL<pesominmacho){
+           situacionpeso="PESO BAJO";
+           jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+           jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de "+pesominmacho+" Kilos");
+       }else if(PESOACTUAL>pesomaxmacho){           
+           situacionpeso="SOBREPESO"; 
+           jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+           jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de "+pesomaxmacho+" Kilos");
+       }else {
+           situacionpeso="NORMAL"; 
+           jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+       }
+    }         
+  }else if(resultadomes>2 || resultadomes<12){
+     switch (seleccionTamaño) {
+             case "PEQUEÑO":
+                 if(PESOACTUAL<1){
+                     if(PESOACTUAL<0.20){
+                        situacionpeso="PESO BAJO"; 
+                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso); 
+                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de los 200grs.");
+                     }                                                           
+                 }else if(PESOACTUAL>0.20 & PESOACTUAL<03.00 || PESOACTUAL==03.00){
+                     situacionpeso="NORMAL";       
+                     jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso); 
+                 }else if(PESOACTUAL>03.00){
+                    situacionpeso="SOBREPESO";
+                    jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso); 
+                    jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de los 3 kilos");
+                 }
+              
+                 break;
+          case "MEDIANO":
+                  if(PESOACTUAL<02.00){
+                    situacionpeso="PESO BAJO";
+                    jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+                    jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de los 2 kilos");
+                  }else if(PESOACTUAL>02.00 & PESOACTUAL<05.00 || PESOACTUAL==05.00){
+                     situacionpeso="NORMAL";                 
+                     jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+                 }else if(PESOACTUAL>05.00){
+                      situacionpeso="SOBREPESO";
+                      jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+                      jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de los 5 kilos");
+                 }
+                 break;
+             case "GRANDE":
+                 if(PESOACTUAL<05.00){
+                    situacionpeso="PESO BAJO";
+                    jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+                    jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de los 5 kilos");
+                 }else if(PESOACTUAL>05.00 & PESOACTUAL<13 || PESOACTUAL==13){
+                     situacionpeso="NORMAL";       
+                     jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+                 }else if(PESOACTUAL>13){
+                     situacionpeso="SOBREPESO";
+                      jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
+                      jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de los 13 kilos");
+                 }
+                 break;
+         }          
+  }
+  
+   switch (situacionpeso) {
+   case "SOBREPESO":
+       jLabelSITUACIONPESO.setForeground(new Color(204,0,0));
+       break;
+   case "NORMAL":
+       jLabelSITUACIONPESO.setForeground(new Color(0,97,51));
+       break;
+   case "PESO BAJO":
+       jLabelSITUACIONPESO.setForeground(new Color(255,102,0));
+       break;
+       }
     }
 
 }

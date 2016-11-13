@@ -1,6 +1,6 @@
 package PANTALLAS;
 
-import CLASES.ClaseCategorias;
+import CLASES.ClaseTamanos;
 import Conexion.ConexionMySQL;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -9,21 +9,21 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-public class GestionCategorias extends javax.swing.JDialog {
+public class GestionTamanos extends javax.swing.JDialog {
     Connection cn;
     ConexionMySQL cm=new ConexionMySQL();
     CallableStatement cmd;
-    ClaseCategorias cat=new ClaseCategorias();
+    ClaseTamanos tam=new ClaseTamanos();
     DefaultTableModel modelo;
-    public GestionCategorias(java.awt.Frame parent, boolean modal) {
+    public GestionTamanos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();       
-        setLocationRelativeTo(null); 
+        initComponents();
+        setLocationRelativeTo(null);
         modelo = (DefaultTableModel) TABLA.getModel();
-        cat.LlenarTabla(modelo);
+        tam.LlenarTabla(modelo);
     }
 
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -44,7 +44,6 @@ public class GestionCategorias extends javax.swing.JDialog {
         buttonTaskSALIR = new org.edisoncor.gui.button.ButtonTask();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("GestionCategorias");
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
         panelRectTranslucido1.setPreferredSize(new java.awt.Dimension(593, 650));
@@ -140,7 +139,7 @@ public class GestionCategorias extends javax.swing.JDialog {
                 .addComponent(jComboBox_CriterioSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField_criteriodeBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(buttonTaskBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -250,7 +249,7 @@ public class GestionCategorias extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,13 +260,13 @@ public class GestionCategorias extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int idrol,filasel;
+int idrol;
     private void TABLAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLAMouseClicked
         String id;
         filasel = TABLA.getSelectedRow();
         modelo=(DefaultTableModel) TABLA.getModel();
         id = (String) modelo.getValueAt(filasel,0);
-        BuscarDatosCategoria(id);
+        BuscarDatosTamaño(id);
         ENLACE(idrol);
     }//GEN-LAST:event_TABLAMouseClicked
 
@@ -282,7 +281,7 @@ int idrol,filasel;
             jTextField_criteriodeBusqueda.setVisible(false);
             limpiarTabla(TABLA);
             modelo = (DefaultTableModel) TABLA.getModel();
-            cat.LlenarTabla(modelo);
+            tam.LlenarTabla(modelo);
         }else{
             jTextField_criteriodeBusqueda.setVisible(true);
             jTextField_criteriodeBusqueda.requestFocus();
@@ -312,8 +311,8 @@ int idrol,filasel;
         String valor=this.jComboBox_CriterioSeleccionado.getSelectedItem().toString();
         String captura=this.jTextField_criteriodeBusqueda.getText();
 
-        if(valor.equals("Categoria")){
-            BuscarDatosxCATEGORIA(captura);
+        if(valor.equals("Tamano")){
+            BuscarDatosxTAMANO(captura);
         }
     }//GEN-LAST:event_jTextField_criteriodeBusquedaKeyTyped
 
@@ -325,24 +324,24 @@ int idrol,filasel;
             jTextField_criteriodeBusqueda.requestFocus();
             JOptionPane.showMessageDialog(null,"Debe Ingresar el Dato a Buscar","Atención",JOptionPane.WARNING_MESSAGE);
         }else{
-            if(valor.equals("Categoria")){
-                BuscarDatosxCATEGORIA(captura);
+            if(valor.equals("Tamaño")){
+                BuscarDatosxTAMANO(captura);
             }
         }
     }//GEN-LAST:event_buttonTaskBUSCARActionPerformed
 
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
         dispose();
-        AltaCategoria au = new AltaCategoria(new javax.swing.JFrame(), true);
-        au.idrol = idrol;       
+        AltaTamaño au = new AltaTamaño(new javax.swing.JFrame(), true);
+        au.idrol = idrol;
         au.show();
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
 
     private void buttonTaskEDITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskEDITARActionPerformed
-        if (filasel != -1) {         
-            ModificarCategoria mu = new ModificarCategoria(new javax.swing.JFrame(), true);
+        if (filasel != -1) {
+            ModificarTamaño mu = new ModificarTamaño(new javax.swing.JFrame(), true);
             mu.idrol = idrol;
-            mu.idCategoria=IDCategoria;
+            mu.ID=ID;
             mu.JTextFieldNombre.setText(nombre);
             dispose();
             mu.show();
@@ -350,22 +349,22 @@ int idrol,filasel;
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonTaskEDITARActionPerformed
-
+int filasel;
     private void buttonTaskBORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskBORRARActionPerformed
         if(filasel!=-1){
-            int resultado=cat.EliminarCategoriaMedicamento(IDCategoria);           
+            int resultado=tam.EliminarTamaño(ID);
             if(resultado !=0){
-                JOptionPane.showMessageDialog(null,"La Categoria Solicitada esta Siendo Utilizada, No Puede ser Borrado","Información",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"El Tamaño Solicitado esta Siendo Utilizado, No Puede ser Borrado","Información",JOptionPane.INFORMATION_MESSAGE);
                 this.buttonTaskAGREGAR.setEnabled(true);
                 this.buttonTaskEDITAR.setEnabled(false);
                 this.buttonTaskBORRAR.setEnabled(false);
             }else{
-                if(JOptionPane.showConfirmDialog(null,"¿Desea Borrar la Categoria"+" "+nombre+" "+"?","Consulta",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                if(JOptionPane.showConfirmDialog(null,"¿Desea Borrar el Tamaño"+" "+nombre+" "+"?","Consulta",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
 
-                    JOptionPane.showMessageDialog(null,"La Categoria"+" "+nombre+" "+"Se Borró Correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"El Tamaño"+" "+nombre+" "+"Se Borró Correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
                     limpiarTabla(TABLA);
                     modelo = (DefaultTableModel) TABLA.getModel();
-                    cat.LlenarTabla(modelo);
+                    tam.LlenarTabla(modelo);
                     this.buttonTaskAGREGAR.setEnabled(true);
                     this.buttonTaskEDITAR.setEnabled(false);
                     this.buttonTaskBORRAR.setEnabled(false);
@@ -402,20 +401,20 @@ int idrol,filasel;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionCategorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionTamanos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionCategorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionTamanos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionCategorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionTamanos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionCategorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionTamanos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               GestionCategorias dialog = new GestionCategorias(new javax.swing.JFrame(), true);
+               GestionTamanos dialog = new GestionTamanos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -442,10 +441,11 @@ int idrol,filasel;
     public javax.swing.JTextField jTextField_criteriodeBusqueda;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
-int IDCategoria;String nombre;
-private void BuscarDatosCategoria(String id) {
+
+int ID;String nombre;
+private void BuscarDatosTamaño(String id) {
         cn=cm.Conectar();            
-        String sSQL = "SELECT id,nombre FROM categoriamedicamento WHERE nombre LIKE '"+id+"%'";
+        String sSQL = "SELECT id,nombre FROM tamanos WHERE nombre LIKE '"+id+"%'";
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -453,7 +453,7 @@ private void BuscarDatosCategoria(String id) {
 
              while(rs.next())
                {
-                 IDCategoria=rs.getInt("id");
+                 ID=rs.getInt("id");
                  nombre=rs.getString("nombre");
                }
          
@@ -475,8 +475,8 @@ private void BuscarDatosCategoria(String id) {
 
             while(rs.next())
                {                                
-                MOD=rs.getInt("MOD_CATEGORIA");
-                ELI=rs.getInt("ELIM_CATEGORIA");               
+                MOD=rs.getInt("MOD_TAMAÑO");
+                ELI=rs.getInt("ELIM_TAMAÑO");               
                }                              
           }            
          catch (SQLException ex)
@@ -508,13 +508,13 @@ private void BuscarDatosCategoria(String id) {
        }
     }
 
- private void BuscarDatosxCATEGORIA(String captura) {
-    String[] titulos = {"Categoria"};
+ private void BuscarDatosxTAMANO(String captura) {
+    String[] titulos = {"Tamaño"};
     modelo = new DefaultTableModel(null,titulos);
     cn=cm.Conectar();
     String sSQL = "";
     String[] registro = new String[1];
-    sSQL = "SELECT nombre FROM categoriamedicamento WHERE nombre LIKE '"+captura+"%' ORDER BY nombre ASC";
+    sSQL = "SELECT nombre FROM tamanos WHERE nombre LIKE '"+captura+"%' ORDER BY nombre ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();

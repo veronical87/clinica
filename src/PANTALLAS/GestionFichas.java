@@ -279,7 +279,6 @@ public class GestionFichas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 int IDROL,idusuario,filasel;
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
-      
         AltaFichaMedica ap = new AltaFichaMedica(new javax.swing.JFrame(), true);
         ap.IDROL=IDROL;
         ap.IDUSUARIO=idusuario;
@@ -297,7 +296,7 @@ int IDROL,idusuario,filasel;
             mp.idusuario= idusuario;
             mp.idpersona=idPersona;
             mp.situacionpeso=situacionpeso;
-            mp.jLabelSITUACIONPESO.setText(situacionpeso);
+            mp.jLabelSITUACIONPESO.setText(situacionpeso);            
             mp.idPropietario=idPropietario;
             modelo2=(DefaultTableModel) mp.TABLA.getModel();
             ficha.LlenarTablaDatosMascotas(modelo2, idPropietario);

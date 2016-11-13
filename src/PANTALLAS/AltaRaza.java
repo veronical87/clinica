@@ -231,7 +231,21 @@ public class AltaRaza extends javax.swing.JDialog{
         jLabel5.setText("Tamaño(*)");
 
         jComboBoxTAMAÑO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxTAMAÑO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Tamaño", "PEQUEÑO", "MEDIANO", "GRANDE", " " }));
+        jComboBoxTAMAÑO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Tamaño" }));
+        jComboBoxTAMAÑO.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBoxTAMAÑOPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        jComboBoxTAMAÑO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTAMAÑOActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -375,6 +389,10 @@ int idusuario,idrol;
     int minmacho = Integer.valueOf(jTextFieldMIN_MACHO.getText());
     int maxmacho = Integer.valueOf(jTextFieldMAX_MACHO.getText());
     String tamaño=String.valueOf(this.jComboBoxTAMAÑO.getModel().getSelectedItem());
+    
+    if(tamaño.equals("")){
+      BuscarIDTamaño(tamaño);
+    }
         
    if(nombre.equals("")|| minhembra==0|| minmacho==0 || maxhembra==0 || maxmacho==0 || tamaño.equals("Seleccionar Tamaño")){
              JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención",JOptionPane.WARNING_MESSAGE);
@@ -385,7 +403,7 @@ int idusuario,idrol;
               jTextFieldMIN_HEMBRA.requestFocus();
           }else{
               if(minhembra<maxhembra){
-                  int encontrada = raza.AgregarRaza(nombre,IDEspecie,tamaño,minhembra,maxhembra,minmacho,maxmacho);             
+                  int encontrada = raza.AgregarRaza(nombre,IDEspecie,IDTamaño,minhembra,maxhembra,minmacho,maxmacho);             
                
                 if(encontrada == 0) {//SI ES NULL NO EXISTE
                     JTextFieldNombre.setText("");
@@ -539,6 +557,21 @@ String coincidencia;int indice1;
          jTextFieldMIN_HEMBRA.setText("");
       }
     }//GEN-LAST:event_jRadioButtonMACHOFocusGained
+
+    private void jComboBoxTAMAÑOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTAMAÑOActionPerformed
+       String tamaño = jComboBoxTAMAÑO.getSelectedItem().toString();
+       int indice = jComboBoxTAMAÑO.getSelectedIndex();
+         
+        if(indice==-1){
+            BuscarTamaño(tamaño);           
+        }else{
+            BuscarIDTamaño(tamaño);
+        }      
+    }//GEN-LAST:event_jComboBoxTAMAÑOActionPerformed
+
+    private void jComboBoxTAMAÑOPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxTAMAÑOPopupMenuWillBecomeVisible
+       LlenarComboTamaños();
+    }//GEN-LAST:event_jComboBoxTAMAÑOPopupMenuWillBecomeVisible
 
     /**
      * @param args the command line arguments
@@ -714,6 +747,63 @@ private void BuscarCoincidenciasxEspecie(String especieSelec) {
             while(rs.next())
               {
                 IDEspecie=rs.getInt("id");
+               }
+             
+             rs.close();
+            }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } 
+    }
+
+private void LlenarComboTamaños() {
+      try {            
+        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+        cn=cm.Conectar();
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT nombre FROM tamaños ORDER BY nombre ASC");
+
+        while (rs.next()) {
+           modeloCombo.addElement(rs.getString("nombre"));
+        }
+        rs.close();
+        jComboBoxTAMAÑO.setModel(modeloCombo);
+    } catch (SQLException ex) {
+        ex.getMessage();
+    }
+}
+
+    private void BuscarTamaño(String tamaño) {
+       try {            
+        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+        cn=cm.Conectar();
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT nombre FROM tamaños WHERE nombre LIKE '"+tamaño+"%' ORDER BY nombre ASC");
+
+        while (rs.next()) {
+           modeloCombo.addElement(rs.getString("nombre"));
+        }
+        rs.close();
+        jComboBoxTAMAÑO.setModel(modeloCombo);
+    } catch (SQLException ex) {
+        ex.getMessage();
+    }
+    }
+
+    int IDTamaño;
+    private void BuscarIDTamaño(String tamaño) {
+       String sSQL = "";        
+        cn=cm.Conectar();
+        sSQL = "SELECT id FROM tamaños WHERE nombre LIKE '"+tamaño+"%'";
+        try
+        {
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while(rs.next())
+              {
+                IDTamaño=rs.getInt("id");
                }
              
              rs.close();

@@ -17,15 +17,14 @@ public class ClaseVacunas {
    
     public void LlenarTabla(DefaultTableModel tabla){
       try{
-        String sql="SELECT controlvacunas.nombre,edad,tiempo,especies.nombre,condicion FROM controlvacunas INNER JOIN especies ON controlvacunas.idespecie=especies.id ORDER BY controlvacunas.nombre ASC";
+        String sql="SELECT controlvacunas.nombre,especies.nombre,condicion FROM controlvacunas INNER JOIN especies ON controlvacunas.idespecie=especies.id ORDER BY controlvacunas.nombre ASC";
         cmd=cn.prepareCall(sql);
         ResultSet rs=cmd.executeQuery();
-        String[] registro = new String[4];
+        String[] registro = new String[3];
         while(rs.next()){//aca se lee el maximo de filas
-            registro[0]=rs.getString("controlvacunas.nombre");
-            registro[1]=rs.getString("edad")+""+rs.getString("tiempo");
-            registro[2]=rs.getString("especies.nombre");
-            registro[3]=rs.getString("condicion");
+            registro[0]=rs.getString("controlvacunas.nombre");            
+            registro[1]=rs.getString("especies.nombre");
+            registro[2]=rs.getString("condicion");
             tabla.addRow(registro); 
         }
 //      cmd.close();
@@ -36,19 +35,17 @@ public class ClaseVacunas {
     }     
  
      
-  public int AgregarVacuna(String nombre,int edad,String tiempo,int especie,String condicion){
+  public int AgregarVacuna(String nombre,int especie,String condicion){
      int encontrada=0;   
-     String sql="call AgregarVacuna(?,?,?,?,?,?)";
+     String sql="call AgregarVacuna(?,?,?,?)";
         try{
            cmd=cn.prepareCall(sql);
            cmd.setString(1,nombre);
-           cmd.setInt(2,edad);
-           cmd.setString(3,tiempo);
-           cmd.setInt(4,especie);
-           cmd.setString(5,condicion);
-           cmd.registerOutParameter(6, java.sql.Types.INTEGER);
+           cmd.setInt(2,especie);
+           cmd.setString(3,condicion);
+           cmd.registerOutParameter(4, java.sql.Types.INTEGER);
            cmd.execute();
-           encontrada=cmd.getInt(6);
+           encontrada=cmd.getInt(4);
            
 //         cmd.close();
 //         cn.close();    
@@ -58,16 +55,14 @@ public class ClaseVacunas {
         return encontrada;
     }
      
-     public void ModificarVacuna(int id,String nombre,int edad,String tiempo,int especie,String condicion){
-       String sql="call ModificarVacuna(?,?,?,?,?,?)";
+     public void ModificarVacuna(int id,String nombre,int especie,String condicion){
+       String sql="call ModificarVacuna(?,?,?,?)";
         try{
           cmd=cn.prepareCall(sql);
           cmd.setInt(1,id);
           cmd.setString(2,nombre);
-          cmd.setInt(3,edad);
-          cmd.setString(4,tiempo);
-          cmd.setInt(5,especie);
-          cmd.setString(6,condicion);
+          cmd.setInt(3,especie);
+          cmd.setString(4,condicion);
           cmd.execute();
        }catch(Exception ex){
          System.out.println(ex.getMessage());

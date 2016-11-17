@@ -183,8 +183,8 @@ public void BajaFicha(int idFicha) {
       return encontrada;
     }
 
-  public void agregarHistorial(int idFicha, int nrohistorial, int opcionVacunas,int opcionParasitos, String parasitos, int opcionAlergias, String alergias, int opcionDesparasitado, int cantdespar, String tiempodesparcombo, int opcionProbResp, int opcionPreñada) {
-    String sql="call agregarHistorial(?,?,?,?,?,?,?,?,?,?,?,?)";    
+  public void agregarHistorial(int idFicha, int nrohistorial, int opcionVacunas,int opcionParasitos, String parasitos, int opcionAlergias, String alergias, int opcionDesparasitado, String tiempodesparcombo, int opcionProbResp, int opcionPreñada) {
+    String sql="call agregarHistorial(?,?,?,?,?,?,?,?,?,?,?)";    
     try{                
       cmd=cn.prepareCall(sql);
       cmd.setInt(1,idFicha);
@@ -194,11 +194,10 @@ public void BajaFicha(int idFicha) {
       cmd.setString(5,parasitos);
       cmd.setInt(6,opcionAlergias);
       cmd.setString(7,alergias);
-      cmd.setInt(8,opcionDesparasitado);
-      cmd.setInt(9,cantdespar);
-      cmd.setString(10,tiempodesparcombo);
-      cmd.setInt(11,opcionProbResp);
-      cmd.setInt(12,opcionPreñada);
+      cmd.setInt(8,opcionDesparasitado);      
+      cmd.setString(9,tiempodesparcombo);
+      cmd.setInt(10,opcionProbResp);
+      cmd.setInt(11,opcionPreñada);
       
       cmd.execute();
       
@@ -232,8 +231,8 @@ public void ModificarDatosMascota(int idFicha, int idPropietario,String nombre,S
        }
     }
 
-public void ModificarHistorial(int nrohistorial, int opcionVacunas,int opcionParasitos, String parasitos, int opcionAlergias, String alergias, int opcionDesparasitado, int cantdespar, String tiempodesparcombo, int opcionProbResp, int opcionPreñada) {
-    String sql="call ModificarHistorial(?,?,?,?,?,?,?,?,?,?,?)";    
+public void ModificarHistorial(int nrohistorial, int opcionVacunas,int opcionParasitos, String parasitos, int opcionAlergias, String alergias, int opcionDesparasitado,String tiempodesparcombo, int opcionProbResp, int opcionPreñada) {
+    String sql="call ModificarHistorial(?,?,?,?,?,?,?,?,?,?)";    
     try{                
       cmd=cn.prepareCall(sql);      
       cmd.setInt(1,nrohistorial);
@@ -242,11 +241,10 @@ public void ModificarHistorial(int nrohistorial, int opcionVacunas,int opcionPar
       cmd.setString(4,parasitos);
       cmd.setInt(5,opcionAlergias);
       cmd.setString(6,alergias);
-      cmd.setInt(7,opcionDesparasitado);
-      cmd.setInt(8,cantdespar);
-      cmd.setString(9,tiempodesparcombo);
-      cmd.setInt(10,opcionProbResp);
-      cmd.setInt(11,opcionPreñada);
+      cmd.setInt(7,opcionDesparasitado);      
+      cmd.setString(8,tiempodesparcombo);
+      cmd.setInt(9,opcionProbResp);
+      cmd.setInt(10,opcionPreñada);
      
       cmd.execute();      
    }catch(Exception ex){

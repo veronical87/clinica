@@ -114,11 +114,11 @@ public class GestionVacunas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Tipo de Vacuna", "Edad de Colocacion", "Especie", "Condicion"
+                "Tipo de Vacuna", "Especie", "Condicion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -318,9 +318,9 @@ int filasel;
             mp.idrol = IDROL;        
             mp.banderaEspecie=false;
             mp.jComboBox_Especies.getModel().setSelectedItem(especie);
-            mp.jComboBox1.getModel().setSelectedItem(tiempo);
+         
             mp.jTextFieldVacuna.setText(nombrevacuna);
-            mp.jSpinner1.getModel().setValue(edad);
+           
             if(condicion.equals("OPTATIVO")){
                mp.jRadioButtonOptativo.setSelected(true);
                mp.jRadioButtonObligatorio.setSelected(false);
@@ -451,12 +451,12 @@ int filasel;
     }
     
  private void MostrarConsultaxVacuna(String buscar) {
-    String[] titulos = {"Tipo de Vacuna","Edad de Colocacion","Especie","Condicion"};
+    String[] titulos = {"Tipo de Vacuna","Especie","Condicion"};
     modelo = new DefaultTableModel(null,titulos);
     cn=cm.Conectar();
     String sSQL = "";
-    String[] registro = new String[4];
-    sSQL = "SELECT controlvacunas.nombre,edad,tiempo,especies.nombre,condicion FROM controlvacunas inner join especies on controlvacunas.idespecie=especies.id  WHERE controlvacunas.nombre LIKE '"+buscar+"%' ORDER BY nombre ASC";
+    String[] registro = new String[3];
+    sSQL = "SELECT controlvacunas.nombre,especies.nombre,condicion FROM controlvacunas inner join especies on controlvacunas.idespecie=especies.id  WHERE controlvacunas.nombre LIKE '"+buscar+"%' ORDER BY nombre ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -464,10 +464,9 @@ int filasel;
 //         
          while(rs.next())
            {
-           registro[0]=rs.getString("controlvacunas.nombre");
-           registro[1]=rs.getString("edad")+""+rs.getString("tiempo");
-           registro[2]=rs.getString("especies.nombre");
-           registro[3]=rs.getString("condicion");
+           registro[0]=rs.getString("controlvacunas.nombre");           
+           registro[1]=rs.getString("especies.nombre");
+           registro[2]=rs.getString("condicion");
            modelo.addRow(registro);
            limpiarTabla(TABLA); 
            }          
@@ -479,12 +478,12 @@ int filasel;
            }        
     }
 
- String nombrevacuna,especie,condicion,tiempo;int IDVacuna,edad;
+ String nombrevacuna,especie,condicion;int IDVacuna;
  private void BuscarDatosVacunaSelec(String id) {      
     cn=cm.Conectar();
     String sSQL = "";
     
-    sSQL = "SELECT controlvacunas.id,controlvacunas.nombre,edad,tiempo,especies.nombre,condicion FROM controlvacunas inner join especies on controlvacunas.idespecie=especies.id  WHERE controlvacunas.nombre LIKE '"+id+"%'";
+    sSQL = "SELECT controlvacunas.id,controlvacunas.nombre,especies.nombre,condicion FROM controlvacunas inner join especies on controlvacunas.idespecie=especies.id  WHERE controlvacunas.nombre LIKE '"+id+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -493,12 +492,9 @@ int filasel;
          while(rs.next())
            {
            IDVacuna=rs.getInt("controlvacunas.id");
-           nombrevacuna=rs.getString("controlvacunas.nombre");
-           edad=rs.getInt("edad");
-           tiempo=rs.getString("tiempo");
+           nombrevacuna=rs.getString("controlvacunas.nombre");           
            especie=rs.getString("especies.nombre");
-           condicion=rs.getString("condicion");  
-           tiempo=rs.getString("tiempo");  
+           condicion=rs.getString("condicion");           
            }          
           
             }

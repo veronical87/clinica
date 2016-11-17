@@ -131,4 +131,22 @@ public int BajaConsulta(int id) {
          System.out.println(ex.getMessage());
        }
     }
+
+    public int CantVacunas(int IDFICHA) {
+     int encontrada=0;   
+     String sql="call CantVacunas(?,?)";
+        try{
+           cmd=cn.prepareCall(sql);         
+           cmd.setInt(1,IDFICHA);
+           cmd.registerOutParameter(2, java.sql.Types.VARCHAR);
+           cmd.execute();
+           encontrada=cmd.getInt(2);
+           
+//         cmd.close();
+//         cn.close();    
+        }catch(Exception ex){
+          System.out.println(ex.getMessage());
+        }      
+        return encontrada;    
+    }
 }

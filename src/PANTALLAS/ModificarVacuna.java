@@ -36,9 +36,6 @@ public class ModificarVacuna extends javax.swing.JDialog {
         jTextFieldVacuna = new javax.swing.JTextField();
         jRadioButtonOptativo = new javax.swing.JRadioButton();
         jRadioButtonObligatorio = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jSpinner1 = new javax.swing.JSpinner();
         jRadioButtonRefuerzo = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
@@ -108,14 +105,6 @@ public class ModificarVacuna extends javax.swing.JDialog {
         jRadioButtonObligatorio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jRadioButtonObligatorio.setText("Obligatorio");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Edad para la Dosis(*)");
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DIAS", "MESES", "AÑOS" }));
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), null, Integer.valueOf(80), Integer.valueOf(1)));
-
         jRadioButtonRefuerzo.setBackground(new java.awt.Color(204, 204, 204));
         buttonGroup1.add(jRadioButtonRefuerzo);
         jRadioButtonRefuerzo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -139,24 +128,16 @@ public class ModificarVacuna extends javax.swing.JDialog {
                                     .addComponent(jLabel2))
                                 .addGap(34, 34, 34)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jComboBox_Especies, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jComboBox_Especies, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldVacuna)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jRadioButtonOptativo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSpinner1))
+                                .addComponent(jLabel4)
+                                .addGap(66, 66, 66)
+                                .addComponent(jRadioButtonOptativo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                                 .addComponent(jRadioButtonObligatorio)
                                 .addGap(8, 8, 8)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRadioButtonRefuerzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jRadioButtonRefuerzo)))
                         .addGap(5, 5, 5))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -170,18 +151,13 @@ public class ModificarVacuna extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonOptativo)
                     .addComponent(jLabel4)
                     .addComponent(jRadioButtonObligatorio)
                     .addComponent(jRadioButtonRefuerzo))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addContainerGap())
         );
@@ -232,12 +208,12 @@ public class ModificarVacuna extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAction2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,9 +226,7 @@ public class ModificarVacuna extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -283,7 +257,7 @@ String especieSelec;
     }//GEN-LAST:event_jComboBox_EspeciesActionPerformed
 
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
-        if(this.jTextFieldVacuna.getText().equals("")& jComboBox_Especies.getModel().getSelectedItem().equals("Seleccionar Especie")& this.jSpinner1.getModel().getValue().equals(0)){
+        if(this.jTextFieldVacuna.getText().equals("")& jComboBox_Especies.getModel().getSelectedItem().equals("Seleccionar Especie")){
             JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención",JOptionPane.WARNING_MESSAGE);
         }else{
             if(IDEspecie==0){
@@ -291,8 +265,6 @@ String especieSelec;
                 BuscarIDEspecie(especieSelec);
             }
 
-            int años = Integer.valueOf(String.valueOf(jSpinner1.getModel().getValue()));
-            String tiempo=String.valueOf(this.jComboBox1.getModel().getSelectedItem());
             String nombre=this.jTextFieldVacuna.getText();
             String condicion="";
             if(this.jRadioButtonObligatorio.isSelected()){
@@ -302,7 +274,7 @@ String especieSelec;
             }else if(this.jRadioButtonRefuerzo.isSelected()){
               condicion="REFUERZO";
             }
-            vacuna.ModificarVacuna(IDVacuna,nombre,años,tiempo,IDEspecie,condicion);
+            vacuna.ModificarVacuna(IDVacuna,nombre,IDEspecie,condicion);
            
             JOptionPane.showMessageDialog(null,"Se Guardaron los Cambios Correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -366,19 +338,16 @@ String especieSelec;
     private org.edisoncor.gui.button.ButtonAction buttonAction2;
     private org.edisoncor.gui.button.ButtonAction buttonActionGUARDAR;
     private javax.swing.ButtonGroup buttonGroup1;
-    public javax.swing.JComboBox jComboBox1;
     public javax.swing.JComboBox jComboBox_Especies;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     public javax.swing.JRadioButton jRadioButtonObligatorio;
     public javax.swing.JRadioButton jRadioButtonOptativo;
     public javax.swing.JRadioButton jRadioButtonRefuerzo;
-    public javax.swing.JSpinner jSpinner1;
     public javax.swing.JTextField jTextFieldVacuna;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables

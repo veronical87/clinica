@@ -1441,14 +1441,8 @@ private void BuscarDatosHISTORIAL(int IDFICHA) {
              }           
               jLabelOpcionDespar.setText("Si");
               jLabelTiempoDespar.setText(tiempodespar);        
-           }else{    
-//              tomar la fecha de nacimiento como base para sumar los años o meses necesarios para estar 
-//              acorde a fijar una fecha correspondiente al corriente año
-              int año= Integer.parseInt(cumpleaños.substring(0,4));
-              int mes=Integer.parseInt(tiempodespar.substring(5,7)); 
-              
-              
-              jLabelProximaDESPAR.setText(proxdespar);            
+           }else{              
+              jLabelProximaDESPAR.setText(fechaActual);            
               this.jLabelCantDespar.setText("");
               this.jLabelOpcionDespar.setText("");
               this.jLabelTiempoDespar.setText("");

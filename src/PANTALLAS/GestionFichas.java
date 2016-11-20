@@ -291,7 +291,7 @@ int IDROL,idusuario,filasel;
 
     private void buttonTaskMODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskMODIFICARActionPerformed
        if (filasel != -1) {           
-            ModificarFichaMedica mp = new ModificarFichaMedica(new javax.swing.JFrame(), true);
+            Modificar mp = new Modificar(new javax.swing.JFrame(), true);
             mp.idrol = IDROL;
             mp.idusuario= idusuario;
             mp.idpersona=idPersona;
@@ -320,7 +320,7 @@ int IDROL,idusuario,filasel;
             mp.jTextFieldDomicilio.setText(domicilio);
             mp.jTextFieldcorreo.setText(correo);
             mp.idFicha= idFicha;
-            
+            mp.jLabelVETERINARIO.setText(usu);
             dispose();
             mp.show();
         } else {
@@ -491,7 +491,7 @@ int IDROL,idusuario,filasel;
     
 private void limpiarTabla(JTable tab) {
          while(tab.getRowCount()>0){//se recorren todas las filas
-         ((javax.swing.table.DefaultTableModel) TABLA.getModel()).removeRow(0);
+         ((javax.swing.table.DefaultTableModel) tab.getModel()).removeRow(0);
        }
     }
 

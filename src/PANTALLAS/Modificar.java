@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package PANTALLAS;
 
 import java.awt.Image;
@@ -10,6 +6,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import CLASES.ClaseFichasMedicas;
+import CLASES.ClaseVacunas;
 import CLASES.Clase_Personas;
 import CLASES.JTextFieldToUpperCase;
 import Conexion.ConexionMySQL;
@@ -42,9 +39,10 @@ public class Modificar extends javax.swing.JDialog {
     CallableStatement cmd;
     ClaseFichasMedicas ficha=new ClaseFichasMedicas();  
     Clase_Personas persona=new Clase_Personas();
+    ClaseVacunas vacuna=new ClaseVacunas();
     GregorianCalendar hoy = new GregorianCalendar();  
     DefaultTableModel modelo;
-    private java.sql.Date y,desde;
+    private java.sql.Date fechavacunacion,fechanacimiento;
     Calendar Calendario = Calendar.getInstance(); 
     
     public Modificar(java.awt.Frame parent, boolean modal) {
@@ -169,6 +167,8 @@ public class Modificar extends javax.swing.JDialog {
         buttonTaskQuitarVacuna = new org.edisoncor.gui.button.ButtonTask();
         jDateChooserFECHADESPAR = new com.toedter.calendar.JDateChooser();
         jLabel31 = new javax.swing.JLabel();
+        jLabelPreñada1 = new javax.swing.JLabel();
+        jComboBoxOpcionCastrado = new javax.swing.JComboBox();
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
         buttonActionCANCELAR = new org.edisoncor.gui.button.ButtonAction();
         jLabel28 = new javax.swing.JLabel();
@@ -709,10 +709,8 @@ public class Modificar extends javax.swing.JDialog {
                                 .addComponent(buttonActionSELECCIONARIMAGEN, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(0, 68, Short.MAX_VALUE)
-                                        .addComponent(jLabelSITUACIONPESO, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabelSituacionPeso2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabelSituacionPeso2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelSITUACIONPESO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
@@ -801,6 +799,9 @@ public class Modificar extends javax.swing.JDialog {
         TABLA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TABLAMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TABLAMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(TABLA);
@@ -1198,6 +1199,17 @@ public class Modificar extends javax.swing.JDialog {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel31.setText("Fecha(*)");
 
+        jLabelPreñada1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelPreñada1.setText("¿Esta Castrado/a?(*) ");
+
+        jComboBoxOpcionCastrado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBoxOpcionCastrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Si" }));
+        jComboBoxOpcionCastrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxOpcionCastradoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1256,7 +1268,11 @@ public class Modificar extends javax.swing.JDialog {
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jDateChooserFECHADESPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jDateChooserFECHADESPAR, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabelPreñada1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(101, 101, 101)
+                                .addComponent(jComboBoxOpcionCastrado, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -1299,7 +1315,11 @@ public class Modificar extends javax.swing.JDialog {
                                 .addGap(12, 12, 12)
                                 .addComponent(buttonTaskAgregarVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonTaskQuitarVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelPreñada1)
+                                        .addComponent(jComboBoxOpcionCastrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(buttonTaskQuitarVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1437,9 +1457,7 @@ public class Modificar extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1450,7 +1468,7 @@ public class Modificar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 int idFicha,idPropietario,idpersona;String datoImagen,seleccionprov,coincidencia;int indice1;boolean banderaProvincia,banderaLocalidad;
 int idrol,idusuario;
-int opcionVacunas;int opcionParasitos;int opcionDesparasitado;int opcionProbResp;int opcionSarna;int opcionParvovirus;int opcionLeishmaniasis;int opcionMoquillo;int opcionGusanoCorazon;int opcionAlergias;int opcionPreñada;
+int opcionVacunas,opcionParasitos,opcionDesparasitado,opcionProbResp,opcionCastrado,opcionAlergias,opcionPreñada,opcionAfecciones;
     private void jTextField_ApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ApellidoKeyPressed
 
     }//GEN-LAST:event_jTextField_ApellidoKeyPressed
@@ -1546,14 +1564,14 @@ int resultadoaño,resultadomes,resultadofinal;String seleccionEspecie,seleccionR
             evt.consume();
         } else if (jTextFieldNroTelefono.getText().length()==6) {
             evt.consume();
-            this.jTextFieldDomicilio.requestFocus();
+            this.jTextFieldNroTelefono.requestFocus();
         }
     }//GEN-LAST:event_jTextFieldNroTelefonoKeyTyped
 
     private void jTextFieldDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDomicilioKeyTyped
         char codigo = evt.getKeyChar();
         if(Character.isAlphabetic(codigo)){
-            if (this.jTextField_Nombre.getText().length()==50) {
+            if (this.jTextFieldDomicilio.getText().length()==50) {
                 evt.consume();
             }
         }
@@ -1630,7 +1648,7 @@ int resultadoaño,resultadomes,resultadofinal;String seleccionEspecie,seleccionR
             } else {
                 evt.consume();
             }
-        } else if (this.jTextField_Nombre.getText().length()==25) {
+        } else if (this.jTextFieldMASCOTA.getText().length()==25) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldMASCOTAKeyTyped
@@ -1671,7 +1689,7 @@ int resultadoaño,resultadomes,resultadofinal;String seleccionEspecie,seleccionR
     }//GEN-LAST:event_jComboBoxRAZAActionPerformed
 
     private void buttonActionSELECCIONARIMAGENActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionSELECCIONARIMAGENActionPerformed
-        this.jLabelMostrarImagen.setVisible(true);
+        
         JFileChooser archivo= new JFileChooser();
         archivo.setDialogTitle("Seleccionar Imagen");
 
@@ -1685,7 +1703,7 @@ int resultadoaño,resultadomes,resultadofinal;String seleccionEspecie,seleccionR
             Image im= getToolkit().getImage(datoImagen);
             im=im.getScaledInstance(120,110, Image.SCALE_SMOOTH);
             jLabelMostrarImagen.setIcon(new ImageIcon(im));
-
+            this.jLabelMostrarImagen.setVisible(true);
         }
     }//GEN-LAST:event_buttonActionSELECCIONARIMAGENActionPerformed
 
@@ -1769,31 +1787,30 @@ int sumardias;
         if(!jTextField_Apellido.getText().equals("")){
             if(jDateChooser.getDate()==null){
                 JOptionPane.showMessageDialog(null, "La Fecha de Nacimiento No Puede estar Vacio","Atencion",JOptionPane.WARNING_MESSAGE);
-
             }else{
                 String formato = "yyyy/MM/dd";
-                desde=new Date( this.jDateChooser.getDate().getYear(), jDateChooser.getDate().getMonth(),jDateChooser.getDate().getDate() );
+                fechanacimiento=new Date( this.jDateChooser.getDate().getYear(), jDateChooser.getDate().getMonth(),jDateChooser.getDate().getDate() );
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String d = sdf.format(desde);
+                String d = sdf.format(fechanacimiento);
                 this.fecha();
 
                 if(d.equals(fechaActual)){
                     JOptionPane.showMessageDialog(null,"La Fecha de Nacimiento Debe Ser Distinta a la Fecha Actual","Atencion",JOptionPane.WARNING_MESSAGE);
                 }else{
-                    int añoactual =hoy.get(Calendar.YEAR);
+                    int añoActual =hoy.get(Calendar.YEAR);
                     int selecaño= jDateChooser.getJCalendar().getYearChooser().getYear();
-                    resultadoaño=añoactual-selecaño;
+                    resultadoaño=añoActual-selecaño;
 
                     if(resultadoaño==0){    // SI EL RESULTADO ES 0, QUIERE DECIR QUE NACIO EN EL CORRIENTE AÑO
-                        int mesactual=hoy.get(Calendar.MONTH)+1;
+                        int mesActual=hoy.get(Calendar.MONTH)+1;
                         int messelec= jDateChooser.getJCalendar().getMonthChooser().getMonth()+1;
 
-                        if(messelec==mesactual){
+                        if(messelec==mesActual){
                             resultadomes=0;
-                        }else if(messelec<mesactual){
-                            resultadomes=mesactual-messelec;
+                        }else if(messelec<mesActual){
+                            resultadomes=mesActual-messelec;
                         }else{
-                            resultadomes=messelec-mesactual;
+                            resultadomes=messelec-mesActual;
                         }
                         int contar=0;
                         int dia= Calendario.get(Calendar.DAY_OF_MONTH);
@@ -1815,7 +1832,7 @@ int sumardias;
                                 sumardias=contar;
                                 contar=0;
 
-                                if(mes==mesactual){
+                                if(mes==mesActual){
                                     while(contar!=dia){
                                         contar++;
                                     }
@@ -1834,7 +1851,7 @@ int sumardias;
                                     mes++;
                                     sumardias=sumardias+contar;
                                     contar=0;
-                                    if(mes==mesactual){
+                                    if(mes==mesActual){
                                         while(contar!=dia){
                                             contar++;
                                         }
@@ -1844,7 +1861,7 @@ int sumardias;
                                 }
 
                             }else{
-                                if(mes==2 & añoactual==2016){
+                                if(mes==2 & añoActual==2016){
                                     while(diaselec!=29){
                                         diaselec++;
                                         contar++;
@@ -1853,7 +1870,7 @@ int sumardias;
                                     sumardias=contar;
                                     contar=0;
 
-                                    if(mes==mesactual){
+                                    if(mes==mesActual){
                                         while(contar!=dia){
                                             contar++;
                                         }
@@ -1872,7 +1889,7 @@ int sumardias;
                                         mes++;
                                         sumardias=sumardias+contar;
                                         contar=0;
-                                        if(mes==mesactual){
+                                        if(mes==mesActual){
                                             while(contar!=dia){
                                                 contar++;
                                             }
@@ -1890,7 +1907,7 @@ int sumardias;
                                     sumardias=contar;
                                     contar=0;
 
-                                    if(mes==mesactual){
+                                    if(mes==mesActual){
                                         while(contar!=dia){
                                             contar++;
                                         }
@@ -1909,7 +1926,7 @@ int sumardias;
                                         mes++;
                                         sumardias=sumardias+contar;
                                         contar=0;
-                                        if(mes==mesactual){
+                                        if(mes==mesActual){
                                             while(contar!=dia){
                                                 contar++;
                                             }
@@ -1925,7 +1942,7 @@ int sumardias;
                                     sumardias=contar;
                                     contar=0;
 
-                                    if(mes==mesactual){
+                                    if(mes==mesActual){
                                         while(contar!=dia){
                                             contar++;
                                         }
@@ -1945,7 +1962,7 @@ int sumardias;
                                         mes++;
                                         sumardias=sumardias+contar;
                                         contar=0;
-                                        if(mes==mesactual){
+                                        if(mes==mesActual){
                                             while(contar!=dia){
                                                 contar++;
                                             }
@@ -1993,100 +2010,8 @@ int sumardias;
                 BuscarIDRaza(raza);
             }
             DatosRaza(idraza);
-
-            //      String cambio="0"+PESOACTUAL;
-
-            if(resultadoaño!=0){
-                if(sexo.equals("HEMBRA")){
-                    if(PESOACTUAL<pesominhembra){
-                        situacionpeso="PESO BAJO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        this.jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de "+pesominhembra+" Kilos");
-                    }else if(PESOACTUAL>pesomaxhembra){
-                        situacionpeso="SOBREPESO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de "+pesomaxhembra+" Kilos");
-                    }else{
-                        situacionpeso="NORMAL";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                    }
-
-                }else if(sexo.equals("MACHO")){
-                    if(PESOACTUAL<pesominmacho){
-                        situacionpeso="PESO BAJO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de "+pesominmacho+" Kilos");
-                    }else if(PESOACTUAL>pesomaxmacho){
-                        situacionpeso="SOBREPESO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de "+pesomaxmacho+" Kilos");
-                    }else {
-                        situacionpeso="NORMAL";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                    }
-                }
-            }else if(resultadomes>2 || resultadomes<12){
-                switch (seleccionTamaño) {
-                    case "PEQUEÑO":
-                    if(PESOACTUAL<1){
-                        if(PESOACTUAL<0.20){
-                            situacionpeso="PESO BAJO";
-                            jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                            jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de los 200grs.");
-                        }
-                    }else if(PESOACTUAL>0.20 & PESOACTUAL<03.00 || PESOACTUAL==03.00){
-                        situacionpeso="NORMAL";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                    }else if(PESOACTUAL>03.00){
-                        situacionpeso="SOBREPESO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de los 3 kilos");
-                    }
-
-                    break;
-                    case "MEDIANO":
-                    if(PESOACTUAL<02.00){
-                        situacionpeso="PESO BAJO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de los 2 kilos");
-                    }else if(PESOACTUAL>02.00 & PESOACTUAL<05.00 || PESOACTUAL==05.00){
-                        situacionpeso="NORMAL";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                    }else if(PESOACTUAL>05.00){
-                        situacionpeso="SOBREPESO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de los 5 kilos");
-                    }
-                    break;
-                    case "GRANDE":
-                    if(PESOACTUAL<05.00){
-                        situacionpeso="PESO BAJO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Encima de los 5 kilos");
-                    }else if(PESOACTUAL>05.00 & PESOACTUAL<13 || PESOACTUAL==13){
-                        situacionpeso="NORMAL";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                    }else if(PESOACTUAL>13){
-                        situacionpeso="SOBREPESO";
-                        jLabelSITUACIONPESO.setText("La Situacion del Peso de la Mascota es "+situacionpeso);
-                        jLabelSituacionPeso2.setText("Su Peso Debe estar Por Debajo de los 13 kilos");
-                    }
-                    break;
-                }
-            }
-
-            switch (situacionpeso) {
-                case "SOBREPESO":
-                jLabelSITUACIONPESO.setForeground(new Color(204,0,0));
-                break;
-                case "NORMAL":
-                jLabelSITUACIONPESO.setForeground(new Color(0,97,51));
-                break;
-                case "PESO BAJO":
-                jLabelSITUACIONPESO.setForeground(new Color(255,102,0));
-                break;
-            }
-        }
+            controlPeso(sexo, PESOACTUAL);
+        }          
     }//GEN-LAST:event_jFormattedTextFieldFocusLost
 
     private void jFormattedTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldActionPerformed
@@ -2122,9 +2047,9 @@ int sumardias;
 
         if(jDateChooser.getDate()!=null ){
             String formato ="yyyy/MM/dd";
-            y= new Date(this.jDateChooser.getDate().getYear(), jDateChooser.getDate().getMonth(), jDateChooser.getDate().getDate());
+            fechanacimiento= new Date(this.jDateChooser.getDate().getYear(), jDateChooser.getDate().getMonth(), jDateChooser.getDate().getDate());
             SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String fechaNacimiento=sdf.format(y);
+            String fechaNacimiento=sdf.format(fechanacimiento);
             String anterior="Propietario:"+apellido+","+nombre+";"+"Mascota:"+""+nombremascota;
             String nuevo="Propietario:"+apellido+","+nombre+";"+"Mascota:"+""+nombremascota;
 
@@ -2155,8 +2080,8 @@ int sumardias;
          jTextFieldMASCOTA.requestFocus();
         JOptionPane.showMessageDialog(null,"Se Registraron Correctamentamente los Datos","Información",JOptionPane.INFORMATION_MESSAGE);
      
-        ficha.AgregarDatosMascota(idPropietario,fechaActual,nombremascota,fechaNacimiento,idraza,sexo,pelaje,kilaje,edad,tiemponac,situacionpeso,datoImagen);
-        ficha.InsertarDatosAuditoria(fechaActual,hor,usu,"FICHAS MEDICAS","ALTA","",nuevo);
+        ficha.AgregarDatosMascota(idPropietario,idusuario,fechaActual,nombremascota,fechaNacimiento,idraza,sexo,pelaje,kilaje,edad,tiemponac,situacionpeso,datoImagen);
+        ficha.InsertarDatosAuditoria(fechaActual,hor,usu,"FICHAS MEDICAS","MODIFICACION",anterior,nuevo);
         limpiarTabla(TABLA);
         modelo = (DefaultTableModel) TABLA.getModel();
         ficha.LlenarTablaDatosMascotas(modelo,idPropietario);
@@ -2170,7 +2095,7 @@ int sumardias;
        }else{
           GenerarNumeroHistorial();
 
-          ficha.agregarHistorial(idFicha,nroHistorial,0,0,"",0,"",0,"",0,0);
+          ficha.agregarHistorial(idFicha,nroHistorial,0,0,"",0,"",0,"",0,0,0,0);
         }
      }
    }    
@@ -2358,113 +2283,41 @@ int sumardias;
         id = (String) modelo.getValueAt(filasel, 0);
         BuscarIDVacunaxMascota(id);
     }//GEN-LAST:event_jTableVACUNASMouseClicked
-
+boolean bandera;
     private void buttonTaskAgregarVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAgregarVacunaActionPerformed
     fecha();
     
-    int añonac=Integer.parseInt(nacimiento.substring(0,4)); 
-    int mesnac=Integer.parseInt(nacimiento.substring(0,4)); 
-    buscarfecharegistro(); 
-    int año=Integer.parseInt(diaRegistro.substring(0,4)); 
-    int mes=Integer.parseInt(diaRegistro.substring(5,7));
-    int dia=Integer.parseInt(diaRegistro.substring(8,9));
-    int selecaño= jDateChooserFECHAVACUNACIO.getJCalendar().getYearChooser().getYear(); 
     String formato = "yyyy/MM/dd";
-    desde=new Date( this.jDateChooserFECHAVACUNACIO.getDate().getYear(), jDateChooserFECHAVACUNACIO.getDate().getMonth(),jDateChooserFECHAVACUNACIO.getDate().getDate() );
+    fechavacunacion=new Date( this.jDateChooserFECHAVACUNACIO.getDate().getYear(), jDateChooserFECHAVACUNACIO.getDate().getMonth(),jDateChooserFECHAVACUNACIO.getDate().getDate() );
     SimpleDateFormat sdf = new SimpleDateFormat(formato);
-    String d = sdf.format(desde);
-    
-    if(añonac == añoactual & mesnac==mesactual){
-       JOptionPane.showMessageDialog(null,"La Fecha de Nacimiento Debe ser Menor a la Fecha Actual para Registrar una Vacunacion","Informacion", JOptionPane.INFORMATION_MESSAGE);
-    }else if(añonac<añoactual){
-         if(selecaño==año){          
-            int messelec= jDateChooserFECHAVACUNACIO.getJCalendar().getMonthChooser().getMonth()+1;
-            if(messelec!=mes){   
-                    int salida=ficha.agregarVacunaxMascota(idFicha,IDVacuna,d);
-                    if(salida==0){
-                        limpiarTabla(jTableVACUNAS);
-                        modelo = (DefaultTableModel) jTableVACUNAS.getModel();
-                        ficha.LlenarTablaVacunas(modelo,idFicha); 
-                    }else{
-                       JOptionPane.showMessageDialog(null,"La Vacuna se Encuentra Registrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-                       jDateChooserFECHAVACUNACIO.setDateFormatString("");
-                    }              
-         }else if(messelec==mes){         
-                  int diaselec=jDateChooserFECHAVACUNACIO.getDate().getDate();         
-
-                  if(diaselec==dia){                
-                        JOptionPane.showMessageDialog(null,"La Fecha de las Vacunaciones,Deben ser Anteriores al Registro de la Mascota","Informacion", JOptionPane.INFORMATION_MESSAGE); 
-                        jDateChooserFECHAVACUNACIO.setDateFormatString("");
-                  }else{                
-                    int salida=ficha.agregarVacunaxMascota(idFicha,IDVacuna,d);
-                    if(salida==0){
-                        limpiarTabla(jTableVACUNAS);
-                        modelo = (DefaultTableModel) jTableVACUNAS.getModel();
-                        ficha.LlenarTablaVacunas(modelo,idFicha); 
-                    }else{
-                       JOptionPane.showMessageDialog(null,"La Vacuna se Encuentra Registrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-                       jDateChooserFECHAVACUNACIO.setDateFormatString("");
-                     }                
-                   }    
-         }
+    String d = sdf.format(fechavacunacion);
+////    BEFORE SIGNIFICA ANTES
+////    AFTER---DESPUES
+    if(fechavacunacion.before(fechanacimiento)  || fechavacunacion.equals(fechanacimiento)){  ////no corresponde porque como minimo debe tener 45 dias para su primer vacunacion
+       JOptionPane.showMessageDialog(null,"La Fecha de Vacunacion no Puede ser Menor a la Fecha de Nacimiento","Informacion", JOptionPane.INFORMATION_MESSAGE);
+       jDateChooserFECHAVACUNACIO.setDate(null);
+    }else if(fechavacunacion.after(fechanacimiento)){  
+        if(bandera==false){
+         vacuna.CargarVacunasPendientesxHistorial(nroHistorial,idEspecie);
+        }       
+        if(IDVacuna==0){
+           String vacuna=this.jComboBoxVACUNAS.getModel().getSelectedItem().toString();
+           BuscarIDVacuna(vacuna);
+        }
+      
+        ficha.agregarHistorial(idFicha,nroHistorial,0,0,"",0,"",0,"",0,0,0,0);
         
-}else if(selecaño!=año){
-       int salida=ficha.agregarVacunaxMascota(idFicha,IDVacuna,d);
+        int salida=ficha.agregarVacunaxMascota(nroHistorial,IDVacuna,d);
         if(salida==0){
+            vacuna.ActualizarVacunaPendiente(nroHistorial,IDVacuna,"COLOCADO");
             limpiarTabla(jTableVACUNAS);
             modelo = (DefaultTableModel) jTableVACUNAS.getModel();
-            ficha.LlenarTablaVacunas(modelo,idFicha); 
+            ficha.LlenarTablaVacunas(modelo,nroHistorial); 
+            bandera=true; 
         }else{
-           JOptionPane.showMessageDialog(null,"La Vacuna se Encuentra Registrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-           jDateChooserFECHAVACUNACIO.setDateFormatString("");
-         }  
-     }
-    }else{
-       if(mesnac!=mesactual){
-           if(selecaño==año){          
-            int messelec= jDateChooserFECHAVACUNACIO.getJCalendar().getMonthChooser().getMonth()+1;
-            if(messelec!=mes){   
-                    int salida=ficha.agregarVacunaxMascota(idFicha,IDVacuna,d);
-                    if(salida==0){
-                        limpiarTabla(jTableVACUNAS);
-                        modelo = (DefaultTableModel) jTableVACUNAS.getModel();
-                        ficha.LlenarTablaVacunas(modelo,idFicha); 
-                    }else{
-                       JOptionPane.showMessageDialog(null,"La Vacuna se Encuentra Registrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-                       jDateChooserFECHAVACUNACIO.setDateFormatString("");
-                    }              
-         }else if(messelec==mes){         
-                  int diaselec=jDateChooserFECHAVACUNACIO.getDate().getDate();         
-
-                  if(diaselec==dia){                
-                        JOptionPane.showMessageDialog(null,"La Fecha de las Vacunaciones,Deben ser Anteriores al Registro de la Mascota","Informacion", JOptionPane.INFORMATION_MESSAGE); 
-                        jDateChooserFECHAVACUNACIO.setDateFormatString("");
-                  }else{                
-                    int salida=ficha.agregarVacunaxMascota(idFicha,IDVacuna,d);
-                    if(salida==0){
-                        limpiarTabla(jTableVACUNAS);
-                        modelo = (DefaultTableModel) jTableVACUNAS.getModel();
-                        ficha.LlenarTablaVacunas(modelo,idFicha); 
-                    }else{
-                       JOptionPane.showMessageDialog(null,"La Vacuna se Encuentra Registrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-                       jDateChooserFECHAVACUNACIO.setDateFormatString("");
-                     }                
-                   }    
-         }
-        
-}else if(selecaño!=año){
-       int salida=ficha.agregarVacunaxMascota(idFicha,IDVacuna,d);
-        if(salida==0){
-            limpiarTabla(jTableVACUNAS);
-            modelo = (DefaultTableModel) jTableVACUNAS.getModel();
-            ficha.LlenarTablaVacunas(modelo,idFicha); 
-        }else{
-           JOptionPane.showMessageDialog(null,"La Vacuna se Encuentra Registrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
-           jDateChooserFECHAVACUNACIO.setDateFormatString("");
-         }  
-     }
-         }
-    } 
+          JOptionPane.showMessageDialog(null,"La Vacuna se Encuentra Registrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
+          }
+    }
     }//GEN-LAST:event_buttonTaskAgregarVacunaActionPerformed
 
     private void buttonTaskQuitarVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskQuitarVacunaActionPerformed
@@ -2475,9 +2328,14 @@ int sumardias;
     }//GEN-LAST:event_buttonTaskQuitarVacunaActionPerformed
 
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
-       JOptionPane.showMessageDialog(null,"Se Guardaron los Datos Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
-       LimpiarHC();
-      ENLACE(idrol);        
+      JOptionPane.showMessageDialog(null,"Se Guardaron los Datos Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
+       if(JOptionPane.showConfirmDialog(null,"¿Desea Registrar los Datos de otra Mascota?","Consulta",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+            jTabbedPane1.setEnabledAt(0,true);
+            jTabbedPane1.setSelectedIndex(0);
+            LimpiarHC();   
+          }else{
+          ENLACE(idrol);  
+           }       
     }//GEN-LAST:event_buttonActionGUARDARActionPerformed
 
     private void buttonActionCANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionCANCELARActionPerformed
@@ -2508,9 +2366,9 @@ int sumardias;
 
             if(jDateChooser.getDate()!=null ){
                 String formato ="yyyy/MM/dd";
-                y= new Date(this.jDateChooser.getDate().getYear(), jDateChooser.getDate().getMonth(), jDateChooser.getDate().getDate());
+                fechanacimiento= new Date(this.jDateChooser.getDate().getYear(), jDateChooser.getDate().getMonth(), jDateChooser.getDate().getDate());
                 SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                String fechaNacimiento=sdf.format(y);
+                String fechaNacimiento=sdf.format(fechanacimiento);
                 String anterior="Propietario:"+apellido+","+nombre+";"+"Mascota:"+""+nombremascota;
                 String nuevo="Propietario:"+apellido+","+nombre+";"+"Mascota:"+""+nombremascota;
 
@@ -2549,9 +2407,21 @@ int sumardias;
                 buttonTaskAGREGARMASCOTA.setVisible(true);
                 MODIFICARHISTORIAL();
             }
-            JOptionPane.showMessageDialog(null,"Se Guardaron los Cambios Correctamente","Información", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonTaskEDITARMASCOTAActionPerformed
+
+    private void jComboBoxOpcionCastradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOpcionCastradoActionPerformed
+ String captura=String.valueOf(jComboBoxOpcionCastrado.getModel().getSelectedItem());
+        if(captura.equals("Si")){
+          opcionCastrado=1;
+       }else{
+           opcionCastrado=2;
+        }
+    }//GEN-LAST:event_jComboBoxOpcionCastradoActionPerformed
+
+    private void TABLAMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLAMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TABLAMouseEntered
 
     /**
      * @param args the command line arguments
@@ -2611,6 +2481,7 @@ int sumardias;
     public javax.swing.JComboBox jComboBoxLocalidades;
     public javax.swing.JComboBox jComboBoxOpcion2Parasitos;
     public javax.swing.JComboBox jComboBoxOpcionAlergias;
+    public javax.swing.JComboBox jComboBoxOpcionCastrado;
     public javax.swing.JComboBox jComboBoxOpcionDesparasitado;
     public javax.swing.JComboBox jComboBoxOpcionParasitos;
     public javax.swing.JComboBox jComboBoxOpcionPreñada;
@@ -2664,6 +2535,7 @@ int sumardias;
     public javax.swing.JLabel jLabelEDADMASCOTA1;
     private javax.swing.JLabel jLabelMostrarImagen;
     private javax.swing.JLabel jLabelPreñada;
+    private javax.swing.JLabel jLabelPreñada1;
     public javax.swing.JLabel jLabelSITUACIONPESO;
     public javax.swing.JLabel jLabelSituacionPeso2;
     private javax.swing.JLabel jLabelTiempoTranscurrido;
@@ -3140,7 +3012,9 @@ private void BuscarDatosMascota(String mascota) {
                 jComboBoxOpcionPreñada.setVisible(false);
                 jLabelPreñada.setVisible(false);
                }
+            
             BuscarDatosHistorial(idFicha);
+            
             this.jTextFieldMascotaHC.setText(nombremascota);
             this.jTextFieldDueñoHC.setText(nombredueño);
            
@@ -3178,7 +3052,9 @@ private void BuscarDatosMascota(String mascota) {
        this.jComboBoxOpcionProblemasResp.setSelectedItem("No");      
        jTabbedPane1.setEnabledAt(1,false);
        jTabbedPane1.setSelectedIndex(0);      
-       this.jTextFieldNroHistorial.setText("");
+       jTextFieldNroHistorial.setText("");
+       limpiarTabla(jTableAFECCION);
+       limpiarTabla(jTableVACUNAS);
     }
 
     private void ModificarDatosDueño() {
@@ -3212,32 +3088,42 @@ private void BuscarDatosMascota(String mascota) {
     }
 
  private void BuscarDatosHistorial(int idFicha) {
-   String nombremascota = null,parasitos= null,alergias= null;java.sql.Date tiempodespar= null;int nrohistorial=0,opcionvacunas=0,opcionparasitos=0,opcionalergias=0,opciondesparasitado=0,cantdespar=0,opcionproblemasresp=0,opcionpreñada=0;
+   String nombremascota = null,parasitos= null,alergias= null;java.sql.Date tiempodespar= null;int opcionAfecciones=0,nrohistorial=0,opcionvacunas=0,opcionparasitos=0,opcionalergias=0,opciondesparasitado=0,opcioncastrado=0,opcionproblemasresp=0,opcionpreñada=0;
     try {
        cn=cm.Conectar();
        Statement st = (Statement) cn.createStatement(); 
-       ResultSet rs = st.executeQuery("SELECT CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,nrohistorial,opcionvacunas,opcionparasitos,parasitos,opcionalergias,alergias,opciondesparasitado,fechadespar,opcionproblemasresp,opcionpreñada FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN historialclinico ON historialclinico.idficha=fichamedica.id WHERE historialclinico.idficha="+idFicha); 
+       ResultSet rs = st.executeQuery("SELECT CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,nrohistorial,opcionvacunas,opcionparasitos,parasitos,opcionalergias,alergias,opciondesparasitado,fechadespar,opcionproblemasresp,opcionpreñada,opcionCastrado,opcionAfecciones FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN historialclinico ON historialclinico.idficha=fichamedica.id WHERE historialclinico.idficha="+idFicha); 
             while (rs.next()) {
               nombredueño=rs.getString("dueño");
               nombremascota=rs.getString("mascota");
               nrohistorial=rs.getInt("nrohistorial");
               opcionvacunas=rs.getInt("opcionvacunas");
-             
+              opcioncastrado=rs.getInt("opcionCastrado");
               opcionparasitos=rs.getInt("opcionparasitos");
               parasitos=rs.getString("parasitos");
               opcionalergias=rs.getInt("opcionalergias");
               alergias=rs.getString("alergias");
               opciondesparasitado=rs.getInt("opciondesparasitado");
-              
+              opcionAfecciones=rs.getInt("opcionAfecciones");
               tiempodespar=rs.getDate("fechadespar");
               opcionproblemasresp=rs.getInt("opcionproblemasresp");
               opcionpreñada=rs.getInt("opcionpreñada");
-             
+          
             }
             rs.close();            
             this.jTextFieldMascotaHC.setText(nombremascota);
             this.jTextFieldDueñoHC.setText(nombredueño);
             this.jTextFieldNroHistorial.setText(String.valueOf(nrohistorial));
+            
+            if(opcionAfecciones==1){
+               jComboBoxAfecciones.getModel().setSelectedItem("Si"); 
+               limpiarTabla(jTableAFECCION);
+               modelo = (DefaultTableModel) jTableAFECCION.getModel();
+               ficha.LlenarTablaAFECCIONES(modelo,idFicha);
+            }else{
+               jComboBoxAfecciones.getModel().setSelectedItem("No"); 
+               limpiarTabla(jTableAFECCION);
+            }
             
             if(opcionvacunas==1){
                jComboBoxOpcionVacunas.getModel().setSelectedItem("Si");  
@@ -3289,6 +3175,12 @@ private void BuscarDatosMascota(String mascota) {
               this.jComboBoxOpcionPreñada.getModel().setSelectedItem("Si");
             }else{
                jComboBoxOpcionPreñada.getModel().setSelectedItem("No");
+            }
+            
+            if(opcioncastrado==1){
+              this.jComboBoxOpcionCastrado.getModel().setSelectedItem("Si");
+            }else{
+               jComboBoxOpcionCastrado.getModel().setSelectedItem("No");
             }
            
         } catch (SQLException e) {
@@ -3520,7 +3412,7 @@ private void BuscarTamaño(String tamaño) {
         String parasitos=String.valueOf(jTextAreaParasitos.getText());
         String alergias=String.valueOf(jTextAreaMedicamentos.getText());
         String formato = "yyyy/MM/dd";
-        desde=new Date( jDateChooserFECHADESPAR.getDate().getYear(), jDateChooserFECHADESPAR.getDate().getMonth(),jDateChooserFECHADESPAR.getDate().getDate() );
+        java.sql.Date desde=new Date( jDateChooserFECHADESPAR.getDate().getYear(), jDateChooserFECHADESPAR.getDate().getMonth(),jDateChooserFECHADESPAR.getDate().getDate() );
         SimpleDateFormat sdf = new SimpleDateFormat(formato);
         String diaDespar = sdf.format(desde);
 
@@ -3528,7 +3420,7 @@ private void BuscarTamaño(String tamaño) {
 
         BuscarUsuario();
         fecha();
-        ficha.ModificarHistorial(nrohistorial,opcionVacunas,opcionParasitos,parasitos,opcionAlergias,alergias,opcionDesparasitado,diaDespar,opcionProbResp,opcionPreñada);
+        ficha.ModificarHistorial(nrohistorial,opcionVacunas,opcionParasitos,parasitos,opcionAlergias,alergias,opcionDesparasitado,diaDespar,opcionProbResp,opcionPreñada,opcionCastrado,opcionAfecciones);
         ficha.InsertarDatosAuditoria(fechaActual,hor,usu,"HISTORIAL CLINICO","MODIFICAR","",nuevo);
         JOptionPane.showMessageDialog(null,"Se Guardaron los Cambios Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
         LimpiarHC();

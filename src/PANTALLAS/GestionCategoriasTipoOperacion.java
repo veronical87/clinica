@@ -1,35 +1,39 @@
 package PANTALLAS;
 
-import CLASES.ClaseTipoTelefono;
+import CLASES.ClaseCategoriaTipoOperacion;
+import CLASES.ClaseTipoOperaciones;
 import Conexion.ConexionMySQL;
-import java.sql.*;
-import javax.swing.DefaultComboBoxModel;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
-public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
+import javax.swing.table.DefaultTableModel;
+
+public class GestionCategoriasTipoOperacion extends javax.swing.JDialog  {
     Connection cn;
     ConexionMySQL cm=new ConexionMySQL();
     CallableStatement cmd;
-    ClaseTipoTelefono tipoTel=new ClaseTipoTelefono();
+    ClaseCategoriaTipoOperacion categoria=new ClaseCategoriaTipoOperacion();
     DefaultTableModel modelo;
-    public Gestión_de_Tipo_Telefono(java.awt.Frame parent, boolean modal) {
+    public GestionCategoriasTipoOperacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
-        DefaultTableModel modelo=(DefaultTableModel) TABLA.getModel();
-        tipoTel.LlenarTabla_TipoTelefono(modelo);
+        setLocationRelativeTo(null); 
+        modelo=(DefaultTableModel) TABLA.getModel();
+        categoria.LlenarTabla(modelo);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panelRectTranslucido1 = new org.edisoncor.gui.panel.PanelRectTranslucido();
         buttonTaskAGREGAR = new org.edisoncor.gui.button.ButtonTask();
-        buttonTaskMODIFICAR = new org.edisoncor.gui.button.ButtonTask();
-        buttonTaskELIMINAR = new org.edisoncor.gui.button.ButtonTask();
+        buttonTaskEDITAR = new org.edisoncor.gui.button.ButtonTask();
+        buttonTaskBORRAR = new org.edisoncor.gui.button.ButtonTask();
         buttonTaskCERRAR = new org.edisoncor.gui.button.ButtonTask();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -41,7 +45,7 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
         buttonTaskBUSCAR = new org.edisoncor.gui.button.ButtonTask();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
 
@@ -59,31 +63,31 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
             }
         });
 
-        buttonTaskMODIFICAR.setForeground(new java.awt.Color(255, 255, 255));
-        buttonTaskMODIFICAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/editar-lapiz-escribir-icono-4987-32.png"))); // NOI18N
-        buttonTaskMODIFICAR.setText("EDITAR");
-        buttonTaskMODIFICAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        buttonTaskMODIFICAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
-        buttonTaskMODIFICAR.setDefaultCapable(false);
-        buttonTaskMODIFICAR.setDescription("..");
-        buttonTaskMODIFICAR.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        buttonTaskMODIFICAR.addActionListener(new java.awt.event.ActionListener() {
+        buttonTaskEDITAR.setForeground(new java.awt.Color(255, 255, 255));
+        buttonTaskEDITAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/editar-lapiz-escribir-icono-4987-32.png"))); // NOI18N
+        buttonTaskEDITAR.setText("EDITAR");
+        buttonTaskEDITAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonTaskEDITAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        buttonTaskEDITAR.setDefaultCapable(false);
+        buttonTaskEDITAR.setDescription("..");
+        buttonTaskEDITAR.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        buttonTaskEDITAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTaskMODIFICARActionPerformed(evt);
+                buttonTaskEDITARActionPerformed(evt);
             }
         });
 
-        buttonTaskELIMINAR.setForeground(new java.awt.Color(255, 255, 255));
-        buttonTaskELIMINAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/gtk-eliminar-icono-8705-32.png"))); // NOI18N
-        buttonTaskELIMINAR.setText("BORRAR");
-        buttonTaskELIMINAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        buttonTaskELIMINAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
-        buttonTaskELIMINAR.setDefaultCapable(false);
-        buttonTaskELIMINAR.setDescription("..");
-        buttonTaskELIMINAR.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        buttonTaskELIMINAR.addActionListener(new java.awt.event.ActionListener() {
+        buttonTaskBORRAR.setForeground(new java.awt.Color(255, 255, 255));
+        buttonTaskBORRAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/gtk-eliminar-icono-8705-32.png"))); // NOI18N
+        buttonTaskBORRAR.setText("BORRAR");
+        buttonTaskBORRAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonTaskBORRAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        buttonTaskBORRAR.setDefaultCapable(false);
+        buttonTaskBORRAR.setDescription("..");
+        buttonTaskBORRAR.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        buttonTaskBORRAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTaskELIMINARActionPerformed(evt);
+                buttonTaskBORRARActionPerformed(evt);
             }
         });
 
@@ -102,14 +106,14 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
         });
 
         jPanel2.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LISTA DE TIPOS DE TELÉFONOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LISTA DE CATEGORIAS DE TIPOS DE OPERACION", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         TABLA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tipo de Teléfono"
+                "Categoria de Tipo de Operacion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -147,7 +151,7 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
         PANEL.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "BÚSQUEDAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jComboBoxCriterioSeleccionado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de Teléfono", "Todos" }));
+        jComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria de Tipo de Operacion", "Todos" }));
         jComboBoxCriterioSeleccionado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCriterioSeleccionadoActionPerformed(evt);
@@ -185,25 +189,27 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBoxCriterioSeleccionado, 0, 170, Short.MAX_VALUE)
+                .addComponent(jComboBoxCriterioSeleccionado, 0, 1, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldCriterioBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(45, 45, 45)
                 .addComponent(buttonTaskBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
         PANELLayout.setVerticalGroup(
             PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jComboBoxCriterioSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel2)
-                .addComponent(jTextFieldCriterioBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(buttonTaskBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(PANELLayout.createSequentialGroup()
+                .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxCriterioSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldCriterioBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
+            .addComponent(buttonTaskBUSCAR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GESTIÓN DE TIPOS DE TELÉFONO");
+        jLabel1.setText("GESTIÓN DE CATEGORIAS DE OPERACIONES");
 
         javax.swing.GroupLayout panelRectTranslucido1Layout = new javax.swing.GroupLayout(panelRectTranslucido1);
         panelRectTranslucido1.setLayout(panelRectTranslucido1Layout);
@@ -214,17 +220,15 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PANEL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                        .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonTaskMODIFICAR, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonTaskEDITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonTaskELIMINAR, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonTaskCERRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                        .addComponent(buttonTaskBORRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonTaskCERRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelRectTranslucido1Layout.setVerticalGroup(
@@ -239,19 +243,17 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTaskMODIFICAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTaskELIMINAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTaskEDITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTaskBORRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonTaskCERRAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,51 +264,55 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int rol;int filasel;
+
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
         dispose();
-        Alta_TipoTelefono ap = new Alta_TipoTelefono(new javax.swing.JFrame(),true);
+        AltaCategoriaTipoOperacion ap = new AltaCategoriaTipoOperacion(new javax.swing.JFrame(),true);
         ap.IDROL=rol;
         ap.show();
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
-
-    private void buttonTaskMODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskMODIFICARActionPerformed
+int rol,filasel;
+    private void buttonTaskEDITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskEDITARActionPerformed
         if (filasel != -1) {
             dispose();
-            Modificar_TipoTelefono mp = new Modificar_TipoTelefono(new javax.swing.JFrame(),true);
+            ModificarTipoOperacion mp= new ModificarTipoOperacion(new javax.swing.JFrame(),true);
             mp.IDROL=rol;
-            mp.IDTIPO= idTelefonoSelec;
+            mp.IDCategoria=IDCategoria;
             mp.nom.setText(nombre);
             mp.show();
         } else {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_buttonTaskMODIFICARActionPerformed
+    }//GEN-LAST:event_buttonTaskEDITARActionPerformed
 
-    private void buttonTaskELIMINARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskELIMINARActionPerformed
+    private void buttonTaskBORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskBORRARActionPerformed
         if(filasel != -1){
-            int cantidad =tipoTel.EliminarTipoTelefono(idTelefonoSelec);
+            if(IDCategoria!=1 || IDCategoria!=2){
+                int cantidad =categoria.EliminarCategoriaTipoOperacion(IDCategoria);
             if(cantidad != 0){
-                JOptionPane.showMessageDialog(null,"El Tipo de Teléfono"+" "+nombre +" " +"Está Asociado,No Puede ser Eliminado", "Información", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"La Categoria"+" "+nombre +" "+"Está siendo Utilizado,No Puede ser Eliminado", "Información", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                if(JOptionPane.showConfirmDialog(null,"¿Desea Eliminar el Tipo de Teléfono" + " " + nombre + " " + "?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-                    JOptionPane.showMessageDialog(null,"El Tipo de Teléfono"+" "+nombre+" "+"Se Borró Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                if(JOptionPane.showConfirmDialog(null,"¿Desea Eliminar la Categoria"+" "+ nombre+"?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                    JOptionPane.showMessageDialog(null,"La Categoria"+" "+nombre+" "+"Se Borró Correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
                     limpiarTabla(TABLA);
-                    DefaultTableModel modelo = (DefaultTableModel) TABLA.getModel();
-                    tipoTel.LlenarTabla_TipoTelefono(modelo);
+                    modelo = (DefaultTableModel) TABLA.getModel();
+                    categoria.LlenarTabla(modelo);
                     this.buttonTaskAGREGAR.setEnabled(true);
-                    this.buttonTaskELIMINAR.setEnabled(false);
-                    this.buttonTaskMODIFICAR.setEnabled(false);
+                    this.buttonTaskBORRAR.setEnabled(false);
+                    this.buttonTaskEDITAR.setEnabled(false);
                 }else{
                     this.buttonTaskAGREGAR.setEnabled(true);
-                    this.buttonTaskELIMINAR.setEnabled(false);
-                    this.buttonTaskMODIFICAR.setEnabled(false);
+                    this.buttonTaskBORRAR.setEnabled(false);
+                    this.buttonTaskEDITAR.setEnabled(false);
                 }
             }
+         }else{
+            JOptionPane.showMessageDialog(null,"La Categoria Selecciona No Puede ser Borrada,Pertenece a las Operaciones mas Importantes");
+            }          
         } else {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_buttonTaskELIMINARActionPerformed
+    }//GEN-LAST:event_buttonTaskBORRARActionPerformed
 
     private void buttonTaskCERRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskCERRARActionPerformed
         dispose();
@@ -318,11 +324,11 @@ int rol;int filasel;
 
         modelo = (javax.swing.table.DefaultTableModel) TABLA.getModel();
         id = (String) modelo.getValueAt(filasel, 0);
-        enlace(rol);
+        ENLACE(rol);
         this.buttonTaskAGREGAR.setEnabled(false);
-        buttonTaskMODIFICAR.setEnabled(true);
-        buttonTaskELIMINAR.setEnabled(true);
-        BuscarTipo_TelefonoSeleccionado(id);
+        buttonTaskEDITAR.setEnabled(true);
+        buttonTaskBORRAR.setEnabled(true);
+        BuscarDatosCategoria(id);
     }//GEN-LAST:event_TABLAMouseClicked
 
     private void TABLAComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TABLAComponentMoved
@@ -335,9 +341,9 @@ int rol;int filasel;
         if(criterio.equals("Todos")){
             jTextFieldCriterioBuscado.setVisible(false);
             this.limpiarTabla(TABLA);
-            DefaultTableModel modelo=(DefaultTableModel) TABLA.getModel();
-            tipoTel.LlenarTabla_TipoTelefono(modelo);
-        }else if(criterio.equals("Tipo de Teléfono")){
+             modelo=(DefaultTableModel) TABLA.getModel();
+            categoria.LlenarTabla(modelo);
+        }else if(criterio.equals("Categoria de Tipo de Operacion")){
             jTextFieldCriterioBuscado.setVisible(true);
             this.jTextFieldCriterioBuscado.setText("");
             this.jTextFieldCriterioBuscado.requestFocus();
@@ -345,13 +351,13 @@ int rol;int filasel;
     }//GEN-LAST:event_jComboBoxCriterioSeleccionadoActionPerformed
 
     private void jComboBoxCriterioSeleccionadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBoxCriterioSeleccionadoKeyPressed
-        String captura=this.jComboBoxCriterioSeleccionado.getSelectedItem().toString();
-        BuscarID_tipotel(captura);
+//        String captura=this.jComboBoxCriterioSeleccionado.getSelectedItem().toString();
+//        BuscarDatosxCATEGORIA(captura);
     }//GEN-LAST:event_jComboBoxCriterioSeleccionadoKeyPressed
 
     private void jTextFieldCriterioBuscadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCriterioBuscadoKeyTyped
         String buscar=this.jTextFieldCriterioBuscado.getText();
-        MostrarDatosxTipo_Telefono(buscar);
+        BuscarDatosxCATEGORIA(buscar);
     }//GEN-LAST:event_jTextFieldCriterioBuscadoKeyTyped
 
     private void buttonTaskBUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskBUSCARActionPerformed
@@ -360,8 +366,8 @@ int rol;int filasel;
 
         if(buscar.equals("")){
             JOptionPane.showMessageDialog(null,"Debe Ingresar el Dato a Buscar","Atención",JOptionPane.WARNING_MESSAGE);
-        }else if(criterio.equals("Tipo de Teléfono")){
-            MostrarDatosxTipo_Telefono(buscar);
+        }else if(criterio.equals("Categoria de Tipo de Operacion")){
+            BuscarDatosxCATEGORIA(buscar);
         }
     }//GEN-LAST:event_buttonTaskBUSCARActionPerformed
 
@@ -382,20 +388,20 @@ int rol;int filasel;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gestión_de_Tipo_Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionCategoriasTipoOperacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gestión_de_Tipo_Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionCategoriasTipoOperacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gestión_de_Tipo_Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionCategoriasTipoOperacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gestión_de_Tipo_Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionCategoriasTipoOperacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Gestión_de_Tipo_Telefono dialog = new Gestión_de_Tipo_Telefono(new javax.swing.JFrame(), true);
+                GestionCategoriasTipoOperacion dialog = new GestionCategoriasTipoOperacion(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -410,10 +416,10 @@ int rol;int filasel;
     private javax.swing.JPanel PANEL;
     public javax.swing.JTable TABLA;
     public org.edisoncor.gui.button.ButtonTask buttonTaskAGREGAR;
+    public org.edisoncor.gui.button.ButtonTask buttonTaskBORRAR;
     public org.edisoncor.gui.button.ButtonTask buttonTaskBUSCAR;
     public org.edisoncor.gui.button.ButtonTask buttonTaskCERRAR;
-    public org.edisoncor.gui.button.ButtonTask buttonTaskELIMINAR;
-    public org.edisoncor.gui.button.ButtonTask buttonTaskMODIFICAR;
+    public org.edisoncor.gui.button.ButtonTask buttonTaskEDITAR;
     public javax.swing.JComboBox jComboBoxCriterioSeleccionado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -423,135 +429,96 @@ int rol;int filasel;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
 
- 
+int IDCategoria;String nombre;
+private void BuscarDatosCategoria(String id) {
+        cn=cm.Conectar();            
+        String sSQL = "SELECT id,nombre FROM categoriatipo WHERE nombre LIKE '"+id+"%'";
+        try
+           {
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+             while(rs.next())
+               {
+                 IDCategoria=rs.getInt("id");
+                 nombre=rs.getString("nombre");
+               }
+         
+            }
+        catch (SQLException ex)
+           {
+            JOptionPane.showMessageDialog(null, ex);
+           }
+    }
+
+    private void ENLACE(int idrol) {
+       int MOD=0,ELI=0;
+        try
+        {
+            cn=cm.Conectar();
+            String sql="SELECT * FROM permisos WHERE idrol="+idrol;
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next())
+               {                                
+                MOD=rs.getInt("MOD_CATEGORIATIPO");
+                ELI=rs.getInt("ELIM_CATEGORIATIPO");               
+               }                              
+          }            
+         catch (SQLException ex)
+         {
+            JOptionPane.showMessageDialog(null, ex);
+        } 
+        
+        if(MOD!=0 & ELI!=0){
+           buttonTaskEDITAR.setEnabled(true);
+           buttonTaskBORRAR.setEnabled(true);
+           buttonTaskAGREGAR.setEnabled(false);
+        }else if(MOD!=0){
+           buttonTaskEDITAR.setEnabled(true);
+           buttonTaskBORRAR.setEnabled(false);
+           buttonTaskAGREGAR.setEnabled(false);
+        }else if(ELI!=0){
+           buttonTaskEDITAR.setEnabled(false);
+           buttonTaskBORRAR.setEnabled(true);
+           buttonTaskAGREGAR.setEnabled(false);
+        }else{
+           buttonTaskEDITAR.setEnabled(false);
+           buttonTaskBORRAR.setEnabled(false);
+        }        
+    }
+
     private void limpiarTabla(JTable tab) {
-         while(tab.getRowCount()>0){//se recorren todas las filas
+           while(tab.getRowCount()>0){//se recorren todas las filas
          ((javax.swing.table.DefaultTableModel) TABLA.getModel()).removeRow(0);
        }
     }
 
-    int idTelefonoSelec;String nombre;
-    private void BuscarTipo_TelefonoSeleccionado(String id) {
-        cn=cm.Conectar();
-        String sSQL = "";
-        
-        sSQL = "SELECT id,tipotelefono.nombre FROM tipotelefono WHERE tipotelefono.nombre LIKE '"+id+"%'";
-        try
-           {
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while(rs.next())
-               {
-               idTelefonoSelec=rs.getInt("id");
-               nombre=rs.getString("nombre");  
-               }     
-            }
-        catch (SQLException ex)
-           {
-            JOptionPane.showMessageDialog(null, ex);
-           }
-    }
-
-    int ID_tipotel;
-    private void BuscarID_tipotel(String captura) {
-        try {                        
-            cn=cm.Conectar();
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id,nombre FROM tipotelefono WHERE nombre LIKE '"+captura+"%'");
-                     
-            while (rs.next()) {
-              ID_tipotel=rs.getInt("id");
-            }
-            rs.close();
-            
-        } catch (SQLException ex) {
-            ex.getMessage();
-        } 
-    }
-
-//    private void BuscarTipo_telefono(String buscar) {
-//        String sSQL = "";
-//        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-//        cn=cm.Conectar();
-//        sSQL = "SELECT nombre FROM tipo_telefono WHERE nombre LIKE '"+buscar+"%'";
-//        try
-//        {
-//            Statement st = (Statement) cn.createStatement();
-//            ResultSet rs = st.executeQuery(sSQL);
-//
-//            while(rs.next())
-//              {
-//                 modeloCombo.addElement(rs.getString("nombre"));
-//               }
-//             jComboBoxCriterioSeleccionado.setModel(modeloCombo);
-//             rs.close();
-//            }
-//        catch (SQLException ex)
-//        {
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
-//        }
-//    }
-
-    private void MostrarDatosxTipo_Telefono(String criterio) {
-        String[] titulos = {"Tipo de Teléfono"};
-        modelo = new javax.swing.table.DefaultTableModel(null,titulos);
-        cn=cm.Conectar();
-        String sSQL = "";        
-        sSQL = "SELECT nombre FROM tipotelefono WHERE nombre LIKE '"+criterio+"%'";
-        String registro[]=new String[1];
-        try
-           {
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while(rs.next())
-               {
-               registro[0]=rs.getString("nombre");
-                modelo.addRow(registro);
-               limpiarTabla(TABLA);
-               }            
-
-             TABLA.setModel(modelo);  
-            }
-        catch (SQLException ex)
-           {
-            JOptionPane.showMessageDialog(null, ex);
-           }
-    }
-
-private void enlace(int IDROL) {
-int MOD=0,ELI=0;
-  try
-    {
+ private void BuscarDatosxCATEGORIA(String captura) {
+    String[] titulos = {"Categoria de Tipo de Operacion"};
+    modelo = new DefaultTableModel(null,titulos);
     cn=cm.Conectar();
-    String sql="SELECT * FROM permisos WHERE idrol="+IDROL;
-    Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery(sql);
-
-    while(rs.next()){
-            MOD=rs.getInt("MOD_TIPOTELEFONO");
-            ELI=rs.getInt("ELIM_TIPOTELEFONO");
-        }                              
-   }catch (SQLException ex){
-          JOptionPane.showMessageDialog(null, ex);
-        }
-        
-        if(MOD!=0 & ELI!=0){
-          buttonTaskMODIFICAR.setEnabled(true);
-          buttonTaskELIMINAR.setEnabled(true);
-          buttonTaskAGREGAR.setEnabled(false);
-        }else if(MOD!=0){
-          buttonTaskMODIFICAR.setEnabled(true);
-          buttonTaskELIMINAR.setEnabled(false);
-          buttonTaskAGREGAR.setEnabled(false);
-        }else if(ELI!=0){
-          buttonTaskMODIFICAR.setEnabled(false);
-          buttonTaskELIMINAR.setEnabled(true);
-          buttonTaskAGREGAR.setEnabled(false);
-        }else {
-          buttonTaskMODIFICAR.setEnabled(false);
-          buttonTaskELIMINAR.setEnabled(false);
-        }   
-    }
+    String sSQL = "";
+    String[] registro = new String[1];
+    sSQL = "SELECT nombre FROM categoriatipo WHERE nombre LIKE '"+captura+"%' ORDER BY nombre ASC";
+    try
+       {
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sSQL);
+//         
+         while(rs.next())
+           {
+           registro[0]=rs.getString("nombre");
+           modelo.addRow(registro);
+           limpiarTabla(TABLA); 
+           }          
+          TABLA.setModel(modelo);  
+            }
+        catch (SQLException ex)
+           {
+            JOptionPane.showMessageDialog(null, ex);
+           }
+    }    
+  
 }

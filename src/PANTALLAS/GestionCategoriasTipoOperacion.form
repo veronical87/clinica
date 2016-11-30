@@ -23,10 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="panelRectTranslucido1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="panelRectTranslucido1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -54,18 +51,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
                       <Component id="PANEL" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="buttonTaskAGREGAR" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="buttonTaskAGREGAR" min="-2" pref="142" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonTaskMODIFICAR" min="-2" pref="129" max="-2" attributes="0"/>
+                          <Component id="buttonTaskEDITAR" min="-2" pref="138" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonTaskELIMINAR" min="-2" pref="156" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonTaskCERRAR" pref="0" max="32767" attributes="0"/>
+                          <Component id="buttonTaskBORRAR" min="-2" pref="165" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="buttonTaskCERRAR" min="-2" pref="145" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -84,11 +78,11 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="buttonTaskAGREGAR" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="buttonTaskMODIFICAR" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="buttonTaskELIMINAR" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="buttonTaskEDITAR" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="buttonTaskBORRAR" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="buttonTaskCERRAR" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,7 +116,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonTask" name="buttonTaskMODIFICAR">
+        <Component class="org.edisoncor.gui.button.ButtonTask" name="buttonTaskEDITAR">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -144,13 +138,13 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTaskMODIFICARActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTaskEDITARActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="org.edisoncor.gui.button.ButtonTask" name="buttonTaskELIMINAR">
+        <Component class="org.edisoncor.gui.button.ButtonTask" name="buttonTaskBORRAR">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -172,7 +166,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTaskELIMINARActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTaskBORRARActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -213,7 +207,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="LISTA DE TIPOS DE OPERACIONES">
+                <TitledBorder title="LISTA DE CATEGORIAS DE TIPOS DE OPERACION">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder thickness="2"/>
                   </Border>
@@ -246,9 +240,8 @@
                 <Component class="javax.swing.JTable" name="TABLA">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="0">
-                        <Column editable="false" title="Categoria " type="java.lang.Object"/>
-                        <Column editable="false" title="Tipo de Operaci&#xf3;n" type="java.lang.Object"/>
+                      <Table columnCount="1" rowCount="0">
+                        <Column editable="false" title="Categoria de Tipo de Operacion" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>
@@ -288,23 +281,26 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jComboBoxCriterioSeleccionado" pref="170" max="32767" attributes="0"/>
+                      <Component id="jComboBoxCriterioSeleccionado" pref="0" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jTextFieldCriterioBuscado" min="-2" pref="169" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="buttonTaskBUSCAR" min="-2" pref="51" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="jComboBoxCriterioSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCriterioBuscado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jComboBoxCriterioSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldCriterioBuscado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="buttonTaskBUSCAR" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="buttonTaskBUSCAR" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -316,7 +312,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
-                    <StringItem index="0" value="Tipo de Operaci&#xf3;n"/>
+                    <StringItem index="0" value="Categoria de Tipo de Operacion"/>
                     <StringItem index="1" value="Todos"/>
                   </StringArray>
                 </Property>
@@ -372,7 +368,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="GESTI&#xd3;N DE TIPOS DE OPERACIONES"/>
+            <Property name="text" type="java.lang.String" value="GESTI&#xd3;N DE CATEGORIAS DE OPERACIONES"/>
           </Properties>
         </Component>
       </SubComponents>

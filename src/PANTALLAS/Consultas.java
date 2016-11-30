@@ -1,6 +1,6 @@
 package PANTALLAS;
 
-import CLASES.ClaseConsultas;
+import CLASES.ClaseOperaciones;
 import CLASES.JTextFieldToUpperCase;
 import Conexion.ConexionMySQL;
 import java.awt.Color;
@@ -11,14 +11,14 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-//comentatatatta pruebaaaaaaaaaaaa
+
 public class Consultas extends javax.swing.JDialog {
     Connection cn;
     ConexionMySQL cm=new ConexionMySQL();
     CallableStatement cmd;
     DefaultTableModel modelo;
     Calendar Calendario = Calendar.getInstance();  
-    ClaseConsultas consulta=new ClaseConsultas();
+    ClaseOperaciones consulta=new ClaseOperaciones();
     public Consultas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -61,7 +61,7 @@ public class Consultas extends javax.swing.JDialog {
         jLabel8.setText("Tipo de Búsqueda");
 
         JComboBoxCriterioSeleccionado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dueño", "Mascota", "Veterinario", "Tipo de Consulta", "Todos" }));
+        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dueño", "Mascota", "Veterinario", "Concepto", "Todos" }));
 
         jTextField_criteriodeBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -114,7 +114,7 @@ public class Consultas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nro. de Consulta", "Tipo de Consulta", "Veterinario", "Dueño", "Mascota"
+                "Nro. de Consulta", "Concepto", "Veterinario", "Dueño", "Mascota"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -292,12 +292,12 @@ int filasel;
     }//GEN-LAST:event_TABLAComponentMoved
 
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
-        dispose();
         AltaConsulta ap = new AltaConsulta(new javax.swing.JFrame(), true);
         ap.idrol=IDROL;
-        ap.idusuario=IDUSUARIO;
+        ap.idusuario=IDUSUARIO;      
         BuscarUsuario();        
-        ap.jLabelVETERINARIO.setText(usuario);        
+        ap.jLabelVETERINARIO.setText(usuario); 
+        dispose();
         ap.show();
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
 
@@ -427,10 +427,9 @@ int filasel;
 
 String usuario;
     private void BuscarUsuario() {
-        String sSQL = "";
-       
+        String sSQL = "";       
         cn=cm.Conectar();
-        sSQL = "SELECT usuario FROM usuarios WHERE id="+IDUSUARIO;
+        sSQL = "SELECT apellido,nombre FROM usuarios WHERE id="+IDUSUARIO;
         try
         {
             Statement st = (Statement) cn.createStatement();
@@ -438,7 +437,7 @@ String usuario;
 
             while(rs.next())
             {
-                usuario=rs.getString("usuario");
+                usuario=rs.getString("apellido")+","+rs.getString("nombre");
             }
 
             }
@@ -510,7 +509,7 @@ String usuario;
     cn=cm.Conectar();
     String sSQL = "";
     String[] registro = new String[4];
-    sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN consultas ON tipooperacion.id=consultas.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=consultas.idveterinario INNER JOIN fichamedica ON consultas.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id WHERE CONCAT(propietarios.apellido,coma,propietarios.nombre) LIKE '"+buscar+"%'";
+    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE CONCAT(propietarios.apellido,coma,propietarios.nombre) LIKE '"+buscar+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -539,7 +538,7 @@ String usuario;
     cn=cm.Conectar();
     String sSQL = "";
     String[] registro = new String[4];
-    sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN consultas ON tipooperacion.id=consultas.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=consultas.idveterinario INNER JOIN fichamedica ON consultas.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id WHERE mascota LIKE '"+buscar+"%'";
+    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE mascota LIKE '"+buscar+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -568,7 +567,7 @@ String usuario;
     cn=cm.Conectar();
     String sSQL = "";
     String[] registro = new String[4];
-    sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN consultas ON tipooperacion.id=consultas.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=consultas.idveterinario INNER JOIN fichamedica ON consultas.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id WHERE veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%'";
+    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -590,12 +589,12 @@ String usuario;
             JOptionPane.showMessageDialog(null, ex);
            }
     }
-int idConsulta;
+int IDoperacion;String operacion,veterinarioape,veterinarionom,DUEÑO,MASCOTA;
  private void BuscarDatosConsulta(String id) {
     cn=cm.Conectar();
     String sSQL = "";
    
-    sSQL = "SELECT consultas.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN consultas ON tipooperacion.id=consultas.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=consultas.idveterinario INNER JOIN fichamedica ON consultas.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id WHERE consultas.id='"+id+"%'";
+    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id="+id;
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -603,11 +602,12 @@ int idConsulta;
 //         
          while(rs.next())
            {
-           idConsulta=rs.getInt("consultas.id");
-           =rs.getString("veterinarios.apellido")
-           =rs.getString("veterinarios.nombre");
-           =rs.getString("dueño");
-           =rs.getString("mascota");           
+           IDoperacion=rs.getInt("operaciones.id");
+           operacion=rs.getString("tipooperacion.nombre");
+           veterinarioape=rs.getString("veterinarios.apellido");
+           veterinarionom=rs.getString("veterinarios.nombre");
+           DUEÑO=rs.getString("dueño");
+           MASCOTA=rs.getString("mascota");           
            }          
             
             }

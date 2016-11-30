@@ -103,5 +103,36 @@ public int EliminarVacuna(int idvacuna) {
           System.out.println(ex.getMessage());
         }      
         return encontrada;
+    } 
+    
+  public void CargarVacunasPendientesxHistorial(int nrohistorial,int especie){      
+     String sql="call CargarVacunasPendientesxHistorial(?,?)";
+        try{
+           cmd=cn.prepareCall(sql);
+           cmd.setInt(1,nrohistorial);
+           cmd.setInt(2, especie);
+           cmd.execute();                  
+//         cmd.close();
+//         cn.close();    
+        }catch(Exception ex){
+          System.out.println(ex.getMessage());
+        }         
     }
+  
+   public void ActualizarVacunaPendiente(int historial,int vacuna,String situacion){      
+     String sql="call ActualizarVacunaPendiente(?,?,?)";
+        try{
+           cmd=cn.prepareCall(sql);
+           cmd.setInt(1,historial);   
+           cmd.setInt(2,vacuna); 
+           cmd.setString(3,situacion);
+           cmd.execute();                  
+//         cmd.close();
+//         cn.close();    
+        }catch(Exception ex){
+          System.out.println(ex.getMessage());
+        }      
+       
+    }
+
 }

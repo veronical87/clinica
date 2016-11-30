@@ -61,7 +61,6 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItemCATEGORIAS = new javax.swing.JMenuItem();
-        jMenuItemHORARIOS = new javax.swing.JMenuItem();
         jMenuSEGURIDAD = new javax.swing.JMenu();
         jMenuItemAUDITORIA = new javax.swing.JMenuItem();
         jMenuItemBACKUP = new javax.swing.JMenuItem();
@@ -269,15 +268,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         CONFIG.add(jMenuItemCATEGORIAS);
-
-        jMenuItemHORARIOS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jMenuItemHORARIOS.setText("GESTIÓN DE HORARIOS");
-        jMenuItemHORARIOS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemHORARIOSActionPerformed(evt);
-            }
-        });
-        CONFIG.add(jMenuItemHORARIOS);
 
         jMenuSEGURIDAD.setText("GESTIÓN DE SEGURIDAD");
         jMenuSEGURIDAD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1772,130 +1762,13 @@ public class Principal extends javax.swing.JFrame {
         ge.show();
     }//GEN-LAST:event_jMenuItemCATEGORIASActionPerformed
 
-    private void jMenuItemHORARIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHORARIOSActionPerformed
-      int LEC=0,ESCR=0,MOD=0,ELIM=0;
-     
-     GestionHorarios ge=new GestionHorarios(new javax.swing.JFrame(), true);       
-     ge.IDROL=ROL;
-     
-     try
-        {
-        cn=cm.Conectar();
-        String sql="SELECT * FROM permisos WHERE  idrol="+ROL;
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-
-        while(rs.next())
-          {                                
-            LEC=rs.getInt("L_HORA");
-            ESCR=rs.getInt("ESC_HORA");
-            MOD=rs.getInt("MOD_HORA");
-            ELIM=rs.getInt("ELIM_HORA");              
-            }                              
-        }            
-        catch (SQLException ex)
-        {
-           JOptionPane.showMessageDialog(null, ex);
-        }
-      
-    if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM!=0){
-         ge.buttonTaskAGREGAR.setEnabled(true);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(true);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-        }else if(LEC!=0 & ESCR!=0 & MOD==0 & ELIM==0){
-         ge.buttonTaskAGREGAR.setEnabled(true);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(false);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-        }else if(LEC==0 & ESCR==0 & MOD!=0 & ELIM!=0){
-         ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(true);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-        }else if(LEC!=0 & ESCR==0 & MOD!=0 & ELIM==0){
-         ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(true);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-        }else if(LEC!=0 & ESCR==0 & MOD==0 & ELIM!=0){
-         ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(true);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-        }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
-         ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(true);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-        }else if(LEC==0 & ESCR==0 & MOD==0 & ELIM==0){
-         ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(false);
-         ge.buttonTaskBUSCAR.setEnabled(false);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(false);
-         ge.jTextField_criteriodeBusqueda.setEnabled(false);
-        }else if(LEC!=0){
-         ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);         
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(false);
-        }else if(ESCR!=0){
-         ge.buttonTaskAGREGAR.setEnabled(true);         
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(false);
-         ge.buttonTaskBUSCAR.setEnabled(false);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(false);
-         ge.jTextField_criteriodeBusqueda.setEnabled(false);
-        }else if(MOD!=0){
-          ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(true);
-        }else if(ELIM!=0){
-         ge.buttonTaskAGREGAR.setEnabled(false);
-         ge.buttonTaskBUSCAR.setEnabled(true);
-         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
-         ge.jTextField_criteriodeBusqueda.setEnabled(true);
-         ge.buttonTaskBORRAR.setEnabled(false);
-         ge.buttonTaskEDITAR.setEnabled(false);
-         ge.TABLA.setEnabled(true);
-        }
-        ge.show();
-    }//GEN-LAST:event_jMenuItemHORARIOSActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
     int LEC=0,ESCR=0,MOD=0,ELIM=0;
      
      Consultas ge=new Consultas(new javax.swing.JFrame(), true);       
      ge.IDROL=ROL;
      ge.IDUSUARIO=usuario;
+     
      try
         {
         cn=cm.Conectar();
@@ -2424,7 +2297,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemCIRUGIAS;
     private javax.swing.JMenuItem jMenuItemESPECIES;
     private javax.swing.JMenuItem jMenuItemFICHA;
-    private javax.swing.JMenuItem jMenuItemHORARIOS;
     private javax.swing.JMenuItem jMenuItemMEDICAMENTOS;
     private javax.swing.JMenuItem jMenuItemPERMISOS;
     private javax.swing.JMenuItem jMenuItemRAZAS;

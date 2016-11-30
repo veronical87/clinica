@@ -255,7 +255,6 @@ String especieSelec;int ROL;
         if(this.jTextFieldVacuna.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención",JOptionPane.WARNING_MESSAGE);
         }else{
-
             if(IDEspecie==0){
                 especieSelec = this.jComboBox_Especies.getSelectedItem().toString();
                 BuscarIDEspecie(especieSelec);
@@ -389,7 +388,6 @@ String especieSelec;int ROL;
     int IDEspecie;
     private void BuscarIDEspecie(String especieSelec) {
         try {            
-           
             cn=cm.Conectar();
             Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery("SELECT id FROM especies WHERE nombre LIKE '"+especieSelec+"%' ORDER BY nombre ASC");
@@ -517,5 +515,22 @@ String especieSelec;int ROL;
          ge.TABLA.setEnabled(true);
         }
       ge.show();
+    }
+
+    int IDVacuna;
+    private void buscarIDVacuna() {
+        try {            
+            cn=cm.Conectar();
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT MAX(id) AS id FROM controlvacunas");
+                     
+            while (rs.next()) {
+               IDVacuna=rs.getInt("id");
+            }
+            rs.close();
+           
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
     }
 }

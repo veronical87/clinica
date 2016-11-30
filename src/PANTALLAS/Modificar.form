@@ -24,10 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="panelRectTranslucido1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="panelRectTranslucido1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -600,11 +597,8 @@
                                               <Component id="buttonActionSELECCIONARIMAGEN" min="-2" pref="228" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
-                                                      <Component id="jLabelSITUACIONPESO" min="-2" pref="210" max="-2" attributes="0"/>
-                                                  </Group>
                                                   <Component id="jLabelSituacionPeso2" max="32767" attributes="0"/>
+                                                  <Component id="jLabelSITUACIONPESO" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1007,6 +1001,7 @@
                           </Properties>
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TABLAMouseClicked"/>
+                            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TABLAMouseEntered"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1113,6 +1108,11 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jDateChooserFECHADESPAR" min="-2" pref="104" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabelPreñada1" min="-2" pref="142" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxOpcionCastrado" min="-2" pref="52" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
@@ -1169,7 +1169,13 @@
                                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                           <Component id="buttonTaskAgregarVacuna" min="-2" pref="30" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="buttonTaskQuitarVacuna" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabelPreñada1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jComboBoxOpcionCastrado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="buttonTaskQuitarVacuna" min="-2" pref="25" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -1878,6 +1884,33 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Fecha(*)"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelPre&#xf1;ada1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#xbf;Esta Castrado/a?(*) "/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboBoxOpcionCastrado">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="No"/>
+                        <StringItem index="1" value="Si"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxOpcionCastradoActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

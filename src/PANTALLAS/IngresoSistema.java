@@ -46,50 +46,25 @@ public class IngresoSistema extends javax.swing.JFrame {
     private void initComponents() {
 
         panelRectTranslucido1 = new org.edisoncor.gui.panel.PanelRectTranslucido();
-        jLabel3 = new javax.swing.JLabel();
-        buttonTaskINGRESAR = new org.edisoncor.gui.button.ButtonTask();
-        buttonTask1 = new org.edisoncor.gui.button.ButtonTask();
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TextField_usuario = new javax.swing.JTextField();
         JPasswordcontraseña = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
+        jLabel3 = new javax.swing.JLabel();
+        buttonTaskINGRESAR = new org.edisoncor.gui.button.ButtonTask();
+        buttonTask1 = new org.edisoncor.gui.button.ButtonTask();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
+        panelRectTranslucido1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/60599-clinica-veterinaria-inca-banner-1.jpg"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("INGRESO AL SISTEMA");
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/banner01.jpg"))); // NOI18N
 
-        buttonTaskINGRESAR.setForeground(new java.awt.Color(255, 255, 255));
-        buttonTaskINGRESAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/tarjeta-de-informacion-del-usuario-icono-7370-48.png"))); // NOI18N
-        buttonTaskINGRESAR.setText("INGRESAR");
-        buttonTaskINGRESAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        buttonTaskINGRESAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
-        buttonTaskINGRESAR.setDescription(".");
-        buttonTaskINGRESAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTaskINGRESARActionPerformed(evt);
-            }
-        });
-
-        buttonTask1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonTask1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/rescindir-rojo-icono-6989-32.png"))); // NOI18N
-        buttonTask1.setText("CANCELAR");
-        buttonTask1.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        buttonTask1.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
-        buttonTask1.setDescription(".");
-        buttonTask1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTask1ActionPerformed(evt);
-            }
-        });
-
-        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(141, 141, 175));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "DATOS DE INGRESO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -132,14 +107,12 @@ public class IngresoSistema extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TextField_usuario)
-                            .addComponent(JPasswordcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(JPasswordcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,51 +129,83 @@ public class IngresoSistema extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/usuarioconCandado.png"))); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("INGRESO AL SISTEMA");
 
         javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
         panelImage1.setLayout(panelImage1Layout);
         panelImage1Layout.setHorizontalGroup(
             panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelImage1Layout.setVerticalGroup(
             panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        buttonTaskINGRESAR.setForeground(new java.awt.Color(255, 255, 255));
+        buttonTaskINGRESAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/tarjeta-de-informacion-del-usuario-icono-7370-48.png"))); // NOI18N
+        buttonTaskINGRESAR.setText("INGRESAR");
+        buttonTaskINGRESAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonTaskINGRESAR.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        buttonTaskINGRESAR.setDescription(".");
+        buttonTaskINGRESAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTaskINGRESARActionPerformed(evt);
+            }
+        });
+
+        buttonTask1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonTask1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/rescindir-rojo-icono-6989-32.png"))); // NOI18N
+        buttonTask1.setText("CANCELAR");
+        buttonTask1.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        buttonTask1.setCategorySmallFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        buttonTask1.setDescription(".");
+        buttonTask1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTask1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRectTranslucido1Layout = new javax.swing.GroupLayout(panelRectTranslucido1);
         panelRectTranslucido1.setLayout(panelRectTranslucido1Layout);
         panelRectTranslucido1Layout.setHorizontalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(98, 98, 98))
-            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(buttonTaskINGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                        .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         panelRectTranslucido1Layout.setVerticalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTaskINGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonTaskINGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTask1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -212,52 +217,13 @@ public class IngresoSistema extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonTaskINGRESARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskINGRESARActionPerformed
-        if(!TextField_usuario.getText().equals("") || !JPasswordcontraseña.getText().equals("")){
-            String u =this.TextField_usuario.getText();
-            String c = JPasswordcontraseña.getText();
-            int encontrado = clu.existeUsuario(u,c);
-            try{
-                if(encontrado==0){
-                    JOptionPane.showMessageDialog(null,"Se le Informa que el Usuario o la Contraseña no Existe,Debe Registrarse", "Información", JOptionPane.INFORMATION_MESSAGE);
-                    TextField_usuario.setText("");
-                    TextField_usuario.requestFocus();
-                    JPasswordcontraseña.setText("");
-                }else{
-                    int estadoActual=estaActivo(u,c);
-                    if(estadoActual==2){
-                        JOptionPane.showMessageDialog(null,"Se le Informa que el Usuario,"+" "+TextField_usuario.getText()+" "+",Fue dado de Baja","Información",JOptionPane.INFORMATION_MESSAGE);
-                        this.TextField_usuario.setText("");
-                        JPasswordcontraseña.setText("");
-                        this.TextField_usuario.requestFocus();
-                    }else{
-                        BuscarNivelAccesoxUsuario(u,c);
-                        JOptionPane.showMessageDialog(null,"Bienvenido, "+" "+ u.toUpperCase());
-                        Principal pri = new Principal();
-                        pri.ROL=IDROL;
-                        pri.usuario=IDUSUARIO;
-                        pri.setVisible(true);
-                        pri.setLocationRelativeTo(null);
-                        dispose();
-                    }
-                }
-            } catch (Exception ex) {
-                ex.getMessage();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null,"Debe Ingresar el Usuario y La Contraseña","Atención",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_buttonTaskINGRESARActionPerformed
-
-    private void buttonTask1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTask1ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_buttonTask1ActionPerformed
 
     private void JPasswordcontraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JPasswordcontraseñaKeyTyped
 
@@ -309,6 +275,47 @@ public class IngresoSistema extends javax.swing.JFrame {
     private void TextField_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_usuarioActionPerformed
 
     }//GEN-LAST:event_TextField_usuarioActionPerformed
+
+    private void buttonTask1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTask1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_buttonTask1ActionPerformed
+
+    private void buttonTaskINGRESARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskINGRESARActionPerformed
+        if(!TextField_usuario.getText().equals("") || !JPasswordcontraseña.getText().equals("")){
+            String u =this.TextField_usuario.getText();
+            String c = JPasswordcontraseña.getText();
+            int encontrado = clu.existeUsuario(u,c);
+            try{
+                if(encontrado==0){
+                    JOptionPane.showMessageDialog(null,"Se le Informa que el Usuario o la Contraseña no Existe,Debe Registrarse", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    TextField_usuario.setText("");
+                    TextField_usuario.requestFocus();
+                    JPasswordcontraseña.setText("");
+                }else{
+                    int estadoActual=estaActivo(u,c);
+                    if(estadoActual==2){
+                        JOptionPane.showMessageDialog(null,"Se le Informa que el Usuario,"+" "+TextField_usuario.getText()+" "+",Fue dado de Baja","Información",JOptionPane.INFORMATION_MESSAGE);
+                        this.TextField_usuario.setText("");
+                        JPasswordcontraseña.setText("");
+                        this.TextField_usuario.requestFocus();
+                    }else{
+                        BuscarNivelAccesoxUsuario(u,c);
+                        JOptionPane.showMessageDialog(null,"Bienvenido, "+" "+ u.toUpperCase());
+                        Principal pri = new Principal();
+                        pri.ROL=IDROL;
+                        pri.usuario=IDUSUARIO;
+                        pri.setVisible(true);
+                        pri.setLocationRelativeTo(null);
+                        dispose();
+                    }
+                }
+            } catch (Exception ex) {
+                ex.getMessage();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Debe Ingresar el Usuario y La Contraseña","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonTaskINGRESARActionPerformed
 int IDROL,IDUSUARIO;
     /**
      * @param args the command line arguments

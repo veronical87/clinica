@@ -246,8 +246,7 @@ boolean banderaProvincia;
             BuscarIDProvincia(captura);
           }
           JTextFieldNombre.requestFocus();
-       }
-        
+       }        
     }//GEN-LAST:event_ComboBoxProvinciasActionPerformed
 
     private void ComboBoxProvinciasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboBoxProvinciasFocusGained

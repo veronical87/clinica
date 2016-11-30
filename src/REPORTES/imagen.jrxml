@@ -27,18 +27,11 @@
 	<title>
 		<band height="136" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="0c48b990-9cd9-453c-a979-6492913754d6" style="Title" x="270" y="0" width="263" height="62"/>
+				<reportElement uuid="0c48b990-9cd9-453c-a979-6492913754d6" style="Title" x="270" y="0" width="188" height="62"/>
 				<textElement verticalAlignment="Middle">
 					<font pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Coffee Title]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="1fbfd899-2c90-4d07-8718-83760af27274" style="SubTitle" x="303" y="62" width="196" height="22"/>
-				<textElement>
-					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
-				</textElement>
-				<text><![CDATA[Coffee SubTitle]]></text>
+				<text><![CDATA[Reporte ]]></text>
 			</staticText>
 			<image isUsingCache="true">
 				<reportElement uuid="b0072649-6ac2-48ae-a47f-5c824781acdd" x="14" y="12" width="100" height="72"/>

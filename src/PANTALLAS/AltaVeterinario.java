@@ -1,5 +1,6 @@
 package PANTALLAS;
 
+import CLASES.ClaseUsuarios;
 import CLASES.ClaseVeterinarios;
 import CLASES.Clase_Personas;
 import CLASES.JTextFieldToUpperCase;
@@ -19,6 +20,7 @@ public class AltaVeterinario extends javax.swing.JDialog {
     CallableStatement cmd;
     ClaseVeterinarios vet=new ClaseVeterinarios();
     Clase_Personas persona=new Clase_Personas();
+    ClaseUsuarios usuario=new ClaseUsuarios();
     Calendar Calendario = Calendar.getInstance(); 
     public AltaVeterinario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -67,7 +69,7 @@ public class AltaVeterinario extends javax.swing.JDialog {
         jLabel3.setText("VETERINARIOS");
 
         jPanel2.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "DATOS ODONTOLOGO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Serif", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "DATOS ODONTOLOGO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(433, 360));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -257,27 +259,27 @@ public class AltaVeterinario extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(17, 17, 17)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField_Matricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jComboBoxProvincias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jComboBoxLocalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jComboBoxTipotelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -286,13 +288,13 @@ public class AltaVeterinario extends javax.swing.JDialog {
                         .addComponent(jLabel8)
                         .addComponent(jTextFieldCodigoArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextFieldNroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jTextFieldcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jLabel9)
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
 
         buttonActionGUARDAR.setText("GUARDAR");
@@ -336,12 +338,12 @@ public class AltaVeterinario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonActionGUARDAR1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -357,7 +359,7 @@ public class AltaVeterinario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int IDUSUARIO,IDROL;
+int IDUSUARIO,IDROL;boolean bandera=true;
     private void jTextField_ApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ApellidoKeyTyped
         char codigo = evt.getKeyChar();
 
@@ -493,7 +495,7 @@ String s;
             String h=this.jTextField_Nombre.getText();
             String correo=this.jTextFieldcorreo.getText();
             String vete=s+h;
-           
+            String mat=jTextField_Matricula.getText();
             String tipo=String.valueOf(jComboBoxTipotelefono.getModel().getSelectedItem());
             String nuevo= "Veterinario:" + s + "," + h+""+"Matricula:"+""+matricula;
             BuscarUsuario();
@@ -504,8 +506,10 @@ String s;
             persona.InsertarPersona("",idtipotelefono,n,ID_LOCALIDAD,correo,2,fechaActual,hor,usu,"VETERINARIOS",nuevo);
             BuscarIDPersona();  
             vet.agregarVeterinario(s,h, matricula,idpersona);
+            usuario.AgregarUsuario(s,h,vete,mat,idpersona,2);
             JOptionPane.showMessageDialog(null,"Los Datos del Veterinario"+" "+vete+ " "+ "Se Guardaron Correctamente","Información", JOptionPane.INFORMATION_MESSAGE);
             enlace();
+           
         }
     }//GEN-LAST:event_buttonActionGUARDARActionPerformed
 
@@ -767,8 +771,8 @@ private void enlace() {
 this.dispose();
 int L= 0, ES= 0, MOD= 0, ELI= 0;
 GestionVeterinarios art = new GestionVeterinarios(new javax.swing.JFrame(), true);       
-art.IDROL=IDROL;
-        
+art.IDROL=IDROL;  
+art.bandera=true;
 try {
     cn = cm.Conectar();
     String sql = "SELECT * FROM permisos WHERE idrol="+IDROL;
@@ -780,6 +784,7 @@ try {
          ES=rs.getInt("ESC_VETERINARIO");
          MOD=rs.getInt("MOD_VETERINARIO");
          ELI=rs.getInt("ELIM_VETERINARIO");
+         
     }
 
     } catch (SQLException ex) {

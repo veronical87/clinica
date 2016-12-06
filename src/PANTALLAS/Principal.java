@@ -51,6 +51,9 @@ public class Principal extends javax.swing.JFrame {
         jMenuItemRAZAS = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItemAFECCIONES = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItemCATOPERACIONES = new javax.swing.JMenuItem();
+        jMenuItemOPERACIONES = new javax.swing.JMenuItem();
         TURNOS = new javax.swing.JMenu();
         jMenuItemVETERINARIOS = new javax.swing.JMenuItem();
         GRAFICOS = new javax.swing.JMenu();
@@ -68,13 +71,14 @@ public class Principal extends javax.swing.JFrame {
         jMenuROLES = new javax.swing.JMenu();
         jMenuItemROLES = new javax.swing.JMenuItem();
         jMenuItemPERMISOS = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         AYUDA = new javax.swing.JMenu();
         CERRAR_SESION = new javax.swing.JMenu();
         SALIR = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/banner01.jpg"))); // NOI18N
 
@@ -99,7 +103,7 @@ public class Principal extends javax.swing.JFrame {
         PACIENTES.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         PACIENTES.setOpaque(true);
 
-        jMenuItemFICHA.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemFICHA.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemFICHA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItemFICHA.setText("GESTIÓN DE FICHAS MEDICAS");
         jMenuItemFICHA.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +171,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemRAZAS);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem4.setText("VACUNAS POR ESPECIE Y EDAD");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +191,29 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemAFECCIONES);
 
+        jMenu3.setText("OPERACIONES");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMenuItemCATOPERACIONES.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItemCATOPERACIONES.setText("CATEGORIAS");
+        jMenuItemCATOPERACIONES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCATOPERACIONESActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemCATOPERACIONES);
+
+        jMenuItemOPERACIONES.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItemOPERACIONES.setText("TIPO DE OPERACIONES");
+        jMenuItemOPERACIONES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemOPERACIONESActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemOPERACIONES);
+
+        jMenu2.add(jMenu3);
+
         PACIENTES.add(jMenu2);
 
         jMenuBar1.add(PACIENTES);
@@ -197,7 +224,7 @@ public class Principal extends javax.swing.JFrame {
         TURNOS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TURNOS.setOpaque(true);
 
-        jMenuItemVETERINARIOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemVETERINARIOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemVETERINARIOS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItemVETERINARIOS.setText("GESTIÓN DE VETERINARIOS");
         jMenuItemVETERINARIOS.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +259,11 @@ public class Principal extends javax.swing.JFrame {
         CONFIG.setText("CONFIGURACION");
         CONFIG.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CONFIG.setOpaque(true);
+        CONFIG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CONFIGActionPerformed(evt);
+            }
+        });
 
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem3.setText("GESTIÓN PROVINCIAS");
@@ -272,6 +304,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuSEGURIDAD.setText("GESTIÓN DE SEGURIDAD");
         jMenuSEGURIDAD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jMenuItemAUDITORIA.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemAUDITORIA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItemAUDITORIA.setText("AUDITORIA");
         jMenuItemAUDITORIA.addActionListener(new java.awt.event.ActionListener() {
@@ -290,6 +323,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenuSEGURIDAD.add(jMenuItemBACKUP);
 
+        jMenuItemUSUARIOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItemUSUARIOS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItemUSUARIOS.setText("GESTIÓN DE USUARIOS");
         jMenuItemUSUARIOS.addActionListener(new java.awt.event.ActionListener() {
@@ -323,6 +357,10 @@ public class Principal extends javax.swing.JFrame {
         jMenuSEGURIDAD.add(jMenuROLES);
 
         CONFIG.add(jMenuSEGURIDAD);
+
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem5.setText("LOGO DE CLINICA");
+        CONFIG.add(jMenuItem5);
 
         jMenuBar1.add(CONFIG);
 
@@ -390,12 +428,19 @@ public class Principal extends javax.swing.JFrame {
                 MOD=rs.getInt("MOD_FICHAMEDICA");
                 ELIM=rs.getInt("ELIM_FICHAMEDICA");
             }
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
         
         if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
          ge.buttonTaskAGREGAR.setEnabled(true);
          ge.buttonTaskELIMINAR.setEnabled(false);
          ge.buttonTaskMODIFICAR.setEnabled(false);
@@ -450,7 +495,7 @@ public class Principal extends javax.swing.JFrame {
          ge.TABLA.setEnabled(false);
          ge.buttonTaskBUSCAR.setEnabled(false);
          ge.JComboBoxCriterioSeleccionado.setEnabled(false);
-         ge.jTextFieldCriterioBuscado.setEnabled(false);
+         ge.jTextFieldCriterioBuscado.setEnabled(false);            
         }else if(LEC!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskBUSCAR.setEnabled(true);
@@ -483,8 +528,7 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskELIMINAR.setEnabled(false);
          ge.buttonTaskMODIFICAR.setEnabled(false);
          ge.TABLA.setEnabled(true);
-        }
-        
+        }     
         ge.show(); 
     }//GEN-LAST:event_jMenuItemFICHAActionPerformed
 
@@ -558,6 +602,14 @@ public class Principal extends javax.swing.JFrame {
          ge.jTextFieldCriterioBuscado.setEnabled(true);
         }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
          ge.buttonTaskELIMINAR.setEnabled(false);
          ge.buttonTaskMODIFICAR.setEnabled(false);
          ge.TABLA.setEnabled(true);
@@ -646,6 +698,14 @@ public class Principal extends javax.swing.JFrame {
          ge.jTextFieldCriterioBuscado.setEnabled(true);
         }else if(LEC==0 & ESCR==0 & MOD!=0 & ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
          ge.buttonTaskELIMINAR.setEnabled(false);
          ge.buttonTaskMODIFICAR.setEnabled(false);
          ge.TABLA.setEnabled(true);
@@ -759,6 +819,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);  
         }else if(LEC==0 & ESCR==0 & MOD!=0 & ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskBORRAR.setEnabled(false);
@@ -882,6 +950,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.jComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);          
         }else if(LEC!=0 & ESCR==0 & MOD!=0 & ELIM==0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -1106,6 +1182,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);    
         }else if(LEC!=0 & ESCR==0 & MOD==0 & ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -1216,6 +1300,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.jComboBox_CriterioSeleccionado.setEnabled(true);
          ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);   
         }else if(LEC==0 & ESCR==0 & MOD!=0 & ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskBORRAR.setEnabled(false);
@@ -1357,6 +1449,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);        
         }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -1458,6 +1558,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);  
         }else if(LEC!=0 & ESCR==0 & MOD!=0 & ELIM==0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -1568,6 +1676,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.jComboBox_CriterioSeleccionado.setEnabled(true);
          ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);   
         }else if(LEC==0 & ESCR==0 & MOD!=0 & ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskBORRAR.setEnabled(false);
@@ -1702,6 +1818,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.jComboBox_CriterioSeleccionado.setEnabled(true);
          ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBox_CriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);    
         }else if(LEC!=0 & ESCR==0 & MOD==0 & ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskBORRAR.setEnabled(false);
@@ -1821,6 +1945,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);  
         }else if(LEC!=0 & ESCR==0 & MOD==0 & ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -1947,6 +2079,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true); 
         }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -2065,6 +2205,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);  
         }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -2183,6 +2331,14 @@ public class Principal extends javax.swing.JFrame {
          ge.buttonTaskBUSCAR.setEnabled(true);
          ge.JComboBoxCriterioSeleccionado.setEnabled(true);
          ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true); 
         }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
          ge.buttonTaskAGREGAR.setEnabled(false);
          ge.buttonTaskELIMINAR.setEnabled(false);
@@ -2235,6 +2391,284 @@ public class Principal extends javax.swing.JFrame {
         ge.show();
     }//GEN-LAST:event_jMenuItemCIRUGIASActionPerformed
 
+    private void jMenuItemCATOPERACIONESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCATOPERACIONESActionPerformed
+    int LEC=0,ESCR=0,MOD=0,ELIM=0;
+     
+    GestionCategoriasTipoOperacion ge=new GestionCategoriasTipoOperacion(new javax.swing.JFrame(), true);       
+    ge.rol=ROL;
+    
+     try
+        {
+        cn=cm.Conectar();
+        String sql="SELECT * FROM permisos WHERE  idrol="+ROL;
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while(rs.next())
+          {                                
+            LEC=rs.getInt("L_CATEGORIATIPO");
+            ESCR=rs.getInt("ESC_CATEGORIATIPO");
+            MOD=rs.getInt("MOD_CATEGORIATIPO");
+            ELIM=rs.getInt("ELIM_CATEGORIATIPO");              
+            }                              
+        }            
+        catch (SQLException ex)
+        {
+           JOptionPane.showMessageDialog(null, ex);
+        }
+      
+    if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD==0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC==0 & ESCR==0 & MOD!=0 & ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR==0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR==0 & MOD==0 & ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true); 
+        }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+        }else if(LEC==0 & ESCR==0 & MOD==0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(false);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(false);
+         ge.jTextFieldCriterioBuscado.setEnabled(false);
+        }else if(LEC!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);         
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+        }else if(ESCR!=0){
+         ge.buttonTaskAGREGAR.setEnabled(true);         
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(false);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(false);
+         ge.jTextFieldCriterioBuscado.setEnabled(false);
+        }else if(MOD!=0){
+          ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+        }else if(ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.jComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextFieldCriterioBuscado.setEnabled(true);
+         ge.buttonTaskBORRAR.setEnabled(false);
+         ge.buttonTaskEDITAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+        }
+        ge.show();
+    }//GEN-LAST:event_jMenuItemCATOPERACIONESActionPerformed
+
+    private void jMenuItemOPERACIONESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOPERACIONESActionPerformed
+       int LEC=0,ESCR=0,MOD=0,ELIM=0;
+     
+     GestionCirugia ge=new GestionCirugia(new javax.swing.JFrame(), true);       
+     ge.IDROL=ROL;
+    
+     try
+        {
+        cn=cm.Conectar();
+        String sql="SELECT * FROM permisos WHERE  idrol="+ROL;
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while(rs.next())
+          {                                
+            LEC=rs.getInt("L_CIRUGIA");
+            ESCR=rs.getInt("ESC_CIRUGIA");
+            MOD=rs.getInt("MOD_CIRUGIA");
+            ELIM=rs.getInt("ELIM_CIRUGIA");              
+            }                              
+        }            
+        catch (SQLException ex)
+        {
+           JOptionPane.showMessageDialog(null, ex);
+        }
+      
+    if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD==0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC==0 & ESCR==0 & MOD!=0 & ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR==0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR==0 & MOD==0 & ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC!=0 & ESCR!=0 & MOD!=0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true); 
+        }else if(LEC==0 & ESCR!=0 & MOD!=0 || ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+        }else if(LEC==0 & ESCR==0 & MOD==0 & ELIM==0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(false);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(false);
+         ge.jTextField_criteriodeBusqueda.setEnabled(false);
+        }else if(LEC!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);         
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+        }else if(ESCR!=0){
+         ge.buttonTaskAGREGAR.setEnabled(true);         
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(false);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(false);
+         ge.jTextField_criteriodeBusqueda.setEnabled(false);
+        }else if(MOD!=0){
+          ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+        }else if(ELIM!=0){
+         ge.buttonTaskAGREGAR.setEnabled(false);
+         ge.buttonTaskBUSCAR.setEnabled(true);
+         ge.JComboBoxCriterioSeleccionado.setEnabled(true);
+         ge.jTextField_criteriodeBusqueda.setEnabled(true);
+         ge.buttonTaskELIMINAR.setEnabled(false);
+         ge.buttonTaskMODIFICAR.setEnabled(false);
+         ge.TABLA.setEnabled(true);
+        }
+        ge.show();
+    }//GEN-LAST:event_jMenuItemOPERACIONESActionPerformed
+
+    private void CONFIGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONFIGActionPerformed
+     LogoVet lv=new LogoVet(new javax.swing.JFrame(), true);
+      int ACTUALIZACION=0;
+       try
+        {   cn=cm.Conectar();
+            String sql="SELECT * FROM permisos WHERE  idrol="+ROL;
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next())
+            {                                
+                ACTUALIZACION=rs.getInt("LOGO");            
+            }                              
+        }            
+        catch (SQLException ex)
+        {
+         JOptionPane.showMessageDialog(null, ex);
+        }       
+       if(ACTUALIZACION!=0){
+          lv.buttonActionACTUALIZAR.setEnabled(true);
+       }else{
+          lv.buttonActionACTUALIZAR.setEnabled(false);
+       }
+      lv.show();      
+    }//GEN-LAST:event_CONFIGActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2281,6 +2715,7 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.button.ButtonAction buttonAction1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -2290,14 +2725,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItemAFECCIONES;
     private javax.swing.JMenuItem jMenuItemAUDITORIA;
     private javax.swing.JMenuItem jMenuItemBACKUP;
     private javax.swing.JMenuItem jMenuItemCATEGORIAS;
+    private javax.swing.JMenuItem jMenuItemCATOPERACIONES;
     private javax.swing.JMenuItem jMenuItemCIRUGIAS;
     private javax.swing.JMenuItem jMenuItemESPECIES;
     private javax.swing.JMenuItem jMenuItemFICHA;
     private javax.swing.JMenuItem jMenuItemMEDICAMENTOS;
+    private javax.swing.JMenuItem jMenuItemOPERACIONES;
     private javax.swing.JMenuItem jMenuItemPERMISOS;
     private javax.swing.JMenuItem jMenuItemRAZAS;
     private javax.swing.JMenuItem jMenuItemROLES;

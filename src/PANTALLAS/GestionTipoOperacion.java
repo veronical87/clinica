@@ -11,10 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Vero
- */
+
 public class GestionTipoOperacion extends javax.swing.JDialog{
     Connection cn;
     ConexionMySQL cm=new ConexionMySQL();
@@ -25,8 +22,6 @@ public class GestionTipoOperacion extends javax.swing.JDialog{
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        modelo=(DefaultTableModel) TABLA.getModel();
-        operacion.LlenarTabla(modelo);
     }
 
     @SuppressWarnings("unchecked")

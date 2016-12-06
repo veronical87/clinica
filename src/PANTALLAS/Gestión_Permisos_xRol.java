@@ -18,8 +18,6 @@ public class Gestión_Permisos_xRol extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null); 
-        modelo = (DefaultTableModel) TABLA.getModel();
-        usu.LlenarTablaTipo_Rol(modelo);
     }
 
   

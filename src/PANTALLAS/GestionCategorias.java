@@ -19,8 +19,6 @@ public class GestionCategorias extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();       
         setLocationRelativeTo(null); 
-        modelo = (DefaultTableModel) TABLA.getModel();
-        cat.LlenarTabla(modelo);
     }
 
     

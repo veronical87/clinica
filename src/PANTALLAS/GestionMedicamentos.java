@@ -20,9 +20,7 @@ public class GestionMedicamentos extends javax.swing.JDialog {
     public GestionMedicamentos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
-        modelo=(DefaultTableModel) TABLA.getModel();
-        med.LlenarTablaPrincipal(modelo);        
+        setLocationRelativeTo(null);       
     }
     
     @SuppressWarnings("unchecked")

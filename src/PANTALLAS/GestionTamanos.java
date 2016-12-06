@@ -19,8 +19,6 @@ public class GestionTamanos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        modelo = (DefaultTableModel) TABLA.getModel();
-        tam.LlenarTabla(modelo);
     }
 
    

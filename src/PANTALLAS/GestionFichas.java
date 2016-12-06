@@ -18,9 +18,6 @@ public class GestionFichas extends javax.swing.JDialog {
         super(parent, modal);    
         initComponents();
         setLocationRelativeTo(null);
-           
-        modelo=(DefaultTableModel) TABLA.getModel();
-        ficha.LlenarTablaFichas(modelo); 
     }
 
   
@@ -296,7 +293,7 @@ int IDROL,idusuario,filasel;
             mp.idusuario= idusuario;
             mp.idpersona=idPersona;
             mp.situacionpeso=situacionpeso;
-            mp.jLabelSITUACIONPESO.setText(situacionpeso);            
+                       
             mp.idPropietario=idPropietario;
             modelo2=(DefaultTableModel) mp.TABLA.getModel();
             ficha.LlenarTablaDatosMascotas(modelo2, idPropietario);
@@ -320,6 +317,7 @@ int IDROL,idusuario,filasel;
             mp.jTextFieldDomicilio.setText(domicilio);
             mp.jTextFieldcorreo.setText(correo);
             mp.idFicha= idFicha;
+            BuscarUsuario(); 
             mp.jLabelVETERINARIO.setText(usu);
             dispose();
             mp.show();
@@ -552,20 +550,24 @@ int MOD=0,ELI=0;
         }
         
         if(MOD!=0 & ELI!=0){
-          buttonTaskMODIFICAR.setEnabled(true);
-          buttonTaskELIMINAR.setEnabled(true);
-          buttonTaskAGREGAR.setEnabled(false);
-        }else if(MOD!=0){
-          buttonTaskMODIFICAR.setEnabled(true);
+          buttonTaskMODIFICAR.setEnabled(false);
           buttonTaskELIMINAR.setEnabled(false);
           buttonTaskAGREGAR.setEnabled(false);
+          TABLA.setEnabled(true);
+        }else if(MOD!=0){
+          buttonTaskMODIFICAR.setEnabled(false);
+          buttonTaskELIMINAR.setEnabled(false);
+          buttonTaskAGREGAR.setEnabled(false);
+          TABLA.setEnabled(true);
         }else if(ELI!=0){
           buttonTaskMODIFICAR.setEnabled(false);
-          buttonTaskELIMINAR.setEnabled(true);
+          buttonTaskELIMINAR.setEnabled(false);
           buttonTaskAGREGAR.setEnabled(false);
+          TABLA.setEnabled(true);
         }else {
           buttonTaskMODIFICAR.setEnabled(false);
           buttonTaskELIMINAR.setEnabled(false);
+          TABLA.setEnabled(false);
         }   
     }
 
@@ -574,7 +576,7 @@ int MOD=0,ELI=0;
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
         String sSQL = "";        
-        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE fichamedica.mascota LIKE '"+buscar+"%' ORDER BY CONCAT(propietarios.apellido,propietarios.nombre) ASC";
+        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE fichamedica.mascota LIKE '"+buscar+"%' ORDER BY fichamedica.id ASC";
         String registro[]=new String[5];
         try
            {
@@ -606,7 +608,7 @@ int MOD=0,ELI=0;
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
         String sSQL = "";        
-        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE especies.nombre LIKE '"+buscar+"%' ORDER BY CONCAT(propietarios.apellido,propietarios.nombre) ASC";
+        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE especies.nombre LIKE '"+buscar+"%' ORDER BY fichamedica.id ASC";
         String registro[]=new String[5];
         try
            {
@@ -637,7 +639,7 @@ int MOD=0,ELI=0;
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
         String sSQL = "";        
-        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE razas.nombre LIKE '"+buscar+"%' ORDER BY CONCAT(propietarios.apellido,propietarios.nombre) ASC";
+        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE razas.nombre LIKE '"+buscar+"%' ORDER BY fichamedica.id ASC";
         String registro[]=new String[5];
         try
            {
@@ -668,7 +670,7 @@ int MOD=0,ELI=0;
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
         String sSQL = "";        
-        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie WHERE propietarios.apellido LIKE '"+buscar+"%' ORDER BY propietarios.apellido ASC";
+        sSQL = "SELECT fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie WHERE propietarios.apellido LIKE '"+buscar+"%' ORDER BY fichamedica.id ASC";
         String registro[]=new String[5];
         try
            {

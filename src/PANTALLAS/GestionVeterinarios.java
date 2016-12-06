@@ -17,13 +17,16 @@ public class GestionVeterinarios extends javax.swing.JDialog {
     ClaseVeterinarios vet=new ClaseVeterinarios();
     Clase_Personas persona=new Clase_Personas();
     DefaultTableModel modelo;
+    boolean bandera=false;
     public GestionVeterinarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+       
         initComponents();
-        setLocationRelativeTo(null);
-        modelo=(DefaultTableModel) TABLA.getModel();
-        vet.LlenarTabla(modelo);
-        FORMATO_TABLA();
+        setLocationRelativeTo(null);   
+         if(bandera==true){           
+           modelo=(DefaultTableModel) TABLA.getModel();
+           vet.LlenarTabla(modelo);
+        }
     }
 
    
@@ -271,6 +274,7 @@ int IDROL,idpersona,idusuario;
         AltaVeterinario au = new AltaVeterinario(new javax.swing.JFrame(), true);
         au.IDROL = IDROL;
         au.IDUSUARIO= idusuario;
+        
         au.show();
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
 int filasel;
@@ -299,7 +303,7 @@ int filasel;
             mu.jTextFieldCodigoArea.setText(String.valueOf(t));
             mu.jTextFieldNroTelefono.setText(String.valueOf(num));
             mu.jTextFieldcorreo.setText(e);           
-            
+           
             mu.show();
         } else {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);

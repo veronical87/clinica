@@ -33,13 +33,7 @@ public class IngresoSistema extends javax.swing.JFrame {
         TextField_usuario.setDocument(new JTextFieldToUpperCase());  
         TextField_usuario.requestFocus();
     }
-//   private Image loadImage(String fileName){
-//      try{
-//         return ImageIO.read(IngresoSistema.class.getResource(fileName));
-//    } catch (Exception e) {
-//        return null;
-//    }         
-//}
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

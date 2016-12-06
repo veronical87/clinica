@@ -16,9 +16,7 @@ public class Gestión_de_Tipo_Telefono extends javax.swing.JDialog {
     public Gestión_de_Tipo_Telefono(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
-        DefaultTableModel modelo=(DefaultTableModel) TABLA.getModel();
-        tipoTel.LlenarTabla_TipoTelefono(modelo);
+        setLocationRelativeTo(null);
     }
 
     

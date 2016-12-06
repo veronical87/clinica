@@ -18,9 +18,7 @@ public class GestionRazas extends javax.swing.JDialog{
     public GestionRazas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);   
-        modelo=(DefaultTableModel) TABLA.getModel();
-        especie.LlenarTabla(modelo); 
+        setLocationRelativeTo(null);  
     }
 
    

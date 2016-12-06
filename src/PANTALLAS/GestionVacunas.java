@@ -19,9 +19,7 @@ public class GestionVacunas extends javax.swing.JDialog {
     public GestionVacunas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);  
-        modelo=(DefaultTableModel) TABLA.getModel();
-        vacuna.LlenarTabla(modelo); 
+        setLocationRelativeTo(null); 
     }
 
     

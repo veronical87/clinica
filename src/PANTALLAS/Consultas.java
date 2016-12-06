@@ -22,9 +22,7 @@ public class Consultas extends javax.swing.JDialog {
     public Consultas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);  
-        modelo=(DefaultTableModel) TABLA.getModel();
-        consulta.LlenarTabla(modelo); 
+        setLocationRelativeTo(null);
     }
 
 
@@ -328,7 +326,7 @@ int filasel;
                     JOptionPane.showMessageDialog(null, "El Tipo de Consulta"+" "+nombre+" "+"Se Borró Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
                     limpiarTabla(TABLA);
                     modelo = (DefaultTableModel) TABLA.getModel();
-                    consulta.LlenarTabla(modelo);
+                    consulta.LlenarTablaCONSULTAS(modelo);
                     buttonTaskAGREGAR.setEnabled(true);
                     buttonTaskMODIFICAR.setEnabled(false);
                     buttonTaskELIMINAR.setEnabled(false);
@@ -437,7 +435,7 @@ String usuario;
 
             while(rs.next())
             {
-                usuario=rs.getString("apellido")+","+rs.getString("nombre");
+                usuario=rs.getString("apellido")+rs.getString("nombre");
             }
 
             }
@@ -567,7 +565,7 @@ String usuario;
     cn=cm.Conectar();
     String sSQL = "";
     String[] registro = new String[4];
-    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%'";
+    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id=1 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();

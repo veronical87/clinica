@@ -17,9 +17,7 @@ public class GestionEspecies extends javax.swing.JDialog {
     public GestionEspecies(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);   
-        modelo=(DefaultTableModel) TABLA.getModel();
-        especie.LlenarTabla(modelo); 
+        setLocationRelativeTo(null); 
     }
   
     @SuppressWarnings("unchecked")

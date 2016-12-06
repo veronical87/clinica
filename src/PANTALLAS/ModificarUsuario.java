@@ -20,8 +20,7 @@ public class ModificarUsuario extends javax.swing.JDialog {
     Connection cn;
     ConexionMySQL cm=new ConexionMySQL();
     DefaultTableModel modelo;
-    CallableStatement cmd;
-    
+    CallableStatement cmd;    
     ClaseUsuarios claseusu=new ClaseUsuarios();
     Clase_Personas persona=new Clase_Personas();
     private Date f;
@@ -517,7 +516,7 @@ public class ModificarUsuario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int idusuario,ROL;int idusu,idPersona;String usuario,contraseña,APELLIDO,NOMBRE,DIRECCION,EMAIL,LOCALIDAD,CODAREA,ROLSELEC;int NUMTELE; String seleccion,con,cont2,h;
+int idusuario,ROL;boolean bandera=true;int idusu,idPersona;String usuario,contraseña,APELLIDO,NOMBRE,DIRECCION,EMAIL,LOCALIDAD,CODAREA,ROLSELEC;int NUMTELE; String seleccion,con,cont2,h;
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
        if(TextField_contraseña2.getText().equals("") || TextField_usuario.getText().equals("") || TextField_contraseña.getText().equals("") ||apellido.getText().equals("") ||TextField_nom.getText().equals("")|| TextField_direccion.getText().equals("") || TextFieldnumero.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención",JOptionPane.WARNING_MESSAGE);

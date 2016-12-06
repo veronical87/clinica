@@ -22,8 +22,6 @@ public class GestionCategoriasTipoOperacion extends javax.swing.JDialog  {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null); 
-        modelo=(DefaultTableModel) TABLA.getModel();
-        categoria.LlenarTabla(modelo);
     }
 
     @SuppressWarnings("unchecked")
@@ -307,7 +305,7 @@ int rol,filasel;
                 }
             }
          }else{
-            JOptionPane.showMessageDialog(null,"La Categoria Selecciona No Puede ser Borrada,Pertenece a las Operaciones mas Importantes");
+            JOptionPane.showMessageDialog(null,"La Categoria Selecciona No Puede ser Borrada,Pertenece a las Operaciones mas Importantes", "Información", JOptionPane.INFORMATION_MESSAGE);
             }          
         } else {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);

@@ -16,8 +16,6 @@ public class Gestión_Localidades extends javax.swing.JDialog {
     public Gestión_Localidades(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        modelo=(DefaultTableModel) TABLA.getModel();
-        codigoArea.LlenarTablaLocalidades(modelo);
         setLocationRelativeTo(null);    
     }
 

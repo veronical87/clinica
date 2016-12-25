@@ -388,7 +388,7 @@ public class SeccionesCirugia extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;
+int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;String mascota;
     private void jRadioButtonATRASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonATRASActionPerformed
         if(this.jRadioButtonATRAS.isSelected()){
            ATRAS=1;
@@ -441,6 +441,7 @@ int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;
 
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
      AltaCirugia ac= new AltaCirugia(new javax.swing.JFrame(),true);
+     ac.BuscarDatosMascota(mascota);
        if(idespecie==1){  /////PERRO
             if(ATRAS!=0){                 
                 ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/seccion-colayPataTrasera.png")));

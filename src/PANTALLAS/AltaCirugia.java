@@ -768,7 +768,7 @@ public class AltaCirugia extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     SeccionesCirugia sc=new SeccionesCirugia(new javax.swing.JFrame(), true);
     sc.idespecie=idespecie;
-    
+    sc.mascota=mascotaSelec;
     if(idespecie==1){
        sc.panelImage1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro.png")));
        sc.jRadioButtonCABEZAPERRO.setVisible(true);
@@ -810,9 +810,9 @@ public class AltaCirugia extends javax.swing.JDialog {
     private void jComboBoxMASCOTASPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
         this.LimpiarCampos();
     }//GEN-LAST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
-
+String mascotaSelec;
     private void jComboBoxMASCOTASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASActionPerformed
-        String mascotaSelec = this.jComboBoxMASCOTAS.getSelectedItem().toString();
+        mascotaSelec = this.jComboBoxMASCOTAS.getSelectedItem().toString();
         BuscarDatosMascota(mascotaSelec);
     }//GEN-LAST:event_jComboBoxMASCOTASActionPerformed
 
@@ -1090,9 +1090,9 @@ private void LlenarComboDueños() {
         DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
         cn=cm.Conectar();
         Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT apellido,coma,nombre FROM propietarios");                     
+        ResultSet rs = st.executeQuery("SELECT CONCAT(apellido,coma,nombre) AS dueño FROM propietarios");                     
         while (rs.next()) {
-           modeloCombo.addElement(rs.getString("apellido")+rs.getString("coma")+rs.getString("nombre"));
+           modeloCombo.addElement(rs.getString("dueño"));
         }
         rs.close();
         jComboBoxDUEÑOS.setModel(modeloCombo);            
@@ -1106,9 +1106,9 @@ private void LlenarComboDueños() {
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
             cn=cm.Conectar();
             Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT apellido,coma,nombre FROM propietarios WHERE apellido LIKE '"+dueñoSelec+"%'");                     
+            ResultSet rs = st.executeQuery("SELECT CONCAT(apellido,coma,nombre) AS dueño FROM propietarios WHERE apellido LIKE '"+dueñoSelec+"%'");                     
             while (rs.next()) {
-               modeloCombo.addElement(rs.getString("apellido")+rs.getString("coma")+rs.getString("nombre"));
+               modeloCombo.addElement(rs.getString("dueño"));
             }
             rs.close();
             jComboBoxDUEÑOS.setModel(modeloCombo);            
@@ -1149,7 +1149,7 @@ private void LlenarComboDueños() {
     } 
  }
 String especie="";int edad,IDFICHA,idespecie;
-private void BuscarDatosMascota(String mascotaSelec) {
+public void BuscarDatosMascota(String mascotaSelec) {
    int pesoActual=0;String situacionpeso="",tiemponac="",raza="";
    try {          
         cn=cm.Conectar();

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteFicha_DatosMascota" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ed87e1a4-05f8-41e4-ac4c-fa6cc0fd3592">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NROFICHA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT fichamedica.id AS NROFICHA,mascota,CONCAT(apellido,coma,propietarios.nombre) AS dueño,CONCAT(edad,tiemponac) AS edad,situacionpeso,SEXO,especies.nombre AS ESPECIE,CONCAT(kilaje+'KILOS') AS kilos,razas.nombre AS RAZA FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN  razas ON pelajexraza.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.id=$P{NROFICHA}]]>
+	</queryString>
+	<field name="NROFICHA" class="java.lang.Integer"/>
+	<field name="mascota" class="java.lang.String"/>
+	<field name="dueño" class="java.lang.String"/>
+	<field name="edad" class="java.lang.String"/>
+	<field name="situacionpeso" class="java.lang.String"/>
+	<field name="SEXO" class="java.lang.String"/>
+	<field name="ESPECIE" class="java.lang.String"/>
+	<field name="kilos" class="java.lang.String"/>
+	<field name="RAZA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2a821e76-81d4-4c17-97e5-626b34dcfef7" mode="Opaque" x="0" y="0" width="802" height="9" backcolor="#009999"/>
+				<textElement/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5037548-6509-4400-8b1b-2854e147d732" x="10" y="10" width="140" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Historial  Clinico]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="26" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="141" splitType="Stretch"/>
+	</detail>
+</jasperReport>

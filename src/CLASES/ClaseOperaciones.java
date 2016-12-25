@@ -16,16 +16,17 @@ public class ClaseOperaciones {
      
 public void LlenarTablaCONSULTAS(DefaultTableModel tabla){
   try{
-        String sql="SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id=1 ORDER BY tipooperacion.nombre ASC";
+        String sql="SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 ORDER BY fecha ASC";
         cmd=cn.prepareCall(sql);
         ResultSet rs=cmd.executeQuery();
-        String[] registro = new String[5];
+        String[] registro = new String[6];
         while(rs.next()){//aca se lee el maximo de filas
-            registro[0]=rs.getString("operaciones.id");
-            registro[1]=rs.getString("tipooperacion.nombre");
-            registro[2]=rs.getString("veterinarios.apellido")+","+rs.getString("veterinarios.nombre");
-            registro[3]=rs.getString("dueño");
-            registro[4]=rs.getString("mascota");
+            registro[0]=rs.getString("fecha");
+            registro[1]=rs.getString("operaciones.id");
+            registro[2]=rs.getString("tipooperacion.nombre");
+            registro[3]=rs.getString("veterinarios.apellido")+","+rs.getString("veterinarios.nombre");
+            registro[4]=rs.getString("dueño");
+            registro[5]=rs.getString("mascota");
             tabla.addRow(registro); 
         }
 //      cmd.close();
@@ -37,17 +38,18 @@ public void LlenarTablaCONSULTAS(DefaultTableModel tabla){
 
      
 public void LlenarTablaCIRUGIAS(DefaultTableModel tabla){
-  try{
-        String sql="SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id WHERE WHERE operaciones.id=2 ORDER BY tipooperacion.nombre ASC";
+    try{
+        String sql="SELECT fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=2 ORDER BY tipooperacion.nombre ASC";
         cmd=cn.prepareCall(sql);
         ResultSet rs=cmd.executeQuery();
-        String[] registro = new String[5];
+        String[] registro = new String[6];
         while(rs.next()){//aca se lee el maximo de filas
-            registro[0]=rs.getString("operaciones.id");
-            registro[1]=rs.getString("tipooperacion.nombre");
-            registro[2]=rs.getString("veterinarios.apellido")+","+rs.getString("veterinarios.nombre");
-            registro[3]=rs.getString("dueño");
-            registro[4]=rs.getString("mascota");
+            registro[0]=rs.getString("fecha");
+            registro[1]=rs.getString("operaciones.id");
+            registro[2]=rs.getString("tipooperacion.nombre");
+            registro[3]=rs.getString("veterinarios.apellido")+","+rs.getString("veterinarios.nombre");
+            registro[4]=rs.getString("dueño");
+            registro[5]=rs.getString("mascota");
             tabla.addRow(registro); 
         }
 //      cmd.close();
@@ -94,21 +96,17 @@ public void modificarDatosOperaciones(int ficha,String fechaActual,int idveterin
         }      
     }      
 
-public int BajaOperacion(int id) {
-   int encontrada=0;
-   String sql="call BajaOperacion(?,?)";
+public void BajaOperacion(int id) {  
+   String sql="call BajaOperacion(?)";
     try{
        cmd=cn.prepareCall(sql);
-       cmd.setInt(1,id);
-       cmd.registerOutParameter(2, java.sql.Types.INTEGER);
-       cmd.execute();
-       encontrada=cmd.getInt(2);
+       cmd.setInt(1,id);     
+       cmd.execute();       
 //         cmd.close();
 //         cn.close();    
     }catch(Exception ex){
       System.out.println(ex.getMessage());
-    }      
-    return encontrada;
+    }   
     }
 
     

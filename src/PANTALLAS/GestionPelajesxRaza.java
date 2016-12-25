@@ -1,28 +1,29 @@
 package PANTALLAS;
 
-import CLASES.ClaseAfeccion;
+import CLASES.ClasePelaje;
+import CLASES.JTextFieldToUpperCase;
 import Conexion.ConexionMySQL;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.*;
-import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class GestionAfeccion extends javax.swing.JDialog{
+public class GestionPelajesxRaza extends javax.swing.JDialog {
     Connection cn;
     ConexionMySQL cm=new ConexionMySQL();
     CallableStatement cmd;
     DefaultTableModel modelo;
-    Calendar Calendario = Calendar.getInstance();  
-    ClaseAfeccion afeccion=new ClaseAfeccion();
-    public GestionAfeccion(java.awt.Frame parent, boolean modal) {
+    ClasePelaje pelaje=new ClasePelaje();
+    public GestionPelajesxRaza(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null); 
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") int IDROL;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -42,12 +43,13 @@ public class GestionAfeccion extends javax.swing.JDialog{
         buttonTaskCERRAR = new org.edisoncor.gui.button.ButtonTask();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Gestion");
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GESTIÓN DE AFECCIONES ");
+        jLabel1.setText("GESTIÓN DE TIPOS DE PELAJE ");
 
         jPanel5.setBackground(new java.awt.Color(141, 141, 175));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "BÚSQUEDAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -55,7 +57,7 @@ public class GestionAfeccion extends javax.swing.JDialog{
         jLabel8.setText("Tipo de Búsqueda");
 
         JComboBoxCriterioSeleccionado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de Afeccion", "Todos" }));
+        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de Pelaje", "Raza", "Todos" }));
         JComboBoxCriterioSeleccionado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JComboBoxCriterioSeleccionadoActionPerformed(evt);
@@ -106,18 +108,18 @@ public class GestionAfeccion extends javax.swing.JDialog{
         );
 
         jPanel2.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LISTA DE AFECCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LISTA DE TIPOS DE PELAJE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         TABLA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tipo de Afeccion"
+                "Nro.", "Raza", "Tipo de Pelaje"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -257,7 +259,7 @@ public class GestionAfeccion extends javax.swing.JDialog{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int IDROL;
+
     private void JComboBoxCriterioSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBoxCriterioSeleccionadoActionPerformed
         String valor=JComboBoxCriterioSeleccionado.getSelectedItem().toString();
 
@@ -265,7 +267,7 @@ int IDROL;
             jTextField_criteriodeBusqueda.setVisible(false);
             limpiarTabla(TABLA);
             modelo = (DefaultTableModel) TABLA.getModel();
-            afeccion.LlenarTabla(modelo);
+            pelaje.LlenarTabla(modelo);
         }else{
             jTextField_criteriodeBusqueda.setVisible(true);
             jTextField_criteriodeBusqueda.requestFocus();
@@ -279,12 +281,14 @@ int IDROL;
     private void jTextField_criteriodeBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_criteriodeBusquedaKeyTyped
         String criterio = JComboBoxCriterioSeleccionado.getSelectedItem().toString();
         String buscar = this.jTextField_criteriodeBusqueda.getText();
-
+       
         if(buscar.equals("")){
             jTextField_criteriodeBusqueda.requestFocus();
             JOptionPane.showMessageDialog(null,"Debe Ingresar el Dato a Buscar","Atencion",JOptionPane.WARNING_MESSAGE);
-        }else if(criterio.equals("Tipo de Afeccion")){
-            MostrarConsultaxAfeccion(buscar);
+        }else if(criterio.equals("Tipo de Pelaje")){
+            MostrarDatosxPelaje(buscar);
+        }else if(criterio.equals("Raza")){
+            MostrarDatosxRaza(buscar);
         }
     }//GEN-LAST:event_jTextField_criteriodeBusquedaKeyTyped
 
@@ -295,8 +299,10 @@ int IDROL;
         if(buscar.equals("")){
             jTextField_criteriodeBusqueda.requestFocus();
             JOptionPane.showMessageDialog(null,"Debe Ingresar el Dato a Buscar","Atencion",JOptionPane.WARNING_MESSAGE);
-        }else if(criterio.equals("Tipo de Afeccion")){
-            MostrarConsultaxAfeccion(buscar);
+        }else if(criterio.equals("Tipo de Pelaje")){
+            MostrarDatosxPelaje(buscar);
+        }else if(criterio.equals("Raza")){
+            MostrarDatosxRaza(buscar);
         }
     }//GEN-LAST:event_buttonTaskBUSCARActionPerformed
 int filasel;
@@ -308,7 +314,7 @@ int filasel;
         this.buttonTaskAGREGAR.setEnabled(false);
         this.buttonTaskMODIFICAR.setEnabled(true);
         this.buttonTaskELIMINAR.setEnabled(true);
-        BuscarDatosAfeccionSelec(id);
+        BuscarDatosPelajeSelec(id);
         ENLACE();
     }//GEN-LAST:event_TABLAMouseClicked
 
@@ -325,13 +331,15 @@ int filasel;
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
 
     private void buttonTaskMODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskMODIFICARActionPerformed
-        if (filasel != -1) {
-            dispose();
-            ModificarAfeccion mp = new ModificarAfeccion(new javax.swing.JFrame(), true);
-            mp.idrol = IDROL;            
+        if (filasel != -1) {            
+            ModificarPelaje mp = new ModificarPelaje(new javax.swing.JFrame(), true);
+            mp.idrol = IDROL;
             mp.JTextFieldNombre.setText(nombre);
-            mp.IDAfeccion=IDAfeccion;
-            mp.show();
+            mp.bandera=false;
+            mp.jComboBox_RAZAS.getModel().setSelectedItem(raza);
+            mp.IDPelaje=IDPelaje;
+            dispose();
+            mp.show();           
         } else {
             JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -339,16 +347,16 @@ int filasel;
 
     private void buttonTaskELIMINARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskELIMINARActionPerformed
         if(filasel != -1){
-            int condicion = afeccion.EliminarAfeccion(IDAfeccion);
+            int condicion = pelaje.EliminarPelaje(IDPelaje);
 
             if(condicion!=0){
-                JOptionPane.showMessageDialog(null,"El Tipo de Afeccion"+" "+nombre+" "+"esta Asociado a Historiales Clinicos,No Puede ser Eliminado","Información", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"El Tipo de Pelaje de la Raza"+" "+raza+" "+"esta Asociado a Historiales Clinicos,No Puede ser Eliminado","Información", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                if(JOptionPane.showConfirmDialog(null, "¿Desea Borrar el Tipo de Afeccion" +" "+ nombre+ " " + "?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-                    JOptionPane.showMessageDialog(null, "El Tipo de Afeccion"+" "+nombre+" "+"Se Borró Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
+                if(JOptionPane.showConfirmDialog(null,"¿Desea Borrar el Tipo de Pelaje de la Raza"+" "+nombre+" "+"?","Consulta",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                    JOptionPane.showMessageDialog(null,"El Tipo de Pelaje de la Raza"+" "+nombre+" "+"Se Borró Correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
                     limpiarTabla(TABLA);
                     modelo = (DefaultTableModel) TABLA.getModel();
-                    afeccion.LlenarTabla(modelo);
+                    pelaje.LlenarTabla(modelo);
                     buttonTaskAGREGAR.setEnabled(true);
                     buttonTaskMODIFICAR.setEnabled(false);
                     buttonTaskELIMINAR.setEnabled(false);
@@ -359,7 +367,7 @@ int filasel;
                 }
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonTaskELIMINARActionPerformed
 
@@ -384,20 +392,20 @@ int filasel;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionAfeccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPelajesxRaza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionAfeccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPelajesxRaza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionAfeccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPelajesxRaza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionAfeccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPelajesxRaza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                GestionAfeccion dialog = new GestionAfeccion(new javax.swing.JFrame(), true);
+                GestionPelajesxRaza dialog = new GestionPelajesxRaza(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -425,19 +433,19 @@ int filasel;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
 
- private void limpiarTabla(JTable tab) {
+private void limpiarTabla(JTable tab) {
            while(tab.getRowCount()>0){//se recorren todas las filas
          ((javax.swing.table.DefaultTableModel) TABLA.getModel()).removeRow(0);
        }
     }
     
- private void MostrarConsultaxAfeccion(String buscar) {
-    String[] titulos = {"Tipo de Afeccion"};
+ private void MostrarDatosxPelaje(String buscar) {
+    String[] titulos = {"Nro.","Raza","Tipo de Pelaje"};
     modelo = new DefaultTableModel(null,titulos);
     cn=cm.Conectar();
     String sSQL = "";
-    String[] registro = new String[1];
-    sSQL = "SELECT nombre FROM afecciones  WHERE nombre LIKE '"+buscar+"%' ORDER BY nombre ASC";
+    String[] registro = new String[3];
+    sSQL = "SELECT pelajexraza.id,pelajexraza.nombre,razas.nombre FROM razas INNER JOIN pelajexraza ON pelajexraza.idraza=razas.id WHERE pelajexraza.nombre LIKE '"+buscar+"%' ORDER BY razas.nombre ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -445,8 +453,9 @@ int filasel;
 //         
          while(rs.next())
            {
-           registro[0]=rs.getString("nombre");
-           
+           registro[0]=rs.getString("pelajexraza.id");
+           registro[0]=rs.getString("razas.nombre");
+           registro[0]=rs.getString("pelajexraza.nombre");
            modelo.addRow(registro);
            limpiarTabla(TABLA); 
            }          
@@ -458,12 +467,12 @@ int filasel;
            }        
     }
 
- String nombre;int IDAfeccion;
- private void BuscarDatosAfeccionSelec(String id) {      
+ String nombre,raza;int IDPelaje;
+ private void BuscarDatosPelajeSelec(String id) {      
     cn=cm.Conectar();
     String sSQL = "";
     
-    sSQL = "SELECT afeccion.id,nombre FROM afecciones  WHERE nombre LIKE '"+id+"%'";
+    sSQL = "SELECT id,pelajexraza.nombre,razas.nombre FROM razas  WHERE nombre LIKE '"+id+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -471,11 +480,11 @@ int filasel;
 //         
          while(rs.next())
            {
-           IDAfeccion=rs.getInt("controlvacunas.id");
-           nombre=rs.getString("nombre"); 
-           }          
-          
-            }
+           IDPelaje=rs.getInt("id");
+           nombre=rs.getString("pelajexraza.nombre"); 
+           raza=rs.getString("razas.nombre"); 
+           }           
+       }
         catch (SQLException ex)
            {
             JOptionPane.showMessageDialog(null, ex);
@@ -493,8 +502,8 @@ int filasel;
 
         while(rs.next())
            {                                
-            MOD=rs.getInt("MOD_AFECCION");
-            ELI=rs.getInt("ELIM_AFECCION");               
+            MOD=rs.getInt("MOD_PELAJE");
+            ELI=rs.getInt("ELIM_PELAJE");               
            }                              
       }            
          catch (SQLException ex)
@@ -519,5 +528,33 @@ int filasel;
            buttonTaskELIMINAR.setEnabled(false);
         } 
     
+    }
+
+    private void MostrarDatosxRaza(String buscar) {
+     String[] titulos = {"Nro.","Raza","Tipo de Pelaje"};
+    modelo = new DefaultTableModel(null,titulos);
+    cn=cm.Conectar();
+    String sSQL = "";
+    String[] registro = new String[3];
+    sSQL = "SELECT pelajexraza.id,pelajexraza.nombre,razas.nombre FROM razas INNER JOIN pelajexraza ON pelajexraza.idraza=razas.id WHERE razas.nombre LIKE '"+buscar+"%' ORDER BY razas.nombre ASC";
+    try
+       {
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sSQL);
+//         
+         while(rs.next())
+           {
+           registro[0]=rs.getString("pelajexraza.id");
+           registro[0]=rs.getString("razas.nombre");
+           registro[0]=rs.getString("pelajexraza.nombre");
+           modelo.addRow(registro);
+           limpiarTabla(TABLA); 
+           }          
+          TABLA.setModel(modelo);  
+            }
+        catch (SQLException ex)
+           {
+            JOptionPane.showMessageDialog(null, ex);
+           }
     }
 }

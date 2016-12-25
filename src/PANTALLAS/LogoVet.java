@@ -201,8 +201,8 @@ public class LogoVet extends javax.swing.JDialog {
                         .addComponent(buttonActionSELECCIONARIMAGEN, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelMostrarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabelMostrarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
@@ -211,7 +211,7 @@ public class LogoVet extends javax.swing.JDialog {
                             .addComponent(jLabel7)
                             .addComponent(jLabel1)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextFieldCodigoArea, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -422,10 +422,14 @@ String datoImagen;
      String nombre =jTextField1.getText();
      int numero =Integer.parseInt(jTextFieldNroTelefono.getText());
      String domicilio =this.jTextFieldDomicilio.getText();
+     String localidad =String.valueOf(this.jComboBoxLocalidades.getModel().getSelectedItem());
      String  correo = String.valueOf(this.jTextFieldcorreo.getText());
      if("".equals(this.jTextFieldDomicilio.getText()) || "".equals(this.jTextFieldCodigoArea.getText()) || "".equals(jTextFieldNroTelefono.getText())){
        JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención", JOptionPane.WARNING_MESSAGE);
-     }else{  
+     }else{
+        if(ID_LOCALIDAD==0){
+          BuscarIDLocalidad(localidad);
+        }
         Image im= getToolkit().getImage(datoImagen);
         im=im.getScaledInstance(110,110, Image.SCALE_SMOOTH);
         jLabelMostrarImagen.setIcon(new ImageIcon(im)); 

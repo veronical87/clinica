@@ -18,7 +18,7 @@ public class AccesosxRol extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null); 
 //        LLenarCombo();
-        jCheckBox1.setVisible(false);
+//        jCheckBox1.setVisible(false);
     }
 
 
@@ -97,11 +97,6 @@ public class AccesosxRol extends javax.swing.JDialog {
         RadioButtonL_BACKUP = new javax.swing.JRadioButton();
         jPanel19 = new javax.swing.JPanel();
         RadioButtonL_ESTADISTICA = new javax.swing.JRadioButton();
-        jPanel26 = new javax.swing.JPanel();
-        RadioButtonL_PROVINCIA = new javax.swing.JRadioButton();
-        RadioButtonES_PROVINCIA = new javax.swing.JRadioButton();
-        RadioButtonMOD_PROVINCIA = new javax.swing.JRadioButton();
-        RadioButtonELI_PROVINCIA = new javax.swing.JRadioButton();
         jPanel27 = new javax.swing.JPanel();
         RadioButtonL_LOCALIDAD = new javax.swing.JRadioButton();
         RadioButtonES_LOCALIDAD = new javax.swing.JRadioButton();
@@ -122,14 +117,36 @@ public class AccesosxRol extends javax.swing.JDialog {
         RadioButtonES_TIPOOPERACION = new javax.swing.JRadioButton();
         RadioButtonMOD_TIPOOPERACION = new javax.swing.JRadioButton();
         RadioButtonELI_TIPOOPERACION = new javax.swing.JRadioButton();
+        jPanel36 = new javax.swing.JPanel();
+        RadioButtonL_AFECCION = new javax.swing.JRadioButton();
+        RadioButtonES_AFECCION = new javax.swing.JRadioButton();
+        RadioButtonMOD_AFECCION = new javax.swing.JRadioButton();
+        RadioButtonELI_AFECCION = new javax.swing.JRadioButton();
+        jPanelLOGO = new javax.swing.JPanel();
+        RadioButtonM_LOGO = new javax.swing.JRadioButton();
+        jPanel40 = new javax.swing.JPanel();
+        RadioButtonL_PELAJE = new javax.swing.JRadioButton();
+        RadioButtonES_PELAJE = new javax.swing.JRadioButton();
+        RadioButtonMOD_PELAJE = new javax.swing.JRadioButton();
+        RadioButtonELI_PELAJE = new javax.swing.JRadioButton();
+        jPanel26 = new javax.swing.JPanel();
+        RadioButtonL_PROVINCIA = new javax.swing.JRadioButton();
+        RadioButtonES_PROVINCIA = new javax.swing.JRadioButton();
+        RadioButtonMOD_PROVINCIA = new javax.swing.JRadioButton();
+        RadioButtonELI_PROVINCIA = new javax.swing.JRadioButton();
+        jPanel35 = new javax.swing.JPanel();
+        RadioButtonL_VACUNA = new javax.swing.JRadioButton();
+        RadioButtonES_VACUNA = new javax.swing.JRadioButton();
+        RadioButtonMOD_VACUNA = new javax.swing.JRadioButton();
+        RadioButtonELI_VACUNA = new javax.swing.JRadioButton();
         jPanel34 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
         buttonActionCANCELAR = new org.edisoncor.gui.button.ButtonAction();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -652,7 +669,7 @@ public class AccesosxRol extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -703,7 +720,7 @@ public class AccesosxRol extends javax.swing.JDialog {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(RadioButtonL_AUDITORIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -772,7 +789,7 @@ public class AccesosxRol extends javax.swing.JDialog {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(RadioButtonL_BACKUP, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -795,55 +812,13 @@ public class AccesosxRol extends javax.swing.JDialog {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(RadioButtonL_ESTADISTICA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(RadioButtonL_ESTADISTICA)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel26.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "GESTIÓN PROVINCIAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
-
-        RadioButtonL_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        RadioButtonL_PROVINCIA.setText("L");
-
-        RadioButtonES_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        RadioButtonES_PROVINCIA.setText("E");
-
-        RadioButtonMOD_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        RadioButtonMOD_PROVINCIA.setText("M");
-
-        RadioButtonELI_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        RadioButtonELI_PROVINCIA.setText("B");
-
-        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel26Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(RadioButtonL_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RadioButtonES_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RadioButtonMOD_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RadioButtonELI_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel26Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RadioButtonL_PROVINCIA)
-                    .addComponent(RadioButtonES_PROVINCIA)
-                    .addComponent(RadioButtonMOD_PROVINCIA)
-                    .addComponent(RadioButtonELI_PROVINCIA))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -875,7 +850,7 @@ public class AccesosxRol extends javax.swing.JDialog {
                 .addComponent(RadioButtonMOD_LOCALIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RadioButtonELI_LOCALIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1015,51 +990,261 @@ public class AccesosxRol extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel36.setBackground(new java.awt.Color(141, 141, 175));
+        jPanel36.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "GESTIÓN AFECCIÓN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+
+        RadioButtonL_AFECCION.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonL_AFECCION.setText("L");
+
+        RadioButtonES_AFECCION.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonES_AFECCION.setText("E");
+
+        RadioButtonMOD_AFECCION.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonMOD_AFECCION.setText("M");
+
+        RadioButtonELI_AFECCION.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonELI_AFECCION.setText("B");
+
+        javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
+        jPanel36.setLayout(jPanel36Layout);
+        jPanel36Layout.setHorizontalGroup(
+            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel36Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(RadioButtonL_AFECCION, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonES_AFECCION, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonMOD_AFECCION, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonELI_AFECCION, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel36Layout.setVerticalGroup(
+            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel36Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RadioButtonL_AFECCION)
+                    .addComponent(RadioButtonES_AFECCION)
+                    .addComponent(RadioButtonMOD_AFECCION)
+                    .addComponent(RadioButtonELI_AFECCION))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanelLOGO.setBackground(new java.awt.Color(141, 141, 175));
+        jPanelLOGO.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LOGO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+
+        RadioButtonM_LOGO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonM_LOGO.setText("M");
+
+        javax.swing.GroupLayout jPanelLOGOLayout = new javax.swing.GroupLayout(jPanelLOGO);
+        jPanelLOGO.setLayout(jPanelLOGOLayout);
+        jPanelLOGOLayout.setHorizontalGroup(
+            jPanelLOGOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLOGOLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(RadioButtonM_LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanelLOGOLayout.setVerticalGroup(
+            jPanelLOGOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLOGOLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(RadioButtonM_LOGO)
+                .addContainerGap())
+        );
+
+        jPanel40.setBackground(new java.awt.Color(141, 141, 175));
+        jPanel40.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "GESTIÓN TIPO PELAJE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+
+        RadioButtonL_PELAJE.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonL_PELAJE.setText("L");
+
+        RadioButtonES_PELAJE.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonES_PELAJE.setText("E");
+
+        RadioButtonMOD_PELAJE.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonMOD_PELAJE.setText("M");
+
+        RadioButtonELI_PELAJE.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonELI_PELAJE.setText("B");
+
+        javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
+        jPanel40.setLayout(jPanel40Layout);
+        jPanel40Layout.setHorizontalGroup(
+            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel40Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(RadioButtonL_PELAJE, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonES_PELAJE, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonMOD_PELAJE, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonELI_PELAJE, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel40Layout.setVerticalGroup(
+            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel40Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RadioButtonL_PELAJE)
+                    .addComponent(RadioButtonES_PELAJE)
+                    .addComponent(RadioButtonMOD_PELAJE)
+                    .addComponent(RadioButtonELI_PELAJE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel26.setBackground(new java.awt.Color(141, 141, 175));
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "GESTIÓN PROVINCIAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+
+        RadioButtonL_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonL_PROVINCIA.setText("L");
+
+        RadioButtonES_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonES_PROVINCIA.setText("E");
+
+        RadioButtonMOD_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonMOD_PROVINCIA.setText("M");
+
+        RadioButtonELI_PROVINCIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonELI_PROVINCIA.setText("B");
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(RadioButtonL_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonES_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonMOD_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonELI_PROVINCIA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RadioButtonL_PROVINCIA)
+                    .addComponent(RadioButtonES_PROVINCIA)
+                    .addComponent(RadioButtonMOD_PROVINCIA)
+                    .addComponent(RadioButtonELI_PROVINCIA))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel35.setBackground(new java.awt.Color(141, 141, 175));
+        jPanel35.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "GESTIÓN VACUNAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+
+        RadioButtonL_VACUNA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonL_VACUNA.setText("L");
+
+        RadioButtonES_VACUNA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonES_VACUNA.setText("E");
+
+        RadioButtonMOD_VACUNA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonMOD_VACUNA.setText("M");
+
+        RadioButtonELI_VACUNA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RadioButtonELI_VACUNA.setText("B");
+
+        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
+        jPanel35.setLayout(jPanel35Layout);
+        jPanel35Layout.setHorizontalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel35Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(RadioButtonL_VACUNA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonES_VACUNA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonMOD_VACUNA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RadioButtonELI_VACUNA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
+        );
+        jPanel35Layout.setVerticalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel35Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RadioButtonL_VACUNA)
+                    .addComponent(RadioButtonES_VACUNA)
+                    .addComponent(RadioButtonMOD_VACUNA)
+                    .addComponent(RadioButtonELI_VACUNA))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jPanelLOGO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel26, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel36, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanelLOGO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
 
@@ -1107,14 +1292,6 @@ public class AccesosxRol extends javax.swing.JDialog {
                 .addGap(24, 24, 24))
         );
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCheckBox1.setText("SELECCIONAR TODOS");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
         buttonActionGUARDAR.setText("GUARDAR");
         buttonActionGUARDAR.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         buttonActionGUARDAR.addActionListener(new java.awt.event.ActionListener() {
@@ -1131,45 +1308,54 @@ public class AccesosxRol extends javax.swing.JDialog {
             }
         });
 
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox1.setText("SELECCIONAR TODOS");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRectTranslucido1Layout = new javax.swing.GroupLayout(panelRectTranslucido1);
         panelRectTranslucido1.setLayout(panelRectTranslucido1Layout);
         panelRectTranslucido1Layout.setHorizontalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonActionCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(409, 409, 409))
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                        .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(107, 107, 107)
-                        .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(325, 325, 325)
+                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
-                .addGap(253, 253, 253)
-                .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(buttonActionCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(253, 253, 253))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addGap(400, 411, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         panelRectTranslucido1Layout.setVerticalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1177,21 +1363,19 @@ public class AccesosxRol extends javax.swing.JDialog {
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel2))
                             .addComponent(jComboBoxRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
-                        .addGap(39, 39, 39)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonActionCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1290,6 +1474,23 @@ int idrolSeleccionado,ROL;
             RadioButtonESC_CIRUGIA.setSelected(true);
             RadioButtonMOD_CIRUGIA.setSelected(true);
             RadioButtonELI_CIRUGIA.setSelected(true);
+            
+            RadioButtonL_VACUNA.setSelected(true);
+            RadioButtonES_VACUNA.setSelected(true);
+            RadioButtonMOD_VACUNA.setSelected(true);
+            RadioButtonELI_VACUNA.setSelected(true);
+            
+            RadioButtonL_AFECCION.setSelected(true);
+            RadioButtonES_AFECCION.setSelected(true);
+            RadioButtonMOD_AFECCION.setSelected(true);
+            RadioButtonELI_AFECCION.setSelected(true);
+            
+            RadioButtonM_LOGO.setSelected(true);
+            
+            RadioButtonL_PELAJE.setSelected(true);
+            RadioButtonES_PELAJE.setSelected(true);
+            RadioButtonMOD_PELAJE.setSelected(true);
+            RadioButtonELI_PELAJE.setSelected(true);
          }else{           
             RadioButtonL_REPORTES.setSelected(false);
             RadioButtonL_AUDITORIA.setSelected(false);
@@ -1371,6 +1572,23 @@ int idrolSeleccionado,ROL;
             RadioButtonESC_CIRUGIA.setSelected(false);
             RadioButtonMOD_CIRUGIA.setSelected(false);
             RadioButtonELI_CIRUGIA.setSelected(false);
+            
+             RadioButtonL_VACUNA.setSelected(false);
+            RadioButtonES_VACUNA.setSelected(false);
+            RadioButtonMOD_VACUNA.setSelected(false);
+            RadioButtonELI_VACUNA.setSelected(false);
+            
+            RadioButtonL_AFECCION.setSelected(false);
+            RadioButtonES_AFECCION.setSelected(false);
+            RadioButtonMOD_AFECCION.setSelected(false);
+            RadioButtonELI_AFECCION.setSelected(false);
+            
+            RadioButtonM_LOGO.setSelected(false);
+            
+            RadioButtonL_PELAJE.setSelected(false);
+            RadioButtonES_PELAJE.setSelected(false);
+            RadioButtonMOD_PELAJE.setSelected(false);
+            RadioButtonELI_PELAJE.setSelected(false);
       }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
@@ -1382,7 +1600,7 @@ int idrolSeleccionado,ROL;
        BuscarCoincidencias(captura);
         LimpiarOpciones();
     }else{        
-        BuscarDatos(captura );    
+        BuscarDatos(captura);    
     }
     }//GEN-LAST:event_jComboBoxRolesActionPerformed
 
@@ -1391,7 +1609,7 @@ int idrolSeleccionado,ROL;
     }//GEN-LAST:event_jComboBoxRolesPopupMenuWillBecomeVisible
 
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
- int audi=0,res=0,REPORTES=0,GRAFICOS=0,L_VETERINARIO=0,ESC_VETERINARIO=0,MOD_VETERINARIO=0,ELIM_VETERINARIO=0,L_ESPECIE=0,ESC_ESPECIE=0,MOD_ESPECIE=0,ELIM_ESPECIE=0,L_RAZA=0,ESC_RAZA=0,MOD_RAZA=0,ELIM_RAZA=0,L_FICHAMEDICA=0,ESC_FICHAMEDICA=0,MOD_FICHAMEDICA=0,ELI_FICHAMEDICA=0,L_CONSULTA=0,ESC_CONSULTA=0,MOD_CONSULTA=0,ELI_CONSULTA=0,L_CIRUGIA=0,ESC_CIRUGIA=0,MOD_CIRUGIA=0,ELI_CIRUGIA=0,L_MEDICAMENTO=0,ESC_MEDICAMENTO=0,MOD_MEDICAMENTO=0,ELI_MEDICAMENTO=0,L_HORA=0,ESC_HORA=0,MOD_HORA=0,ELIM_HORA=0,L_LOC=0,ES_LOC=0,MOD_LOC=0,ELI_LOC=0,L_PROVINC=0,ES_PROVINC=0,MOD_PROVINC=0,ELI_PROVINC=0,L_USU=0,ES_USU=0,MOD_USU=0,ELI_USU=0,L_ROL=0,ES_ROL=0,MOD_ROL=0,ELI_ROL=0,L_TIPOTEL=0,ESC_TIPOTEL=0,MOD_TIPOTEL=0,ELI_TIPOTEL=0,PERMISO=0,L_CATEGORIA=0,ESC_CATEGORIA=0,MOD_CATEGORIA=0,ELI_CATEGORIA=0,L_CATOPERACION=0,ESC_CATOPERACION=0,MOD_CATOPERACION=0,ELIM_CATOPERACION=0,L_OPERACION=0,ESC_OPERACION=0,MOD_OPERACION=0,ELIM_OPERACION=0;
+ int audi=0,res=0,REPORTES=0,GRAFICOS=0,L_VETERINARIO=0,ESC_VETERINARIO=0,MOD_VETERINARIO=0,ELIM_VETERINARIO=0,L_VACUNA=0,ESC_VACUNA=0,MOD_VACUNA=0,ELIM_VACUNA=0,L_AFECCION=0,ESC_AFECCION=0,MOD_AFECCION=0,ELIM_AFECCION=0,L_ESPECIE=0,ESC_ESPECIE=0,MOD_ESPECIE=0,ELIM_ESPECIE=0,L_RAZA=0,ESC_RAZA=0,MOD_RAZA=0,ELIM_RAZA=0,L_FICHAMEDICA=0,ESC_FICHAMEDICA=0,MOD_FICHAMEDICA=0,ELI_FICHAMEDICA=0,L_CONSULTA=0,ESC_CONSULTA=0,MOD_CONSULTA=0,ELI_CONSULTA=0,L_CIRUGIA=0,ESC_CIRUGIA=0,MOD_CIRUGIA=0,ELI_CIRUGIA=0,L_MEDICAMENTO=0,ESC_MEDICAMENTO=0,MOD_MEDICAMENTO=0,ELI_MEDICAMENTO=0,L_HORA=0,ESC_HORA=0,MOD_HORA=0,ELIM_HORA=0,L_LOC=0,ES_LOC=0,MOD_LOC=0,ELI_LOC=0,L_PROVINC=0,ES_PROVINC=0,MOD_PROVINC=0,ELI_PROVINC=0,L_USU=0,ES_USU=0,MOD_USU=0,ELI_USU=0,L_ROL=0,ES_ROL=0,MOD_ROL=0,ELI_ROL=0,L_TIPOTEL=0,ESC_TIPOTEL=0,MOD_TIPOTEL=0,ELI_TIPOTEL=0,PERMISO=0,L_CATEGORIA=0,ESC_CATEGORIA=0,MOD_CATEGORIA=0,ELI_CATEGORIA=0,L_CATOPERACION=0,ESC_CATOPERACION=0,MOD_CATOPERACION=0,ELIM_CATOPERACION=0,L_OPERACION=0,ESC_OPERACION=0,MOD_OPERACION=0,ELIM_OPERACION=0,L_PELAJE=0,ESC_PELAJE=0,MOD_PELAJE=0,ELIM_PELAJE=0,LOGO=0;
  String RolSeleccionado=String.valueOf(jComboBoxRoles.getModel().getSelectedItem());
   
         int existe = acceso.ExisteRol_Pantallas(idrolSeleccionado);
@@ -1623,17 +1841,60 @@ int idrolSeleccionado,ROL;
         }
         if (RadioButtonELI_TIPOOPERACION.isSelected()) {
             ELIM_OPERACION = 4;
+        }  
+        
+        if (this.RadioButtonL_VACUNA.isSelected()) {
+             L_VACUNA = 1;
+        }
+        if (RadioButtonES_VACUNA.isSelected()) {
+            ESC_VACUNA = 2;
+        }
+        if (RadioButtonMOD_VACUNA.isSelected()) {
+            MOD_VACUNA = 3;
+        }
+        if (RadioButtonELI_VACUNA.isSelected()) {
+            ELIM_VACUNA = 4;
+        }            
+        
+         if (this.RadioButtonL_AFECCION.isSelected()) {
+             L_AFECCION = 1;
+        }
+        if (RadioButtonES_AFECCION.isSelected()) {
+            ESC_AFECCION = 2;
+        }
+        if (RadioButtonMOD_AFECCION.isSelected()) {
+            MOD_AFECCION = 3;
+        }
+        if (RadioButtonELI_AFECCION.isSelected()) {
+            ELIM_AFECCION = 4;
         }
         
-     
-               
+        if (RadioButtonM_LOGO.isSelected()) {
+            LOGO = 3;
+        }
+        
+        if (this.RadioButtonL_PELAJE.isSelected()) {
+             L_PELAJE = 1;
+        }
+        if (RadioButtonES_PELAJE.isSelected()) {
+            ESC_PELAJE = 2;
+        }
+        if (RadioButtonMOD_PELAJE.isSelected()) {
+            MOD_PELAJE = 3;
+        }
+        if (RadioButtonELI_PELAJE.isSelected()) {
+            ELIM_PELAJE = 4;
+        }
+        
+        
+        
        if (existe == 0) {
-            acceso.AsociarPermisos(idrolSeleccionado,L_FICHAMEDICA,ESC_FICHAMEDICA,MOD_FICHAMEDICA,ELI_FICHAMEDICA,L_ESPECIE,ESC_ESPECIE,MOD_ESPECIE,ELIM_ESPECIE,L_RAZA,ESC_RAZA,MOD_RAZA,ELIM_RAZA,L_MEDICAMENTO,ESC_MEDICAMENTO,MOD_MEDICAMENTO,ELI_MEDICAMENTO,L_HORA,ESC_HORA,MOD_HORA,ELIM_HORA,L_PROVINC,ES_PROVINC,MOD_PROVINC,ELI_PROVINC,L_LOC,ES_LOC,MOD_LOC,ELI_LOC,L_TIPOTEL,ESC_TIPOTEL,MOD_TIPOTEL,ELI_TIPOTEL,L_USU,ES_USU,MOD_USU,ELI_USU,L_ROL,ES_ROL,MOD_ROL,ELI_ROL,audi,res,PERMISO,L_VETERINARIO,ESC_VETERINARIO,MOD_VETERINARIO,ELIM_VETERINARIO,REPORTES,GRAFICOS, L_CONSULTA,ESC_CONSULTA,MOD_CONSULTA,ELI_CONSULTA,L_CATEGORIA,ESC_CATEGORIA,MOD_CATEGORIA,ELI_CATEGORIA,L_CIRUGIA,ESC_CIRUGIA,MOD_CIRUGIA,ELI_CIRUGIA,L_CATOPERACION,ESC_CATOPERACION,MOD_CATOPERACION,ELIM_CATOPERACION,L_OPERACION,ESC_OPERACION,MOD_OPERACION,ELIM_OPERACION);
+            acceso.AsociarPermisos(idrolSeleccionado,L_FICHAMEDICA,ESC_FICHAMEDICA,MOD_FICHAMEDICA,ELI_FICHAMEDICA,L_ESPECIE,ESC_ESPECIE,MOD_ESPECIE,ELIM_ESPECIE,L_RAZA,ESC_RAZA,MOD_RAZA,ELIM_RAZA,L_MEDICAMENTO,ESC_MEDICAMENTO,MOD_MEDICAMENTO,ELI_MEDICAMENTO,L_HORA,ESC_HORA,MOD_HORA,ELIM_HORA,L_PROVINC,ES_PROVINC,MOD_PROVINC,ELI_PROVINC,L_LOC,ES_LOC,MOD_LOC,ELI_LOC,L_TIPOTEL,ESC_TIPOTEL,MOD_TIPOTEL,ELI_TIPOTEL,L_USU,ES_USU,MOD_USU,ELI_USU,L_ROL,ES_ROL,MOD_ROL,ELI_ROL,audi,res,PERMISO,L_VETERINARIO,ESC_VETERINARIO,MOD_VETERINARIO,ELIM_VETERINARIO,REPORTES,GRAFICOS, L_CONSULTA,ESC_CONSULTA,MOD_CONSULTA,ELI_CONSULTA,L_CATEGORIA,ESC_CATEGORIA,MOD_CATEGORIA,ELI_CATEGORIA,L_CIRUGIA,ESC_CIRUGIA,MOD_CIRUGIA,ELI_CIRUGIA,L_VACUNA,ESC_VACUNA,MOD_VACUNA,ELIM_VACUNA,L_AFECCION,ESC_AFECCION,MOD_AFECCION,ELIM_AFECCION, L_CATOPERACION,ESC_CATOPERACION,MOD_CATOPERACION,ELIM_CATOPERACION,L_OPERACION,ESC_OPERACION,MOD_OPERACION,ELIM_OPERACION,LOGO,L_PELAJE,ESC_PELAJE,MOD_PELAJE,ELIM_PELAJE);
             JOptionPane.showMessageDialog(null,"Se Registró un Nuevo Nivel de Acceso para el Rol" + " " + RolSeleccionado, "Información", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             ENLACE();
         } else {
-            acceso.ActualizarPermisos(idrolSeleccionado,L_FICHAMEDICA,ESC_FICHAMEDICA,MOD_FICHAMEDICA,ELI_FICHAMEDICA,L_ESPECIE,ESC_ESPECIE,MOD_ESPECIE,ELIM_ESPECIE,L_RAZA,ESC_RAZA,MOD_RAZA,ELIM_RAZA,L_MEDICAMENTO,ESC_MEDICAMENTO,MOD_MEDICAMENTO,ELI_MEDICAMENTO,L_HORA,ESC_HORA,MOD_HORA,ELIM_HORA,L_PROVINC,ES_PROVINC,MOD_PROVINC,ELI_PROVINC,L_LOC,ES_LOC,MOD_LOC,ELI_LOC,L_TIPOTEL,ESC_TIPOTEL,MOD_TIPOTEL,ELI_TIPOTEL,L_USU,ES_USU,MOD_USU,ELI_USU,L_ROL,ES_ROL,MOD_ROL,ELI_ROL,audi,res,PERMISO,L_VETERINARIO,ESC_VETERINARIO,MOD_VETERINARIO,ELIM_VETERINARIO,REPORTES,GRAFICOS, L_CONSULTA,ESC_CONSULTA,MOD_CONSULTA,ELI_CONSULTA,L_CATEGORIA,ESC_CATEGORIA,MOD_CATEGORIA,ELI_CATEGORIA,L_CIRUGIA,ESC_CIRUGIA,MOD_CIRUGIA,ELI_CIRUGIA,L_CATOPERACION,ESC_CATOPERACION,MOD_CATOPERACION,ELIM_CATOPERACION,L_OPERACION,ESC_OPERACION,MOD_OPERACION,ELIM_OPERACION);
+            acceso.ActualizarPermisos(idrolSeleccionado,L_FICHAMEDICA,ESC_FICHAMEDICA,MOD_FICHAMEDICA,ELI_FICHAMEDICA,L_ESPECIE,ESC_ESPECIE,MOD_ESPECIE,ELIM_ESPECIE,L_RAZA,ESC_RAZA,MOD_RAZA,ELIM_RAZA,L_MEDICAMENTO,ESC_MEDICAMENTO,MOD_MEDICAMENTO,ELI_MEDICAMENTO,L_HORA,ESC_HORA,MOD_HORA,ELIM_HORA,L_PROVINC,ES_PROVINC,MOD_PROVINC,ELI_PROVINC,L_LOC,ES_LOC,MOD_LOC,ELI_LOC,L_TIPOTEL,ESC_TIPOTEL,MOD_TIPOTEL,ELI_TIPOTEL,L_USU,ES_USU,MOD_USU,ELI_USU,L_ROL,ES_ROL,MOD_ROL,ELI_ROL,audi,res,PERMISO,L_VETERINARIO,ESC_VETERINARIO,MOD_VETERINARIO,ELIM_VETERINARIO,REPORTES,GRAFICOS, L_CONSULTA,ESC_CONSULTA,MOD_CONSULTA,ELI_CONSULTA,L_CATEGORIA,ESC_CATEGORIA,MOD_CATEGORIA,ELI_CATEGORIA,L_CIRUGIA,ESC_CIRUGIA,MOD_CIRUGIA,ELI_CIRUGIA,L_VACUNA,ESC_VACUNA,MOD_VACUNA,ELIM_VACUNA,L_AFECCION,ESC_AFECCION,MOD_AFECCION,ELIM_AFECCION,L_CATOPERACION,ESC_CATOPERACION,MOD_CATOPERACION,ELIM_CATOPERACION,L_OPERACION,ESC_OPERACION,MOD_OPERACION,ELIM_OPERACION,LOGO,L_PELAJE,ESC_PELAJE,MOD_PELAJE,ELIM_PELAJE);
             JOptionPane.showMessageDialog(null,"Se Actualizó el Nivel de Acceso del Rol" + " " + RolSeleccionado, "Información", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             ENLACE();
@@ -1698,19 +1959,19 @@ int idrolSeleccionado,ROL;
     private javax.swing.JRadioButton RadioButtonELIM_MEDICAMENTO;
     private javax.swing.JRadioButton RadioButtonELIM_RAZA;
     private javax.swing.JRadioButton RadioButtonELIM_VETERINARIO;
+    private javax.swing.JRadioButton RadioButtonELI_AFECCION;
     private javax.swing.JRadioButton RadioButtonELI_CATEGORIA;
     private javax.swing.JRadioButton RadioButtonELI_CATOPERACION;
     private javax.swing.JRadioButton RadioButtonELI_CIRUGIA;
     private javax.swing.JRadioButton RadioButtonELI_CONSULTA;
     private javax.swing.JRadioButton RadioButtonELI_LOCALIDAD;
+    private javax.swing.JRadioButton RadioButtonELI_PELAJE;
     private javax.swing.JRadioButton RadioButtonELI_PROVINCIA;
     private javax.swing.JRadioButton RadioButtonELI_ROLES;
     private javax.swing.JRadioButton RadioButtonELI_TELEFONO;
-    private javax.swing.JRadioButton RadioButtonELI_TELEFONO1;
-    private javax.swing.JRadioButton RadioButtonELI_TELEFONO2;
-    private javax.swing.JRadioButton RadioButtonELI_TELEFONO3;
     private javax.swing.JRadioButton RadioButtonELI_TIPOOPERACION;
     private javax.swing.JRadioButton RadioButtonELI_U;
+    private javax.swing.JRadioButton RadioButtonELI_VACUNA;
     private javax.swing.JRadioButton RadioButtonESC_CIRUGIA;
     private javax.swing.JRadioButton RadioButtonESC_CONSULTA;
     private javax.swing.JRadioButton RadioButtonESC_ESPECIE;
@@ -1718,19 +1979,20 @@ int idrolSeleccionado,ROL;
     private javax.swing.JRadioButton RadioButtonESC_MEDICAMENTO;
     private javax.swing.JRadioButton RadioButtonESC_RAZA;
     private javax.swing.JRadioButton RadioButtonESC_VETERINARIO;
+    private javax.swing.JRadioButton RadioButtonES_AFECCION;
     private javax.swing.JRadioButton RadioButtonES_CATEGORIA;
     private javax.swing.JRadioButton RadioButtonES_CATOPERACION;
     private javax.swing.JRadioButton RadioButtonES_HORA;
     private javax.swing.JRadioButton RadioButtonES_LOCALIDAD;
+    private javax.swing.JRadioButton RadioButtonES_PELAJE;
     private javax.swing.JRadioButton RadioButtonES_PROVINCIA;
     private javax.swing.JRadioButton RadioButtonES_ROLES;
     private javax.swing.JRadioButton RadioButtonES_TELEFONO;
-    private javax.swing.JRadioButton RadioButtonES_TELEFONO1;
-    private javax.swing.JRadioButton RadioButtonES_TELEFONO2;
-    private javax.swing.JRadioButton RadioButtonES_TELEFONO3;
     private javax.swing.JRadioButton RadioButtonES_TIPOOPERACION;
     private javax.swing.JRadioButton RadioButtonES_U;
+    private javax.swing.JRadioButton RadioButtonES_VACUNA;
     private javax.swing.JRadioButton RadioButtonL_ACCESO;
+    private javax.swing.JRadioButton RadioButtonL_AFECCION;
     private javax.swing.JRadioButton RadioButtonL_AUDITORIA;
     private javax.swing.JRadioButton RadioButtonL_BACKUP;
     private javax.swing.JRadioButton RadioButtonL_CATEGORIA;
@@ -1743,17 +2005,17 @@ int idrolSeleccionado,ROL;
     private javax.swing.JRadioButton RadioButtonL_HORA;
     private javax.swing.JRadioButton RadioButtonL_LOCALIDAD;
     private javax.swing.JRadioButton RadioButtonL_MEDICAMENTO;
+    private javax.swing.JRadioButton RadioButtonL_PELAJE;
     private javax.swing.JRadioButton RadioButtonL_PROVINCIA;
     private javax.swing.JRadioButton RadioButtonL_RAZA;
     private javax.swing.JRadioButton RadioButtonL_REPORTES;
     private javax.swing.JRadioButton RadioButtonL_ROLES;
     private javax.swing.JRadioButton RadioButtonL_TELEFONO;
-    private javax.swing.JRadioButton RadioButtonL_TELEFONO1;
-    private javax.swing.JRadioButton RadioButtonL_TELEFONO2;
-    private javax.swing.JRadioButton RadioButtonL_TELEFONO3;
     private javax.swing.JRadioButton RadioButtonL_TIPOOPERACION;
     private javax.swing.JRadioButton RadioButtonL_U;
+    private javax.swing.JRadioButton RadioButtonL_VACUNA;
     private javax.swing.JRadioButton RadioButtonL_VETERINARIO;
+    private javax.swing.JRadioButton RadioButtonMOD_AFECCION;
     private javax.swing.JRadioButton RadioButtonMOD_CATEGORIA;
     private javax.swing.JRadioButton RadioButtonMOD_CATOPERACION;
     private javax.swing.JRadioButton RadioButtonMOD_CIRUGIA;
@@ -1763,16 +2025,16 @@ int idrolSeleccionado,ROL;
     private javax.swing.JRadioButton RadioButtonMOD_HORA;
     private javax.swing.JRadioButton RadioButtonMOD_LOCALIDAD;
     private javax.swing.JRadioButton RadioButtonMOD_MEDICAMENTO;
+    private javax.swing.JRadioButton RadioButtonMOD_PELAJE;
     private javax.swing.JRadioButton RadioButtonMOD_PROVINCIA;
     private javax.swing.JRadioButton RadioButtonMOD_RAZA;
     private javax.swing.JRadioButton RadioButtonMOD_ROLES;
     private javax.swing.JRadioButton RadioButtonMOD_TELEFONO;
-    private javax.swing.JRadioButton RadioButtonMOD_TELEFONO1;
-    private javax.swing.JRadioButton RadioButtonMOD_TELEFONO2;
-    private javax.swing.JRadioButton RadioButtonMOD_TELEFONO3;
     private javax.swing.JRadioButton RadioButtonMOD_TIPOOPERACION;
     private javax.swing.JRadioButton RadioButtonMOD_U;
+    private javax.swing.JRadioButton RadioButtonMOD_VACUNA;
     private javax.swing.JRadioButton RadioButtonMOD_VETERINARIO;
+    private javax.swing.JRadioButton RadioButtonM_LOGO;
     private org.edisoncor.gui.button.ButtonAction buttonActionCANCELAR;
     public org.edisoncor.gui.button.ButtonAction buttonActionGUARDAR;
     private javax.swing.JCheckBox jCheckBox1;
@@ -1799,22 +2061,23 @@ int idrolSeleccionado,ROL;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
+    private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanelLOGO;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
 
 public void PantallasxRol(int idrol){
-    int audi=0,res=0,REPORTES=0,GRAFICOS=0,L_ESPECIE=0,ESC_ESPECIE=0,MOD_ESPECIE=0,ELIM_ESPECIE=0,L_TIPORAZA=0,ESC_TIPORAZA=0,MOD_TIPORAZA=0,ELIM_TIPORAZA=0,ACTUALIZAR_PERMISOS=0,L_MEDICAMENTO=0,ESC_MEDICAMENTO=0,MOD_MEDICAMENTO=0,ELIM_MEDICAMENTO=0,L_CIRUGIA=0,ESC_CIRUGIA=0,MOD_CIRUGIA=0,ELI_CIRUGIA=0,L_CONSULTA=0,ESC_CONSULTA=0,MOD_CONSULTA=0,ELIM_CONSULTA=0,L_FICHAMEDICA=0,ESC_FICHAMEDICA=0,MOD_FICHAMEDICA=0,ELIM_FICHAMEDICA=0,L_CATEGORIA=0,ESC_CATEGORIA=0,MOD_CATEGORIA=0,ELIM_CATEGORIA=0,L_LOC=0,ESC_LOC=0,MOD_LOC=0,ELIM_LOC=0,L_PROVINC=0,ESC_PROVINC=0,MOD_PROVINC=0,ELIM_PROVINC=0,L_USU=0,ESC_USU=0,MOD_USU=0,ELIM_USU=0,L_ROL=0,ESC_ROL=0,MOD_ROL=0,ELIM_ROL=0,L_TIPOTEL=0,ESC_TIPOTEL=0,MOD_TIPOTEL=0,ELIM_TIPOTEL=0,L_VETERINARIO=0,ESC_VETERINARIO=0,MOD_VETERINARIO=0,ELIM_VETERINARIO=0,L_HORA=0,ESC_HORA=0,MOD_HORA=0,ELIM_HORA=0;
+    int audi=0,res=0,REPORTES=0,GRAFICOS=0,L_VACUNA=0,ESC_VACUNA=0,MOD_VACUNA=0,ELIM_VACUNA=0,L_AFECCION=0,ESC_AFECCION=0,MOD_AFECCION=0,ELIM_AFECCION=0,L_CATOP=0,ESC_CATOP=0,MOD_CATOP=0,ELIM_CATOP=0,L_OPERACION=0,ESC_OPERACION=0,MOD_OPERACION=0,ELIM_OPERACION=0,L_PELAJE=0,ESC_PELAJE=0,MOD_PELAJE=0,ELIM_PELAJE=0,LOGO=0,L_ESPECIE=0,ESC_ESPECIE=0,MOD_ESPECIE=0,ELIM_ESPECIE=0,L_TIPORAZA=0,ESC_TIPORAZA=0,MOD_TIPORAZA=0,ELIM_TIPORAZA=0,ACTUALIZAR_PERMISOS=0,L_MEDICAMENTO=0,ESC_MEDICAMENTO=0,MOD_MEDICAMENTO=0,ELIM_MEDICAMENTO=0,L_CIRUGIA=0,ESC_CIRUGIA=0,MOD_CIRUGIA=0,ELI_CIRUGIA=0,L_CONSULTA=0,ESC_CONSULTA=0,MOD_CONSULTA=0,ELIM_CONSULTA=0,L_FICHAMEDICA=0,ESC_FICHAMEDICA=0,MOD_FICHAMEDICA=0,ELIM_FICHAMEDICA=0,L_CATEGORIA=0,ESC_CATEGORIA=0,MOD_CATEGORIA=0,ELIM_CATEGORIA=0,L_LOC=0,ESC_LOC=0,MOD_LOC=0,ELIM_LOC=0,L_PROVINC=0,ESC_PROVINC=0,MOD_PROVINC=0,ELIM_PROVINC=0,L_USU=0,ESC_USU=0,MOD_USU=0,ELIM_USU=0,L_ROL=0,ESC_ROL=0,MOD_ROL=0,ELIM_ROL=0,L_TIPOTEL=0,ESC_TIPOTEL=0,MOD_TIPOTEL=0,ELIM_TIPOTEL=0,L_VETERINARIO=0,ESC_VETERINARIO=0,MOD_VETERINARIO=0,ELIM_VETERINARIO=0,L_HORA=0,ESC_HORA=0,MOD_HORA=0,ELIM_HORA=0;
        
     cn=cm.Conectar();
     String sql="SELECT * FROM permisos WHERE idrol="+idrol;
@@ -1825,6 +2088,12 @@ public void PantallasxRol(int idrol){
 
             while(rs.next())
             {
+                
+                L_FICHAMEDICA=rs.getInt("L_FICHAMEDICA");
+                ESC_FICHAMEDICA=rs.getInt("ESC_FICHAMEDICA");
+                MOD_FICHAMEDICA=rs.getInt("MOD_FICHAMEDICA");
+                ELIM_FICHAMEDICA=rs.getInt("ELIM_FICHAMEDICA"); 
+                
                 L_ESPECIE=rs.getInt("L_ESPECIE");
                 ESC_ESPECIE=rs.getInt("ESC_ESPECIE");
                 MOD_ESPECIE=rs.getInt("MOD_ESPECIE");
@@ -1868,11 +2137,10 @@ public void PantallasxRol(int idrol){
                 L_ROL=rs.getInt("L_TIPOROL");
                 ESC_ROL=rs.getInt("ESC_TIPOROL");
                 MOD_ROL=rs.getInt("MOD_TIPOROL");
-                ELIM_ROL=rs.getInt("ELIM_TIPOROL");
-              
+                ELIM_ROL=rs.getInt("ELIM_TIPOROL");                
+                
                 audi=rs.getInt("AUDITORIA");
-                res=rs.getInt("RESPALDO");
-                  
+                res=rs.getInt("RESPALDO"); 
                 ACTUALIZAR_PERMISOS=rs.getInt("ACTUALIZAR_PERMISOS");
                 
                 L_VETERINARIO=rs.getInt("L_VETERINARIO");
@@ -1881,52 +2149,51 @@ public void PantallasxRol(int idrol){
                 ELIM_VETERINARIO=rs.getInt("ELIM_VETERINARIO");
                 
                 REPORTES=rs.getInt("REPORTES");
-                GRAFICOS=rs.getInt("GRAFICOS");                
-                
-                L_FICHAMEDICA=rs.getInt("L_FICHAMEDICA");
-                ESC_FICHAMEDICA=rs.getInt("ESC_FICHAMEDICA");
-                MOD_FICHAMEDICA=rs.getInt("MOD_FICHAMEDICA");
-                ELIM_FICHAMEDICA=rs.getInt("ELIM_FICHAMEDICA");  
-                
-                L_CATEGORIA=rs.getInt("L_CATEGORIA");
-                ESC_CATEGORIA=rs.getInt("ESC_CATEGORIA");
-                MOD_CATEGORIA=rs.getInt("MOD_CATEGORIA");
-                ELIM_CATEGORIA=rs.getInt("ELIM_CATEGORIA");   
-                
+                GRAFICOS=rs.getInt("GRAFICOS");
                 
                 L_CONSULTA=rs.getInt("L_CONSULTA");
                 ESC_CONSULTA=rs.getInt("ESC_CONSULTA");
                 MOD_CONSULTA=rs.getInt("MOD_CONSULTA");
                 ELIM_CONSULTA=rs.getInt("ELIM_CONSULTA");
                 
+                L_CATEGORIA=rs.getInt("L_CATEGORIA");
+                ESC_CATEGORIA=rs.getInt("ESC_CATEGORIA");
+                MOD_CATEGORIA=rs.getInt("MOD_CATEGORIA");
+                ELIM_CATEGORIA=rs.getInt("ELIM_CATEGORIA");  
+                
                 L_CIRUGIA=rs.getInt("L_CIRUGIA");
                 ESC_CIRUGIA=rs.getInt("ESC_CIRUGIA");
                 MOD_CIRUGIA=rs.getInt("MOD_CIRUGIA");
                 ELI_CIRUGIA=rs.getInt("ELIM_CIRUGIA");
+                
+                L_VACUNA=rs.getInt("L_VACUNA");
+                ESC_VACUNA=rs.getInt("ESC_VACUNA");
+                MOD_VACUNA=rs.getInt("MOD_VACUNA");
+                ELIM_VACUNA=rs.getInt("ELIM_VACUNA");
+                
+                L_AFECCION=rs.getInt("L_AFECCION");
+                ESC_AFECCION=rs.getInt("ESC_AFECCION");
+                MOD_AFECCION=rs.getInt("MOD_AFECCION");
+                ELIM_AFECCION=rs.getInt("ELIM_AFECCION");
+                
+                L_CATOP=rs.getInt("L_CATEGORIATIPO");
+                ESC_CATOP=rs.getInt("ESC_CATEGORIATIPO");
+                MOD_CATOP=rs.getInt("MOD_CATEGORIATIPO");
+                ELIM_CATOP=rs.getInt("ELIM_CATEGORIATIPO");
+                
+                L_OPERACION=rs.getInt("L_TIPOOPERACION");
+                ESC_OPERACION=rs.getInt("ESC_TIPOOPERACION");
+                MOD_OPERACION=rs.getInt("MOD_TIPOOPERACION");
+                ELIM_OPERACION=rs.getInt("ELIM_TIPOOPERACION");
+                
+                LOGO=rs.getInt("LOGO");
+                
+                L_PELAJE=rs.getInt("L_PELAJE");
+                ESC_PELAJE=rs.getInt("ESC_PELAJE");
+                MOD_PELAJE=rs.getInt("MOD_PELAJE");
+                ELIM_PELAJE=rs.getInt("ELIM_PELAJE");
      }
-
             
-            if(L_VETERINARIO!=0){
-                RadioButtonL_VETERINARIO.setSelected(true);
-            }
-            if(ESC_VETERINARIO!=0){
-                RadioButtonESC_VETERINARIO.setSelected(true);
-            }
-            if(MOD_VETERINARIO!=0){
-                RadioButtonMOD_VETERINARIO.setSelected(true);
-            }
-            if(ELIM_VETERINARIO!=0){
-                RadioButtonELIM_VETERINARIO.setSelected(true);
-            }
-            
-              
-            
-            if(audi!=0){
-                 RadioButtonL_AUDITORIA.setSelected(true);
-            }           
-            if(res!=0){
-                RadioButtonL_BACKUP.setSelected(true);
-            }  
             
             if(L_FICHAMEDICA!=0){
                 RadioButtonL_FICHAMEDICA.setSelected(true);
@@ -1941,7 +2208,47 @@ public void PantallasxRol(int idrol){
                     RadioButtonELIM_FICHAMEDICA.setSelected(true);
             }
               
-            if(L_HORA!=0){
+             if(L_ESPECIE!=0){             
+             RadioButtonL_ESPECIE.setSelected(true);
+             }
+            if(ESC_ESPECIE!=0){
+               RadioButtonESC_ESPECIE.setSelected(true);
+            }
+            if(MOD_ESPECIE!=0){
+               RadioButtonMOD_ESPECIE.setSelected(true);
+            }
+            if(ELIM_ESPECIE!=0){
+                RadioButtonELIM_ESPECIE.setSelected(true);
+            } 
+            
+            if(L_TIPORAZA!=0){             
+             RadioButtonL_RAZA.setSelected(true);
+             }
+            if(ESC_TIPORAZA!=0){
+               RadioButtonESC_RAZA.setSelected(true);
+            }
+            if(MOD_TIPORAZA!=0){
+               RadioButtonMOD_RAZA.setSelected(true);
+            }
+            if(ELIM_TIPORAZA!=0){
+                RadioButtonELIM_RAZA.setSelected(true);
+            }
+            
+            if(L_MEDICAMENTO!=0){
+              RadioButtonL_MEDICAMENTO.setSelected(true);
+            }
+            if(ESC_MEDICAMENTO!=0){
+             RadioButtonESC_MEDICAMENTO.setSelected(true);
+            }
+            if(MOD_MEDICAMENTO!=0){
+             RadioButtonMOD_MEDICAMENTO.setSelected(true);
+            }
+            if(ELIM_MEDICAMENTO!=0){
+            RadioButtonELIM_MEDICAMENTO.setSelected(true);
+            } 
+            
+            
+              if(L_HORA!=0){
                 RadioButtonL_HORA.setSelected(true);
             }
             if(ESC_HORA!=0){
@@ -1992,88 +2299,9 @@ public void PantallasxRol(int idrol){
             }
             if(ELIM_TIPOTEL!=0){
                 this.RadioButtonELI_TELEFONO.setSelected(true) ;
-            }                       
-               
-                     
-            if(L_ESPECIE!=0){             
-             RadioButtonL_ESPECIE.setSelected(true);
-             }
-            if(ESC_ESPECIE!=0){
-               RadioButtonESC_ESPECIE.setSelected(true);
-            }
-            if(MOD_ESPECIE!=0){
-               RadioButtonMOD_ESPECIE.setSelected(true);
-            }
-            if(ELIM_ESPECIE!=0){
-                RadioButtonELIM_ESPECIE.setSelected(true);
-            } 
+            }         
             
-            if(L_TIPORAZA!=0){             
-             RadioButtonL_RAZA.setSelected(true);
-             }
-            if(ESC_TIPORAZA!=0){
-               RadioButtonESC_RAZA.setSelected(true);
-            }
-            if(MOD_TIPORAZA!=0){
-               RadioButtonMOD_RAZA.setSelected(true);
-            }
-            if(ELIM_TIPORAZA!=0){
-                RadioButtonELIM_RAZA.setSelected(true);
-            }
-            
-            if(L_CONSULTA!=0){
-                 RadioButtonL_CONSULTA.setSelected(true);
-            }
-            if(ESC_CONSULTA!=0){
-             RadioButtonESC_CONSULTA.setSelected(true);
-            }
-            if(MOD_CONSULTA!=0){
-             RadioButtonMOD_CONSULTA.setSelected(true);
-            }
-            if(ELIM_CONSULTA!=0){
-            RadioButtonELI_CONSULTA.setSelected(true);
-            }  
-              
-            if(L_CATEGORIA!=0){
-                 RadioButtonL_CATEGORIA.setSelected(true);
-            }
-            if(ESC_CATEGORIA!=0){
-             RadioButtonES_CATEGORIA.setSelected(true);
-            }
-            if(MOD_CATEGORIA!=0){
-             RadioButtonMOD_CATEGORIA.setSelected(true);
-            }
-            if(ELIM_CATEGORIA!=0){
-            RadioButtonELI_CATEGORIA.setSelected(true);
-            } 
-            
-           if(L_MEDICAMENTO!=0){
-              RadioButtonL_MEDICAMENTO.setSelected(true);
-            }
-            if(ESC_MEDICAMENTO!=0){
-             RadioButtonESC_MEDICAMENTO.setSelected(true);
-            }
-            if(MOD_MEDICAMENTO!=0){
-             RadioButtonMOD_MEDICAMENTO.setSelected(true);
-            }
-            if(ELIM_MEDICAMENTO!=0){
-            RadioButtonELIM_MEDICAMENTO.setSelected(true);
-            } 
-            
-           if(L_CIRUGIA!=0){
-              RadioButtonL_CIRUGIA.setSelected(true);
-            }
-            if(ESC_CIRUGIA!=0){
-             RadioButtonESC_CIRUGIA.setSelected(true);
-            }
-            if(MOD_CIRUGIA!=0){
-             RadioButtonMOD_CIRUGIA.setSelected(true);
-            }
-            if(ELI_CIRUGIA!=0){
-            RadioButtonELI_CIRUGIA.setSelected(true);
-            } 
-            
-             if(idrol!=1){  
+            if(idrol!=1){  
                RadioButtonL_U.setSelected(false);
                RadioButtonES_U.setSelected(false);           
                RadioButtonMOD_U.setSelected(false);           
@@ -2139,34 +2367,28 @@ public void PantallasxRol(int idrol){
                     RadioButtonL_ACCESO.setSelected(true);
                  }            
              }
-             
-//            if(L_HISTORIALMED!=0){
-//               RadioButtonL_HISTORIALMEDICO.setSelected(true);
-//            }
-//            if(ESC_HISTORIALMED!=0){
-//                RadioButtonES_HISTORIALMEDICO.setSelected(true);
-//            }
-//            if(MOD_HISTORIALMED!=0){
-//                RadioButtonMOD_HISTORIALMEDICO.setSelected(true);
-//            }
-//            if(ELIM_HISTORIALMED!=0){
-//              RadioButtonELI_HISTORIAL.setSelected(true);
-//            } 
             
-                       
-             if(L_MEDICAMENTO!=0){
-               RadioButtonL_MEDICAMENTO.setSelected(true);
+            
+            if(L_VETERINARIO!=0){
+                RadioButtonL_VETERINARIO.setSelected(true);
             }
-            if(ESC_MEDICAMENTO!=0){
-                RadioButtonESC_MEDICAMENTO.setSelected(true);
+            if(ESC_VETERINARIO!=0){
+                RadioButtonESC_VETERINARIO.setSelected(true);
             }
-            if(MOD_MEDICAMENTO!=0){
-                RadioButtonMOD_MEDICAMENTO.setSelected(true);
+            if(MOD_VETERINARIO!=0){
+                RadioButtonMOD_VETERINARIO.setSelected(true);
             }
-            if(ELIM_MEDICAMENTO!=0){
-              RadioButtonELIM_MEDICAMENTO.setSelected(true);
+            if(ELIM_VETERINARIO!=0){
+                RadioButtonELIM_VETERINARIO.setSelected(true);
             }             
-                    
+            
+            if(audi!=0){
+                 RadioButtonL_AUDITORIA.setSelected(true);
+            }           
+            if(res!=0){
+                RadioButtonL_BACKUP.setSelected(true);
+            }  
+            
              if(GRAFICOS!=0){
                 RadioButtonL_ESTADISTICA.setSelected(true);
             }          
@@ -2174,9 +2396,115 @@ public void PantallasxRol(int idrol){
             if(REPORTES!=0){
                RadioButtonL_REPORTES.setSelected(true);
             }
+            
              
+            if(L_CONSULTA!=0){
+                 RadioButtonL_CONSULTA.setSelected(true);
+            }
+            if(ESC_CONSULTA!=0){
+             RadioButtonESC_CONSULTA.setSelected(true);
+            }
+            if(MOD_CONSULTA!=0){
+             RadioButtonMOD_CONSULTA.setSelected(true);
+            }
+            if(ELIM_CONSULTA!=0){
+            RadioButtonELI_CONSULTA.setSelected(true);
+            }  
+              
+            if(L_CATEGORIA!=0){
+                 RadioButtonL_CATEGORIA.setSelected(true);
+            }
+            if(ESC_CATEGORIA!=0){
+             RadioButtonES_CATEGORIA.setSelected(true);
+            }
+            if(MOD_CATEGORIA!=0){
+             RadioButtonMOD_CATEGORIA.setSelected(true);
+            }
+            if(ELIM_CATEGORIA!=0){
+            RadioButtonELI_CATEGORIA.setSelected(true);
+            }         
+            
+           if(L_CIRUGIA!=0){
+              RadioButtonL_CIRUGIA.setSelected(true);
+            }
+            if(ESC_CIRUGIA!=0){
+             RadioButtonESC_CIRUGIA.setSelected(true);
+            }
+            if(MOD_CIRUGIA!=0){
+             RadioButtonMOD_CIRUGIA.setSelected(true);
+            }
+            if(ELI_CIRUGIA!=0){
+            RadioButtonELI_CIRUGIA.setSelected(true);
+            }            
+             
+            if(L_VACUNA!=0){
+               RadioButtonL_VACUNA.setSelected(true);
+            }
+            if(ESC_VACUNA!=0){
+                RadioButtonES_VACUNA.setSelected(true);
+            }
+            if(MOD_VACUNA!=0){
+                RadioButtonMOD_VACUNA.setSelected(true);
+            }
+            if(ELIM_VACUNA!=0){
+              RadioButtonELI_VACUNA.setSelected(true);
+            }            
                        
+             if(L_AFECCION!=0){
+               RadioButtonL_AFECCION.setSelected(true);
+            }
+            if(ESC_AFECCION!=0){
+                RadioButtonES_AFECCION.setSelected(true);
+            }
+            if(MOD_AFECCION!=0){
+                RadioButtonMOD_AFECCION.setSelected(true);
+            }
+            if(ELIM_AFECCION!=0){
+              RadioButtonELI_AFECCION.setSelected(true);
+            }             
+                    
+            if(L_CATOP!=0){
+               RadioButtonL_CATOPERACION.setSelected(true);
+            }
+            if(ESC_CATOP!=0){
+                RadioButtonES_CATOPERACION.setSelected(true);
+            }
+            if(MOD_CATOP!=0){
+                RadioButtonMOD_CATOPERACION.setSelected(true);
+            }
+            if(ELIM_CATOP!=0){
+              RadioButtonELI_CATOPERACION.setSelected(true);
+            }  
+             
+            if(L_OPERACION!=0){
+               RadioButtonL_TIPOOPERACION.setSelected(true);
+            }
+            if(ESC_OPERACION!=0){
+                RadioButtonES_TIPOOPERACION.setSelected(true);
+            }
+            if(MOD_OPERACION!=0){
+                RadioButtonMOD_TIPOOPERACION.setSelected(true);
+            }
+            if(ELIM_OPERACION!=0){
+              RadioButtonELI_TIPOOPERACION.setSelected(true);
+            }  
+            
+            if(LOGO!=0){
+              RadioButtonM_LOGO.setSelected(true);
+            }
            
+            if(L_PELAJE!=0){
+               RadioButtonL_PELAJE.setSelected(true);
+            }
+            if(ESC_PELAJE!=0){
+                RadioButtonES_PELAJE.setSelected(true);
+            }
+            if(MOD_PELAJE!=0){
+                RadioButtonMOD_PELAJE.setSelected(true);
+            }
+            if(ELIM_PELAJE!=0){
+              RadioButtonELI_PELAJE.setSelected(true);
+            }
         }catch (SQLException ex)
         {
           JOptionPane.showMessageDialog(null, ex);
@@ -2329,19 +2657,49 @@ private void BuscarDatos(String captura) {
              RadioButtonL_MEDICAMENTO.setSelected(false);
             RadioButtonESC_MEDICAMENTO.setSelected(false);
             RadioButtonMOD_MEDICAMENTO.setSelected(false);
-            RadioButtonELIM_MEDICAMENTO.setSelected(false);
-           
+            RadioButtonELIM_MEDICAMENTO.setSelected(false);           
                         
             RadioButtonL_CATEGORIA.setSelected(false);
             RadioButtonES_CATEGORIA.setSelected(false);
             RadioButtonMOD_CATEGORIA.setSelected(false);
-            RadioButtonELI_CATEGORIA.setSelected(false);
-            
+            RadioButtonELI_CATEGORIA.setSelected(false);            
                     
             RadioButtonL_VETERINARIO.setSelected(false);
             RadioButtonESC_VETERINARIO.setSelected(false);
             RadioButtonMOD_VETERINARIO.setSelected(false);
             RadioButtonELIM_VETERINARIO.setSelected(false);
+            
+             RadioButtonL_CIRUGIA.setSelected(false);
+            RadioButtonESC_CIRUGIA.setSelected(false);
+            RadioButtonMOD_CIRUGIA.setSelected(false);
+            RadioButtonELI_CIRUGIA.setSelected(false);
+            
+            RadioButtonL_CATOPERACION.setSelected(false);
+            RadioButtonES_CATOPERACION.setSelected(false);
+            RadioButtonMOD_CATOPERACION.setSelected(false);
+            RadioButtonELI_CATOPERACION.setSelected(false); 
+            
+            RadioButtonL_TIPOOPERACION.setSelected(false);
+            RadioButtonES_TIPOOPERACION.setSelected(false);
+            RadioButtonMOD_TIPOOPERACION.setSelected(false);
+            RadioButtonELI_TIPOOPERACION.setSelected(false);
+            
+             RadioButtonL_VACUNA.setSelected(false);
+            RadioButtonES_VACUNA.setSelected(false);
+            RadioButtonMOD_VACUNA.setSelected(false);
+            RadioButtonELI_VACUNA.setSelected(false);
+            
+            RadioButtonL_AFECCION.setSelected(false);
+            RadioButtonES_AFECCION.setSelected(false);
+            RadioButtonMOD_AFECCION.setSelected(false);
+            RadioButtonELI_AFECCION.setSelected(false);
+            
+            RadioButtonM_LOGO.setSelected(false);
+            
+            RadioButtonL_PELAJE.setSelected(false);
+            RadioButtonES_PELAJE.setSelected(false);
+            RadioButtonMOD_PELAJE.setSelected(false);
+            RadioButtonELI_PELAJE.setSelected(false);
             
     }
 

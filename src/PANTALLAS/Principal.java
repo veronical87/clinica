@@ -45,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItemCIRUGIAS = new javax.swing.JMenuItem();
+        LISTADOS = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItemMEDICAMENTOS = new javax.swing.JMenuItem();
         jMenuItemESPECIES = new javax.swing.JMenuItem();
@@ -137,6 +138,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItemCIRUGIAS);
+
+        LISTADOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        LISTADOS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LISTADOS.setText("LISTADOS DE ATENCIONES");
+        LISTADOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LISTADOSActionPerformed(evt);
+            }
+        });
+        jMenu4.add(LISTADOS);
 
         PACIENTES.add(jMenu4);
 
@@ -385,6 +396,16 @@ public class Principal extends javax.swing.JFrame {
         AYUDA.setText("AYUDA");
         AYUDA.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         AYUDA.setOpaque(true);
+        AYUDA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AYUDAMouseClicked(evt);
+            }
+        });
+        AYUDA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AYUDAActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(AYUDA);
 
         CERRAR_SESION.setBackground(new java.awt.Color(255, 255, 255));
@@ -417,11 +438,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelImage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelImage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -2814,6 +2835,46 @@ LogoVet lv=new LogoVet(new javax.swing.JFrame(), true);
         ge.show();
     }//GEN-LAST:event_jMenuItemTIPOPELAJEActionPerformed
 
+    private void AYUDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AYUDAActionPerformed
+ 
+    }//GEN-LAST:event_AYUDAActionPerformed
+
+    private void AYUDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AYUDAMouseClicked
+      try {
+              Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "src\\MANUAL DE USUARIO\\MANUAL DE USUARIO.pdf");
+         }catch (Exception e){
+             JOptionPane.showMessageDialog(rootPane, "Error al Abrir el Archivo", "ERROR", JOptionPane.ERROR_MESSAGE); 
+            }
+    }//GEN-LAST:event_AYUDAMouseClicked
+
+    private void LISTADOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LISTADOSActionPerformed
+    LISTADO lv=new LISTADO(new javax.swing.JFrame(), true);
+    lv.idrol=ROL;
+    int ACTUALIZACION=0;
+    
+       try
+        {   cn=cm.Conectar();
+            String sql="SELECT * FROM permisos WHERE  idrol="+ROL;
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next())
+            {                                
+                ACTUALIZACION=rs.getInt("LOGO");            
+            }                              
+        }            
+        catch (SQLException ex)
+        {
+         JOptionPane.showMessageDialog(null, ex);
+        }       
+       if(ACTUALIZACION!=0){
+          lv.buttonActionACTUALIZAR.setEnabled(true);
+       }else{
+          lv.buttonActionACTUALIZAR.setEnabled(false);
+       }
+      lv.show();
+    }//GEN-LAST:event_LISTADOSActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2854,6 +2915,7 @@ LogoVet lv=new LogoVet(new javax.swing.JFrame(), true);
     private javax.swing.JMenu CERRAR_SESION;
     private javax.swing.JMenu CONFIG;
     private javax.swing.JMenu GRAFICOS;
+    private javax.swing.JMenuItem LISTADOS;
     private javax.swing.JMenu PACIENTES;
     private javax.swing.JMenu SALIR;
     private javax.swing.JMenu TURNOS;

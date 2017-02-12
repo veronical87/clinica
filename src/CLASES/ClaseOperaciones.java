@@ -16,12 +16,12 @@ public class ClaseOperaciones {
      
 public void LlenarTablaCONSULTAS(DefaultTableModel tabla){
   try{
-        String sql="SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 ORDER BY fecha ASC";
+        String sql="SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 ORDER BY fecha ASC";
         cmd=cn.prepareCall(sql);
         ResultSet rs=cmd.executeQuery();
         String[] registro = new String[6];
         while(rs.next()){//aca se lee el maximo de filas
-            registro[0]=rs.getString("fecha");
+            registro[0]=rs.getString("operaciones.fecha");
             registro[1]=rs.getString("operaciones.id");
             registro[2]=rs.getString("tipooperacion.nombre");
             registro[3]=rs.getString("veterinarios.apellido")+","+rs.getString("veterinarios.nombre");
@@ -193,18 +193,19 @@ public int CantVacunas(int IDFICHA) {
        }    
     }
 
- public int VerificarfechaxConsulta(int idusuario,int idoperacion,String dia, String hora) {
+ public int VerificarfechaxConsulta(int nro,int idusuario,int idoperacion,String dia, String hora) {
     int encontrada=0;   
-    String sql="call VerificarfechaxConsulta(?,?,?,?,?)";
+    String sql="call VerificarfechaxConsulta(?,?,?,?,?,?)";
     try{
-       cmd=cn.prepareCall(sql);         
-       cmd.setInt(1,idusuario);
-       cmd.setInt(2,idoperacion);
-       cmd.setString(3,dia);
-       cmd.setString(4,hora);
-       cmd.registerOutParameter(5, java.sql.Types.INTEGER);
+       cmd=cn.prepareCall(sql);  
+       cmd.setInt(1,nro);
+       cmd.setInt(2,idusuario);
+       cmd.setInt(3,idoperacion);
+       cmd.setString(4,dia);
+       cmd.setString(5,hora);
+       cmd.registerOutParameter(6, java.sql.Types.INTEGER);
        cmd.execute();
-       encontrada=cmd.getInt(5);
+       encontrada=cmd.getInt(6);
 
 //         cmd.close();
 //         cn.close();    
@@ -214,31 +215,14 @@ public int CantVacunas(int IDFICHA) {
     return encontrada; 
     }
 
-    public void LlenarTablaMedicamento(DefaultTableModel tabla, int IDTipoOperacion) {
-        try{
-        String sql="SELECT medicamentos.nombre,categoriamedicamento.nombre FROM medicamentos INNER JOIN categoriamedicamento ON categoriamedicamento.id=medicamentos.idcategoria INNER JOIN medicamentosxoperacion ON medicamentos.id=medicamentosxoperacion.idmedicamento WHERE idoperacion='"+IDTipoOperacion+"' ORDER BY categoriamedicamento.nombre  ASC";
-        cmd=cn.prepareCall(sql);
-        ResultSet rs=cmd.executeQuery();
-        String[] registro = new String[2];
-        while(rs.next()){//aca se lee el maximo de filas
-            registro[0]=rs.getString("categoriamedicamento.nombre");
-            registro[1]=rs.getString("medicamentos.nombre");
-            tabla.addRow(registro); 
-        }
-//      cmd.close();
-//      cn.close();      
-      }catch(Exception ex){
-         System.out.println(ex.getMessage());
-      }   
-    }
+    
 
- public void quitarMedicamentoxOperacion(int IDOPERACION, int IDMEDICAMENTO, int c) {
-    String sql="call quitarMedicamentoxConsulta(?,?,?)";    
+ public void quitarMedicamentoxOperacion( int IDMEDICAMENTO,int IDOPERACION) {
+    String sql="call quitarMedicamentoxConsulta(?,?)";    
     try{                
-      cmd=cn.prepareCall(sql);
-      cmd.setInt(1,IDOPERACION);
-      cmd.setInt(2,IDMEDICAMENTO);
-      cmd.setInt(3,c);   
+      cmd=cn.prepareCall(sql);      
+      cmd.setInt(1,IDMEDICAMENTO);
+      cmd.setInt(2,IDOPERACION);
       cmd.execute();
     
    }catch(Exception ex){
@@ -317,4 +301,28 @@ public void agregarSeccionxOperacion(int IDOperacion, int IDSECCION) {
          System.out.println(ex.getMessage());
        }
     }
+
+ public void modificarDiagnostico(int IDFICHA, String diagnostico) {
+    String sql="call modificarDiagnosticoConsulta(?,?)";    
+    try{                
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,IDFICHA);     
+      cmd.setString(2,diagnostico);       
+      cmd.execute();
+    
+   }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       }
+  }
+
+public void CancelarVisita(int NroOperacion) {
+    String sql="call CancelarVisita(?)";    
+    try{                
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,NroOperacion);          
+      cmd.execute();    
+   }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       }  
+}
 }

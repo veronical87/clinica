@@ -17,7 +17,7 @@ public class ClasePelaje {
    
     public void LlenarTabla(DefaultTableModel tabla){
       try{
-        String sql="SELECT pelajexraza.id,pelajexraza.nombre,razas.nombre FROM razas INNER JOIN pelajexraza ON pelajexraza.idraza=razas.id ORDER BY razas.nombre ASC";
+        String sql="SELECT pelajexraza.id,pelajexraza.nombre,razas.nombre FROM razas INNER JOIN pelajexraza ON pelajexraza.idraza=razas.id ORDER BY pelajexraza.id ASC";
         cmd=cn.prepareCall(sql);
         ResultSet rs=cmd.executeQuery();
         String[] registro = new String[3];

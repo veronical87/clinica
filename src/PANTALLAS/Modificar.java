@@ -180,8 +180,6 @@ public class Modificar extends javax.swing.JDialog {
         buttonActionREPORTE = new org.edisoncor.gui.button.ButtonAction();
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
         buttonActionCANCELAR = new org.edisoncor.gui.button.ButtonAction();
-        jLabel28 = new javax.swing.JLabel();
-        jLabelVETERINARIO = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("ModificarFicha");
@@ -190,7 +188,7 @@ public class Modificar extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("FICHA MEDICA");
+        jLabel1.setText("DATOS GENERALES ");
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(900, 550));
@@ -595,11 +593,11 @@ public class Modificar extends javax.swing.JDialog {
             }
         });
         jDateChooser.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jDateChooserInputMethodTextChanged(evt);
-            }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                 jDateChooserCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jDateChooserInputMethodTextChanged(evt);
             }
         });
         jDateChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -1439,14 +1437,6 @@ public class Modificar extends javax.swing.JDialog {
             }
         });
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel28.setText("VETERINARIO");
-
-        jLabelVETERINARIO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelVETERINARIO.setForeground(new java.awt.Color(153, 0, 0));
-        jLabelVETERINARIO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelVETERINARIO.setText("jLabel4");
-
         javax.swing.GroupLayout panelRectTranslucido1Layout = new javax.swing.GroupLayout(panelRectTranslucido1);
         panelRectTranslucido1.setLayout(panelRectTranslucido1Layout);
         panelRectTranslucido1Layout.setHorizontalGroup(
@@ -1464,10 +1454,6 @@ public class Modificar extends javax.swing.JDialog {
                             .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
                             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(244, 244, 244)
-                                .addComponent(jLabel28)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelVETERINARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -1475,11 +1461,7 @@ public class Modificar extends javax.swing.JDialog {
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelVETERINARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel28)))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -2560,7 +2542,6 @@ boolean bandera;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -2583,7 +2564,6 @@ boolean bandera;
     public javax.swing.JLabel jLabelSITUACIONPESO;
     public javax.swing.JLabel jLabelSituacionPeso2;
     private javax.swing.JLabel jLabelTiempoTranscurrido;
-    public javax.swing.JLabel jLabelVETERINARIO;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

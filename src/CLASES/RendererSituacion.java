@@ -19,14 +19,10 @@ public class RendererSituacion extends DefaultTableCellRenderer {
         setBackground(Color.white);//color de fondo
         table.setForeground(Color.black);//color de texto
         //Si la celda corresponde a una fila con estado FALSE, se cambia el color de fondo a rojo
-        if( table.getValueAt(row,columna_patron).equals("POR REALIZAR")){
+        if( table.getValueAt(row,columna_patron).equals("NO REALIZADO")){
             setBackground(new java.awt.Color(255,51,51));            
         }else if( table.getValueAt(row,columna_patron).equals("REALIZADO")){
               setBackground(new java.awt.Color(40,168,92));
-        }else if( table.getValueAt(row,columna_patron).equals("CONFIRMADO")){
-              setBackground(new java.awt.Color(40,168,92));
-        }else if( table.getValueAt(row,columna_patron).equals("DISPONIBLE")){
-              setBackground(new java.awt.Color(255,204,51));
         }
         super.getTableCellRendererComponent(table, value, selected, focused, row, column);        
         

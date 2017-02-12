@@ -245,14 +245,13 @@ String razaSelec,coincidencia;int indice1;
         if(raza.equals("")){
             BuscarIDRaza(raza);
         }
-         int encontrada = pelaje.AgregarPelaje(nombre,IDRaza);
+       int encontrada = pelaje.AgregarPelaje(nombre,IDRaza);
 
-        if(encontrada == 0) {//SI ES NULL NO EXISTE
+        if(encontrada != 0) {//SI ES NULL NO EXISTE
             JTextFieldNombre.setText("");
             JTextFieldNombre.requestFocus();
             JOptionPane.showMessageDialog(null,"El Tipo de Pelaje para la Raza" + " " + JTextFieldNombre.getText()+ " " + "Ya Existe, Por Favor Ingrese Otra", "Información", JOptionPane.INFORMATION_MESSAGE);
-                        
-        }else{
+       }else{
             JOptionPane.showMessageDialog(null,"El Tipo de Pelaje para la Raza" + " " + JTextFieldNombre.getText()+ " " + "se Registró Correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             enlace();

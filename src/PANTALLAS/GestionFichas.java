@@ -1,7 +1,9 @@
 package PANTALLAS;
 
 import CLASES.ClaseFichasMedicas;
+import CLASES.RendererSituacion;
 import Conexion.ConexionMySQL;
+import java.awt.Dimension;
 //import java.awt.Color;
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -19,10 +21,14 @@ public class GestionFichas extends javax.swing.JDialog {
     ClaseFichasMedicas ficha=new ClaseFichasMedicas();
     DefaultTableModel modelo,modelo2;
     private java.util.Date desde,hasta;
+    GregorianCalendar hoy = new GregorianCalendar();
     public GestionFichas(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);    
+        super(parent, modal);       
         initComponents();
         setLocationRelativeTo(null);
+        hoy.add(Calendar.DAY_OF_YEAR, 0);
+        jDateChooser_Desde.setMaxSelectableDate(hoy.getTime());
+        this.jDateChooser_Hasta.setMaxSelectableDate(hoy.getTime()); 
     }
 
   
@@ -112,24 +118,25 @@ public class GestionFichas extends javax.swing.JDialog {
         });
 
         jPanel2.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LISTA DE FICHAS MEDICAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LISTA DE FICHAS MÉDICAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         TABLA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Fecha", "Nro. de Ficha", "Dueño", "Mascota", "Especie", "Raza"
+                "Fecha", "Dueño", "Mascota", "Especie", "Historial"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        TABLA.setIntercellSpacing(new java.awt.Dimension(2, 1));
         TABLA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TABLAMouseClicked(evt);
@@ -157,7 +164,7 @@ public class GestionFichas extends javax.swing.JDialog {
         PANEL.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "BÚSQUEDAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         JComboBoxCriterioSeleccionado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Criterio", "Apellido", "Mascota", "Especie", "Raza", "Todos" }));
+        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Criterio", "Dueño", "Mascota", "Especie", "Estado Historial", "Todos" }));
         JComboBoxCriterioSeleccionado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JComboBoxCriterioSeleccionadoActionPerformed(evt);
@@ -259,7 +266,7 @@ public class GestionFichas extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GESTIÓN DE FICHAS MEDICAS");
+        jLabel1.setText("GESTIÓN DE FICHAS MÉDICAS");
 
         javax.swing.GroupLayout panelRectTranslucido1Layout = new javax.swing.GroupLayout(panelRectTranslucido1);
         panelRectTranslucido1.setLayout(panelRectTranslucido1Layout);
@@ -325,8 +332,7 @@ int IDROL,idusuario,filasel;
         ap.IDROL=IDROL;
         ap.IDUSUARIO=idusuario;
         ap.bandera=true;
-        BuscarUsuario(); 
-        ap.jLabelVETERINARIO.setText(usu);
+       
         dispose();
         ap.show();
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
@@ -363,7 +369,7 @@ int IDROL,idusuario,filasel;
             mp.jTextFieldcorreo.setText(correo);
             mp.idFicha= idFicha;
             BuscarUsuario(); 
-            mp.jLabelVETERINARIO.setText(usu);
+//            mp.jLabelVETERINARIO.setText(usu);
             dispose();
             mp.show();
         } else {
@@ -379,7 +385,7 @@ int IDROL,idusuario,filasel;
                     JOptionPane.showMessageDialog(null,"Se Borró la Ficha de la Mascota"+" "+mascota+" "+",Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
                     limpiarTabla(TABLA);
                     modelo = (DefaultTableModel) TABLA.getModel();
-                    ficha.LlenarTablaFichas(modelo);
+                    LlenarTablaFichas();
                     buttonTaskAGREGAR.setEnabled(true);
                     buttonTaskMODIFICAR.setEnabled(false);
                     buttonTaskELIMINAR.setEnabled(false);
@@ -422,7 +428,7 @@ int IDROL,idusuario,filasel;
             jDateChooser_Hasta.setEnabled(false);
             limpiarTabla(TABLA);
             modelo=(DefaultTableModel) TABLA.getModel();
-            ficha.LlenarTablaFichas(modelo);
+            LlenarTablaFichas();
         }else{
             jDateChooser_Desde.setEnabled(true);
             jDateChooser_Hasta.setEnabled(true);
@@ -450,9 +456,9 @@ int IDROL,idusuario,filasel;
                 MostrarDatosxMascota(buscar);
             } else if (criterio.equals("Especie")) {
                 MostrarDatosxEspecie(buscar);
-            }else if (criterio.equals("Raza")) {
-                MostrarDatosxRaza(buscar);
-            }else if (criterio.equals("Apellido")) {
+            }else if (criterio.equals("Estado Historial")) {
+                MostrarDatosxSituacion(buscar);
+            }else if (criterio.equals("Dueño")) {
                 MostrarDatosxDueño(buscar);
             }
     }else{
@@ -470,9 +476,9 @@ int IDROL,idusuario,filasel;
             MostrarDatosMascotaxFechas(d,h,buscar);
         }else if(criterio.equals("Especie")){
             MostrarDatosEspeciexFechas(d,h,buscar);
-        }else if(criterio.equals("Raza")){
-            MostrarDatosRazaxFechas(d,h,buscar);
-        }else if(criterio.equals("Apellido")){
+        }else if(criterio.equals("Situacion")){
+            MostrarDatosSituacionxFechas(d,h,buscar);
+        }else if(criterio.equals("Dueño")){
             MostrarDatosApellidoxFechas(d,h,buscar);
         }
     }
@@ -489,8 +495,8 @@ int IDROL,idusuario,filasel;
                 MostrarDatosxMascota(buscar);
             } else if (criterio.equals("Especie")) {
                 MostrarDatosxEspecie(buscar);
-            }else if (criterio.equals("Raza")) {
-                MostrarDatosxRaza(buscar);
+            }else if (criterio.equals("Estado Historial")) {
+                MostrarDatosxSituacion(buscar);
             }else if (criterio.equals("Apellido")) {
                 MostrarDatosxDueño(buscar);
             }
@@ -510,9 +516,11 @@ int IDROL,idusuario,filasel;
         }else if(criterio.equals("Especie")){
             MostrarDatosEspeciexFechas(d,h,buscar);
         }else if(criterio.equals("Raza")){
-            MostrarDatosRazaxFechas(d,h,buscar);
+            MostrarDatosSituacionxFechas(d,h,buscar);
         }else if(criterio.equals("Apellido")){
             MostrarDatosApellidoxFechas(d,h,buscar);
+        }else if(criterio.equals("Estado Historial")){
+            MostrarDatosApellidoxSituacion(d,h,buscar);
         }
     }
     }//GEN-LAST:event_buttonTaskBUSCARActionPerformed
@@ -679,13 +687,44 @@ int MOD=0,ELI=0;
         }   
     }
 
+   public void LlenarTablaFichas(){
+      String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
+      modelo = new javax.swing.table.DefaultTableModel(null,titulos);
+      cn=cm.Conectar();
+      try{
+        String sSQL="SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 ORDER BY fichamedica.id ASC";
+        String registro[]=new String[5];
+        RendererSituacion clase=new RendererSituacion(4);
+        TABLA.setDefaultRenderer(Object.class, clase);
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sSQL);
+        while(rs.next()){//aca se lee el maximo de filas
+            registro[0]=rs.getString("fecha");         
+            registro[1]=rs.getString("dueño");
+            registro[2]=rs.getString("mascota");
+            registro[3]=rs.getString("especies.nombre");
+            registro[4]=rs.getString("situacion");
+            modelo.addRow(registro);
+            limpiarTabla(TABLA);
+        }
+          TABLA.setModel(modelo);  
+          FORMATO_TABLA(TABLA);
+//      cmd.close();
+//      cn.close();      
+      }catch(Exception ex){
+         System.out.println(ex.getMessage());
+      }     
+    }
+
     private void MostrarDatosxMascota(String buscar) {
-        String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+        String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
                 
-        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE fichamedica.mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
-        String registro[]=new String[6];
+        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id  WHERE fichamedica.mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
+        String registro[]=new String[5];
+        RendererSituacion clase=new RendererSituacion(4);
+        TABLA.setDefaultRenderer(Object.class, clase);
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -693,17 +732,17 @@ int MOD=0,ELI=0;
 
             while(rs.next())
                {
-               registro[0]=rs.getString("fecha");     
-               registro[1]=rs.getString("fichamedica.id");   
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
-                modelo.addRow(registro);
+               registro[0]=rs.getString("fecha");       
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
+               modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -713,12 +752,15 @@ int MOD=0,ELI=0;
 
     
     private void MostrarDatosxEspecie(String buscar) {
-        String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+        String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
                
-        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE especies.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-        String registro[]=new String[6];
+        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id  WHERE especies.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+        String registro[]=new String[5];
+        RendererSituacion clase=new RendererSituacion(4);
+        TABLA.setDefaultRenderer(Object.class, clase);
+        
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -727,16 +769,16 @@ int MOD=0,ELI=0;
             while(rs.next())
                { 
                registro[0]=rs.getString("fecha");   
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -744,13 +786,16 @@ int MOD=0,ELI=0;
            }
     }
 
-    private void MostrarDatosxRaza(String buscar) {
-        String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+    private void MostrarDatosxSituacion(String buscar) {
+        String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
               
-        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie  WHERE razas.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-        String registro[]=new String[6];
+        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id  WHERE situacion LIKE '"+buscar+"%' ORDER BY fecha ASC";
+        String registro[]=new String[5];
+        RendererSituacion clase=new RendererSituacion(4);
+        TABLA.setDefaultRenderer(Object.class, clase);
+        
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -759,16 +804,16 @@ int MOD=0,ELI=0;
             while(rs.next())
                {
                registro[0]=rs.getString("fecha");
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -777,12 +822,15 @@ int MOD=0,ELI=0;
     }
 
     private void MostrarDatosxDueño(String buscar) {
-        String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+        String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
              
-        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON especies.id=razas.idespecie WHERE propietarios.apellido LIKE '"+buscar+"%' ORDER BY fecha ASC";
-        String registro[]=new String[6];
+        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE propietarios.apellido LIKE '"+buscar+"%' OR propietarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+        String registro[]=new String[5];
+        
+        RendererSituacion clase=new RendererSituacion(4);
+        TABLA.setDefaultRenderer(Object.class, clase);
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -791,16 +839,16 @@ int MOD=0,ELI=0;
             while(rs.next())
                {
                registro[0]=rs.getString("fecha");
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -831,12 +879,15 @@ private void BuscarUsuario(){
 }
 
  private void MostrarDatosxFechas(String d, String h) {
-   String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+   String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
     modelo = new javax.swing.table.DefaultTableModel(null,titulos);
     cn=cm.Conectar();
 
-    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%'  ORDER BY fecha ASC";
-    String registro[]=new String[6];
+    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%'  ORDER BY fecha ASC";
+    String registro[]=new String[5];
+    
+    RendererSituacion clase=new RendererSituacion(4);
+    TABLA.setDefaultRenderer(Object.class, clase);
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -845,16 +896,16 @@ private void BuscarUsuario(){
         while(rs.next())
                {
                registro[0]=rs.getString("fecha");
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -863,12 +914,15 @@ private void BuscarUsuario(){
     }
 
     private void MostrarDatosMascotaxFechas(String d, String h, String buscar) {
-    String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+    String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
     modelo = new javax.swing.table.DefaultTableModel(null,titulos);
     cn=cm.Conectar();
 
-    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
-    String registro[]=new String[6];
+    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String registro[]=new String[5];
+    
+    RendererSituacion clase=new RendererSituacion(4);
+    TABLA.setDefaultRenderer(Object.class, clase);
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -877,16 +931,16 @@ private void BuscarUsuario(){
         while(rs.next())
                {
                registro[0]=rs.getString("fecha");
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -894,13 +948,16 @@ private void BuscarUsuario(){
            }    
     }
 
-    private void MostrarDatosEspeciexFechas(String d, String h, String buscar) {
-      String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+ private void MostrarDatosEspeciexFechas(String d, String h, String buscar) {
+    String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
     modelo = new javax.swing.table.DefaultTableModel(null,titulos);
     cn=cm.Conectar();
 
-    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND especies.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-    String registro[]=new String[6];
+    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND especies.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String registro[]=new String[5];
+    
+    RendererSituacion clase=new RendererSituacion(4);
+    TABLA.setDefaultRenderer(Object.class, clase);
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -909,16 +966,16 @@ private void BuscarUsuario(){
         while(rs.next())
                {
                registro[0]=rs.getString("fecha");
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -926,13 +983,16 @@ private void BuscarUsuario(){
            }  
     }
 
-    private void MostrarDatosRazaxFechas(String d, String h, String buscar) {
-        String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+    private void MostrarDatosSituacionxFechas(String d, String h, String buscar) {
+    String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
     modelo = new javax.swing.table.DefaultTableModel(null,titulos);
     cn=cm.Conectar();
 
-    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND razas.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-    String registro[]=new String[6];
+    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND situacion LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String registro[]=new String[5];
+    
+    RendererSituacion clase=new RendererSituacion(4);
+    TABLA.setDefaultRenderer(Object.class, clase);
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -941,16 +1001,16 @@ private void BuscarUsuario(){
         while(rs.next())
                {
                registro[0]=rs.getString("fecha");
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
@@ -958,13 +1018,15 @@ private void BuscarUsuario(){
            }  
     }
 
-    private void MostrarDatosApellidoxFechas(String d, String h, String buscar) {
-       String[] titulos = {"Fecha","Nro. de Ficha","Dueño","Mascota","Especie","Raza"};
+ private void MostrarDatosApellidoxFechas(String d, String h, String buscar) {
+    String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
     modelo = new javax.swing.table.DefaultTableModel(null,titulos);
     cn=cm.Conectar();
 
-    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND apellido LIKE '"+buscar+"%' OR propietarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-    String registro[]=new String[6];
+    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND apellido LIKE '"+buscar+"%' OR propietarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String registro[]=new String[5];
+    RendererSituacion clase=new RendererSituacion(4);
+    TABLA.setDefaultRenderer(Object.class, clase);
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -972,21 +1034,63 @@ private void BuscarUsuario(){
 
         while(rs.next())
                {
-               registro[0]=rs.getString("fecha");
-               registro[1]=rs.getString("fichamedica.id");
-               registro[2]=rs.getString("dueño");
-               registro[3]=rs.getString("fichamedica.mascota");
-               registro[4]=rs.getString("especies.nombre");
-               registro[5]=rs.getString("razas.nombre");
+               registro[0]=rs.getString("fecha");               
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
                 modelo.addRow(registro);
                limpiarTabla(TABLA);
                }            
 
              TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
             }
         catch (SQLException ex)
            {
             JOptionPane.showMessageDialog(null, ex);
            }  
+    }
+ 
+ private void MostrarDatosApellidoxSituacion(String d, String h, String buscar) {
+    String[] titulos = {"Fecha","Dueño","Mascota","Especie","Historial"};
+    modelo = new javax.swing.table.DefaultTableModel(null,titulos);
+    cn=cm.Conectar();
+
+    String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND historialclinico.situacion LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String registro[]=new String[5];
+    RendererSituacion clase=new RendererSituacion(4);
+    TABLA.setDefaultRenderer(Object.class, clase);
+    try
+       {
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sSQL);
+
+        while(rs.next())
+               {
+               registro[0]=rs.getString("fecha");               
+               registro[1]=rs.getString("dueño");
+               registro[2]=rs.getString("fichamedica.mascota");
+               registro[3]=rs.getString("especies.nombre");
+               registro[4]=rs.getString("situacion");
+                modelo.addRow(registro);
+               limpiarTabla(TABLA);
+               }            
+
+             TABLA.setModel(modelo);  
+             FORMATO_TABLA(TABLA);
+            }
+        catch (SQLException ex)
+           {
+            JOptionPane.showMessageDialog(null, ex);
+           }  
+    }
+ 
+ private void FORMATO_TABLA(JTable tab){
+   tab.getColumnModel().getColumn(0).setPreferredWidth(30);
+   tab.getColumnModel().getColumn(1).setPreferredWidth(130);
+   tab.getColumnModel().getColumn(2).setPreferredWidth(40);
+   tab.getColumnModel().getColumn(3).setPreferredWidth(20);
+   tab.getColumnModel().getColumn(4).setPreferredWidth(50);     
     }
 }

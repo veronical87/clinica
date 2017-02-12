@@ -324,7 +324,7 @@ int filasel;
 
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
         dispose();
-        AltaAfeccion ap = new AltaAfeccion(new javax.swing.JFrame(), true);
+        AltaPelaje ap = new AltaPelaje(new javax.swing.JFrame(), true);
         ap.idrol=IDROL;
 
         ap.show();
@@ -338,6 +338,7 @@ int filasel;
             mp.bandera=false;
             mp.jComboBox_RAZAS.getModel().setSelectedItem(raza);
             mp.IDPelaje=IDPelaje;
+            mp.IDRaza=IDRaza;
             dispose();
             mp.show();           
         } else {
@@ -350,7 +351,7 @@ int filasel;
             int condicion = pelaje.EliminarPelaje(IDPelaje);
 
             if(condicion!=0){
-                JOptionPane.showMessageDialog(null,"El Tipo de Pelaje de la Raza"+" "+raza+" "+"esta Asociado a Historiales Clinicos,No Puede ser Eliminado","Información", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"El Tipo de Pelaje de la Raza"+" "+raza+" "+"esta Asociado a Fichas Médicas,No Puede ser Eliminado","Información", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 if(JOptionPane.showConfirmDialog(null,"¿Desea Borrar el Tipo de Pelaje de la Raza"+" "+nombre+" "+"?","Consulta",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                     JOptionPane.showMessageDialog(null,"El Tipo de Pelaje de la Raza"+" "+nombre+" "+"Se Borró Correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
@@ -454,8 +455,8 @@ private void limpiarTabla(JTable tab) {
          while(rs.next())
            {
            registro[0]=rs.getString("pelajexraza.id");
-           registro[0]=rs.getString("razas.nombre");
-           registro[0]=rs.getString("pelajexraza.nombre");
+           registro[1]=rs.getString("razas.nombre");
+           registro[2]=rs.getString("pelajexraza.nombre");
            modelo.addRow(registro);
            limpiarTabla(TABLA); 
            }          
@@ -467,12 +468,12 @@ private void limpiarTabla(JTable tab) {
            }        
     }
 
- String nombre,raza;int IDPelaje;
+ String nombre,raza;int IDPelaje,IDRaza;
  private void BuscarDatosPelajeSelec(String id) {      
     cn=cm.Conectar();
     String sSQL = "";
     
-    sSQL = "SELECT id,pelajexraza.nombre,razas.nombre FROM razas  WHERE nombre LIKE '"+id+"%'";
+    sSQL = "SELECT pelajexraza.id,pelajexraza.nombre,razas.nombre,razas.ID FROM razas INNER JOIN pelajexraza ON razas.id=pelajexraza.idraza WHERE pelajexraza.id="+id;
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -480,7 +481,8 @@ private void limpiarTabla(JTable tab) {
 //         
          while(rs.next())
            {
-           IDPelaje=rs.getInt("id");
+           IDPelaje=rs.getInt("pelajexraza.id");
+           IDRaza=rs.getInt("razas.id");
            nombre=rs.getString("pelajexraza.nombre"); 
            raza=rs.getString("razas.nombre"); 
            }           
@@ -545,8 +547,8 @@ private void limpiarTabla(JTable tab) {
          while(rs.next())
            {
            registro[0]=rs.getString("pelajexraza.id");
-           registro[0]=rs.getString("razas.nombre");
-           registro[0]=rs.getString("pelajexraza.nombre");
+           registro[1]=rs.getString("razas.nombre");
+           registro[2]=rs.getString("pelajexraza.nombre");
            modelo.addRow(registro);
            limpiarTabla(TABLA); 
            }          

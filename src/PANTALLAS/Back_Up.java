@@ -1,5 +1,7 @@
 package PANTALLAS;
 import Conexion.ConexionMySQL;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,11 +12,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import org.edisoncor.gui.button.ButtonTask;
 public class Back_Up extends javax.swing.JDialog {
     Connection cn;
     ConexionMySQL cm=new ConexionMySQL();
-    Pintando pintar = new Pintando();
+    private Timer timer;
     public Back_Up(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -33,6 +36,11 @@ public class Back_Up extends javax.swing.JDialog {
         buttonTaskCANCELAR = new org.edisoncor.gui.button.ButtonTask();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
         panelRectTranslucido1.setPreferredSize(new java.awt.Dimension(393, 356));
@@ -46,7 +54,7 @@ public class Back_Up extends javax.swing.JDialog {
 
         buttonTaskAGREGAR.setForeground(new java.awt.Color(255, 255, 255));
         buttonTaskAGREGAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/select_48.png"))); // NOI18N
-        buttonTaskAGREGAR.setText("SELECCIONAR");
+        buttonTaskAGREGAR.setText("GENERAR");
         buttonTaskAGREGAR.setCategoryFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         buttonTaskAGREGAR.setCategorySmallFont(new java.awt.Font("Arial", 2, 16)); // NOI18N
         buttonTaskAGREGAR.setDefaultCapable(false);
@@ -77,48 +85,45 @@ public class Back_Up extends javax.swing.JDialog {
         panelRectTranslucido1Layout.setHorizontalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(314, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonTaskCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
-            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonTaskCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         panelRectTranslucido1Layout.setVerticalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(barraProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonTaskCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTaskCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -126,13 +131,11 @@ public class Back_Up extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 int idusuario;
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
-        try { 
-//            Pintando pintar = new Pintando();
-            pintar.start(); 
+     timer.start();
+     
+        try {         
             GenerarBackupMySQL("root", "", "consultorio");
-             pintar.stop();
-//            pintar.start();
-//            pintar.run();
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -141,6 +144,10 @@ int idusuario;
     private void buttonTaskCANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskCANCELARActionPerformed
         dispose();
     }//GEN-LAST:event_buttonTaskCANCELARActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        timer=new Timer(70,new progreso());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -190,6 +197,20 @@ int idusuario;
     private javax.swing.JLabel jLabel1;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
+
+public class progreso implements ActionListener{
+   public void actionPerformed(ActionEvent e){
+      int n=barraProgreso.getValue();
+      
+      if(n<70){
+        n++;
+        barraProgreso.setValue(n);
+      }else{
+        timer.stop();
+        
+      }
+   }
+}
 
 public void GenerarBackupMySQL(String us,String pas, String db)
      {
@@ -244,47 +265,4 @@ public void GenerarBackupMySQL(String us,String pas, String db)
             JOptionPane.showMessageDialog(null,"Ha sido cancelada la generacion del Backup","Información",JOptionPane.INFORMATION_MESSAGE);
         }
      }
-   
-    public static boolean band = false;
-    private static int tiempo = 100;
-    public class Pintando extends Thread {
-        boolean bandera = false;
-        
-        @Override
-        
-        public void run() throws NoSuchMethodError {
-            
-            while (true) {
-                int i = 1;
-                int x = 0;
-                //mientra el trabajo en paralelo no finalice el jProgressBar continuara su animacion una y otra vez
-                while (x <= tiempo) {
-                    try {
-                        Thread.sleep(100);
-                        i = (i > 100) ? 1 : i + 1;
-                        barraProgreso.setValue(i);
-                        barraProgreso.repaint();
-
-                    } catch (InterruptedException e) {
-                    }
-                    x++;
-                }
-                bandera = true;
-
-                if (bandera) {
-                    barraProgreso.setValue(100);
-//                    JOptionPane.showMessageDialog(null, "La Copia de Seguridad se ha realizado con éxito");
-                    break;//rompe ciclo    
-                    
-
-                }
-                else {
-                        barraProgreso.setValue(100);
-                        JOptionPane.showMessageDialog(null, "La Copia de Seguridad fallo.");
-                        break;
-                    }
-            }
-//                this.destroy();          
-        }
-    }
 }

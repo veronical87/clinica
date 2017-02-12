@@ -471,7 +471,7 @@ int filasel;
         cn=cm.Conectar();
         String sSQL = "";
         String[] registro = new String[3];
-        sSQL = "SELECT especies.nombre,razas.nombre,tamano FROM razas INNER JOIN especies ON razas.idespecie=especies.id WHERE especies.nombre LIKE '"+criterio+"%' ORDER BY especies.nombre ASC";
+        sSQL = "SELECT razas.id,razas.nombre,tamaños.nombre,pesominhembra,pesomaxhembra,pesominmacho,pesomaxmacho,idespecie,especies.nombre FROM razas INNER JOIN especies ON especies.id=razas.idespecie INNER JOIN tamaños ON razas.idtamano=tamaños.id WHERE especies.nombre LIKE '"+criterio+"%' ORDER BY especies.nombre ASC";
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -481,7 +481,7 @@ int filasel;
                {
                registro[0]=rs.getString("especies.nombre");
                registro[1]=rs.getString("razas.nombre");
-               registro[2]=rs.getString("tamano");
+               registro[2]=rs.getString("tamaños.nombre");
                modelo.addRow(registro);
                limpiarTabla(TABLA); 
                }          
@@ -497,7 +497,7 @@ int filasel;
    private void BuscarDatosRaza(String criterio) {        
         cn=cm.Conectar();
             
-        String sSQL = "SELECT razas.id,razas.nombre,tamano,pesominhembra,pesomaxhembra,pesominmacho,pesomaxmacho,idespecie,especies.nombre FROM razas INNER JOIN especies ON especies.id=razas.idespecie  WHERE razas.nombre LIKE '"+criterio+"%'";
+        String sSQL = "SELECT razas.id,razas.nombre,tamaños.nombre,pesominhembra,pesomaxhembra,pesominmacho,pesomaxmacho,idespecie,especies.nombre FROM razas INNER JOIN especies ON especies.id=razas.idespecie INNER JOIN tamaños ON razas.idtamano=tamaños.id  WHERE razas.nombre LIKE '"+criterio+"%'";
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -507,7 +507,7 @@ int filasel;
                {
                  IDRaza=rs.getInt("razas.id");
                  nombreRaza=rs.getString("razas.nombre");
-                 nombreTamaño=rs.getString("tamano");
+                 nombreTamaño=rs.getString("tamaños.nombre");
                  IDEspecie=rs.getInt("idespecie");
                  nombreEspecie=rs.getString("especies.nombre");
                  pesohembraMIN=rs.getInt("pesominhembra");
@@ -567,7 +567,7 @@ int filasel;
         cn=cm.Conectar();
         String sSQL = "";
         String[] registro = new String[3];
-        sSQL = "SELECT especies.nombre,razas.nombre,tamano FROM razas INNER JOIN especies ON razas.idespecie=especies.id WHERE razas.nombre LIKE '"+buscar+"%' ORDER BY especies.nombre ASC";
+        sSQL = "SELECT razas.nombre,tamaños.nombre,especies.nombre FROM razas INNER JOIN especies ON especies.id=razas.idespecie INNER JOIN tamaños ON razas.idtamano=tamaños.id WHERE razas.nombre LIKE '"+buscar+"%' ORDER BY especies.nombre ASC";
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -577,7 +577,7 @@ int filasel;
                {
                registro[0]=rs.getString("especies.nombre");
                registro[1]=rs.getString("razas.nombre");
-               registro[2]=rs.getString("tamano");
+               registro[2]=rs.getString("tamaños.nombre");
                modelo.addRow(registro);
                limpiarTabla(TABLA); 
                }          
@@ -595,7 +595,7 @@ int filasel;
         cn=cm.Conectar();
         String sSQL = "";
         String[] registro = new String[3];
-        sSQL = "SELECT especies.nombre,razas.nombre,tamano FROM razas INNER JOIN especies ON razas.idespecie=especies.id WHERE tamano LIKE '"+buscar+"%' ORDER BY especies.nombre ASC";
+        sSQL = "SELECT razas.nombre,tamaños.nombre,especies.nombre FROM razas INNER JOIN especies ON especies.id=razas.idespecie INNER JOIN tamaños ON razas.idtamano=tamaños.id WHERE tamaños.nombre LIKE '"+buscar+"%' ORDER BY especies.nombre ASC";
         try
            {
             Statement st = (Statement) cn.createStatement();
@@ -605,7 +605,7 @@ int filasel;
                {
                registro[0]=rs.getString("especies.nombre");
                registro[1]=rs.getString("razas.nombre");
-               registro[2]=rs.getString("tamano");
+               registro[2]=rs.getString("tamaños.nombre");
                modelo.addRow(registro);
                limpiarTabla(TABLA); 
                }          

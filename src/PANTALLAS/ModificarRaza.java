@@ -384,7 +384,7 @@ int idrol,IDEspecie,idRaza;String nombreRaza;
       if(tamano.equals("")){
       BuscarIDTamaño(tamano);
     }
-      int encontrada = raza.VerificarRaza(IDEspecie,nombreRaza);
+   
       if(nombre.equals("")||  jTextFieldMIN_HEMBRA==null|| jTextFieldMAX_HEMBRA==null || jTextFieldMIN_MACHO==null || jTextFieldMAX_MACHO==null){
            JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención",JOptionPane.WARNING_MESSAGE);
       }else{
@@ -394,20 +394,10 @@ int idrol,IDEspecie,idRaza;String nombreRaza;
               jTextFieldMIN_HEMBRA.requestFocus();
           }else{
              if(minhembra<maxhembra){
-              if(encontrada != 0) {//SI ES NULL NO EXISTE
                 raza.ModificarRaza(idRaza, nombre,IDEspecie,IDTamaño,minhembra,maxhembra,minmacho,maxmacho);                               
                 JOptionPane.showMessageDialog(null, "Se Guardaron los Cambios Correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                enlace();
-             }else{               
-                JTextFieldNombre.setText("");
-                JTextFieldNombre.requestFocus();
-                jTextFieldMIN_HEMBRA.setText("");
-                jTextFieldMAX_HEMBRA.setText("");
-                jTextFieldMIN_MACHO.setText("");
-                jTextFieldMAX_MACHO.setText("");                
-                JOptionPane.showMessageDialog(null,"La Raza"+" "+JTextFieldNombre.getText()+" "+"Se Encuentra Registrada","Información", JOptionPane.INFORMATION_MESSAGE);
-               }
+                enlace();             
              }             
            }    
       }        

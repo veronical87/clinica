@@ -8,37 +8,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-
+import PANTALLAS.AltaFichaMedica;
 public class ClaseFichasMedicas {
     Connection cn;
     CallableStatement cmd;   
-    
+
    public ClaseFichasMedicas(){
        ConexionMySQL cm=new ConexionMySQL();
        cn=cm.Conectar();
     }
-   
-   public void LlenarTablaFichas(DefaultTableModel tabla){
-      try{
-        String sql="SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,fichamedica.id,propietarios.apellido,coma,propietarios.nombre,fichamedica.mascota,especies.nombre,razas.nombre FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 ORDER BY fichamedica.id ASC";
-        cmd=cn.prepareCall(sql);
-        ResultSet rs=cmd.executeQuery();
-        String[] registro = new String[6];
-        while(rs.next()){//aca se lee el maximo de filas
-            registro[0]=rs.getString("fecha");
-            registro[1]=rs.getString("fichamedica.id");
-            registro[2]=rs.getString("propietarios.apellido")+rs.getString("coma")+rs.getString("propietarios.nombre");
-            registro[3]=rs.getString("mascota");
-            registro[4]=rs.getString("especies.nombre");
-            registro[5]=rs.getString("razas.nombre");
-            tabla.addRow(registro); 
-        }
-//      cmd.close();
-//      cn.close();      
-      }catch(Exception ex){
-         System.out.println(ex.getMessage());
-      }     
-    }     
+     
  
    public void LlenarTablaDatosMascotas(DefaultTableModel tabla,int iddueño){
       try{
@@ -94,28 +73,39 @@ public class ClaseFichasMedicas {
          System.out.println(ex.getMessage());
        }
     } 
-     
-public void AgregarDatosMascota(int idPropietario,int idVeterinario,String fecha,String nombre,String fechaNacimiento,int idpelaje,String sexo,double kilaje,int edad,String tiemponac,String situacion,String datoImagen){
-       String sql="INSERT INTO fichamedica(idpropietario,idveterinario,fecha,mascota,cumpleaños,idpelaje,sexo,kilaje,edad,tiemponac,situacionpeso,direimagen,imagen,idestado,idlogo)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+//public void ActualizarSituacion(int nrohistorial,String situacion){
+//  String sql="UPDATE historialclinico SET situacion=? WHERE nrohistorial=?";
+//    try {
+//          PreparedStatement pst=cn.prepareStatement(sql);
+//          pst.setInt(1,nrohistorial);
+//          pst.setString(2,situacion);
+//          pst.execute();
+//          
+//    }catch (SQLException ex) {
+//        System.out.println(ex.getMessage());
+//    }
+//}
+public void AgregarDatosMascota(int idPropietario,String fecha,String nombre,String fechaNacimiento,int idpelaje,String sexo,double kilaje,int edad,String tiemponac,String situacion,String datoImagen){
+       String sql="INSERT INTO fichamedica(idpropietario,fecha,mascota,cumpleaños,idpelaje,sexo,kilaje,edad,tiemponac,situacionpeso,direimagen,imagen,idestado,idlogo)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
          try {
               FileInputStream imagen;
               PreparedStatement pst=cn.prepareStatement(sql);
               pst.setInt(1,idPropietario);
-              pst.setInt(2,idVeterinario);
-              pst.setString(3,fecha);
-              pst.setString(4,nombre);
-              pst.setString(5,fechaNacimiento);
-              pst.setInt(6,idpelaje);              
-              pst.setString(7,sexo);             
-              pst.setDouble(8,kilaje);
-              pst.setInt(9,edad);
-              pst.setString(10,tiemponac);
-              pst.setString(11,situacion);
-              pst.setString(12,datoImagen);
+              pst.setString(2,fecha);
+              pst.setString(3,nombre);
+              pst.setString(4,fechaNacimiento);
+              pst.setInt(5,idpelaje);              
+              pst.setString(6,sexo);             
+              pst.setDouble(7,kilaje);
+              pst.setInt(8,edad);
+              pst.setString(9,tiemponac);
+              pst.setString(10,situacion);
+              pst.setString(11,datoImagen);
               imagen=new FileInputStream(datoImagen);
-              pst.setBlob(13,imagen);
+              pst.setBlob(12,imagen);
+              pst.setInt(13,1);
               pst.setInt(14,1);
-              pst.setInt(15,1);
               pst.execute();
          }catch(SQLException | FileNotFoundException ex){
             System.out.println(ex.getMessage());
@@ -147,12 +137,11 @@ public void BajaFicha(int idFicha) {
       
    }catch(Exception ex){
          System.out.println(ex.getMessage());
-       }
-     
+       }     
     }
 
     public void InsertarDatosAuditoria(String fechaActual, String hor, String usu, String tabla, String operacion, String anterior, String nuevo) {
-        String sql="call InsertarDatosAuditoria(?,?,?,?,?,?,?)";    
+    String sql="call InsertarDatosAuditoria(?,?,?,?,?,?,?)";    
     try{                
       cmd=cn.prepareCall(sql);
       cmd.setString(1,fechaActual);
@@ -185,8 +174,8 @@ public void BajaFicha(int idFicha) {
       return encontrada;
     }
 
-  public void agregarHistorial(int idFicha, int nrohistorial, String opcionVacunas,String opcionParasitos, String parasitos, String opcionAlergias, String alergias, String opcionDesparasitado, String tiempodesparcombo, String opcionProbResp, String opcionPreñada,String opcionCastrado,String opcionAfeccion) {
-    String sql="call agregarHistorial(?,?,?,?,?,?,?,?,?,?,?,?,?)";    
+  public void agregarHistorial(int idFicha, int nrohistorial, String opcionVacunas,String opcionParasitos, String parasitos, String opcionAlergias, String alergias, String opcionDesparasitado, String tiempodesparcombo, String opcionProbResp, String opcionPreñada,int cantPreñada,String opcionPreñadaMayora3,String opcionCastrado,String situacion) {
+    String sql="call agregarHistorial(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";    
     try{                
       cmd=cn.prepareCall(sql);
       cmd.setInt(1,idFicha);
@@ -200,8 +189,11 @@ public void BajaFicha(int idFicha) {
       cmd.setString(9,tiempodesparcombo);
       cmd.setString(10,opcionProbResp);
       cmd.setString(11,opcionPreñada);
-      cmd.setString(12,opcionCastrado);
-      cmd.setString(13,opcionAfeccion);
+      cmd.setInt(12,cantPreñada);
+      cmd.setString(13,opcionPreñadaMayora3);
+      cmd.setString(14,opcionCastrado);
+  
+      cmd.setString(15,situacion);
       cmd.execute();
       
    }catch(Exception ex){
@@ -233,8 +225,8 @@ public void ModificarDatosMascota(int idFicha, int idPropietario,String nombre,S
        }
     }
 
-    public void ModificarHistorial(int nrohistorial, String opcionVacunas,String opcionParasitos, String parasitos, String opcionAlergias, String alergias, String opcionDesparasitado,String tiempodesparcombo, String opcionProbResp, String opcionPreñada,String opcionCastrado,String opcionAfecciones) {
-    String sql="call ModificarHistorial(?,?,?,?,?,?,?,?,?,?,?,?)";    
+    public void ModificarHistorial(int nrohistorial, String opcionVacunas,String opcionParasitos, String parasitos, String opcionAlergias, String alergias, String opcionDesparasitado,String tiempodesparcombo, String opcionProbResp, String opcionPreñada,int cantPreñada,String opcionPreñadaMayora3,String opcionCastrado,String situacion) {
+    String sql="call ModificarHistorial(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";    
     try{                
       cmd=cn.prepareCall(sql);      
       cmd.setInt(1,nrohistorial);
@@ -247,8 +239,10 @@ public void ModificarDatosMascota(int idFicha, int idPropietario,String nombre,S
       cmd.setString(8,tiempodesparcombo);
       cmd.setString(9,opcionProbResp);
       cmd.setString(10,opcionPreñada);
-      cmd.setString(11,opcionCastrado);
-      cmd.setString(12,opcionAfecciones);
+      cmd.setInt(11,cantPreñada);
+      cmd.setString(12,opcionPreñadaMayora3);
+      cmd.setString(13,opcionCastrado);     
+      cmd.setString(14,situacion);
       cmd.execute();      
    }catch(Exception ex){
          System.out.println(ex.getMessage());
@@ -285,32 +279,14 @@ public void ModificarDatosMascota(int idFicha, int idPropietario,String nombre,S
        } 
     }
 
-public void LlenarTablaVacunas(DefaultTableModel tabla,int nroHistorial) {
-   try{
-        String sql="SELECT controlvacunas.nombre,DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha FROM controlvacunas INNER JOIN vacunasxmascota ON controlvacunas.id=vacunasxmascota.idvacuna WHERE vacunasxmascota.idHISTORIAL='"+nroHistorial+"' ORDER BY fecha ASC";
-        cmd=cn.prepareCall(sql);
-        ResultSet rs=cmd.executeQuery();
-        String[] registro = new String[2];
-        while(rs.next()){//aca se lee el maximo de filas
-            
-            registro[0]=rs.getString("fecha");
-            registro[1]=rs.getString("controlvacunas.nombre");
-            
-            tabla.addRow(registro); 
-        }
-//      cmd.close();
-//      cn.close();      
-      }catch(Exception ex){
-         System.out.println(ex.getMessage());
-      } 
-    }
 
- public int agregarAfeccionxFicha(int idFicha, int IDAfeccion) {
+
+ public int agregarAfeccionxHC(int idHistorial, int IDAfeccion) {
    int encontrada=0;
-   String sql="call agregarAfeccionxFicha(?,?,?)";    
+   String sql="call agregarAfeccionxHC(?,?,?)";    
     try{                
       cmd=cn.prepareCall(sql);
-      cmd.setInt(1,idFicha);
+      cmd.setInt(1,idHistorial);
       cmd.setInt(2,IDAfeccion);
       cmd.registerOutParameter(3, java.sql.Types.INTEGER);
       cmd.execute();
@@ -322,8 +298,8 @@ public void LlenarTablaVacunas(DefaultTableModel tabla,int nroHistorial) {
     return encontrada;
     }
 
-  public void quitarAfeccionxFicha(int idFicha, int IDAfeccion) {
-   String sql="call quitarAfeccionxFicha(?,?)";    
+  public void quitarAfeccionxHC(int idFicha, int IDAfeccion) {
+   String sql="call quitarAfeccionxHC(?,?)";    
     try{                
       cmd=cn.prepareCall(sql);
       cmd.setInt(1,idFicha);
@@ -335,9 +311,9 @@ public void LlenarTablaVacunas(DefaultTableModel tabla,int nroHistorial) {
        }
     }
 
-    public void LlenarTablaAFECCIONES(DefaultTableModel tabla, int idFicha) {
+    public void LlenarTablaAFECCIONES(DefaultTableModel tabla, int idHistorial) {
        try{
-        String sql="SELECT afecciones.nombre FROM afecciones INNER JOIN afeccionesxfichamedica  ON afecciones.id=afeccionesxfichamedica.idafeccion WHERE afeccionesxfichamedica.idficha='"+idFicha+"' ORDER BY afecciones.nombre ASC";
+        String sql="SELECT afecciones.nombre FROM afecciones INNER JOIN afeccionesxhistorialclinico  ON afecciones.id=afeccionesxhistorialclinico.idafeccion WHERE afeccionesxhistorialclinico.idhistorial='"+idHistorial+"' ORDER BY afecciones.nombre ASC";
         cmd=cn.prepareCall(sql);
         ResultSet rs=cmd.executeQuery();
         String[] registro = new String[1];

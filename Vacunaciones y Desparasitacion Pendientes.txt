@@ -1,5 +1,0 @@
-
-
-Vacuna:TRIPLE,Condicion:OBLIGATORIO
-
-Fecha de Proxima Desparacitacion:8/12/2016

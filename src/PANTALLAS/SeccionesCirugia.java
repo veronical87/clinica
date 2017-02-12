@@ -440,8 +440,9 @@ int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;String masc
     }//GEN-LAST:event_buttonTaskQUITARActionPerformed
 
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
-     AltaCirugia ac= new AltaCirugia(new javax.swing.JFrame(),true);
+     Alta ac= new Alta(new javax.swing.JFrame(),true);
      ac.BuscarDatosMascota(mascota);
+     
        if(idespecie==1){  /////PERRO
             if(ATRAS!=0){                 
                 ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/seccion-colayPataTrasera.png")));

@@ -33,7 +33,8 @@ public class ModificarPelaje extends javax.swing.JDialog {
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
         buttonAction2 = new org.edisoncor.gui.button.ButtonAction();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("ModificarPelaje");
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
         panelRectTranslucido1.setPreferredSize(new java.awt.Dimension(389, 433));
@@ -247,18 +248,11 @@ String razaSelec,coincidencia;int indice1;
         if(raza.equals("")){
             BuscarIDRaza(raza);
         }
-        int encontrada = pelaje.AgregarPelaje(nombre,IDRaza);
+        pelaje.ModificarPelaje(IDPelaje,nombre,IDRaza);
 
-        if(encontrada == 0) {//SI ES NULL NO EXISTE
-            JTextFieldNombre.setText("");
-            JTextFieldNombre.requestFocus();
-            JOptionPane.showMessageDialog(null,"El Tipo de Pelaje para la Raza" + " " + JTextFieldNombre.getText()+ " " + "Ya Existe, Por Favor Ingrese Otra", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-        }else{
-            JOptionPane.showMessageDialog(null,"El Tipo de Pelaje para la Raza" + " " + JTextFieldNombre.getText()+ " " + "se Registró Correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
-            dispose();
-            enlace();
-        }
+        JOptionPane.showMessageDialog(null,"Se Guardaron los Cambios","Información", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+        enlace();        
     }//GEN-LAST:event_buttonActionGUARDARActionPerformed
 
     private void buttonAction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction2ActionPerformed

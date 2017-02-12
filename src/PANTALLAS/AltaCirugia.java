@@ -38,11 +38,6 @@ public class AltaCirugia extends javax.swing.JDialog {
 
         panelRectTranslucido1 = new org.edisoncor.gui.panel.PanelRectTranslucido();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TABLA = new javax.swing.JTable();
         jComboBoxDUEÑOS = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -101,79 +96,6 @@ public class AltaCirugia extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CIRUGIAS");
-
-        jPanel1.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "DETERMINAR ZONA DE OPERACION", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
-
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jPanel3.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "DETALLE DE LA CIRUGIA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
-
-        TABLA.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ZONAS", "SECCION"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TABLA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TABLAMouseClicked(evt);
-            }
-        });
-        TABLA.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentMoved(java.awt.event.ComponentEvent evt) {
-                TABLAComponentMoved(evt);
-            }
-        });
-        jScrollPane3.setViewportView(TABLA);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jComboBoxDUEÑOS.setEditable(true);
         jComboBoxDUEÑOS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -315,7 +237,7 @@ public class AltaCirugia extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -666,7 +588,7 @@ public class AltaCirugia extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                        .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                                 .addComponent(jComboBoxDUEÑOS, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -679,8 +601,7 @@ public class AltaCirugia extends javax.swing.JDialog {
                                 .addComponent(jLabel16)
                                 .addGap(31, 31, 31)
                                 .addComponent(jComboBoxTIPOCONSULTA, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -724,8 +645,7 @@ public class AltaCirugia extends javax.swing.JDialog {
                         .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(jComboBoxTIPOCONSULTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(279, 279, 279))
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -756,39 +676,6 @@ public class AltaCirugia extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TABLAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLAMouseClicked
-
-    }//GEN-LAST:event_TABLAMouseClicked
-
-    private void TABLAComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TABLAComponentMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TABLAComponentMoved
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    SeccionesCirugia sc=new SeccionesCirugia(new javax.swing.JFrame(), true);
-    sc.idespecie=idespecie;
-    sc.mascota=mascotaSelec;
-    if(idespecie==1){
-       sc.panelImage1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro.png")));
-       sc.jRadioButtonCABEZAPERRO.setVisible(true);
-       sc.jRadioButtonCUELLOPERRO.setVisible(true);
-       sc.jRadioButtonPATASDELANTERASGATO.setVisible(true);
-       sc.jRadioButtonATRAS.setVisible(true);
-       sc.jRadioButtonTRONCO.setVisible(true);
-       sc.jRadioButtonCABEZAGATO.setVisible(false);
-       sc.jRadioButtonPATASDELANTERASGATO.setVisible(false);
-       sc.jRadioButtonCUELLOGATO.setVisible(false);
-    }else if(idespecie==2){
-        sc.panelImage1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2.png")));
-        sc.jRadioButtonCABEZAPERRO.setVisible(false);
-        sc.jRadioButtonCUELLOPERRO.setVisible(false);
-        sc.jRadioButtonCABEZAGATO.setVisible(true);
-        sc.jRadioButtonPATASDELANTERASGATO.setVisible(true);
-    }
-    this.dispose();
-    sc.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxDUEÑOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxDUEÑOSPopupMenuWillBecomeVisible
         LlenarComboDueños();
@@ -948,11 +835,11 @@ String mascotaSelec;
         if(IDMEDICAMENTO!=0){
             int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
             BuscarIDConsulta();
-            cirugia.quitarMedicamentoxOperacion(IDTipoOperacion,IDMEDICAMENTO,c);
+            cirugia.quitarMedicamentoxOperacion(IDTipoOperacion,IDMEDICAMENTO);
             cirugia.actualizarStockMedicamento(IDMEDICAMENTO,c,1); // 1 INDICA SUMAR AL STOCK ACTUAL LA CANTIDAD
             limpiarTabla(TABLA);
             modelo = (DefaultTableModel) TABLA.getModel();
-            cirugia.LlenarTablaMedicamento(modelo,IDFICHA);
+            co.LlenarTablaMedicamento(modelo,IDFICHA);
         }else{
             JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -1027,14 +914,12 @@ String mascotaSelec;
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TABLA;
     public javax.swing.JTable TABLA1;
     private org.edisoncor.gui.button.ButtonAction buttonActionCANCELAR;
     public org.edisoncor.gui.button.ButtonAction buttonActionGUARDAR;
     private org.edisoncor.gui.button.ButtonAction buttonActionVERIFICAR;
     private org.edisoncor.gui.button.ButtonTask buttonTaskAGREGAR;
     private org.edisoncor.gui.button.ButtonTask buttonTaskQUITAR;
-    public javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBoxCATEGORIAS;
     private javax.swing.JComboBox jComboBoxDUEÑOS;
     private javax.swing.JComboBox jComboBoxMASCOTAS;
@@ -1067,17 +952,14 @@ String mascotaSelec;
     private javax.swing.JLabel jLabelRaza;
     private javax.swing.JLabel jLabelSituacionPeso;
     public javax.swing.JLabel jLabelVETERINARIO;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinnerCantMedicamento;
     private javax.swing.JTextArea jTextAreaCOMPOSICION;
@@ -1149,369 +1031,9 @@ private void LlenarComboDueños() {
     } 
  }
 String especie="";int edad,IDFICHA,idespecie;
-public void BuscarDatosMascota(String mascotaSelec) {
-   int pesoActual=0;String situacionpeso="",tiemponac="",raza="";
-   try {          
-        cn=cm.Conectar();
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT fichamedica.id,edad,tiemponac,situacionpeso,especies.id,especies.nombre,kilaje,razas.nombre FROM fichamedica INNER JOIN razas ON fichamedica.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE mascota LIKE '"+mascotaSelec+"%'");                     
-        while (rs.next()) {   
-            IDFICHA=rs.getInt("id");
-            situacionpeso=rs.getString("situacionpeso");
-            especie=rs.getString("especies.nombre");
-            edad=rs.getInt("edad");
-            idespecie=rs.getInt("especies.id");
-            tiemponac=rs.getString("tiemponac");
-            pesoActual=rs.getInt("kilaje");
-            raza=rs.getString("razas.nombre");
-           }
-           rs.close();
-           
-           this.jLabelEspecie.setText(especie);
-           if(idespecie==1){
-             jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro.png")));
-           }else if(idespecie==2){
-              jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2.png")));
-           }
-           switch (situacionpeso) {
-           case "SOBREPESO":
-               jLabelSituacionPeso.setForeground(Color.red);
-               break;
-           case "NORMAL":
-               jLabelSituacionPeso.setForeground(Color.GREEN);
-               break;
-           case "PESO BAJO":
-               jLabelSituacionPeso.setForeground(Color.ORANGE);
-               break;
-       }
-           this.jLabelSituacionPeso.setText(situacionpeso);
-           this.jLabelEdad.setText(String.valueOf(edad));
-           this.jLabelEdad1.setText(tiemponac);
-           this.jLabelPesoActual.setText(String.valueOf(pesoActual));
-           this.jLabelRaza.setText(raza);
-          
-    
-//           aca iria la busqueda de las vacunas faltantes.. y si fue desparasitado...
-    } catch (SQLException ex) {
-            ex.getMessage();
-    }  
-}
-
-private void LimpiarCampos() {
-   this.jLabelEdad.setText("");
-   this.jLabelPesoActual.setText("");
-   this.jLabelEdad1.setText("");
-   this.jLabelEspecie.setText("");
-   this.jLabelSituacionPeso.setText("");
-   this.jLabelRaza.setText("");
-}
-
-    int IDTipoOperacion;
-private void BuscarIDTipoConsulta(String selec) {
- try {       
-    cn=cm.Conectar();
-    Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT id FROM tipooperacion WHERE nombre LIKE '"+selec+"%'");
-
-    while (rs.next()) {
-       IDTipoOperacion=rs.getInt("id");           
-    }
-    rs.close();         
-           
-    } catch (SQLException ex) {
-        ex.getMessage();  
-   } 
-}
-
- private void LlenarComboTipoOperaciones() {
-      try {            
-            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            cn=cm.Conectar();
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre FROM tipooperacion WHERE idcategoria=2 ORDER BY nombre ASC");
-                     
-            while (rs.next()) {
-               modeloCombo.addElement(rs.getString("nombre"));
-            }
-            rs.close();
-            this.jComboBoxTIPOCONSULTA.setModel(modeloCombo);
-        } catch (SQLException ex) {
-            ex.getMessage();
-        }   
- }
- 
- int IDLOCALIDAD; 
-private void BuscarIDLocalidad() {
- try {       
-    cn=cm.Conectar();
-    Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT idlocalidad FROM logoclinica");
-
-    while (rs.next()) {
-       IDLOCALIDAD=rs.getInt("idlocalidad");           
-    }
-    rs.close();         
-           
-    } catch (SQLException ex) {
-        ex.getMessage();  
-   }
-}
-String usuario; 
-  private void BuscarUsuario() {
-     cn=cm.Conectar();
-     String   sSQL = "SELECT usuario FROM usuarios WHERE id="+idusuario;
-        try
-        {
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while(rs.next())
-            {
-               usuario=rs.getString("usuario");      
-            }
-            }
-        catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-  int IDVETERINARIO;
-  private void BuscarIDVeterinario(String vet) {
-     cn=cm.Conectar();
-     String   sSQL = "SELECT id FROM veterinarios WHERE CONCAT(apellido,nombre) LIKE '"+vet+"%'";
-        try
-        {
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while(rs.next())
-            {
-              IDVETERINARIO=rs.getInt("id");      
-            }
-            }
-        catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-String fechaActual,hor; int min,añoactual,mesactual,diaactual; 
-void fecha(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-    añoactual = Calendario.get(Calendar.YEAR);
-    mesactual = Calendario.get(Calendar.MONTH) + 1;
-    diaactual = Calendario.get(Calendar.DAY_OF_MONTH);
-    
-    fechaActual=diaactual+"/"+mesactual+"/"+añoactual;    
- 
-//    f=new Date(Calendario.get(Calendar.YEAR),Calendario.get(Calendar.MONTH) + 1,Calendario.get(Calendar.DAY_OF_MONTH));
-    int h=Calendario.get(Calendar.HOUR_OF_DAY);
-    int minutos=Calendario.get(Calendar.MINUTE);        
-    hor = String.valueOf(h+":"+minutos);
-} 
-
-private void ENLACE() {
-  int L=0,ES=0,MOD=0,ELI=0;
-  GestionCirugia esp=new GestionCirugia(new javax.swing.JFrame(), true);
-  esp.IDROL=idrol; 
-      try
-        {
-        cn=cm.Conectar();
-        String sql="SELECT * FROM permisos WHERE  idrol="+idrol;
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-            while(rs.next())
-            {                                
-              L=rs.getInt("L_CIRUGIA");
-              ES=rs.getInt("ESC_CIRUGIA");
-              MOD=rs.getInt("MOD_CIRUGIA");
-              ELI=rs.getInt("ELIM_CIRUGIA");               
-            }                              
-        }catch (SQLException ex)
-          {
-            JOptionPane.showMessageDialog(null, ex);
-          }    
-          
-      if(L!=0 & ES!=0 & MOD!=0 & ELI!=0){
-         esp.buttonTaskAGREGAR.setEnabled(true);         
-         esp.buttonTaskELIMINAR.setEnabled(false);
-         esp.buttonTaskMODIFICAR.setEnabled(false);
-         esp.TABLA.setEnabled(true); 
-         esp.buttonTaskCERRAR.setEnabled(true);
-      }else if(L!=0){
-         esp.buttonTaskAGREGAR.setEnabled(false);
-         esp.buttonTaskELIMINAR.setEnabled(false);
-         esp.buttonTaskMODIFICAR.setEnabled(false);
-         esp.TABLA.setEnabled(false);
-         esp.buttonTaskCERRAR.setEnabled(true);
-      }else if(ES!=0){
-         esp.buttonTaskAGREGAR.setEnabled(true);
-         esp.buttonTaskELIMINAR.setEnabled(false);
-         esp.buttonTaskMODIFICAR.setEnabled(false);
-         esp.TABLA.setEnabled(false);
-         esp.buttonTaskCERRAR.setEnabled(true);
-      }else if(MOD!=0){
-         esp.buttonTaskAGREGAR.setEnabled(false);
-         esp.buttonTaskELIMINAR.setEnabled(false);
-         esp.buttonTaskMODIFICAR.setEnabled(false);
-         esp.TABLA.setEnabled(true);
-         esp.buttonTaskCERRAR.setEnabled(true);
-      }else  if(ELI!=0){
-         esp.buttonTaskAGREGAR.setEnabled(false);
-         esp.buttonTaskELIMINAR.setEnabled(false);
-         esp.buttonTaskMODIFICAR.setEnabled(false);
-         esp.TABLA.setEnabled(true);
-         esp.buttonTaskCERRAR.setEnabled(true);
-      }else {
-         esp.buttonTaskAGREGAR.setEnabled(false);
-         esp.buttonTaskELIMINAR.setEnabled(false);
-         esp.buttonTaskMODIFICAR.setEnabled(false);
-         esp.TABLA.setEnabled(false);
-         esp.buttonTaskCERRAR.setEnabled(true);
-      }
-        esp.show();
-    }  
-
-private void BuscarCoincidenciasxMEDICAMENTO(String medicamento) {
-      try {            
-            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            cn=cm.Conectar();
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre FROM medicamentos WHERE nombre LIKE '"+medicamento+"%' ORDER BY nombre ASC");
-                     
-            while (rs.next()) {
-               modeloCombo.addElement(rs.getString("nombre"));
-            }
-            rs.close();
-            this.jComboBoxMEDICAMENTOS.setModel(modeloCombo);
-        } catch (SQLException ex) {
-            ex.getMessage();
-        }  
-    }
-
-private void BuscarIDMedicamento(String medicamento) {
-  try {       
-    cn=cm.Conectar();
-    Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT id FROM medicamentos WHERE nombre LIKE '"+medicamento+"%'");
-
-    while (rs.next()) {
-       IDMEDICAMENTO=rs.getInt("id");           
-    }
-    rs.close();         
-           
-    } catch (SQLException ex) {
-        ex.getMessage();  
-   }
-}
-
-int IDMEDICAMENTO,cantactual;
-private void BuscarDatosMedicamento(String medicamento) {
-     String accion="",composicion="";
-     cn=cm.Conectar();
-     String   sSQL = "SELECT id,accion,composicion,cantactual FROM medicamentos WHERE nombre LIKE '"+medicamento+"%'";
-        try
-        {
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while(rs.next())
-            {
-               IDMEDICAMENTO=rs.getInt("id");
-//               accion=rs.getString("accion");
-               composicion=rs.getString("composicion");
-               cantactual=rs.getInt("cantactual");
-            }
-            jTextAreaCOMPOSICION.setText(composicion);
-//            jTextAreaACCION.setText(accion);
-            jLabelCantiACTUAL.setText(String.valueOf(cantactual));
-            }        
-        
-        catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-private void LlenarComboCategoriaMedicamentos() {
-   try {            
-    DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-    cn=cm.Conectar();
-    Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT nombre FROM categoriamedicamento ORDER BY nombre ASC");                     
-    while (rs.next()) {
-       modeloCombo.addElement(rs.getString("nombre"));
-    }
-    rs.close();
-    jComboBoxCATEGORIAS.setModel(modeloCombo);            
-} catch (SQLException ex) {
-        ex.getMessage();
-} 
- }
-
- private void limpiarTabla(JTable tab) {
-         while(tab.getRowCount()>0){//se recorren todas las filas
-         ((javax.swing.table.DefaultTableModel) tab.getModel()).removeRow(0);
-       }
-    }
- 
- private void limpiarCamposMedicamento() {
-//      this.jTextAreaACCION.setText("");
-      this.jTextAreaCOMPOSICION.setText("");
-      this.jLabelCantiACTUAL.setText("");
-      this.jSpinnerCantMedicamento.setValue(0);
-    }
- 
- int IDOperacion;
- private void BuscarIDConsulta() {
-  try {       
-    cn=cm.Conectar();
-    Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT MAX(id) AS id FROM operaciones");
-
-    while (rs.next()) {
-       IDOperacion=rs.getInt("id");           
-    }
-    rs.close();         
-           
-    } catch (SQLException ex) {
-        ex.getMessage();  
-   }        
-}
- 
- int IDCATEGORIA;
-    private void BuscarIDCategoria(String categoria) {
-     cn=cm.Conectar();
-     String   sSQL = "SELECT id FROM categoriamedicamento WHERE nombre LIKE '"+categoria+"%'";
-        try
-        {
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
-
-            while(rs.next())
-            {
-              IDCATEGORIA=rs.getInt("id");
-            }
-            }
-        catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-    
-    private void BuscarMedicamentosxCategoria(String categoria) {
-    try {            
-        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-        cn=cm.Conectar();
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT medicamentos.nombre FROM medicamentos INNER JOIN categoriamedicamento ON categoriamedicamento.id=medicamentos.idcategoria WHERE categoriamedicamento.nombre LIKE '"+categoria+"%'");                     
-        while (rs.next()) {
-           modeloCombo.addElement(rs.getString("medicamentos.nombre"));
-        }
-        rs.close();
-        jComboBoxMEDICAMENTOS.setModel(modeloCombo);            
-      }catch (SQLException ex) {
-        ex.getMessage();
-       }  
-}
 
 }
+
+
+
+

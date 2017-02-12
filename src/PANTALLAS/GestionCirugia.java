@@ -334,27 +334,25 @@ int filasel;
 
     private void buttonTaskELIMINARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskELIMINARActionPerformed
         if(filasel != -1){
-            int cantidad = co.BajaOperacion(idOperacion);
+            
+            co.BajaOperacion(IDoperacion);
             this.fecha();
             this.BuscarUsuario();
-            co.InsertarDatosAuditoria(fechaActual,hor,usu,"CIRUGIAS","BAJA"," "," ");
-            if(cantidad!=0){
-                JOptionPane.showMessageDialog(null,"El Tipo de Consulta"+" "+nombre+" "+"está Asociada a mas de una Mascota,No Puede ser Eliminado","Información", JOptionPane.INFORMATION_MESSAGE);
+            co.InsertarDatosAuditoria(fechaActual,hor,usuario,"CIRUGIAS","BAJA"," "," ");
+           
+            if(JOptionPane.showConfirmDialog(null, "¿Desea Borrar el Tipo de Cirugía"+" "+ operacion + " " + "?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                JOptionPane.showMessageDialog(null, "La Cirugía"+" "+operacion+" "+"Se Borró Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
+                limpiarTabla(TABLA);
+                modelo = (DefaultTableModel) TABLA.getModel();
+                co.LlenarTablaCIRUGIAS(modelo);
+                buttonTaskAGREGAR.setEnabled(true);
+                buttonTaskMODIFICAR.setEnabled(false);
+                buttonTaskELIMINAR.setEnabled(false);
             }else{
-                if(JOptionPane.showConfirmDialog(null, "¿Desea Borrar el Tipo de Consulta" +" "+ nombre + " " + "?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-                    JOptionPane.showMessageDialog(null, "El Tipo de Consulta"+" "+nombre+" "+"Se Borró Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
-                    limpiarTabla(TABLA);
-                    modelo = (DefaultTableModel) TABLA.getModel();
-                    co.LlenarTablaCIRUGIAS(modelo);
-                    buttonTaskAGREGAR.setEnabled(true);
-                    buttonTaskMODIFICAR.setEnabled(false);
-                    buttonTaskELIMINAR.setEnabled(false);
-                }else{
-                    buttonTaskAGREGAR.setEnabled(true);
-                    buttonTaskMODIFICAR.setEnabled(false);
-                    buttonTaskELIMINAR.setEnabled(false);
-                }
-            }
+                buttonTaskAGREGAR.setEnabled(true);
+                buttonTaskMODIFICAR.setEnabled(false);
+                buttonTaskELIMINAR.setEnabled(false);
+            }            
         }else{
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -591,9 +589,8 @@ int filasel;
 int IDoperacion;String operacion,veterinarioape,veterinarionom,DUEÑO,MASCOTA;
  private void BuscarDatosCirugia(String id) {
     cn=cm.Conectar();
-    String sSQL = "";
-   
-    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id="+id;
+       
+    String sSQL = "SELECT tipooperacion.nombre,operaciones.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño FROM tipooperacion INNER JOIN operaciones on tipooperacion.id=operaciones.idtipooperacion INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id="+id;
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -603,10 +600,7 @@ int IDoperacion;String operacion,veterinarioape,veterinarionom,DUEÑO,MASCOTA;
            {
            IDoperacion=rs.getInt("operaciones.id");
            operacion=rs.getString("tipooperacion.nombre");
-           veterinarioape=rs.getString("veterinarios.apellido");
-           veterinarionom=rs.getString("veterinarios.nombre");
-           DUEÑO=rs.getString("dueño");
-           MASCOTA=rs.getString("mascota");           
+           DUEÑO=rs.getString("dueño");           
            }          
             
             }

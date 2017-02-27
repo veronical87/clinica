@@ -28,7 +28,8 @@ public class LISTADO extends javax.swing.JDialog {
         setLocationRelativeTo(null); 
         jDateChooser_Desde.setMaxSelectableDate(hoy.getTime());
         jDateChooser_Hasta.setMaxSelectableDate(hoy.getTime());
-        buttonAction1.setVisible(false);
+        buttonTaskQUITAR.setEnabled(false);
+        buttonTaskQUITAR.setToolTipText("Cancelar");
     }
 
     
@@ -41,7 +42,7 @@ public class LISTADO extends javax.swing.JDialog {
         jPanel14 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableVISITAS = new javax.swing.JTable();
-        buttonAction1 = new org.edisoncor.gui.button.ButtonAction();
+        buttonTaskQUITAR = new org.edisoncor.gui.button.ButtonTask();
         buttonActionGenerarREPORTE = new org.edisoncor.gui.button.ButtonAction();
         jPanel13 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -89,10 +90,10 @@ public class LISTADO extends javax.swing.JDialog {
         });
         jScrollPane4.setViewportView(jTableVISITAS);
 
-        buttonAction1.setText("Cancelar");
-        buttonAction1.addActionListener(new java.awt.event.ActionListener() {
+        buttonTaskQUITAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/eliminar-icono-6226-32.png"))); // NOI18N
+        buttonTaskQUITAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAction1ActionPerformed(evt);
+                buttonTaskQUITARActionPerformed(evt);
             }
         });
 
@@ -100,19 +101,20 @@ public class LISTADO extends javax.swing.JDialog {
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonAction1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, Short.MAX_VALUE))
+                .addComponent(jScrollPane4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonTaskQUITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(202, 202, 202)
-                .addComponent(buttonAction1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(buttonTaskQUITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         buttonActionGenerarREPORTE.setText("GENERAR LISTADO ");
@@ -390,21 +392,25 @@ int idrol;
     private void buttonActionGenerarREPORTE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGenerarREPORTE1ActionPerformed
     this.dispose();
     }//GEN-LAST:event_buttonActionGenerarREPORTE1ActionPerformed
-
+int filasel;
     private void jTableVISITASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVISITASMouseClicked
-     buttonAction1.setVisible(true);
-     int filasel = jTableVISITAS.getSelectedRow();
+     buttonTaskQUITAR.setEnabled(true);
+     filasel = jTableVISITAS.getSelectedRow();
      modelo = (DefaultTableModel) jTableVISITAS.getModel();
      String id = (String) modelo.getValueAt(filasel, 0);
      BuscarDatosVisita(id);
     }//GEN-LAST:event_jTableVISITASMouseClicked
 
-    private void buttonAction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction1ActionPerformed
-    c.CancelarVisita(NroOperacion);
-    limpiarTabla(jTableVISITAS);
-    LlenarTablaVISITAS();
-    this.buttonAction1.setVisible(false);
-    }//GEN-LAST:event_buttonAction1ActionPerformed
+    private void buttonTaskQUITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskQUITARActionPerformed
+        if(filasel!=0){
+            c.CancelarVisita(NroOperacion);
+            limpiarTabla(jTableVISITAS);
+            LlenarTablaVISITAS();
+            this.buttonTaskQUITAR.setEnabled(false);
+        }else{
+            JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonTaskQUITARActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,10 +455,10 @@ int idrol;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox JComboBoxCriterioSeleccionado;
-    private org.edisoncor.gui.button.ButtonAction buttonAction1;
-    private org.edisoncor.gui.button.ButtonAction buttonActionGenerarREPORTE;
+    public org.edisoncor.gui.button.ButtonAction buttonActionGenerarREPORTE;
     private org.edisoncor.gui.button.ButtonAction buttonActionGenerarREPORTE1;
     public org.edisoncor.gui.button.ButtonTask buttonTaskBUSCAR;
+    public org.edisoncor.gui.button.ButtonTask buttonTaskQUITAR;
     public com.toedter.calendar.JDateChooser jDateChooser_Desde;
     public com.toedter.calendar.JDateChooser jDateChooser_Hasta;
     private javax.swing.JLabel jLabel1;
@@ -602,7 +608,7 @@ private void MostrarVisitasVeterinarioxFechas(String d, String h, String buscar)
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE DATE_FORMAT(fechaturno,'%Y/%m/%d') LIKE '"+fechaActual+"%' AND tipooperacion.idcategoria=1 AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE DATE_FORMAT(fechaturno,'%Y/%m/%d') LIKE '"+fechaActual+"%' AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
 
     try
        {
@@ -635,7 +641,7 @@ private void MostrarVisitasVeterinarioxFechas(String d, String h, String buscar)
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE DATE_FORMAT(fechaturno,'%Y/%m/%d') LIKE '"+fechaActual+"%' AND tipooperacion.idcategoria=1 AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE DATE_FORMAT(fechaturno,'%Y/%m/%d') LIKE '"+fechaActual+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
 
     try
        {
@@ -668,7 +674,7 @@ private void MostrarVisitasVeterinarioxFechas(String d, String h, String buscar)
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();

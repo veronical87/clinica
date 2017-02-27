@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -25,6 +27,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public final class AltaConsulta extends javax.swing.JDialog {
     Connection cn;
@@ -42,9 +49,10 @@ public final class AltaConsulta extends javax.swing.JDialog {
         setLocationRelativeTo(null); 
         buttonTaskQUITAR.setVisible(false);
         jLabelVETERINARIO.setVisible(false);
+        InhabilitarSeccionOperacion();
+        jDateChooserFECHATURNO.setMinSelectableDate(hoy.getTime());             
+        MostrarPrimerConcepto();  
         
-        jDateChooserFECHATURNO.setMaxSelectableDate(hoy.getTime());             
-        MostrarPrimerConcepto();        
     }
    
     @SuppressWarnings("unchecked")
@@ -56,8 +64,6 @@ public final class AltaConsulta extends javax.swing.JDialog {
         jLabelVETERINARIO = new javax.swing.JLabel();
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
         buttonActionCANCELAR = new org.edisoncor.gui.button.ButtonAction();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -121,6 +127,7 @@ public final class AltaConsulta extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         buttonActionVERIFICAR = new org.edisoncor.gui.button.ButtonAction();
         jFormattedTextFieldHORARIO = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("AltaConsulta");
@@ -158,9 +165,6 @@ public final class AltaConsulta extends javax.swing.JDialog {
             }
         });
         panelRectTranslucido1.add(buttonActionCANCELAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 610, -1, 47));
-
-        jTabbedPane1.setFont(new java.awt.Font("Open Sans", 1, 11)); // NOI18N
-        jTabbedPane1.setName("DATOS CONSULTA"); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(141, 141, 175));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -606,7 +610,6 @@ public final class AltaConsulta extends javax.swing.JDialog {
         });
 
         jComboBoxCATEGORIAS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxCATEGORIAS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Categoría" }));
         jComboBoxCATEGORIAS.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -701,9 +704,9 @@ public final class AltaConsulta extends javax.swing.JDialog {
                     .addComponent(jLabelCantiACTUAL, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinnerCantMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
@@ -832,22 +835,20 @@ public final class AltaConsulta extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("*Campos Obligatorios");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jComboBoxDUEÑOS, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel5))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLabel12)
-                        .addGap(93, 93, 93)
-                        .addComponent(jScrollPane1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -859,6 +860,17 @@ public final class AltaConsulta extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(1, 1, 1))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxDUEÑOS, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)))
+                .addGap(975, 975, 975))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -883,41 +895,26 @@ public final class AltaConsulta extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 48, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 69, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("DATOS GENERALES", jPanel1);
-
-        panelRectTranslucido1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 69, 1270, 530));
-        jTabbedPane1.getAccessibleContext().setAccessibleName("DATOS CONSULTA");
+        panelRectTranslucido1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1270, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 1289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, 1292, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -941,15 +938,9 @@ public final class AltaConsulta extends javax.swing.JDialog {
         this.BuscarIDConsulta();
         consulta.modificarDiagnostico(IDOperacion,diagnostico);
         consulta.InsertarDatosAuditoria(fechaActual,hor,usuario,"CONSULTAS","ALTA","",nuevo);       
-        if(JOptionPane.showConfirmDialog(null,"¿Desea Determinar Próxima Atención?","Consulta",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-            jTabbedPane1.setEnabledAt(1,true);
-            this.jTabbedPane1.setEnabledAt(0,false);        
-            jTabbedPane1.setSelectedIndex(1);
-            LimpiarCampos();
-        }else{
-            dispose();
-            ENLACE();
-            }
+        dispose();
+        ENLACE();  
+        
     }else{
         JOptionPane.showMessageDialog(null,"Debe Completar los Campos Obligatorios","Atención",JOptionPane.WARNING_MESSAGE);
     }     
@@ -967,7 +958,28 @@ public final class AltaConsulta extends javax.swing.JDialog {
     private void jTablePENDIENTESMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePENDIENTESMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTablePENDIENTESMouseClicked
-String medicamentoselec,coincidencia;
+
+    private void jComboBoxMASCOTASPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
+        LlenarComboMascotas(IDPROPIETARIO);
+    }//GEN-LAST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
+
+    private void jComboBoxMASCOTASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASActionPerformed
+        String mascotaSelec = this.jComboBoxMASCOTAS.getSelectedItem().toString();
+        BuscarDatosMascota(mascotaSelec);
+        HabilitarSeccionOperacion();
+    }//GEN-LAST:event_jComboBoxMASCOTASActionPerformed
+
+    private void jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible
+        String combo=coincidencia;
+        String categoria = jComboBoxCATEGORIAS.getSelectedItem().toString();
+
+        if(indice1==-1){
+            BuscarCoincidenciasxMEDICAMENTO(combo);
+        }else{
+            BuscarMedicamentosxCategoria(categoria,idespecie);
+        }
+    }//GEN-LAST:event_jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible
+
     private void jComboBoxMEDICAMENTOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMEDICAMENTOSActionPerformed
         medicamentoselec= jComboBoxMEDICAMENTOS.getSelectedItem().toString();
         int indice = this.jComboBoxMEDICAMENTOS.getSelectedIndex();
@@ -1027,12 +1039,12 @@ String medicamentoselec,coincidencia;
 
     private void buttonTaskQUITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskQUITARActionPerformed
         if(IDMEDICAMENTO!=0){
-//            int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
+            //            int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
             BuscarIDConsulta();
             consulta.quitarMedicamentoxOperacion(IDMEDICAMENTO,IDTipoOperacion);
             consulta.actualizarStockMedicamento(IDMEDICAMENTO,cantMedicamento,1); // 1 INDICA SUMAR AL STOCK ACTUAL LA CANTIDAD
             limpiarTabla(TABLA);
-            
+
             LlenarTablaMedicamento(IDTipoOperacion);
         }else{
             JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
@@ -1040,51 +1052,52 @@ String medicamentoselec,coincidencia;
     }//GEN-LAST:event_buttonTaskQUITARActionPerformed
 
     private void jComboBoxCATEGORIASPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxCATEGORIASPopupMenuWillBecomeVisible
-        this.LlenarComboCategoriaMedicamentos();
+        this.LlenarComboCategoriaMedicamento(IDTipoOperacion);
     }//GEN-LAST:event_jComboBoxCATEGORIASPopupMenuWillBecomeVisible
 
     private void jComboBoxCATEGORIASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCATEGORIASActionPerformed
         String categoria= jComboBoxCATEGORIAS.getSelectedItem().toString();
         BuscarIDCategoria(categoria);
-        BuscarMedicamentosxCategoria(categoria);
-    }//GEN-LAST:event_jComboBoxCATEGORIASActionPerformed
-boolean OperacionRegistrada;
-    private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
-     if(OperacionRegistrada==false){
-        String selec=jComboBoxTIPOCONSULTA.getModel().getSelectedItem().toString();
-        String vet=this.jLabelVETERINARIO.getText();
-        this.BuscarIDLocalidad();
-        this.BuscarIDVeterinario(vet);
         
-        if(IDTipoOperacion==0){
-           this.BuscarIDTipoConsulta(selec);
-        }        
-        consulta.insertarDatosOperaciones(IDFICHA,fechaActual,IDVETERINARIO,IDLOCALIDAD,IDTipoOperacion,"");    
-        OperacionRegistrada=true;
-     }
-     if(OperacionRegistrada==true){        
-        int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
-        if (c!=0)  {   
-            BuscarIDConsulta();
-            consulta.agregarMedicamentoxOperacion(IDOperacion,IDMEDICAMENTO,c);
-            consulta.actualizarStockMedicamento(IDMEDICAMENTO,c,2); // 1 INDICA RESTAR AL STOCK ACTUAL LA CANTIDAD SOLICITADA
-            
-            limpiarTabla(TABLA);
-            LlenarTablaMedicamento(IDOperacion);
-            limpiarCamposMedicamento();      
-       }else{
-          JOptionPane.showMessageDialog(null,"Debe indicar la Cantidad del Medicamento","Atención",JOptionPane.WARNING_MESSAGE);
-        } 
-     }
+        BuscarMedicamentosxCategoria(categoria,idespecie);
+    }//GEN-LAST:event_jComboBoxCATEGORIASActionPerformed
+
+    private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
+        if(OperacionRegistrada==false){
+            String selec=jComboBoxTIPOCONSULTA.getModel().getSelectedItem().toString();
+            String vet=this.jLabelVETERINARIO.getText();
+            this.BuscarIDLocalidad();
+            this.BuscarIDVeterinario(vet);
+
+            if(IDTipoOperacion==0){
+                this.BuscarIDTipoConsulta(selec);
+            }
+            consulta.insertarDatosOperaciones(IDFICHA,fechaActual,IDVETERINARIO,IDLOCALIDAD,IDTipoOperacion,"");
+            OperacionRegistrada=true;
+        }
+        if(OperacionRegistrada==true){
+            int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
+            if (c!=0)  {
+                BuscarIDConsulta();
+                consulta.agregarMedicamentoxOperacion(IDOperacion,IDMEDICAMENTO,c);
+                consulta.actualizarStockMedicamento(IDMEDICAMENTO,c,2); // 1 INDICA RESTAR AL STOCK ACTUAL LA CANTIDAD SOLICITADA
+
+                limpiarTabla(TABLA);
+                LlenarTablaMedicamento(IDOperacion);
+                limpiarCamposMedicamento();
+            }else{
+                JOptionPane.showMessageDialog(null,"Debe indicar la Cantidad del Medicamento","Atención",JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
 
     private void jComboBoxDUEÑOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxDUEÑOSPopupMenuWillBecomeVisible
-        LlenarComboDueños();        
+        LlenarComboDueños();
     }//GEN-LAST:event_jComboBoxDUEÑOSPopupMenuWillBecomeVisible
 
     private void jComboBoxDUEÑOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDUEÑOSActionPerformed
         String dueñoSelec = jComboBoxDUEÑOS.getSelectedItem().toString();
-//        EnvioCorreoPropietarios(dueñoSelec);
+                EnvioCorreoPropietarios(dueñoSelec);
         int indice = jComboBoxDUEÑOS.getSelectedIndex();
 
         if (indice == -1) {
@@ -1094,17 +1107,7 @@ boolean OperacionRegistrada;
             LlenarComboMascotas(IDPROPIETARIO);
             LimpiarCamposDATOSMASCOTA();
         }
-        
     }//GEN-LAST:event_jComboBoxDUEÑOSActionPerformed
-
-    private void jComboBoxMASCOTASPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
-         LlenarComboMascotas(IDPROPIETARIO);
-    }//GEN-LAST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
-
-    private void jComboBoxMASCOTASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASActionPerformed
-        String mascotaSelec = this.jComboBoxMASCOTAS.getSelectedItem().toString();
-        BuscarDatosMascota(mascotaSelec);
-    }//GEN-LAST:event_jComboBoxMASCOTASActionPerformed
 
     private void jComboBoxTIPOCONSULTAPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxTIPOCONSULTAPopupMenuWillBecomeVisible
         LlenarComboTipoOperaciones();
@@ -1113,11 +1116,11 @@ boolean OperacionRegistrada;
     private void jComboBoxTIPOCONSULTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTIPOCONSULTAActionPerformed
         String selec=jComboBoxTIPOCONSULTA.getModel().getSelectedItem().toString();
         BuscarIDTipoConsulta(selec);
-        jTextAreaDIAGNOSTICO.requestFocus();
+        this.LlenarComboCategoriaMedicamento(IDTipoOperacion);
     }//GEN-LAST:event_jComboBoxTIPOCONSULTAActionPerformed
 
     private void jTextAreaDIAGNOSTICOFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaDIAGNOSTICOFocusLost
-       
+
     }//GEN-LAST:event_jTextAreaDIAGNOSTICOFocusLost
 
     private void jTextAreaDIAGNOSTICOKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDIAGNOSTICOKeyTyped
@@ -1127,39 +1130,33 @@ boolean OperacionRegistrada;
         }
     }//GEN-LAST:event_jTextAreaDIAGNOSTICOKeyTyped
 
-    private void jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible
-       String combo=coincidencia;
-       String categoria = jComboBoxCATEGORIAS.getSelectedItem().toString();
-        
-        if(indice1==-1){
-            BuscarCoincidenciasxMEDICAMENTO(combo);
-        }else{
-            BuscarMedicamentosxCategoria(categoria);
-        }
-    }//GEN-LAST:event_jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible
-
     private void buttonActionVERIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionVERIFICARActionPerformed
         String formato = "yyyy/MM/dd";
         java.sql.Date fechanacimiento=new Date(jDateChooserFECHATURNO.getDate().getYear(),jDateChooserFECHATURNO.getDate().getMonth(),jDateChooserFECHATURNO.getDate().getDate() );
         SimpleDateFormat sdf = new SimpleDateFormat(formato);
         String dia = sdf.format(fechanacimiento);
         String hora=this.jFormattedTextFieldHORARIO.getText();
-        String vet=this.jLabelVETERINARIO.getText();
-        this.BuscarIDVeterinario(vet);
-        GenerarNroOperacion();
         
-        int resultado =consulta.VerificarfechaxConsulta(NroOperacion,IDVETERINARIO,IDTipoOperacion,dia,hora);
-        //////        VERIFICAR QUE SI NO HAY VINCULO CON EL DIA, SI HAY CON EL HORARIO....
-        if(resultado!=0){
-            JOptionPane.showMessageDialog(null,"La Fecha y Hora Seleccionados se Encuentran Ocupados","Información",JOptionPane.INFORMATION_MESSAGE);
-            jFormattedTextFieldHORARIO.setSelectedTextColor(Color.DARK_GRAY);
+        if(dia.equals("")& hora.equals("")){
+           JOptionPane.showMessageDialog(null,"Debe Determinar una Fecha y Hora","Información",JOptionPane.INFORMATION_MESSAGE);
         }else{
-            if(JOptionPane.showConfirmDialog(null,"La Fecha y Hora Seleccionados se Encuentran Disponibles,¿Desea Confirmar el Turno?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-              JOptionPane.showMessageDialog(null,"Se Registró la Próxima Fecha a ser Atendido","Información",JOptionPane.INFORMATION_MESSAGE); 
-        }
+            String vet=this.jLabelVETERINARIO.getText();
+            this.BuscarIDVeterinario(vet);
+            GenerarNroOperacion();
+
+            int resultado =consulta.VerificarfechaxConsulta(NroOperacion,IDVETERINARIO,IDTipoOperacion,dia,hora);
+            //////        VERIFICAR QUE SI NO HAY VINCULO CON EL DIA, SI HAY CON EL HORARIO....
+            if(resultado!=0){
+                JOptionPane.showMessageDialog(null,"La Fecha y Hora Seleccionados se Encuentran Ocupados","Información",JOptionPane.INFORMATION_MESSAGE);
+                jFormattedTextFieldHORARIO.setSelectedTextColor(Color.DARK_GRAY);
+            }else{
+                if(JOptionPane.showConfirmDialog(null,"La Fecha y Hora Seleccionados se Encuentran Disponibles,¿Desea Confirmar?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                    JOptionPane.showMessageDialog(null,"Se Registró la Próxima Fecha a ser Atendido","Información",JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         }
     }//GEN-LAST:event_buttonActionVERIFICARActionPerformed
-int idusuario,idrol;String provinciaselec;int indice1;
+String medicamentoselec,coincidencia;boolean OperacionRegistrada;int idusuario,idrol;String provinciaselec;int indice1;
     /**
      * @param args the command line arguments
      */
@@ -1226,6 +1223,7 @@ int idusuario,idrol;String provinciaselec;int indice1;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1247,7 +1245,6 @@ int idusuario,idrol;String provinciaselec;int indice1;
     private javax.swing.JLabel jLabelTiempoDespar;
     private javax.swing.JLabel jLabelTiempoDespar1;
     public javax.swing.JLabel jLabelVETERINARIO;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
@@ -1265,7 +1262,6 @@ int idusuario,idrol;String provinciaselec;int indice1;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinnerCantMedicamento;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTablePENDIENTES;
     private javax.swing.JTable jTableVACUNAS;
     private javax.swing.JTextArea jTextAreaALERGIAS;
@@ -1276,7 +1272,7 @@ int idusuario,idrol;String provinciaselec;int indice1;
 
 
 String fechaActual,hor; int min,añoactual,mesactual,diaactual; 
-void fecha(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+void fecha(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     añoactual = Calendario.get(Calendar.YEAR);
     mesactual = Calendario.get(Calendar.MONTH) + 1;
     diaactual = Calendario.get(Calendar.DAY_OF_MONTH);
@@ -1391,9 +1387,9 @@ private void BuscarIDVeterinario(String vet) {
             ex.getMessage();
     } 
  }
-String especie="",cumpleaños="";int edad,IDFICHA,idespecie;
+String especie="",cumpleaños="",tiemponac;int edad,IDFICHA,idespecie;
 private void BuscarDatosMascota(String mascotaSelec) {         
-   int pesoActual=0;String situacionpeso="",tiemponac="",raza="",sexo="";
+   int pesoActual=0;String situacionpeso="",raza="",sexo="";
    try {          
         cn=cm.Conectar();
         Statement st = (Statement) cn.createStatement();
@@ -1426,13 +1422,14 @@ private void BuscarDatosMascota(String mascotaSelec) {
                break;
        }
            this.jLabelSituacionPeso.setText(situacionpeso);
-           this.jLabelEdad.setText(String.valueOf(edad));
-           this.jLabelEdad1.setText(tiemponac);
+//           this.jLabelEdad.setText(String.valueOf(edad));
+//           this.jLabelEdad1.setText(tiemponac);
            this.jLabelPesoActual.setText(String.valueOf(pesoActual));
            this.jLabelRaza.setText(raza);
            
            BuscarDatosHISTORIAL(IDFICHA);        
-            
+           calculoEDAD();          
+                   
            int cantidad=consulta.CantVacunas(IDHISTORIAL);
             LlenarTablaVacunas(IDHISTORIAL);
            if(cantidad==0){
@@ -1449,14 +1446,14 @@ private void BuscarDatosMascota(String mascotaSelec) {
     }  
 }
 
-private void LlenarComboCategoriaMedicamentos() {
+private void LlenarComboCategoriaMedicamento(int IDTipoOperacion) {
    try {            
     DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     cn=cm.Conectar();
     Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT nombre FROM categoriamedicamento ORDER BY nombre ASC");                     
+    ResultSet rs = st.executeQuery("SELECT DISTINCT categoriamedicamento.nombre FROM categoriamedicamento INNER JOIN medicamentos ON categoriamedicamento.id=medicamentos.idcategoria INNER JOIN medicamentoxespecieyoperacion ON medicamentos.id=medicamentoxespecieyoperacion.idmedicamento WHERE medicamentoxespecieyoperacion.idtipoop='"+IDTipoOperacion+"' ORDER BY categoriamedicamento.nombre ASC");                     
     while (rs.next()) {
-       modeloCombo.addElement(rs.getString("nombre"));
+       modeloCombo.addElement(rs.getString("categoriamedicamento.nombre"));
     }
     rs.close();
     jComboBoxCATEGORIAS.setModel(modeloCombo);            
@@ -1465,33 +1462,33 @@ private void LlenarComboCategoriaMedicamentos() {
 } 
  }
 
-private void LimpiarCampos() {
-   jComboBoxDUEÑOS.getModel().setSelectedItem("Seleccione Cliente");
-   this.jComboBoxMASCOTAS.getModel().setSelectedItem("");
-   this.jLabelEdad.setText("");
-   this.jLabelPesoActual.setText("");
-   this.jLabelEdad1.setText("");
-   this.jLabelEspecie.setText("");
-    this.jLabelRaza.setText("");
-   this.jLabelSituacionPeso.setText("");
-   this.jLabelRaza.setText("");
-   this.jLabelOpcionDespar.setText("");
-   jLabelTiempoDespar.setText("");
-   this.jLabelProximaDESPAR.setText("");
-   this.limpiarTabla(jTablePENDIENTES);
-   this.limpiarTabla(jTableVACUNAS);
-   jTextAreaALERGIAS.setText("");
-   this.jTextAreaDIAGNOSTICO.setText("");
-   this.jComboBoxTIPOCONSULTA.getModel().setSelectedItem("Seleccione Concepto");
-   this.jComboBoxCATEGORIAS.getModel().setSelectedItem("Seleccionar Categoría");
-   this.jComboBoxMEDICAMENTOS.getModel().setSelectedItem("Seleccionar Medicamento");
-   this.jLabelCantiACTUAL.setText("");
-   this.jSpinnerCantMedicamento.getModel().setValue("");
-   this.jTextAreaCOMPOSICION.setText("");
-   this.limpiarTabla(TABLA);
-   this.buttonTaskAGREGAR.setVisible(true);
-   this.buttonTaskQUITAR.setVisible(false);
-  }
+//private void LimpiarCampos() {
+//   jComboBoxDUEÑOS.getModel().setSelectedItem("Seleccione Cliente");
+//   this.jComboBoxMASCOTAS.getModel().setSelectedItem("");
+//   this.jLabelEdad.setText("");
+//   this.jLabelPesoActual.setText("");
+//   this.jLabelEdad1.setText("");
+//   this.jLabelEspecie.setText("");
+//    this.jLabelRaza.setText("");
+//   this.jLabelSituacionPeso.setText("");
+//   this.jLabelRaza.setText("");
+//   this.jLabelOpcionDespar.setText("");
+//   jLabelTiempoDespar.setText("");
+//   this.jLabelProximaDESPAR.setText("");
+//   this.limpiarTabla(jTablePENDIENTES);
+//   this.limpiarTabla(jTableVACUNAS);
+//   jTextAreaALERGIAS.setText("");
+//   this.jTextAreaDIAGNOSTICO.setText("");
+//   this.jComboBoxTIPOCONSULTA.getModel().setSelectedItem("Seleccione Concepto");
+//   this.jComboBoxCATEGORIAS.getModel().setSelectedItem("Seleccionar Categoría");
+//   this.jComboBoxMEDICAMENTOS.getModel().setSelectedItem("Seleccionar Medicamento");
+//   this.jLabelCantiACTUAL.setText("");
+//   this.jSpinnerCantMedicamento.getModel().setValue("");
+//   this.jTextAreaCOMPOSICION.setText("");
+//   this.limpiarTabla(TABLA);
+//   this.buttonTaskAGREGAR.setVisible(true);
+//   this.buttonTaskQUITAR.setVisible(false);
+//  }
 
 private void ENLACE() {
   int L=0,ES=0,MOD=0,ELI=0;
@@ -1669,12 +1666,12 @@ private void BuscarDatosMedicamento(String medicamento) {
         }
     }
 
-private void BuscarMedicamentosxCategoria(String categoria) {
+private void BuscarMedicamentosxCategoria(String categoria,int especie) {
     try {            
         DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
         cn=cm.Conectar();
         Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT medicamentos.nombre FROM medicamentos INNER JOIN categoriamedicamento ON categoriamedicamento.id=medicamentos.idcategoria WHERE categoriamedicamento.nombre LIKE '"+categoria+"%'");                     
+        ResultSet rs = st.executeQuery("SELECT medicamentos.nombre FROM medicamentos INNER JOIN medicamentoxespecieyoperacion ON medicamentoxespecieyoperacion.idmedicamento=medicamentos.id INNER JOIN categoriamedicamento ON medicamentos.idcategoria=categoriamedicamento.id WHERE categoriamedicamento.nombre LIKE '"+categoria+"%' AND medicamentoxespecieyoperacion.idespecie="+especie);                     
         while (rs.next()) {
            modeloCombo.addElement(rs.getString("medicamentos.nombre"));
         }
@@ -1895,7 +1892,7 @@ private void LlenarTablaPENDIENTES(int IDHISTORIAL) {
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
             cn=cm.Conectar();
             Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre FROM tipooperacion WHERE id=1");
+            ResultSet rs = st.executeQuery("SELECT nombre FROM tipooperacion WHERE idcategoria=1");
                      
             while (rs.next()) {
                modeloCombo.addElement(rs.getString("nombre"));
@@ -2018,7 +2015,6 @@ private void LlenarTablaPENDIENTES(int IDHISTORIAL) {
          
         }
     }
- 
  
 int cantidadFichas;
 private void obtenerCantidadFichas(int propietario) {
@@ -2149,14 +2145,13 @@ private void FORMATO_TABLAPENDIENTES(){
     }
 
 private void FORMATO_TABLAMEDICAMENTOS(){
-   jTablePENDIENTES.getColumnModel().getColumn(0).setPreferredWidth(50);
-   jTablePENDIENTES.getColumnModel().getColumn(1).setPreferredWidth(130);
+   TABLA.getColumnModel().getColumn(0).setPreferredWidth(50);
+   TABLA.getColumnModel().getColumn(1).setPreferredWidth(130);
     }
-
  
 
-    private void LimpiarCamposDATOSMASCOTA() {
-        this.jLabelEdad.setText("");
+private void LimpiarCamposDATOSMASCOTA() {
+   jLabelEdad.setText("");
    this.jLabelPesoActual.setText("");
    this.jLabelEdad1.setText("");
    this.jLabelEspecie.setText("");
@@ -2189,5 +2184,472 @@ private void FORMATO_TABLAMEDICAMENTOS(){
          System.out.println(ex.getMessage());
       }  
     }
+
+    public void InhabilitarSeccionOperacion() {
+       this.jComboBoxCATEGORIAS.setEnabled(false);
+       this.jComboBoxMEDICAMENTOS.setEnabled(false);
+       this.jComboBoxTIPOCONSULTA.setEnabled(false);
+       this.jSpinnerCantMedicamento.setEnabled(false);
+       this.TABLA.setEnabled(false);
+       this.buttonTaskAGREGAR.setEnabled(false);
+       this.jDateChooserFECHATURNO.setEnabled(false);
+       this.jFormattedTextFieldHORARIO.setEnabled(false);
+       this.buttonActionVERIFICAR.setEnabled(false);
+    }
+    
+    public void HabilitarSeccionOperacion() {
+       this.jComboBoxCATEGORIAS.setEnabled(true);
+       this.jComboBoxMEDICAMENTOS.setEnabled(true);
+       this.jComboBoxTIPOCONSULTA.setEnabled(true);
+       this.jSpinnerCantMedicamento.setEnabled(true);
+       this.TABLA.setEnabled(true);
+       this.buttonTaskAGREGAR.setEnabled(true);
+       this.jDateChooserFECHATURNO.setEnabled(true);
+       this.jFormattedTextFieldHORARIO.setEnabled(true);
+       this.buttonActionVERIFICAR.setEnabled(true);
+    }
+    
+
+public void calculoEDAD(){
+    String fechanacimiento;int resultadoaño,sumardias,resultadomes;
+    
+    try {
+         fechanacimiento=cumpleaños;
+         fecha();    
+     
+     int añoactual =hoy.get(Calendar.YEAR);          
+     int selecaño= Integer.parseInt(fechanacimiento.substring(0,4));
+     
+     int mesactual=hoy.get(Calendar.MONTH)+1;
+     int messelec= Integer.parseInt(fechanacimiento.substring(5,7));
+     int contar=0;
+     int dia= Calendario.get(Calendar.DAY_OF_MONTH);                
+     int diaselec= Integer.parseInt(fechanacimiento.substring(8,10));
+     
+     int mes= Integer.parseInt(fechanacimiento.substring(5,7));
+     int añobisiesto =2016+4;
+     
+     resultadoaño=añoactual-selecaño;
+     if(resultadoaño==0){    // SI EL RESULTADO ES 0, QUIERE DECIR QUE NACIO EN EL CORRIENTE AÑO
+        if(messelec==mesactual){
+           resultadomes=0;
+        }else if(messelec<mesactual){
+           resultadomes=mesactual-messelec;
+        }else{
+           resultadomes=messelec-mesactual;
+        }
+
+          if(resultadomes==0){
+              int dias=diaselec;
+                while(dias!=dia){
+                   dias++;
+                   contar++;
+                } 
+                jLabelEdad.setText(String.valueOf(contar));  
+                jLabelEdad1.setText("DIAS");
+                edad=contar;
+                tiemponac="DIAS";
+                
+                ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac);
+          }else if(resultadomes<2 || resultadomes==2){       
+                if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                      while(diaselec!=31){
+                         diaselec++;
+                         contar++;
+                      }
+                      mes++;
+                      sumardias=contar;
+                      contar=0;
+                     
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                      }else{
+                        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                            while(contar!=31){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }else{
+                            while(contar!=30){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }
+                      mes++;
+                      sumardias=sumardias+contar;
+                      contar=0;
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                       sumardias=sumardias+contar;
+                      }                      
+                   }          
+                }else{
+                   if(mes==2 & añoactual==añobisiesto){
+                    while(diaselec!=29){
+                         diaselec++;
+                         contar++;
+                      }
+                      mes++;
+                      sumardias=contar;
+                      contar=0;
+                     
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                      }else{
+                        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                            while(contar!=31){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }else{
+                            while(contar!=30){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }
+                      mes++;
+                      sumardias=sumardias+contar;
+                      contar=0;
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                       sumardias=sumardias+contar;
+                      }
+                     
+                   }
+                       
+                   }else if(mes==2){
+                         while(diaselec!=28){
+                         diaselec++;
+                         contar++;
+                      }
+                      mes++;
+                      sumardias=contar;
+                      contar=0;
+                     
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                      }else{
+                        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                            while(contar!=31){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }else{
+                            while(contar!=30){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }
+                      mes++;
+                      sumardias=sumardias+contar;
+                      contar=0;
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                       sumardias=sumardias+contar;
+                      }                     
+                   }
+                   }else{
+                     while(diaselec!=30){
+                         diaselec++;
+                         contar++;
+                      }
+                      mes++;
+                      sumardias=contar;
+                      contar=0;
+                     
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                         sumardias=sumardias+contar;
+                      }else{
+                        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                            while(contar!=31){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }else{
+                            while(contar!=30){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }
+                      mes++;
+                      sumardias=sumardias+contar;
+                      contar=0;
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                       sumardias=sumardias+contar;
+                      }                  
+                      
+                   }              
+            }
+                   }                  
+         jLabelEdad.setText(String.valueOf(sumardias));  
+         jLabelEdad1.setText("DIAS");
+         edad=sumardias;
+         tiemponac="DIAS";
+         ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac);
+      }else if(resultadomes<12){
+         jLabelEdad.setText(String.valueOf(resultadomes));
+         jLabelEdad1.setText("MESES");
+         edad=resultadomes;
+         tiemponac="MESES";
+         ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac);
+         }                 
+                
+}else if(resultadoaño==1 & messelec==mesactual){  // // // // año anterior del corriente año.....
+        // // //esto quiere decir que pase a mostrar años
+           jLabelEdad.setText(String.valueOf(resultadoaño)); 
+           jLabelEdad1.setText("AÑO"); 
+           edad=resultadoaño;
+           tiemponac="AÑO";
+           ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac);
+}else if(resultadoaño==1 & messelec<=3){
+    int contador=0;
+    int contarmes=0;
+          
+    contarmes=messelec;
+          
+    while(contarmes!=mesactual){ 
+       if(contarmes!=12){
+          contador++;
+          contarmes++;
+       }else{
+          contador++;
+          contarmes=1;
+       }                  
+     }                 
+    jLabelEdad.setText(String.valueOf(contador));
+    jLabelEdad1.setText("MESES");
+    edad=contador;
+    tiemponac="MESES";
+    ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac); 
+}else  if(resultadoaño==1 || resultadoaño<1){        
+   if(messelec<mesactual){
+         resultadomes=mesactual-messelec;
+      }else{
+         resultadomes=messelec-mesactual;
+      }
+     
+     if(resultadomes<2 || resultadomes==2){       
+         if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+             while(diaselec!=31){
+                 diaselec++;
+                 contar++;
+              }
+              mes++;
+              sumardias=contar;
+              contar=0;
+
+              if(mes==mesactual){
+                 while(contar!=dia){
+                 contar++;
+                 }
+              }else{
+                if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                        while(contar!=31){
+//                         diaselec++;
+                         contar++;
+                         }
+                    }else{
+                        while(contar!=30){
+//                         diaselec++;
+                         contar++;
+                         }
+                    }
+                  mes++;
+                  sumardias=sumardias+contar;
+                  contar=0;
+                  if(mes==mesactual){
+                     while(contar!=dia){
+                     contar++;
+                     }
+                   sumardias=sumardias+contar;
+                  }
+
+               }                 
+                   
+                }else{
+                   if(mes==2 & añoactual==añobisiesto){
+                    while(diaselec!=29){
+                         diaselec++;
+                         contar++;
+                      }
+                      mes++;
+                      sumardias=contar;
+                      contar=0;
+                     
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                      }else{
+                        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                            while(contar!=31){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }else{
+                            while(contar!=30){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }
+                      mes++;
+                      sumardias=sumardias+contar;
+                      contar=0;
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                       sumardias=sumardias+contar;
+                      }
+                     
+                   }
+                       
+                   }else if(mes==2){
+                         while(diaselec!=28){
+                         diaselec++;
+                         contar++;
+                      }
+                      mes++;
+                      sumardias=contar;
+                      contar=0;
+                     
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                      }else{
+                        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                            while(contar!=31){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }else{
+                            while(contar!=30){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }
+                      mes++;
+                      sumardias=sumardias+contar;
+                      contar=0;
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                       sumardias=sumardias+contar;
+                      }                     
+                   }
+                   }else{
+                     while(diaselec!=30){
+                         diaselec++;
+                         contar++;
+                      }
+                      mes++;
+                      sumardias=contar;
+                      contar=0;
+                     
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                         sumardias=sumardias+contar;
+                      }else{
+                        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+                            while(contar!=31){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }else{
+                            while(contar!=30){
+    //                         diaselec++;
+                             contar++;
+                             }
+                        }
+                      mes++;
+                      sumardias=sumardias+contar;
+                      contar=0;
+                      if(mes==mesactual){
+                         while(contar!=dia){
+                         contar++;
+                         }
+                       sumardias=sumardias+contar;
+                      }                  
+                      
+                   }              
+            }
+         }                  
+         jLabelEdad.setText(String.valueOf(sumardias));  
+         jLabelEdad1.setText("DIAS"); 
+         edad=sumardias;
+         tiemponac="DIAS";
+         ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac);
+      }else if(resultadomes<12){
+          int contador=0;
+          int contarmes=0;
+          
+          contarmes=messelec;
+          
+          while(contarmes!=mesactual){ 
+               if(contarmes!=12){
+                  contador++;
+                  contarmes++;
+               }else{
+                  contador++;
+                  contarmes=1;
+               }                  
+            }                 
+        this.jLabelEdad.setText(String.valueOf(contador));
+        jLabelEdad1.setText("MESES");
+        edad=contador;
+        tiemponac="MESES";
+        ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac);
+       }         
+      }else{
+         jLabelEdad.setText(String.valueOf(resultadoaño)); 
+         jLabelEdad1.setText("AÑOS");
+         edad=resultadoaño;
+         tiemponac="AÑOS";
+         ficha.ActualizarFechaNac(IDFICHA, edad, tiemponac);
+      }     
+ } catch (Exception e) {
+     System.out.print(e);
+    }
+}
+
+private void ReporteConculta(int IdOperacion) {
+     try {           
+        String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteConsulta.jasper";
+        JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);   
+
+         Map parametro=new HashMap();
+         parametro.clear();
+         parametro.put("IDOPERACION",IdOperacion);
+
+         JasperPrint print=JasperFillManager.fillReport(reportes,parametro,cm.Conectar());             
+         JasperViewer vista= new JasperViewer(print,false);
+         vista.setVisible(true);
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } 
+}
+
 }
 

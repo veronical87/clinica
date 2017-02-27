@@ -349,13 +349,31 @@ int filasel;
             mu.medicamentoAnterior=medicamento;
             mu.cantiactualAnterior=cantactual;
             mu.cantiminimoAnterior=cantminimo;
-            mu.jComboBox1.getModel().setSelectedItem(categoria);
+            mu.banderacategoria=false;
+            mu.jComboBoxCATEGORIA.getModel().setSelectedItem(categoria);
+            
+            mu.jComboBoxTipoOperacion.getModel().setSelectedItem(tipoOperacion);
+            
             mu.JTextFieldNombre.setText(medicamento);
             mu.jTextAreaACCION.setText(accion);
             mu.jTextAreaCOMPOSICION.setText(composicion);
             mu.jTextAreaDESCRIPCIN.setText(descripcion);
             mu.jTextFieldACTUAL.setText(String.valueOf(cantactual));
             mu.jTextFieldMINIMO.setText(String.valueOf(cantminimo));
+            
+            if(cantidad==2){
+              mu.jRadioButtonAMBOS.getModel().setSelected(true);
+              mu.jRadioButtonEspecieCANINA.getModel().setSelected(false);
+              mu.jRadioButtonEspecieFELINA.getModel().setSelected(false);
+            }else if(IDEspecie==1){
+              mu.jRadioButtonEspecieCANINA.getModel().setSelected(true);
+              mu.jRadioButtonAMBOS.getModel().setSelected(false);
+              mu.jRadioButtonEspecieFELINA.getModel().setSelected(false);
+            }else if(IDEspecie==2){
+                mu.jRadioButtonEspecieFELINA.getModel().setSelected(true);
+                mu.jRadioButtonEspecieCANINA.getModel().setSelected(false);
+                mu.jRadioButtonAMBOS.getModel().setSelected(false); 
+            }
             mu.show();
         } else {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar un Ítem de la Lista", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -368,6 +386,7 @@ int filasel;
         if(filasel!=-1){            
             int resultado=med.VerificarMedicamentoxOperacion(idMedicamento);        
             if(resultado !=0){
+                
                 int salida=med.EliminarMedicamento(idMedicamento);
                 med.InsertarDatosAuditoria(fechaActual,hor,usu,"MEDICAMENTOS","BAJA"," "," ");
                 JOptionPane.showMessageDialog(null,"El Medicamento Solicitado esta Siendo Utilizado, No Puede ser Borrado","Información",JOptionPane.INFORMATION_MESSAGE);
@@ -464,11 +483,11 @@ int filasel;
        }
     }
   
-    String medicamento,categoria,composicion,accion,descripcion;int idMedicamento,cantminimo,cantactual;   
+    String medicamento,categoria,composicion,accion,descripcion,tipoOperacion;int cantidad,IDEspecie,idMedicamento,cantminimo,cantactual;   
     private void BuscarDatosMedicamento(String id) {
         String sSQL = "";        
         cn=cm.Conectar();
-        sSQL = "SELECT medicamentos.id,categoriamedicamento.nombre,medicamentos.nombre,descripcion,composicion,accion,cantminima,cantactual FROM medicamentos INNER JOIN categoriamedicamento ON categoriamedicamento.id=medicamentos.idcategoria WHERE medicamentos.id LIKE '"+id+"%'";
+        sSQL = "SELECT COUNT(medicamentoxespecieyoperacion.idmedicamento) AS cantidad,medicamentos.id,medicamentoxespecieyoperacion.idespecie,tipooperacion.nombre,categoriamedicamento.nombre,medicamentos.nombre,descripcion,composicion,accion,cantminima,cantactual FROM especies INNER JOIN medicamentoxespecieyoperacion ON especies.id=medicamentoxespecieyoperacion.idespecie INNER JOIN tipooperacion ON tipooperacion.id=medicamentoxespecieyoperacion.idtipoOp INNER JOIN  medicamentos ON medicamentoxespecieyoperacion.idmedicamento=medicamentos.id INNER JOIN categoriamedicamento ON categoriamedicamento.id=medicamentos.idcategoria WHERE medicamentos.id  LIKE '"+id+"%'";
         
          try
             {
@@ -476,14 +495,18 @@ int filasel;
             ResultSet rs = st.executeQuery(sSQL);
             while(rs.next())
             {
-                idMedicamento=rs.getInt("medicamentos.id");                                
+                cantidad=rs.getInt("cantidad");
+                IDEspecie=rs.getInt("medicamentoxespecieyoperacion.idespecie"); 
+                idMedicamento=rs.getInt("medicamentos.id"); 
+                tipoOperacion=rs.getString("tipooperacion.nombre");
                 medicamento=rs.getString("medicamentos.nombre");
                 categoria=rs.getString("categoriamedicamento.nombre"); 
                 descripcion=rs.getString("descripcion"); 
                 accion=rs.getString("accion"); 
                 composicion=rs.getString("composicion"); 
                 cantactual=rs.getInt("cantactual");  
-                cantminimo=rs.getInt("cantminima");  
+                cantminimo=rs.getInt("cantminima"); 
+                
                }        
             }
         catch (SQLException ex)

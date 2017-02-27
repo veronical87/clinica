@@ -18,8 +18,8 @@ public class ClasePERMISOS {
        cn=cm.Conectar();
     }  
     //**PERMISOS**//
- public void AsociarPermisos(int idrol,int L_FICHAMEDICA,int ESC_FICHAMEDICA,int MOD_FICHAMEDICA,int ELI_FICHAMEDICA,int L_ESPECIE,int ESC_ESPECIE,int MOD_ESPECIE,int ELIM_ESPECIE,int L_RAZA,int ESC_RAZA,int MOD_RAZA,int ELIM_RAZA,int L_MEDICAMENTO,int ESC_MEDICAMENTO,int MOD_MEDICAMENTO,int ELIM_MEDICAMENTO,int L_HORA,int ESC_HORA,int MOD_HORA,int ELIM_HORA,int L_PROVINC,int ES_PROVINC,int  MOD_PROVINC,int ELI_PROVINC,int L_LOC,int ES_LOC,int  MOD_LOC,int  ELI_LOC,int L_TIPOTEL,int ESC_TIPOTEL,int MOD_TIPOTEL,int ELI_TIPOTEL,int L_USU,int ES_USU,int MOD_USU,int ELI_USU,int L_ROL,int ES_ROL,int MOD_ROL,int ELI_ROL,int audi,int res,int PERMISO,int L_VETERINARIO,int ESC_VETERINARIO,int MOD_VETERINARIO,int ELIM_VETERINARIO,int REPORTES,int GRAFICOS,int L_CONSULTA,int ESC_CONSULTA,int MOD_CONSULTA,int ELI_CONSULTA,int L_CATEGORIA,int ESC_CATEGORIA,int MOD_CATEGORIA,int ELI_CATEGORIA,int L_CIRUGIA,int ESC_CIRUGIA,int MOD_CIRUGIA,int ELI_CIRUGIA,int L_VACUNA,int ESC_VACUNA,int MOD_VACUNA,int ELIM_VACUNA,int L_AFECCION,int ESC_AFECCION,int MOD_AFECCION,int ELIM_AFECCION,int L_CATOPERACION,int ESC_CATOPERACION,int MOD_CATOPERACION,int ELIM_CATOPERACION,int L_OPERACION,int ESC_OPERACION,int MOD_OPERACION,int ELIM_OPERACION,int LOGO,int L_PELAJE,int ESC_PELAJE,int MOD_PELAJE,int ELIM_PELAJE){
-   String sql="call AsociarPermisos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+ public void AsociarPermisos(int idrol,int L_FICHAMEDICA,int ESC_FICHAMEDICA,int MOD_FICHAMEDICA,int ELI_FICHAMEDICA,int L_ESPECIE,int ESC_ESPECIE,int MOD_ESPECIE,int ELIM_ESPECIE,int L_RAZA,int ESC_RAZA,int MOD_RAZA,int ELIM_RAZA,int L_MEDICAMENTO,int ESC_MEDICAMENTO,int MOD_MEDICAMENTO,int ELIM_MEDICAMENTO,int L_HORA,int ESC_HORA,int MOD_HORA,int ELIM_HORA,int L_PROVINC,int ES_PROVINC,int  MOD_PROVINC,int ELI_PROVINC,int L_LOC,int ES_LOC,int  MOD_LOC,int  ELI_LOC,int L_TIPOTEL,int ESC_TIPOTEL,int MOD_TIPOTEL,int ELI_TIPOTEL,int L_USU,int ES_USU,int MOD_USU,int ELI_USU,int L_ROL,int ES_ROL,int MOD_ROL,int ELI_ROL,int audi,int res,int PERMISO,int L_VETERINARIO,int ESC_VETERINARIO,int MOD_VETERINARIO,int ELIM_VETERINARIO,int REPORTES,int GRAFICOS,int L_CONSULTA,int ESC_CONSULTA,int MOD_CONSULTA,int ELI_CONSULTA,int L_CATEGORIA,int ESC_CATEGORIA,int MOD_CATEGORIA,int ELI_CATEGORIA,int L_CIRUGIA,int ESC_CIRUGIA,int MOD_CIRUGIA,int ELI_CIRUGIA,int L_VACUNA,int ESC_VACUNA,int MOD_VACUNA,int ELIM_VACUNA,int L_AFECCION,int ESC_AFECCION,int MOD_AFECCION,int ELIM_AFECCION,int L_CATOPERACION,int ESC_CATOPERACION,int MOD_CATOPERACION,int ELIM_CATOPERACION,int L_OPERACION,int ESC_OPERACION,int MOD_OPERACION,int ELIM_OPERACION,int LOGO,int L_PELAJE,int ESC_PELAJE,int MOD_PELAJE,int ELIM_PELAJE,int L_LISTADO,int ELIM_LISTADO){
+   String sql="call AsociarPermisos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try{
           cmd=cn.prepareCall(sql);                   
           cmd.setInt(1,idrol);
@@ -110,14 +110,16 @@ public class ClasePERMISOS {
           cmd.setInt(81,ESC_PELAJE);
           cmd.setInt(82,MOD_PELAJE);
           cmd.setInt(83,ELIM_PELAJE);
+          cmd.setInt(84,L_LISTADO);
+          cmd.setInt(85,ELIM_LISTADO);
           cmd.execute();
        }catch(Exception ex){
          System.out.println(ex.getMessage());
        }
     }
     
- public void ActualizarPermisos(int idrol,int L_FICHAMEDICA,int ESC_FICHAMEDICA,int MOD_FICHAMEDICA,int ELI_FICHAMEDICA,int L_ESPECIE,int ESC_ESPECIE,int MOD_ESPECIE,int ELIM_ESPECIE,int L_RAZA,int ESC_RAZA,int MOD_RAZA,int ELIM_RAZA,int L_MEDICAMENTO,int ESC_MEDICAMENTO,int MOD_MEDICAMENTO,int ELIM_MEDICAMENTO,int L_HORA,int ESC_HORA,int MOD_HORA,int ELIM_HORA,int L_PROVINC,int ES_PROVINC,int  MOD_PROVINC,int ELI_PROVINC,int L_LOC,int ES_LOC,int  MOD_LOC,int  ELI_LOC,int L_TIPOTEL,int ESC_TIPOTEL,int MOD_TIPOTEL,int ELI_TIPOTEL,int L_USU,int ES_USU,int MOD_USU,int ELI_USU,int L_ROL,int ES_ROL,int MOD_ROL,int ELI_ROL,int audi,int res,int PERMISO,int L_VETERINARIO,int ESC_VETERINARIO,int MOD_VETERINARIO,int ELIM_VETERINARIO,int REPORTES,int GRAFICOS,int L_CONSULTA,int ESC_CONSULTA,int MOD_CONSULTA,int ELI_CONSULTA,int L_CATEGORIA,int ESC_CATEGORIA,int MOD_CATEGORIA,int ELI_CATEGORIA,int L_CIRUGIA,int ESC_CIRUGIA,int MOD_CIRUGIA,int ELI_CIRUGIA,int L_VACUNA,int ESC_VACUNA,int MOD_VACUNA,int ELIM_VACUNA,int L_AFECCION,int ESC_AFECCION,int MOD_AFECCION,int ELIM_AFECCION,int L_CATOPERACION,int ESC_CATOPERACION,int MOD_CATOPERACION,int ELIM_CATOPERACION,int L_OPERACION,int ESC_OPERACION,int MOD_OPERACION,int ELIM_OPERACION,int LOGO,int L_PELAJE,int ESC_PELAJE,int MOD_PELAJE,int ELIM_PELAJE){
-   String sql="call ActualizarPermisos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+ public void ActualizarPermisos(int idrol,int L_FICHAMEDICA,int ESC_FICHAMEDICA,int MOD_FICHAMEDICA,int ELI_FICHAMEDICA,int L_ESPECIE,int ESC_ESPECIE,int MOD_ESPECIE,int ELIM_ESPECIE,int L_RAZA,int ESC_RAZA,int MOD_RAZA,int ELIM_RAZA,int L_MEDICAMENTO,int ESC_MEDICAMENTO,int MOD_MEDICAMENTO,int ELIM_MEDICAMENTO,int L_HORA,int ESC_HORA,int MOD_HORA,int ELIM_HORA,int L_PROVINC,int ES_PROVINC,int  MOD_PROVINC,int ELI_PROVINC,int L_LOC,int ES_LOC,int  MOD_LOC,int  ELI_LOC,int L_TIPOTEL,int ESC_TIPOTEL,int MOD_TIPOTEL,int ELI_TIPOTEL,int L_USU,int ES_USU,int MOD_USU,int ELI_USU,int L_ROL,int ES_ROL,int MOD_ROL,int ELI_ROL,int audi,int res,int PERMISO,int L_VETERINARIO,int ESC_VETERINARIO,int MOD_VETERINARIO,int ELIM_VETERINARIO,int REPORTES,int GRAFICOS,int L_CONSULTA,int ESC_CONSULTA,int MOD_CONSULTA,int ELI_CONSULTA,int L_CATEGORIA,int ESC_CATEGORIA,int MOD_CATEGORIA,int ELI_CATEGORIA,int L_CIRUGIA,int ESC_CIRUGIA,int MOD_CIRUGIA,int ELI_CIRUGIA,int L_VACUNA,int ESC_VACUNA,int MOD_VACUNA,int ELIM_VACUNA,int L_AFECCION,int ESC_AFECCION,int MOD_AFECCION,int ELIM_AFECCION,int L_CATOPERACION,int ESC_CATOPERACION,int MOD_CATOPERACION,int ELIM_CATOPERACION,int L_OPERACION,int ESC_OPERACION,int MOD_OPERACION,int ELIM_OPERACION,int LOGO,int L_PELAJE,int ESC_PELAJE,int MOD_PELAJE,int ELIM_PELAJE,int L_LISTADO,int ELIM_LISTADO){
+   String sql="call ActualizarPermisos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try{
           cmd=cn.prepareCall(sql);          
           cmd.setInt(1,idrol);
@@ -208,6 +210,8 @@ public class ClasePERMISOS {
           cmd.setInt(81,ESC_PELAJE);
           cmd.setInt(82,MOD_PELAJE);
           cmd.setInt(83,ELIM_PELAJE);
+          cmd.setInt(84,L_LISTADO);
+          cmd.setInt(85,ELIM_LISTADO);
           cmd.execute();
        }catch(Exception ex){
          System.out.println(ex.getMessage());

@@ -385,6 +385,8 @@ int filasel;
             mp.jLabelVETERINARIO.setText(usuario);
             mp.jComboBoxDUEÑOS.getModel().setSelectedItem(DUEÑO);
             mp.IDOperacion=IDConsulta;
+            mp.OperacionRegistrada=false;
+//            aca me falta capturar el resto de los datos copy and paste de gestioncirugias -----
             mp.show();
         } else {
             JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
@@ -623,7 +625,7 @@ String usuario;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 AND propietarios.apellido LIKE '"+buscar+"%' OR propietarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND tipooperacion.idcategoria=1 AND propietarios.apellido LIKE '"+buscar+"%' OR propietarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -655,7 +657,7 @@ String usuario;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND tipooperacion.idcategoria=1 AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -687,7 +689,7 @@ String usuario;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND tipooperacion.idcategoria=1 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -743,7 +745,7 @@ int IDConsulta;String operacion,DUEÑO;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 AND operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND tipooperacion.idcategoria=1 AND operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -775,7 +777,7 @@ int IDConsulta;String operacion,DUEÑO;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 AND operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND tipooperacion.idcategoria=1 AND operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -807,7 +809,7 @@ int IDConsulta;String operacion,DUEÑO;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' AND tipooperacion.idcategoria=1 AND propietarios.apellido LIKE '"+buscar+"%' OR  propietarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' AND tipooperacion.idcategoria=1 AND propietarios.apellido LIKE '"+buscar+"%' OR  propietarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -839,7 +841,7 @@ int IDConsulta;String operacion,DUEÑO;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' AND tipooperacion.idcategoria=1 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND operaciones.fecha BETWEEN '"+d+"%' AND '"+h+"%' AND tipooperacion.idcategoria=1 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -871,7 +873,7 @@ int IDConsulta;String operacion,DUEÑO;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE tipooperacion.idcategoria=1 AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY operaciones.fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND tipooperacion.idcategoria=1 AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY operaciones.fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -903,7 +905,7 @@ int IDConsulta;String operacion,DUEÑO;
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.fecha  BETWEEN '"+d+"%' AND '"+h+"%' AND tipooperacion.idcategoria=1 AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY operaciones.fecha ASC";
+    String sSQL = "SELECT operaciones.fecha,operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND operaciones.fecha  BETWEEN '"+d+"%' AND '"+h+"%' AND tipooperacion.idcategoria=1 AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY operaciones.fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();

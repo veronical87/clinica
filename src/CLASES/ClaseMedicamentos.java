@@ -147,4 +147,17 @@ public int EliminarMedicamento(int id) {
         }      
         return encontrada;
     }
+
+    public void AgregarMedxTipoOp(int idMed, int idespecie, int IDTipoOp) {
+         String sql="call AgregarMedxTipoOp(?,?,?)";
+        try{
+          cmd=cn.prepareCall(sql); 
+          cmd.setInt(1,idMed);         
+          cmd.setInt(2,idespecie);
+          cmd.setInt(3,IDTipoOp);         
+          cmd.execute();
+       }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       } 
+    }
 }

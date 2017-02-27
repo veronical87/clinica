@@ -22,6 +22,7 @@ public class AltaMedicamento extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panelRectTranslucido1 = new org.edisoncor.gui.panel.PanelRectTranslucido();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -43,6 +44,12 @@ public class AltaMedicamento extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaACCION = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBoxTipoOperacion = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
+        jRadioButtonEspecieCANINA = new javax.swing.JRadioButton();
+        jRadioButtonEspecieFELINA = new javax.swing.JRadioButton();
+        jRadioButtonAMBOS = new javax.swing.JRadioButton();
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
         buttonActionCANCELAR = new org.edisoncor.gui.button.ButtonAction();
 
@@ -81,8 +88,9 @@ public class AltaMedicamento extends javax.swing.JDialog {
         jLabel3.setText("*Campos Obligatorios");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Categoria(*)");
+        jLabel4.setText("Categoría(*)");
 
+        jComboBoxCATEGORIA.setEditable(true);
         jComboBoxCATEGORIA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jComboBoxCATEGORIA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Categoria de Medicamento" }));
         jComboBoxCATEGORIA.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -110,7 +118,7 @@ public class AltaMedicamento extends javax.swing.JDialog {
         jLabel5.setText("Cant.Actual(*)");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setText("Cant.Minimo(*)");
+        jLabel6.setText("Cant.Mínimo(*)");
 
         jTextFieldMINIMO.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -119,7 +127,7 @@ public class AltaMedicamento extends javax.swing.JDialog {
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("Descripcion(*)");
+        jLabel7.setText("Descripción(*)");
 
         jTextAreaDESCRIPCIN.setColumns(20);
         jTextAreaDESCRIPCIN.setRows(5);
@@ -141,7 +149,7 @@ public class AltaMedicamento extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTextAreaDESCRIPCIN);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel8.setText("Composicion(*)");
+        jLabel8.setText("Composición(*)");
 
         jTextAreaCOMPOSICION.setColumns(20);
         jTextAreaCOMPOSICION.setRows(5);
@@ -153,7 +161,7 @@ public class AltaMedicamento extends javax.swing.JDialog {
         jScrollPane2.setViewportView(jTextAreaCOMPOSICION);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel9.setText("Accion(*)");
+        jLabel9.setText("Acción");
 
         jTextAreaACCION.setColumns(20);
         jTextAreaACCION.setRows(5);
@@ -164,40 +172,108 @@ public class AltaMedicamento extends javax.swing.JDialog {
         });
         jScrollPane3.setViewportView(jTextAreaACCION);
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("(*)");
+
+        jComboBoxTipoOperacion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jComboBoxTipoOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Operación que Pertenece" }));
+        jComboBoxTipoOperacion.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBoxTipoOperacionPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        jComboBoxTipoOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoOperacionActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Especie(*)");
+
+        jRadioButtonEspecieCANINA.setBackground(new java.awt.Color(141, 141, 175));
+        buttonGroup1.add(jRadioButtonEspecieCANINA);
+        jRadioButtonEspecieCANINA.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jRadioButtonEspecieCANINA.setText("CANINA");
+        jRadioButtonEspecieCANINA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonEspecieCANINAActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonEspecieFELINA.setBackground(new java.awt.Color(141, 141, 175));
+        buttonGroup1.add(jRadioButtonEspecieFELINA);
+        jRadioButtonEspecieFELINA.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jRadioButtonEspecieFELINA.setText("FELINA");
+        jRadioButtonEspecieFELINA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonEspecieFELINAActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonAMBOS.setBackground(new java.awt.Color(141, 141, 175));
+        buttonGroup1.add(jRadioButtonAMBOS);
+        jRadioButtonAMBOS.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jRadioButtonAMBOS.setText("AMBOS");
+        jRadioButtonAMBOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAMBOSActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jTextFieldACTUAL, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldMINIMO, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3)))
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(jComboBoxTipoOperacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxCATEGORIA, 0, 261, Short.MAX_VALUE)
-                            .addComponent(JTextFieldNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8))
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldACTUAL, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldMINIMO, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(jScrollPane3)))
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxCATEGORIA, 0, 261, Short.MAX_VALUE)
+                                    .addComponent(JTextFieldNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jLabel10)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(53, 53, 53)
+                                .addComponent(jRadioButtonEspecieCANINA)
+                                .addGap(37, 37, 37)
+                                .addComponent(jRadioButtonEspecieFELINA)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioButtonAMBOS)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,20 +287,27 @@ public class AltaMedicamento extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(JTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBoxTipoOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jRadioButtonEspecieCANINA)
+                    .addComponent(jRadioButtonEspecieFELINA)
+                    .addComponent(jRadioButtonAMBOS))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldMINIMO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +315,7 @@ public class AltaMedicamento extends javax.swing.JDialog {
                         .addComponent(jTextFieldACTUAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
@@ -294,7 +377,9 @@ public class AltaMedicamento extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -326,20 +411,36 @@ int IDUSUARIO,IDROL;
     }//GEN-LAST:event_JTextFieldNombreKeyTyped
 
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
-        if(jTextFieldACTUAL.getText().equals("")|| this.jTextFieldMINIMO.getText().equals("")|| this.JTextFieldNombre.getText().equals("")){
+    if(this.jComboBoxCATEGORIA.getModel().getSelectedItem().equals("Seleccionar Categoria de Medicamento")|| this.jComboBoxTipoOperacion.getModel().getSelectedItem().equals("Seleccionar Operación que Pertenece")|| this.jTextAreaCOMPOSICION.getText().equals("")|| this.jTextAreaDESCRIPCIN.getText().equals("")|| jTextFieldACTUAL.getText().equals("")|| this.jTextFieldMINIMO.getText().equals("")|| JTextFieldNombre.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Debe Completar Los Campos Obligatorios","Atención", JOptionPane.WARNING_MESSAGE);
         }else{
              BuscarUsuario();
              fecha();
              int cantiactual=Integer.parseInt(this.jTextFieldACTUAL.getText());
              int cantiminimo=Integer.parseInt(this.jTextFieldMINIMO.getText());
+             int idespecie=0;
             
              if(cantiminimo<cantiactual){
                  String nombre=this.JTextFieldNombre.getText();             
                  String descripcion=this.jTextAreaDESCRIPCIN.getText();String composicion=this.jTextAreaCOMPOSICION.getText();String accion=this.jTextAreaACCION.getText();    
+                 String categoria=String.valueOf(jComboBoxCATEGORIA.getModel().getSelectedItem());
                  
+                 if(idcategoria==0){
+                   BuscarIDCategoria(categoria);
+                 }
                  int salida=med.AgregarMedicamento(nombre,idcategoria,cantiactual,cantiminimo,descripcion,composicion,accion);
                  if(salida!=0){
+                     this.BuscarIDMedicamento();
+                    if(this.jRadioButtonEspecieCANINA.getModel().isSelected()){
+                       idespecie=1;
+                       med.AgregarMedxTipoOp(idMed,idespecie,IDTipoOp);
+                    }else if(this.jRadioButtonEspecieFELINA.getModel().isSelected()){
+                       idespecie=2;
+                       med.AgregarMedxTipoOp(idMed,idespecie,IDTipoOp);
+                    }else{
+                       med.AgregarMedxTipoOp(idMed,1,IDTipoOp);
+                       med.AgregarMedxTipoOp(idMed,2,IDTipoOp);
+                    } 
                     JOptionPane.showMessageDialog(null,"El Medicamento "+nombre+" Se Encuentra Registrado","Atención", JOptionPane.WARNING_MESSAGE);
                     JTextFieldNombre.setText("");
                     this.jTextAreaDESCRIPCIN.setText("");
@@ -347,9 +448,7 @@ int IDUSUARIO,IDROL;
                    this.jTextAreaCOMPOSICION.setText("");
                    this.jTextFieldMINIMO.setText("");
                    this.jTextFieldACTUAL.setText("");
-                 }else{
-                   String categoria=String.valueOf(jComboBoxCATEGORIA.getModel().getSelectedItem());
-                   BuscarIDCategoria(categoria);
+                 }else{                   
                    String nuevo="Categoria"+""+categoria+",Medicamento"+nombre+",Cant.Actual"+cantiactual+",Cant.Minimo"+cantiminimo;
 
                    med.InsertarDatosAuditoria(fechaActual,hor, usu,"MEDICAMENTOS","ALTA","",nuevo);
@@ -385,7 +484,12 @@ int IDUSUARIO,IDROL;
     }//GEN-LAST:event_jTextFieldMINIMOKeyTyped
 
     private void jComboBoxCATEGORIAPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxCATEGORIAPopupMenuWillBecomeVisible
-      LlenarComboCategoriaMedicamentos();
+      String combo=coincidencia;
+        if(indice1==-1){
+            BuscarCoincidenciasxCategoriaMedicamento(combo);
+        }else{
+           LlenarComboCategoriaMedicamentos();
+        }
     }//GEN-LAST:event_jComboBoxCATEGORIAPopupMenuWillBecomeVisible
 
     private void jTextAreaDESCRIPCINKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDESCRIPCINKeyTyped
@@ -405,11 +509,19 @@ int IDUSUARIO,IDROL;
             evt.consume();
         }
     }//GEN-LAST:event_jTextAreaACCIONKeyTyped
-
+String seleccion,coincidencia;int indice1;
     private void jComboBoxCATEGORIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCATEGORIAActionPerformed
-    String categoria=String.valueOf(jComboBoxCATEGORIA.getModel().getSelectedItem());
-    BuscarIDCategoria(categoria);
-    this.JTextFieldNombre.requestFocus();
+     seleccion = this.jComboBoxCATEGORIA.getSelectedItem().toString();
+     int indice=this.jComboBoxCATEGORIA.getSelectedIndex();
+
+        if(indice==-1){
+            coincidencia=seleccion;
+            BuscarCoincidenciasxCategoriaMedicamento(seleccion);
+            indice1=indice;
+        }else{
+            BuscarIDCategoria(seleccion);
+            this.JTextFieldNombre.requestFocus();
+        }
     }//GEN-LAST:event_jComboBoxCATEGORIAActionPerformed
 
     private void buttonActionCANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionCANCELARActionPerformed
@@ -424,6 +536,27 @@ int IDUSUARIO,IDROL;
     private void jTextAreaDESCRIPCINCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextAreaDESCRIPCINCaretUpdate
        
     }//GEN-LAST:event_jTextAreaDESCRIPCINCaretUpdate
+
+    private void jComboBoxTipoOperacionPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxTipoOperacionPopupMenuWillBecomeVisible
+      LlenarComboTipoOperacion();
+    }//GEN-LAST:event_jComboBoxTipoOperacionPopupMenuWillBecomeVisible
+
+    private void jComboBoxTipoOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoOperacionActionPerformed
+       String categoria=String.valueOf(this.jComboBoxTipoOperacion.getModel().getSelectedItem());
+       BuscarIDTipoOperacion(categoria);     
+    }//GEN-LAST:event_jComboBoxTipoOperacionActionPerformed
+
+    private void jRadioButtonEspecieCANINAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEspecieCANINAActionPerformed
+      
+    }//GEN-LAST:event_jRadioButtonEspecieCANINAActionPerformed
+
+    private void jRadioButtonEspecieFELINAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEspecieFELINAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonEspecieFELINAActionPerformed
+
+    private void jRadioButtonAMBOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAMBOSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonAMBOSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,8 +603,12 @@ int IDUSUARIO,IDROL;
     public javax.swing.JTextField JTextFieldNombre;
     private org.edisoncor.gui.button.ButtonAction buttonActionCANCELAR;
     private org.edisoncor.gui.button.ButtonAction buttonActionGUARDAR;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox jComboBoxCATEGORIA;
+    private javax.swing.JComboBox jComboBoxTipoOperacion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -481,6 +618,9 @@ int IDUSUARIO,IDROL;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButtonAMBOS;
+    private javax.swing.JRadioButton jRadioButtonEspecieCANINA;
+    private javax.swing.JRadioButton jRadioButtonEspecieFELINA;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -537,7 +677,6 @@ int idcategoria;
         {
             Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
-
             while(rs.next())
               {
                 idcategoria=rs.getInt("id");
@@ -550,22 +689,7 @@ int idcategoria;
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }        
     }
-    
-     private void LlenarComboCategoriaMedicamentos() {
-       try {            
-        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-        cn=cm.Conectar();
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT nombre FROM categoriamedicamento ORDER BY nombre ASC");                     
-        while (rs.next()) {
-           modeloCombo.addElement(rs.getString("nombre"));
-        }
-        rs.close();
-        jComboBoxCATEGORIA.setModel(modeloCombo);            
-    } catch (SQLException ex) {
-            ex.getMessage();
-    } 
-    }
+
 
 private void ENLACE() {
    int L_USU = 0, ES_USU = 0, MOD_USU = 0, ELI_USU = 0;
@@ -627,4 +751,100 @@ private void ENLACE() {
         }
         usu.show();      
     }
+
+int idMed;
+private void BuscarIDMedicamento() {
+  String sSQL = "";        
+    cn=cm.Conectar();
+    sSQL = "SELECT MAX(id)AS id FROM medicamentos";
+    try
+    {
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sSQL);
+        while(rs.next())
+          {
+            idMed=rs.getInt("id");
+           }
+         rs.close();
+        }
+    catch (SQLException ex)
+    {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }      
+}
+
+int IDTipoOp;
+private void BuscarIDTipoOperacion(String operacion) {
+   String sSQL = "";        
+    cn=cm.Conectar();
+    sSQL = "SELECT id FROM tipooperacion WHERE nombre LIKE '"+operacion+"%'";
+    try
+    {
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sSQL);
+        while(rs.next())
+          {
+            IDTipoOp=rs.getInt("id");
+           }
+         rs.close();
+        }
+    catch (SQLException ex)
+    {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    } 
+}
+
+private void LlenarComboTipoOperacion() {
+  try {            
+        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+        cn=cm.Conectar();
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT nombre FROM tipooperacion ORDER BY nombre ASC");
+
+        while (rs.next()) {
+           modeloCombo.addElement(rs.getString("nombre"));
+        }
+        rs.close();           
+        this.jComboBoxTipoOperacion.setModel(modeloCombo);
+
+    } catch (SQLException ex) {
+        ex.getMessage();
+    }   
+}   
+
+private void LlenarComboCategoriaMedicamentos() {
+   try {            
+        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+        cn=cm.Conectar();
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT nombre FROM categoriamedicamento ORDER BY nombre ASC");
+
+        while (rs.next()) {
+           modeloCombo.addElement(rs.getString("nombre"));
+        }
+        rs.close();           
+        this.jComboBoxCATEGORIA.setModel(modeloCombo);
+
+    } catch (SQLException ex) {
+        ex.getMessage();
+    } 
+}
+
+ private void BuscarCoincidenciasxCategoriaMedicamento(String combo) {
+     try {            
+        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+        cn=cm.Conectar();
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT nombre FROM categoriamedicamento WHERE nombre LIKE '"+combo+"%' ORDER BY nombre ASC");
+
+        while (rs.next()) {
+           modeloCombo.addElement(rs.getString("nombre"));
+        }
+        rs.close();           
+        this.jComboBoxCATEGORIA.setModel(modeloCombo);
+
+    } catch (SQLException ex) {
+        ex.getMessage();
+    }
+}
 }

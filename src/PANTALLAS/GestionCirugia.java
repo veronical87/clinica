@@ -310,7 +310,7 @@ int filasel;
 
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
         dispose();
-        AltaCirugia ap = new AltaCirugia(new javax.swing.JFrame(), true);
+        Alta ap = new Alta(new javax.swing.JFrame(), true);
         ap.idrol=IDROL;
         ap.idusuario=IDUSUARIO;
         BuscarUsuario();
@@ -323,9 +323,19 @@ int filasel;
             dispose();
             ModificarCirugia mp = new ModificarCirugia(new javax.swing.JFrame(), true);
             mp.idrol = IDROL;
-            mp.idusuario= IDUSUARIO;
-            mp.banderaDueño=false;
-            mp.JTextFieldNombre.setText(String.valueOf(usuario));
+            mp.idusuario= IDUSUARIO;           
+            mp.jLabelVETERINARIO.setText(String.valueOf(veterinario));
+            mp.dueño=DUEÑO;
+            mp.IDVETERINARIO=IDVETERINARIO;
+            mp.mascota=MASCOTA;
+            mp.IDFICHA=IDFICHA;
+            mp.BuscarDatosMascota(MASCOTA,IDDUEÑO);
+            mp.LlenarTablaSecciones(IDoperacion);
+            mp.SeccionesxOperacion(IDoperacion);
+            mp.LlenarTablaMedicamento(IDoperacion);
+            mp.jTextAreaDIAGNOSTICO.setText(DIAGNOSTICO);
+            mp.jDateChooserFECHATURNO.setDate(fecha);
+            mp.jFormattedTextFieldHORARIO.setText(hor);
             mp.show();
         } else {
             JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
@@ -333,13 +343,11 @@ int filasel;
     }//GEN-LAST:event_buttonTaskMODIFICARActionPerformed
 
     private void buttonTaskELIMINARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskELIMINARActionPerformed
-        if(filasel != -1){
-            
+        if(filasel != -1){            
             co.BajaOperacion(IDoperacion);
             this.fecha();
             this.BuscarUsuario();
-            co.InsertarDatosAuditoria(fechaActual,hor,usuario,"CIRUGIAS","BAJA"," "," ");
-           
+            co.InsertarDatosAuditoria(fechaActual,hor,usuario,"CIRUGIAS","BAJA"," "," ");           
             if(JOptionPane.showConfirmDialog(null, "¿Desea Borrar el Tipo de Cirugía"+" "+ operacion + " " + "?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                 JOptionPane.showMessageDialog(null, "La Cirugía"+" "+operacion+" "+"Se Borró Correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
                 limpiarTabla(TABLA);
@@ -420,23 +428,22 @@ int filasel;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
 
-   String usuario;
-    private void BuscarUsuario() {
-        String sSQL = "";       
-        cn=cm.Conectar();
-        sSQL = "SELECT apellido,nombre FROM usuarios WHERE id="+IDUSUARIO;
-        try
-        {
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
+String usuario;
+private void BuscarUsuario() {
+String sSQL = "";       
+cn=cm.Conectar();
+sSQL = "SELECT apellido,nombre FROM usuarios WHERE id="+IDUSUARIO;
+try
+    {
+    Statement st = (Statement) cn.createStatement();
+    ResultSet rs = st.executeQuery(sSQL);
 
-            while(rs.next())
-            {
-                usuario=rs.getString("apellido")+","+rs.getString("nombre");
-            }
+    while(rs.next())
+    {
+        usuario=rs.getString("apellido")+rs.getString("nombre");
+    }
 
-            }
-        catch (SQLException ex)
+    }catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -504,7 +511,7 @@ int filasel;
     cn=cm.Conectar();    
     String sSQL = "";
     String[] registro = new String[5];
-    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id=2 AND CONCAT(propietarios.apellido,coma,propietarios.nombre) LIKE '"+buscar+"%'";
+    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND operaciones.id=2 AND CONCAT(propietarios.apellido,coma,propietarios.nombre) LIKE '"+buscar+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -534,7 +541,7 @@ int filasel;
     cn=cm.Conectar();
     String sSQL = "";
     String[] registro = new String[5];
-    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id=2 AND mascota LIKE '"+buscar+"%'";
+    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND operaciones.id=2 AND mascota LIKE '"+buscar+"%'";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -558,17 +565,17 @@ int filasel;
            }
     }
 
-    private void MostrarConsultaxVeterinario(String buscar) {
-    String[] titulos = {"Nro. de Cirugia","Tipo de Cirugia","Veterinario","Dueño","Mascota"};
-    modelo = new DefaultTableModel(null,titulos);
-    cn=cm.Conectar();
-    String sSQL = "";
-    String[] registro = new String[4];
-    sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id=2 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%'";
-    try
-       {
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery(sSQL);
+private void MostrarConsultaxVeterinario(String buscar) {
+String[] titulos = {"Nro. de Cirugia","Tipo de Cirugia","Veterinario","Dueño","Mascota"};
+modelo = new DefaultTableModel(null,titulos);
+cn=cm.Conectar();
+String sSQL = "";
+String[] registro = new String[4];
+sSQL = "SELECT operaciones.id,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,mascota FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND operaciones.id=2 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%'";
+try
+   {
+    Statement st = (Statement) cn.createStatement();
+    ResultSet rs = st.executeQuery(sSQL);
 //         
          while(rs.next())
            {
@@ -586,12 +593,12 @@ int filasel;
             JOptionPane.showMessageDialog(null, ex);
            }
     }
-int IDoperacion;String operacion,veterinarioape,veterinarionom,DUEÑO,MASCOTA;
- private void BuscarDatosCirugia(String id) {
-    cn=cm.Conectar();
-       
-    String sSQL = "SELECT tipooperacion.nombre,operaciones.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño FROM tipooperacion INNER JOIN operaciones on tipooperacion.id=operaciones.idtipooperacion INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE operaciones.id="+id;
-    try
+int IDoperacion,IDFICHA,IDDUEÑO,IDVETERINARIO;String operacion,veterinario,DUEÑO,MASCOTA,DIAGNOSTICO;
+private void BuscarDatosCirugia(String id) {
+cn=cm.Conectar();
+
+String sSQL = "SELECT propietarios.id,tipooperacion.nombre,operaciones.id,CONCAT(propietarios.apellido,coma,propietarios.nombre)AS dueño,operaciones.idficha,veterinarios.apellido,veterinarios.nombre,operaciones.idveterinario,DIAGNOSTICO FROM tipooperacion INNER JOIN operaciones on tipooperacion.id=operaciones.idtipooperacion INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id  WHERE fichamedica.idestado=1 AND operaciones.id="+id;
+try
        {
         Statement st = (Statement) cn.createStatement();
         ResultSet rs = st.executeQuery(sSQL);
@@ -600,13 +607,40 @@ int IDoperacion;String operacion,veterinarioape,veterinarionom,DUEÑO,MASCOTA;
            {
            IDoperacion=rs.getInt("operaciones.id");
            operacion=rs.getString("tipooperacion.nombre");
-           DUEÑO=rs.getString("dueño");           
+           DUEÑO=rs.getString("dueño");  
+           IDFICHA=rs.getInt("operaciones.idficha");
+           IDDUEÑO=rs.getInt("propietarios.id");
+           IDVETERINARIO=rs.getInt("operaciones.idveterinario");
+           veterinario=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
+           DIAGNOSTICO=rs.getString("diagnostico");
            }          
-            
+         BuscarFechaxOP(IDoperacion);
             }
         catch (SQLException ex)
            {
             JOptionPane.showMessageDialog(null, ex);
            }
+    }
+String turno;java.sql.Date fecha = null;
+    private void BuscarFechaxOP(int IDoperacion) {
+        String sSQL = "";       
+        cn=cm.Conectar();
+        sSQL = "SELECT fechaturno,horaturno FROM fechasxoperacion WHERE idoperacion="+IDoperacion;
+        try
+        {
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while(rs.next())
+            {
+               fecha=rs.getDate("FECHATURNO");
+                turno=rs.getString("HORATURNO");
+            }     
+
+            }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
 }

@@ -241,18 +241,24 @@ int usuario,ROL; String Localidadcapturada;int tipo_telefono;String provinciaSel
     }//GEN-LAST:event_jComboBox_ProvinciasMouseClicked
 
     private void jComboBox_ProvinciasPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox_ProvinciasPopupMenuWillBecomeVisible
-        this.llenarComboMostrarProvincias();
-    }//GEN-LAST:event_jComboBox_ProvinciasPopupMenuWillBecomeVisible
-
-    private void jComboBox_ProvinciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_ProvinciasActionPerformed
-        String provinciaSelec = this.jComboBox_Provincias.getSelectedItem().toString();
-        int indice = this.jComboBox_Provincias.getSelectedIndex();
-        this.TextField_CodArea.setText("");
-        this.jTextFieldLocalidad.setText("");
-        if (indice == -1) {
-            BuscarCoincidenciasxProvincia(provinciaSelec);
+     String combo=coincidencia;
+        if(indice1==-1){
+            BuscarCoincidenciasxProvincia(combo);
         }else{
-            BuscarIDProv(provinciaSelec);
+            llenarComboMostrarProvincias();
+        }
+    }//GEN-LAST:event_jComboBox_ProvinciasPopupMenuWillBecomeVisible
+String seleccion,coincidencia;int indice1;
+    private void jComboBox_ProvinciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_ProvinciasActionPerformed
+        seleccion = this.jComboBox_Provincias.getSelectedItem().toString();
+        int indice=this.jComboBox_Provincias.getSelectedIndex();
+
+        if(indice==-1){
+            coincidencia=seleccion;
+            BuscarCoincidenciasxProvincia(seleccion);
+            indice1=indice;
+        }else{
+            BuscarIDProv(seleccion);
         }
     }//GEN-LAST:event_jComboBox_ProvinciasActionPerformed
 

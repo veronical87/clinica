@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import PANTALLAS.AltaFichaMedica;
+
 public class ClaseFichasMedicas {
     Connection cn;
     CallableStatement cmd;   
@@ -74,18 +75,19 @@ public class ClaseFichasMedicas {
        }
     } 
 
-//public void ActualizarSituacion(int nrohistorial,String situacion){
-//  String sql="UPDATE historialclinico SET situacion=? WHERE nrohistorial=?";
-//    try {
-//          PreparedStatement pst=cn.prepareStatement(sql);
-//          pst.setInt(1,nrohistorial);
-//          pst.setString(2,situacion);
-//          pst.execute();
-//          
-//    }catch (SQLException ex) {
-//        System.out.println(ex.getMessage());
-//    }
-//}
+public void ActualizarFechaNac(int idficha,int edad,String tiemponac){
+  String sql="UPDATE fichamedica SET edad=?,tiemponac=? WHERE id=?";
+    try {
+          PreparedStatement pst=cn.prepareStatement(sql);
+          pst.setInt(1,idficha);
+          pst.setInt(2,edad);
+          pst.setString(3,tiemponac);
+          pst.execute();
+          
+    }catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
 public void AgregarDatosMascota(int idPropietario,String fecha,String nombre,String fechaNacimiento,int idpelaje,String sexo,double kilaje,int edad,String tiemponac,String situacion,String datoImagen){
        String sql="INSERT INTO fichamedica(idpropietario,fecha,mascota,cumpleaños,idpelaje,sexo,kilaje,edad,tiemponac,situacionpeso,direimagen,imagen,idestado,idlogo)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
          try {
@@ -328,4 +330,37 @@ public void ModificarDatosMascota(int idFicha, int idPropietario,String nombre,S
       }     
     }
 
+ public int contarFichasxPropietario(int idPropietario) {
+   int cantidad=0;
+   String sql="call contarFichasxPropietario(?,?)";    
+    try{                
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,idPropietario);
+      
+      cmd.registerOutParameter(2, java.sql.Types.INTEGER);
+      cmd.execute();
+      cantidad=cmd.getInt(2);
+      
+   }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       } 
+    return cantidad;
+    }
+
+public int contarAfeccionesxHC(int idHistorial) {
+   int cantidad=0;
+   String sql="call contarAfeccionesxHC(?,?)";    
+    try{                
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,idHistorial);
+      
+      cmd.registerOutParameter(2, java.sql.Types.INTEGER);
+      cmd.execute();
+      cantidad=cmd.getInt(2);
+      
+   }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       } 
+    return cantidad;
+ }
 }

@@ -36,7 +36,7 @@ public class AltaTipoOperacion extends javax.swing.JDialog {
         buttonActionGUARDAR = new org.edisoncor.gui.button.ButtonAction();
         buttonAction2 = new org.edisoncor.gui.button.ButtonAction();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
         panelRectTranslucido1.setPreferredSize(new java.awt.Dimension(393, 356));

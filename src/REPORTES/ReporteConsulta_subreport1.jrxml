@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteConsulta_subreport1" language="groovy" pageWidth="595" pageHeight="120" orientation="Landscape" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="79224ded-62c4-4187-b464-513803e0a9a6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IDOPERACION" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CONCAT(veterinarios.apellido,veterinarios.nombre)AS veterinario,fechaturno,horaturno FROM fechasxoperacion INNER JOIN veterinarios ON fechasxoperacion.idveterinario=veterinarios.id where fechasxoperacion.idoperacion=$P{IDOPERACION}]]>
+	</queryString>
+	<field name="veterinario" class="java.lang.String"/>
+	<field name="fechaturno" class="java.lang.String"/>
+	<field name="horaturno" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6bc17ca0-3fa9-43cc-94a8-14fa870c553c" x="220" y="11" width="126" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Veterinario Asignado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6bc17ca0-3fa9-43cc-94a8-14fa870c553c" x="139" y="11" width="34" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6bc17ca0-3fa9-43cc-94a8-14fa870c553c" x="10" y="11" width="44" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f793db8d-eb6a-40f8-81ce-9f61603b0f91" x="346" y="11" width="239" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{veterinario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4f760b38-47e5-4ad3-8ffb-5ec339335ca4" x="54" y="11" width="85" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaturno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1d4b12df-a022-41e7-9a8c-9e5303f5175c" x="173" y="11" width="47" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{horaturno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

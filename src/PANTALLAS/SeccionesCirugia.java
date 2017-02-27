@@ -23,7 +23,8 @@ public class SeccionesCirugia extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.jTextFieldZONA.setDocument(new JTextFieldToUpperCase());  
+        this.jTextFieldZONA.setDocument(new JTextFieldToUpperCase()); 
+        IMAGEN(idespecie); 
     }
   
     @SuppressWarnings("unchecked")
@@ -55,16 +56,26 @@ public class SeccionesCirugia extends javax.swing.JDialog {
         buttonActionCANCELAR = new org.edisoncor.gui.button.ButtonAction();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("SeccionesCirugía");
+        setResizable(false);
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
+        panelRectTranslucido1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRectTranslucido1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelRectTranslucido1MousePressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("DETALLE CIRUGIA\n");
+        jLabel1.setText("DETALLE DE LA CIRUGÍA ");
 
         jComboBox1.setEditable(true);
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Seccion a Operar", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Sección a Operar", " " }));
         jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -83,25 +94,24 @@ public class SeccionesCirugia extends javax.swing.JDialog {
         jTextFieldZONA.setEditable(false);
         jTextFieldZONA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextFieldZONA.setForeground(new java.awt.Color(153, 0, 0));
-        jTextFieldZONA.setText("jTextField1");
         jTextFieldZONA.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextFieldZONACaretUpdate(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Zona");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("ZONA");
 
         jPanel3.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "LISTADO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "LISTADO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         TABLA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ZONAS", "SECCION"
+                "ZONA", "SECCIÓN"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -144,30 +154,39 @@ public class SeccionesCirugia extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTaskQUITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(buttonTaskQUITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonTaskQUITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel1.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "DETERMINA ZONA A OPERAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "DETERMINA ZONA A OPERAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(153, 0, 0))); // NOI18N
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+
+        panelImage1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelImage1MouseClicked(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButtonATRAS);
         jRadioButtonATRAS.addActionListener(new java.awt.event.ActionListener() {
@@ -232,15 +251,9 @@ public class SeccionesCirugia extends javax.swing.JDialog {
             .addGroup(panelImage1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jRadioButtonATRAS, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButtonPATASDELANTERAS, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jRadioButtonTRONCO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)))
+                .addGap(80, 80, 80)
+                .addComponent(jRadioButtonTRONCO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(jRadioButtonCUELLOGATO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioButtonCABEZAGATO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,7 +270,10 @@ public class SeccionesCirugia extends javax.swing.JDialog {
                         .addGap(71, 71, 71))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
                         .addComponent(jRadioButtonPATASDELANTERASGATO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87))))
+                        .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
+                        .addComponent(jRadioButtonPATASDELANTERAS, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))))
         );
         panelImage1Layout.setVerticalGroup(
             panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,12 +288,12 @@ public class SeccionesCirugia extends javax.swing.JDialog {
                         .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(panelImage1Layout.createSequentialGroup()
                                 .addComponent(jRadioButtonTRONCO)
-                                .addGap(5, 5, 5)
-                                .addComponent(jRadioButtonPATASDELANTERAS)
-                                .addGap(19, 19, 19))
+                                .addGap(45, 45, 45))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelImage1Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jRadioButtonCUELLOGATO)
+                                .addGap(7, 7, 7)
+                                .addComponent(jRadioButtonPATASDELANTERAS)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jRadioButtonPATASDELANTERASGATO)
                         .addGap(79, 79, 79))
@@ -326,23 +342,24 @@ public class SeccionesCirugia extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(78, 78, 78))
+                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldZONA, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox1, 0, 290, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldZONA))
+                                .addGap(0, 94, Short.MAX_VALUE))
+                            .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))))
             .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                .addGap(332, 332, 332)
+                .addGap(322, 322, 322)
                 .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonActionCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,22 +370,22 @@ public class SeccionesCirugia extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(8, 8, 8)
+                .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                         .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jTextFieldZONA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonActionCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -381,18 +398,24 @@ public class SeccionesCirugia extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;String mascota;
+int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO,idficha,IDDUEÑO,IDVETERINARIO;String mascota,dueño,veterinario;
     private void jRadioButtonATRASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonATRASActionPerformed
         if(this.jRadioButtonATRAS.isSelected()){
            ATRAS=1;
-          this.jTextFieldZONA.setText("EXTREMIDADES POSTERIORES Y COLA"); 
+           this.jRadioButtonCABEZAGATO.setEnabled(false);
+           this.jRadioButtonCABEZAPERRO.setEnabled(false);
+           this.jRadioButtonCUELLOGATO.setEnabled(false);
+           this.jRadioButtonCUELLOPERRO.setEnabled(false);
+           this.jRadioButtonPATASDELANTERAS.setEnabled(false);
+           this.jRadioButtonPATASDELANTERASGATO.setEnabled(false);
+           this.jRadioButtonTRONCO.setEnabled(false);
+           this.jTextFieldZONA.setText("EXTREMIDADES POSTERIORES Y COLA"); 
+           jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
         }else{
           ATRAS=0;
         }     
@@ -402,6 +425,14 @@ int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;String masc
        if(jRadioButtonPATASDELANTERAS.isSelected()){
           this.jTextFieldZONA.setText("EXTREMIDADES DELANTERAS");
           PATASDELANTERAS=1;
+           this.jRadioButtonCABEZAGATO.setEnabled(false);
+           this.jRadioButtonCABEZAPERRO.setEnabled(false);
+           this.jRadioButtonCUELLOGATO.setEnabled(false);
+           this.jRadioButtonCUELLOPERRO.setEnabled(false);
+           this.jRadioButtonATRAS.setEnabled(false);
+           this.jRadioButtonPATASDELANTERASGATO.setEnabled(false);
+           this.jRadioButtonTRONCO.setEnabled(false);
+           jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
        }else{
          PATASDELANTERAS=0;
        }        
@@ -417,65 +448,149 @@ int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;String masc
 
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
       if(IDSECCION==0){
-            JOptionPane.showMessageDialog(null,"Debe Determinar la Seccion de la Zona Seleccionada","Informacion",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null,"Debe Determinar la Sección de la Zona Seleccionada","Información",JOptionPane.INFORMATION_MESSAGE);
         }else{
-            seccion.agregarSeccionxOperacion(IDOperacion,IDSECCION);
-            limpiarTabla(TABLA);
-            modelo = (DefaultTableModel) TABLA.getModel();
-            seccion.LlenarTablaSecciones(modelo,IDOperacion);
-                        
+            int salida= seccion.agregarSeccionxOperacion(IDOperacion,IDSECCION);
+            if(salida!=0){
+               JOptionPane.showMessageDialog(null,"La Sección se Encuentra Registrada","Atención",JOptionPane.WARNING_MESSAGE);
+            }else{
+                limpiarTabla(TABLA);
+                modelo = (DefaultTableModel) TABLA.getModel();
+                LlenarTablaSecciones(IDOperacion);
+            }           
         }
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
 
     private void buttonTaskQUITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskQUITARActionPerformed
         if(IDSECCION!=0){             
-            seccion.quitarseccionxOperacion(IDOperacion,IDSECCION);
-            
+            seccion.quitarseccionxOperacion(IDOperacion,IDSECCION);            
             limpiarTabla(TABLA);
             modelo = (DefaultTableModel) TABLA.getModel();
-            seccion.LlenarTablaSecciones(modelo,IDOperacion);
+           LlenarTablaSecciones(IDOperacion);
         }else{
             JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonTaskQUITARActionPerformed
 
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
+int resultado=seccion.CantSeccionesxOp(IDOperacion);
+  if(resultado==0){
+     JOptionPane.showMessageDialog(null,"No se Determinó ninguna Sección","Información",JOptionPane.INFORMATION_MESSAGE);
+  }else{
      Alta ac= new Alta(new javax.swing.JFrame(),true);
-     ac.BuscarDatosMascota(mascota);
+     ac.IDFICHA=idficha;
+     ac.IDVETERINARIO=IDVETERINARIO;
+     ac.veterinario=veterinario;
+     ac.BuscarDatosMascota(mascota,IDDUEÑO);
+     ac.jComboBoxDUEÑOS.getModel().setSelectedItem("");
+     ac.banderaDueño=true;
+     ac.jComboBoxDUEÑOS.setEnabled(false);
+     ac.jComboBoxDUEÑOS.getModel().setSelectedItem(dueño);
+     ac.jComboBoxMASCOTAS.setEnabled(false);
+     ac.banderamascota=true;
+     ac.jComboBoxMASCOTAS.getModel().setSelectedItem(mascota);
+     ac.jComboBoxTIPOCONSULTA.setEnabled(true);
+     ac.LlenarTablaSecciones(IDOperacion);
+     ac.IDPROPIETARIO=IDDUEÑO;
      
        if(idespecie==1){  /////PERRO
+//            if(ATRAS!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ATRAS-CABEZA.png")));
+//            }else if(ATRAS!=0 & TRONCO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ATRAS-TRONCO.png")));
+//            }else if(ATRAS!=0 & CUELLO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ATRAS-CUELLO.png")));
+//            }else if(TRONCO!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-CABEZA-TRONCO.png")));
+//            }else if(CUELLO!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-CABEZA-CUELLO.png")));
+//            }else if(TRONCO!=0 & CUELLO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-TRONCO-CUELLO.png")));
+//            }else if(PATASDELANTERAS!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS-CABEZA.png")));
+//            }else if(PATASDELANTERAS!=0 & ATRAS!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS-ATRAS.png")));
+//            }else if(PATASDELANTERAS!=0 & TRONCO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS-TRONCO.png")));
+//            }else if(PATASDELANTERAS!=0 & CUELLO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS-CUELLO.png")));
+//            }
             if(ATRAS!=0){                 
-                ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/seccion-colayPataTrasera.png")));
+                ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ATRAS.png")));
             }else if(PATASDELANTERAS!=0){
                 ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS.png")));
-            }if(CABEZA!=0){
+            }else if(CABEZA!=0){
                 ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ROSTRO.png")));
-            }if(TRONCO!=0){
+            }else if(TRONCO!=0){
                 ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-TRONCO.png")));
-            }if(CUELLO!=0){
+            }else if(CUELLO!=0){
                 ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-CUELLO.png")));
-            }
+            }            
+            
         }else if (idespecie==2){       
-          if(ATRAS!=0){
+//           if(ATRAS!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-ATRAS-CABEZA.png")));
+//            }else if(ATRAS!=0 & TRONCO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-ATRAS-TRONCO.png")));
+//            }else if(ATRAS!=0 & CUELLO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-ATRAS-CUELLO.png")));
+//            }else if(TRONCO!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-TRONCO-CABEZA.png")));
+//            }else if(CUELLO!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-CUELLO-CABEZA.png")));
+//            }else if(TRONCO!=0 & CUELLO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-TRONCO-CUELLO.png")));
+//            }else if(PATASDELANTERAS!=0 & CABEZA!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-PATASDELANTERAS-CABEZA.png")));
+//            }else if(PATASDELANTERAS!=0 & ATRAS!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-PATASDELANTERAS-ATRAS.png")));
+//            }else if(PATASDELANTERAS!=0 & TRONCO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-PATASDELANTERAS-TRONCO.png")));
+//            }else if(PATASDELANTERAS!=0 & CUELLO!=0){
+//               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato-PATASDELANTERAS-CUELLO.png")));
+//            }
+           
+           if(ATRAS!=0){
               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-ATRAS.png")));
             }else if(PATASDELANTERAS!=0){
               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-PATASDELANTERAS.png")));
-            }if(CABEZA!=0){
+            }else if(CABEZA!=0){
               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-CABEZA.png")));
-            }if(TRONCO!=0){
+            }else if(TRONCO!=0){
               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-TRONCO.png")));
-            }if(CUELLO!=0){
+            }else if(CUELLO!=0){
               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-CUELLO.png")));
             }
        }
         
         this.dispose();
-        ac.show();
+        ac.show();}
     }//GEN-LAST:event_buttonActionGUARDARActionPerformed
 
     private void buttonActionCANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionCANCELARActionPerformed
-        AltaCirugia ac= new AltaCirugia(new javax.swing.JFrame(),true);//      
-//       
+        seccion.eliminarSeccionesxOp(IDOperacion);
+        
+        Alta ac= new Alta(new javax.swing.JFrame(),true);//      
+         ac.IDFICHA=idficha;
+         ac.IDVETERINARIO=IDVETERINARIO;
+         ac.veterinario=veterinario;
+         ac.BuscarDatosMascota(mascota,IDDUEÑO);
+         ac.jComboBoxDUEÑOS.getModel().setSelectedItem("");
+         ac.banderaDueño=true;
+         ac.jComboBoxDUEÑOS.setEnabled(false);
+         ac.jComboBoxDUEÑOS.getModel().setSelectedItem(dueño);
+         ac.jComboBoxMASCOTAS.setEnabled(false);
+         ac.banderamascota=true;
+         ac.jComboBoxMASCOTAS.getModel().setSelectedItem(mascota);
+         ac.jComboBoxTIPOCONSULTA.setEnabled(true);
+         ac.LlenarTablaSecciones(IDOperacion);
+         ac.IDPROPIETARIO=IDDUEÑO;
+     
+       if(idespecie==1){
+          ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro.png")));
+       }else{
+          ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato.png")));
+       }
         this.dispose();
         ac.show();
     }//GEN-LAST:event_buttonActionCANCELARActionPerformed
@@ -488,37 +603,59 @@ int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;String masc
      if(jRadioButtonTRONCO.isSelected()){
         this.jTextFieldZONA.setText("TRONCO");
           TRONCO=1;
+           jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
+           this.jRadioButtonCABEZAGATO.setEnabled(false);
+           this.jRadioButtonCABEZAPERRO.setEnabled(false);
+           this.jRadioButtonCUELLOGATO.setEnabled(false);
+           this.jRadioButtonCUELLOPERRO.setEnabled(false);
+           this.jRadioButtonATRAS.setEnabled(false);
+           this.jRadioButtonPATASDELANTERASGATO.setEnabled(false);
+           this.jRadioButtonPATASDELANTERAS.setEnabled(false);
        }else{
            TRONCO=0;
      } 
     }//GEN-LAST:event_jRadioButtonTRONCOActionPerformed
 
     private void jRadioButtonCUELLOPERROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCUELLOPERROActionPerformed
-      if(jRadioButtonPATASDELANTERAS.isSelected()){
+      if(jRadioButtonCUELLOPERRO.isSelected()){
           jTextFieldZONA.setText("CUELLO");
           CUELLO=1;
+           this.jRadioButtonCABEZAGATO.setEnabled(false);
+           this.jRadioButtonCABEZAPERRO.setEnabled(false);
+           this.jRadioButtonPATASDELANTERAS.setEnabled(false);
+           this.jRadioButtonATRAS.setEnabled(false);
+           this.jRadioButtonPATASDELANTERASGATO.setEnabled(false);
+           this.jRadioButtonTRONCO.setEnabled(false);
+           jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
        }else{
           CUELLO=0;
-      } 
+      }       
     }//GEN-LAST:event_jRadioButtonCUELLOPERROActionPerformed
 
     private void jRadioButtonCABEZAPERROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCABEZAPERROActionPerformed
-      if(jRadioButtonPATASDELANTERASGATO.isSelected()){
+      if(jRadioButtonCABEZAPERRO.isSelected()){
       this.jTextFieldZONA.setText("CABEZA");
       this.CABEZA=1;
+           this.jRadioButtonCUELLOGATO.setEnabled(false);
+           this.jRadioButtonCUELLOPERRO.setEnabled(false); 
+           this.jRadioButtonPATASDELANTERAS.setEnabled(false);
+           this.jRadioButtonATRAS.setEnabled(false);
+           this.jRadioButtonPATASDELANTERASGATO.setEnabled(false);
+           this.jRadioButtonTRONCO.setEnabled(false);
+           jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
       }else{
          CABEZA=0;
-      }      
+      } 
     }//GEN-LAST:event_jRadioButtonCABEZAPERROActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-     String zona = this.jTextFieldZONA.getText();
+     String seccion = this.jComboBox1.getModel().getSelectedItem().toString();
      int indice = jComboBox1.getSelectedIndex();
 
         if (indice == -1) {
-            BuscarCoincidenciasxSeccion(zona);
+            BuscarCoincidenciasxSeccion(seccion);
         }else{
-            BuscarIDSeccion(zona);
+            BuscarIDSeccion(seccion);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -526,33 +663,88 @@ int IDOperacion,idespecie,ATRAS,CABEZA,CUELLO,PATASDELANTERAS,TRONCO;String masc
        if(this.jRadioButtonCABEZAGATO.isSelected()){
           this.jTextFieldZONA.setText("CABEZA");
           CABEZA=1;
+           this.jRadioButtonPATASDELANTERAS.setEnabled(false);
+           this.jRadioButtonATRAS.setEnabled(false);
+           this.jRadioButtonPATASDELANTERASGATO.setEnabled(false);
+           this.jRadioButtonTRONCO.setEnabled(false);
+            this.jRadioButtonCUELLOGATO.setEnabled(false);
+          this.jRadioButtonCUELLOPERRO.setEnabled(false);
+          jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
        }else{
           CABEZA=0;
        }
     }//GEN-LAST:event_jRadioButtonCABEZAGATOActionPerformed
 
     private void jRadioButtonPATASDELANTERASGATOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPATASDELANTERASGATOActionPerformed
-     if(jRadioButtonPATASDELANTERAS.isSelected()){
+     if(this.jRadioButtonPATASDELANTERASGATO.isSelected()){
           this.jTextFieldZONA.setText("EXTREMIDADES DELANTERAS");
           PATASDELANTERAS=1;
+          this.jRadioButtonCUELLOGATO.setEnabled(false);
+          this.jRadioButtonCUELLOPERRO.setEnabled(false);
+          this.jRadioButtonCABEZAGATO.setEnabled(false);
+           this.jRadioButtonATRAS.setEnabled(false);
+           this.jRadioButtonCABEZAPERRO.setEnabled(false);
+           this.jRadioButtonTRONCO.setEnabled(false);
+           jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
        }else{
           PATASDELANTERAS=0;
-     }
+     }     
     }//GEN-LAST:event_jRadioButtonPATASDELANTERASGATOActionPerformed
 
     private void jRadioButtonCUELLOGATOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCUELLOGATOActionPerformed
-     if(jRadioButtonPATASDELANTERAS.isSelected()){
+     if(jRadioButtonCUELLOGATO.isSelected()){
           this.jTextFieldZONA.setText("CUELLO");
           CUELLO=1;
+          jComboBox1.getModel().setSelectedItem("Seleccionar Sección a Operar");
+           this.jRadioButtonCABEZAGATO.setEnabled(false);
+           this.jRadioButtonATRAS.setEnabled(false);
+           this.jRadioButtonCABEZAPERRO.setEnabled(false);
+           this.jRadioButtonTRONCO.setEnabled(false);
+           this.jRadioButtonPATASDELANTERAS.setEnabled(false);
+           this.jRadioButtonPATASDELANTERASGATO.setEnabled(false);
        }else{
-          CUELLO=1;
-     }
+          CUELLO=0;
+     }     
     }//GEN-LAST:event_jRadioButtonCUELLOGATOActionPerformed
 
     private void jComboBox1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeVisible
       String zona = this.jTextFieldZONA.getText();
       LlenarComboSeccionesxZona(zona);
     }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeVisible
+
+    private void panelRectTranslucido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRectTranslucido1MouseClicked
+//        jRadioButtonTRONCO.setEnabled(true);
+//        jRadioButtonPATASDELANTERAS.setEnabled(true);
+//        jRadioButtonPATASDELANTERASGATO.setEnabled(true);
+//        jRadioButtonCABEZAGATO.setEnabled(true);
+//        jRadioButtonATRAS.setEnabled(true);
+//        jRadioButtonCABEZAPERRO.setEnabled(true);
+//        jRadioButtonCUELLOGATO.setEnabled(true);
+//        jRadioButtonCUELLOPERRO.setEnabled(true);      
+//        
+//        this.jTextFieldZONA.setText("");
+//        this.jComboBox1.getModel().setSelectedItem("");
+//        jRadioButtonTRONCO.setSelected(false);
+//        jRadioButtonPATASDELANTERAS.setSelected(false);
+//        jRadioButtonPATASDELANTERASGATO.setSelected(false);
+//        jRadioButtonCABEZAGATO.setSelected(false);
+//        jRadioButtonATRAS.setSelected(false);
+//        jRadioButtonCABEZAPERRO.setSelected(false);
+//        jRadioButtonCUELLOGATO.setSelected(false);
+//        jRadioButtonCUELLOPERRO.setSelected(false);
+    }//GEN-LAST:event_panelRectTranslucido1MouseClicked
+
+    private void panelImage1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelImage1MouseClicked
+    
+    }//GEN-LAST:event_panelImage1MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void panelRectTranslucido1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRectTranslucido1MousePressed
+        
+    }//GEN-LAST:event_panelRectTranslucido1MousePressed
 
     /**
      * @param args the command line arguments
@@ -665,7 +857,7 @@ private void BuscarIDSeccion(String seccionSelec) {
         DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
         cn=cm.Conectar();
         Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT secciones.nombre FROM secciones INNER JOIN zonas ON secciones.idzona=zonas.id WHERE zonas.nombre LIKE '"+zona+"%' ORDER BY nombre ASC");
+        ResultSet rs = st.executeQuery("SELECT secciones.nombre FROM secciones INNER JOIN zonas ON secciones.idzona=zonas.id WHERE zonas.nombre LIKE '"+zona+"%' ORDER BY secciones.nombre ASC");
 
         while (rs.next()) {
            modeloCombo.addElement(rs.getString("secciones.nombre"));
@@ -676,4 +868,62 @@ private void BuscarIDSeccion(String seccionSelec) {
         ex.getMessage();
     }
     }
+
+    public void IMAGEN(int especie) {
+      String datoImagen;
+      if(especie==1){
+          datoImagen="/src/siluetadeperro.png";
+          ImageIcon image = new ImageIcon(System.getProperty("user.dir")+datoImagen);
+          this.panelImage1.setIcon(image);
+          this.panelImage1.repaint();
+          this.jRadioButtonCABEZAGATO.setVisible(false);
+          this.jRadioButtonCUELLOGATO.setVisible(false);
+          this.jRadioButtonPATASDELANTERASGATO.setVisible(false);
+          this.jRadioButtonPATASDELANTERAS.setVisible(true);
+          this.jRadioButtonCABEZAPERRO.setVisible(true);
+          this.jRadioButtonCUELLOPERRO.setVisible(true);
+      }else{
+          datoImagen="/src/silueta de gato.png";
+          ImageIcon image = new ImageIcon(System.getProperty("user.dir")+datoImagen);
+          this.panelImage1.setIcon(image);
+          this.panelImage1.repaint();
+          this.jRadioButtonCABEZAGATO.setVisible(true);
+          this.jRadioButtonCUELLOGATO.setVisible(true);
+          this.jRadioButtonPATASDELANTERASGATO.setVisible(true);
+          jRadioButtonPATASDELANTERAS.setVisible(false);
+          this.jRadioButtonCABEZAPERRO.setVisible(false);
+          this.jRadioButtonCUELLOPERRO.setVisible(false);
+      }
+    }
+    
+ public void LlenarTablaSecciones(int IDOperacion) {
+    String[] titulos = {"ZONA","SECCIÓN"};
+    modelo = new DefaultTableModel(null,titulos);
+    cn=cm.Conectar();
+    String[] registro = new String[2];
+        try{
+        String sql="SELECT zonas.nombre,secciones.nombre FROM zonas INNER JOIN secciones ON zonas.id=secciones.idzona INNER JOIN seccionesaoperar ON secciones.id=seccionesaoperar.idseccion INNER JOIN operaciones ON seccionesaoperar.idoperacion=operaciones.id WHERE seccionesaoperar.idoperacion='"+IDOperacion+"' ORDER BY secciones.nombre ASC";
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery(sql); 
+        
+        while(rs.next()){//aca se lee el maximo de filas
+            registro[0]=rs.getString("zonas.nombre");
+            registro[1]=rs.getString("secciones.nombre");
+            modelo.addRow(registro);
+            limpiarTabla(TABLA);  
+        }
+        TABLA.setModel(modelo);
+//      cmd.close();
+//      cn.close() 
+        FORMATO_TABLA();
+      }catch(Exception ex){
+         System.out.println(ex.getMessage());
+      }     
+    }
+    
+private void FORMATO_TABLA(){
+TABLA.getColumnModel().getColumn(0).setPreferredWidth(100);
+TABLA.getColumnModel().getColumn(1).setPreferredWidth(80);
+}
+    
 }

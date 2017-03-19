@@ -54,8 +54,6 @@ public class Principal extends javax.swing.JFrame {
         VETERINARIOS = new javax.swing.JMenu();
         jMenuItemVETERINARIOS = new javax.swing.JMenuItem();
         GRAFICOS = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
         CONFIG = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -241,20 +239,19 @@ public class Principal extends javax.swing.JFrame {
 
         GRAFICOS.setBackground(new java.awt.Color(255, 255, 255));
         GRAFICOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONOS/graficotorta.png"))); // NOI18N
-        GRAFICOS.setText("REPORTES Y ESTADISTICAS");
+        GRAFICOS.setText("REPORTES GRÁFICOS");
         GRAFICOS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         GRAFICOS.setOpaque(true);
-
-        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jMenuItem14.setText("REPORTES");
-        GRAFICOS.add(jMenuItem14);
-
-        jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jMenuItem15.setText("GRÁFICOS ESTADÍSTICOS\n");
-        GRAFICOS.add(jMenuItem15);
-
+        GRAFICOS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GRAFICOSMouseClicked(evt);
+            }
+        });
+        GRAFICOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GRAFICOSActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(GRAFICOS);
 
         CONFIG.setBackground(new java.awt.Color(255, 255, 255));
@@ -1105,6 +1102,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItemAUDITORIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAUDITORIAActionPerformed
   Auditoria audi=new Auditoria(new javax.swing.JFrame(), true); 
+  audi.usuarioActual=this.usuario;
+  
       int LEC=0;
          try {
             cn = cm.Conectar();
@@ -2736,6 +2735,34 @@ LogoVet lv=new LogoVet(new javax.swing.JFrame(), true);
         ge.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void GRAFICOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GRAFICOSActionPerformed
+   
+//    lv.idrol=ROL;
+//    int L=0,ELIM=0;
+   
+//       try
+//        {   cn=cm.Conectar();
+//            String sql="SELECT * FROM permisos WHERE  idrol="+ROL;
+//            Statement st = (Statement) cn.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//
+//            while(rs.next())
+//            {                                
+//                L=rs.getInt("L_LISTADO");
+//                ELIM=rs.getInt("ELIM_LISTADO");
+//            }                              
+//        }            
+//        catch (SQLException ex)
+//        {
+//         JOptionPane.showMessageDialog(null, ex);
+//        }    
+    }//GEN-LAST:event_GRAFICOSActionPerformed
+
+    private void GRAFICOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GRAFICOSMouseClicked
+    ReporteGráficos lv=new ReporteGráficos();
+    lv.show();
+    }//GEN-LAST:event_GRAFICOSMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2786,8 +2813,6 @@ LogoVet lv=new LogoVet(new javax.swing.JFrame(), true);
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

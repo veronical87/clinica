@@ -3,6 +3,7 @@ package PANTALLAS;
 import CLASES.JCMail;
 import CLASES.ClaseOperaciones;
 import CLASES.ClaseFichasMedicas;
+import CLASES.ClaseVacunas;
 import CLASES.HILOS;
 import Conexion.ConexionMySQL;
 import java.awt.Color;
@@ -37,13 +38,16 @@ public class ModificarConsulta extends javax.swing.JDialog {
     DefaultTableModel modelo;
     JCMail mail = new JCMail();
     GregorianCalendar hoy = new GregorianCalendar(); 
+    ClaseVacunas vacuna=new ClaseVacunas();
     public ModificarConsulta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null); 
         buttonTaskQUITAR.setVisible(false);
-        jLabelVETERINARIO.setVisible(false);
-        
+        jLabelVETERINARIO.setVisible(false);         
+        buttonActionVERIFICAR.setEnabled(false);
+        this.jDateChooserFECHATURNO.setMaxSelectableDate(hoy.getTime()); 
+//        this.jSpinnerHORA.setVisible(false);
     }
 
     
@@ -89,7 +93,7 @@ public class ModificarConsulta extends javax.swing.JDialog {
         jLabelPesoActual2 = new javax.swing.JLabel();
         jLabelSEXO = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBoxMASCOTAS = new javax.swing.JComboBox();
+        jLabelMASCOTA = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jComboBoxMEDICAMENTOS = new javax.swing.JComboBox();
@@ -107,7 +111,6 @@ public class ModificarConsulta extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaCOMPOSICION = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxDUEÑOS = new javax.swing.JComboBox();
         jComboBoxTIPOCONSULTA = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -118,8 +121,12 @@ public class ModificarConsulta extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         buttonActionVERIFICAR = new org.edisoncor.gui.button.ButtonAction();
-        jFormattedTextFieldHORARIO = new javax.swing.JFormattedTextField();
+        jComboBoxHORA = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
+        jLabelDUEÑO = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("MODIFICAR CONSULTA");
 
         panelRectTranslucido1.setColorPrimario(new java.awt.Color(0, 153, 153));
 
@@ -165,10 +172,12 @@ public class ModificarConsulta extends javax.swing.JDialog {
 
         jLabelTiempoDespar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTiempoDespar.setForeground(new java.awt.Color(153, 0, 0));
+        jLabelTiempoDespar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTiempoDespar.setOpaque(true);
 
         jLabelOpcionDespar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelOpcionDespar.setForeground(new java.awt.Color(153, 0, 0));
+        jLabelOpcionDespar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelOpcionDespar.setOpaque(true);
 
         jLabelTiempoDespar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -203,30 +212,32 @@ public class ModificarConsulta extends javax.swing.JDialog {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabelTiempoDespar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelTiempoDespar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(42, 42, 42)
-                        .addComponent(jLabelOpcionDespar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelOpcionDespar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(25, 25, 25))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelOpcionDespar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTiempoDespar1)
-                    .addComponent(jLabelTiempoDespar, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 24, Short.MAX_VALUE))
+                    .addComponent(jLabelOpcionDespar, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTiempoDespar1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelTiempoDespar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -284,6 +295,7 @@ public class ModificarConsulta extends javax.swing.JDialog {
 
         jLabelProximaDESPAR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelProximaDESPAR.setForeground(new java.awt.Color(153, 0, 0));
+        jLabelProximaDESPAR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProximaDESPAR.setOpaque(true);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -332,6 +344,7 @@ public class ModificarConsulta extends javax.swing.JDialog {
         jLabel22.setText("Situación Peso");
 
         jLabelSituacionPeso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelSituacionPeso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSituacionPeso.setOpaque(true);
 
         jLabelEdad1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -366,26 +379,27 @@ public class ModificarConsulta extends javax.swing.JDialog {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelEdad1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabelPesoActual2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 25, Short.MAX_VALUE)))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelPesoActual1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabelEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel22)
@@ -434,22 +448,8 @@ public class ModificarConsulta extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Seleccione una Mascota(*)");
 
-        jComboBoxMASCOTAS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxMASCOTAS.setOpaque(false);
-        jComboBoxMASCOTAS.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                jComboBoxMASCOTASPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        jComboBoxMASCOTAS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxMASCOTASActionPerformed(evt);
-            }
-        });
+        jLabelMASCOTA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelMASCOTA.setOpaque(true);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -461,9 +461,9 @@ public class ModificarConsulta extends javax.swing.JDialog {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabelMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -475,10 +475,10 @@ public class ModificarConsulta extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(jLabel6)))
+                        .addComponent(jLabel6))
+                    .addComponent(jLabelMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -653,26 +653,32 @@ public class ModificarConsulta extends javax.swing.JDialog {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel13)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBoxCATEGORIAS, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jComboBoxMEDICAMENTOS, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel14)
-                .addGap(10, 10, 10)
-                .addComponent(jLabelCantiACTUAL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel23)
-                .addGap(18, 18, 18)
-                .addComponent(jSpinnerCantMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(514, 514, 514)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonTaskQUITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxCATEGORIAS, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jComboBoxMEDICAMENTOS, 0, 260, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabelCantiACTUAL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSpinnerCantMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(514, 514, 514)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonTaskQUITAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonTaskAGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(4, 4, 4))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -703,24 +709,7 @@ public class ModificarConsulta extends javax.swing.JDialog {
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("(*)");
-
-        jComboBoxDUEÑOS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxDUEÑOS.setOpaque(false);
-        jComboBoxDUEÑOS.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                jComboBoxDUEÑOSPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        jComboBoxDUEÑOS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxDUEÑOSActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("DUEÑO");
 
         jComboBoxTIPOCONSULTA.setEditable(true);
         jComboBoxTIPOCONSULTA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -778,29 +767,37 @@ public class ModificarConsulta extends javax.swing.JDialog {
             }
         });
 
-        try {
-            jFormattedTextFieldHORARIO.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldHORARIO.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jComboBoxHORA.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBoxHORAPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        jComboBoxHORA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxHORAActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jDateChooserFECHATURNO, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jFormattedTextFieldHORARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(jComboBoxHORA, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(buttonActionVERIFICAR, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -811,21 +808,34 @@ public class ModificarConsulta extends javax.swing.JDialog {
                         .addComponent(buttonActionVERIFICAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextFieldHORARIO)
-                            .addComponent(jDateChooserFECHATURNO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jDateChooserFECHATURNO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                .addComponent(jComboBoxHORA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("*Campos Obligatorios");
 
+        jLabelDUEÑO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelDUEÑO.setOpaque(true);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelDUEÑO, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(969, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -835,36 +845,24 @@ public class ModificarConsulta extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBoxTIPOCONSULTA, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxDUEÑOS, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)))
-                .addGap(975, 975, 975))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxDUEÑOS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel5)))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelDUEÑO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -906,12 +904,12 @@ public class ModificarConsulta extends javax.swing.JDialog {
                         .addComponent(buttonActionGUARDAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(buttonActionCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(22, 22, 22)))
         );
         panelRectTranslucido1Layout.setVerticalGroup(
             panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -928,17 +926,19 @@ public class ModificarConsulta extends javax.swing.JDialog {
                     .addComponent(buttonActionCANCELAR, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(panelRectTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRectTranslucido1Layout.createSequentialGroup()
+                    .addContainerGap(69, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(70, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -947,7 +947,7 @@ public class ModificarConsulta extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int IDVETERINARIO,idrol,idusuario,idOPERACION;boolean banderaDueño,banderaOPERACION;
+int IDVETERINARIO,idrol,idusuario,idOPERACION;boolean banderaDueño,banderaOPERACION;String MASCOTA,DUEÑO,fechaTURNOAnterior;
     private void buttonActionGUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGUARDARActionPerformed
         if(!jComboBoxTIPOCONSULTA.getModel().getSelectedItem().equals("") & !jTextAreaDIAGNOSTICO.getText().equals("") || !jComboBoxMEDICAMENTOS.getModel().getSelectedItem().equals("Seleccionar Medicamento")){
             String categoria= this.jComboBoxTIPOCONSULTA.getModel().getSelectedItem().toString();
@@ -966,17 +966,10 @@ int IDVETERINARIO,idrol,idusuario,idOPERACION;boolean banderaDueño,banderaOPERA
                 this.BuscarIDTipoConsulta(categoria);
             }
            consulta.modificarDatosOperaciones(IDFICHA,fechaActual,IDVETERINARIO,IDLOCALIDAD,IDTipoOperacion,"");
-
-            consulta.InsertarDatosAuditoria(fechaActual,hor,usuario,"CONSULTAS","MODIFICAR",anterior,nuevo);
-//            if(JOptionPane.showConfirmDialog(null,"¿Desea Determinar Próxima Atención?","Consulta",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-//                jTabbedPane1.setEnabledAt(1,true);
-//                this.jTabbedPane1.setEnabledAt(0,false);
-//                jTabbedPane1.setSelectedIndex(1);
-//                LimpiarCampos();
-//            }else{
-//               dispose();
-//               ENLACE();
-//            }
+           consulta.InsertarDatosAuditoria(fechaActual,hor,usuario,"CONSULTAS","MODIFICAR",anterior,nuevo);
+           dispose();
+           ENLACE();
+   
         }else{
             JOptionPane.showMessageDialog(null,"Debe Completar los Campos Obligatorios","Atención",JOptionPane.WARNING_MESSAGE);
         }
@@ -994,16 +987,6 @@ int IDVETERINARIO,idrol,idusuario,idOPERACION;boolean banderaDueño,banderaOPERA
     private void jTablePENDIENTESMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePENDIENTESMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTablePENDIENTESMouseClicked
-
-    private void jComboBoxMASCOTASPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
-        LlenarComboMascotas(IDPROPIETARIO);
-    }//GEN-LAST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
-
-    private void jComboBoxMASCOTASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASActionPerformed
-        String mascotaSelec = this.jComboBoxMASCOTAS.getSelectedItem().toString();
-        BuscarDatosMascota(mascotaSelec);
-//        HabilitarSeccionOperacion();
-    }//GEN-LAST:event_jComboBoxMASCOTASActionPerformed
 
     private void jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible
         String combo=coincidencia;
@@ -1074,17 +1057,29 @@ int IDVETERINARIO,idrol,idusuario,idOPERACION;boolean banderaDueño,banderaOPERA
     }//GEN-LAST:event_TABLAComponentMoved
 
     private void buttonTaskQUITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskQUITARActionPerformed
-        if(IDMEDICAMENTO!=0){
-            //            int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
-            BuscarIDConsulta();
-            consulta.quitarMedicamentoxOperacion(IDMEDICAMENTO,IDTipoOperacion);
-            consulta.actualizarStockMedicamento(IDMEDICAMENTO,cantMedicamento,1); // 1 INDICA SUMAR AL STOCK ACTUAL LA CANTIDAD
-            limpiarTabla(TABLA);
-
-            LlenarTablaMedicamento(IDTipoOperacion);
-        }else{
-            JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
+     if(IDMEDICAMENTO!=0){
+        BuscarIDConsulta();
+        consulta.quitarMedicamentoxOperacion(IDMEDICAMENTO,IDOperacion);
+        consulta.actualizarStockMedicamento(IDMEDICAMENTO,cantMedicamento,1); // 1 INDICA SUMAR AL STOCK ACTUAL LA CANTIDAD
+       
+        LlenarTablaMedicamento(IDOperacion);  
+        
+        if (IDTipoOperacion==3){  
+            this.BuscarIDVACUNAxMedicamento(IDMEDICAMENTO);
+            ficha.QuitarVacunaxMascota(IDHISTORIAL,IDVacuna);          
+            LlenarTablaVacunas(IDHISTORIAL);
+            BuscarVacunaxHistorial(IDVacuna,IDHISTORIAL);
+            if(resultado==0){
+              vacuna.InsertarVACUNAPENDIENTE(IDHISTORIAL,IDVacuna);
+            }else{
+               vacuna.ActualizarVacunaPendiente(IDHISTORIAL, IDVacuna,"NO COLOCADO");
+            }
+                       
+            LlenarTablaPENDIENTES(IDHISTORIAL);                
         }
+    }else{
+        JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
+    }
     }//GEN-LAST:event_buttonTaskQUITARActionPerformed
 
     private void jComboBoxCATEGORIASPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxCATEGORIASPopupMenuWillBecomeVisible
@@ -1099,51 +1094,44 @@ int IDVETERINARIO,idrol,idusuario,idOPERACION;boolean banderaDueño,banderaOPERA
     }//GEN-LAST:event_jComboBoxCATEGORIASActionPerformed
 boolean OperacionRegistrada;
     private void buttonTaskAGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskAGREGARActionPerformed
-        if(OperacionRegistrada==false){
-            String selec=jComboBoxTIPOCONSULTA.getModel().getSelectedItem().toString();
-            String vet=this.jLabelVETERINARIO.getText();
-            this.BuscarIDLocalidad();
-            this.BuscarIDVeterinario(vet);
+    String selec=String.valueOf(jComboBoxTIPOCONSULTA.getModel().getSelectedItem());
+    String vet=this.jLabelVETERINARIO.getText();        
+    this.BuscarIDLocalidad();
+    this.BuscarIDVeterinario(vet);
+    this.BuscarIDFICHA(MASCOTA);
+    this.BuscarDatosHISTORIAL(IDFICHA);
+    this.fecha();
+    
+    if(IDTipoOperacion==0){
+        this.BuscarIDTipoConsulta(selec);
+    }
+    int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
+    if (c!=0)  {
+        BuscarIDConsulta();
+        consulta.agregarMedicamentoxOperacion(IDOperacion,IDMEDICAMENTO,c);
+        consulta.actualizarStockMedicamento(IDMEDICAMENTO,c,2); // 1 INDICA RESTAR AL STOCK ACTUAL LA CANTIDAD SOLICITADA
+        limpiarTabla(TABLA);
+        LlenarTablaMedicamento(IDOperacion);
+        BuscarIDVACUNAxMedicamento(IDMEDICAMENTO);
+        
+        if (IDTipoOperacion==3)  {
+            int salida=ficha.agregarVacunaxMascota(IDHISTORIAL,IDVacuna,fechaActual);
+            if(salida==0){
+                limpiarTabla(jTableVACUNAS);
+                LlenarTablaVacunas(IDHISTORIAL);
 
-            if(IDTipoOperacion==0){
-                this.BuscarIDTipoConsulta(selec);
-            }
-            consulta.insertarDatosOperaciones(IDFICHA,fechaActual,IDVETERINARIO,IDLOCALIDAD,IDTipoOperacion,"");
-            OperacionRegistrada=true;
+                vacuna.ActualizarVacunaPendiente(IDHISTORIAL,IDVacuna,"COLOCADO");
+                limpiarTabla(jTablePENDIENTES);
+                modelo = (DefaultTableModel) jTablePENDIENTES.getModel();
+                LlenarTablaPENDIENTES(IDHISTORIAL);                        
+             }
         }
-        if(OperacionRegistrada==true){
-            int c =Integer.parseInt(String.valueOf(jSpinnerCantMedicamento.getModel().getValue()));
-            if (c!=0)  {
-                BuscarIDConsulta();
-                consulta.agregarMedicamentoxOperacion(IDOperacion,IDMEDICAMENTO,c);
-                consulta.actualizarStockMedicamento(IDMEDICAMENTO,c,2); // 1 INDICA RESTAR AL STOCK ACTUAL LA CANTIDAD SOLICITADA
-
-                limpiarTabla(TABLA);
-                LlenarTablaMedicamento(IDOperacion);
-                limpiarCamposMedicamento();
-            }else{
-                JOptionPane.showMessageDialog(null,"Debe indicar la Cantidad del Medicamento","Atención",JOptionPane.WARNING_MESSAGE);
-            }
-        }
+        limpiarCamposMedicamento();
+    }else{
+        JOptionPane.showMessageDialog(null,"Debe indicar la Cantidad del Medicamento","Atención",JOptionPane.WARNING_MESSAGE);
+    }
+        
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
-
-    private void jComboBoxDUEÑOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxDUEÑOSPopupMenuWillBecomeVisible
-        LlenarComboDueños();
-    }//GEN-LAST:event_jComboBoxDUEÑOSPopupMenuWillBecomeVisible
-
-    private void jComboBoxDUEÑOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDUEÑOSActionPerformed
-        String dueñoSelec = jComboBoxDUEÑOS.getSelectedItem().toString();
-        //        EnvioCorreoPropietarios(dueñoSelec);
-        int indice = jComboBoxDUEÑOS.getSelectedIndex();
-
-        if (indice == -1) {
-            BuscarCoincidenciasxDueño(dueñoSelec);
-        }else{
-            BuscarIDDueño(dueñoSelec);
-            LlenarComboMascotas(IDPROPIETARIO);
-            LimpiarCamposDATOSMASCOTA();
-        }
-    }//GEN-LAST:event_jComboBoxDUEÑOSActionPerformed
 
     private void jComboBoxTIPOCONSULTAPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxTIPOCONSULTAPopupMenuWillBecomeVisible
         LlenarComboTipoOperaciones();
@@ -1152,7 +1140,7 @@ boolean OperacionRegistrada;
     private void jComboBoxTIPOCONSULTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTIPOCONSULTAActionPerformed
         String selec=jComboBoxTIPOCONSULTA.getModel().getSelectedItem().toString();
         BuscarIDTipoConsulta(selec);
-//        this.LlenarComboCategoriaMedicamento(IDTipoOperacion);
+        this.LlenarComboCategoriaMedicamento(IDTipoOperacion);
     }//GEN-LAST:event_jComboBoxTIPOCONSULTAActionPerformed
 
     private void jTextAreaDIAGNOSTICOFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaDIAGNOSTICOFocusLost
@@ -1168,30 +1156,49 @@ boolean OperacionRegistrada;
 
     private void buttonActionVERIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionVERIFICARActionPerformed
         String formato = "yyyy/MM/dd";
-        java.sql.Date fechanacimiento=new Date(jDateChooserFECHATURNO.getDate().getYear(),jDateChooserFECHATURNO.getDate().getMonth(),jDateChooserFECHATURNO.getDate().getDate() );
+        java.sql.Date fechaturno=new Date(jDateChooserFECHATURNO.getDate().getYear(),jDateChooserFECHATURNO.getDate().getMonth(),jDateChooserFECHATURNO.getDate().getDate() );
         SimpleDateFormat sdf = new SimpleDateFormat(formato);
-        String dia = sdf.format(fechanacimiento);
-        String hora=this.jFormattedTextFieldHORARIO.getText();
-
-        if(dia.equals("")& hora.equals("")){
-            JOptionPane.showMessageDialog(null,"Debe Determinar una Fecha y Hora","Información",JOptionPane.INFORMATION_MESSAGE);
+        String dia = sdf.format(fechaturno);
+        String hora=String.valueOf(jComboBoxHORA.getModel().getSelectedItem());
+        
+        if(dia.equals("")){
+           JOptionPane.showMessageDialog(null,"Debe Determinar una Fecha y Hora","Información",JOptionPane.INFORMATION_MESSAGE);
         }else{
-            String vet=this.jLabelVETERINARIO.getText();
-            this.BuscarIDVeterinario(vet);
-//            GenerarNroOperacion();
-//
-//            int resultado =consulta.VerificarfechaxConsulta(NroOperacion,IDVETERINARIO,IDTipoOperacion,dia,hora);
-//            //////        VERIFICAR QUE SI NO HAY VINCULO CON EL DIA, SI HAY CON EL HORARIO....
-//            if(resultado!=0){
-//                JOptionPane.showMessageDialog(null,"La Fecha y Hora Seleccionados se Encuentran Ocupados","Información",JOptionPane.INFORMATION_MESSAGE);
-//                jFormattedTextFieldHORARIO.setSelectedTextColor(Color.DARK_GRAY);
-//            }else{
-//                if(JOptionPane.showConfirmDialog(null,"La Fecha y Hora Seleccionados se Encuentran Disponibles,¿Desea Confirmar?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-//                    JOptionPane.showMessageDialog(null,"Se Registró la Próxima Fecha a ser Atendido","Información",JOptionPane.INFORMATION_MESSAGE);
-//                }
-//            }
+            if(!dia.equals(fechaTURNOAnterior)){
+               if(JOptionPane.showConfirmDialog(null,"¿Desea la Fecha de la Próxima Atención?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                   String vet=this.jLabelVETERINARIO.getText();
+                   this.BuscarIDVeterinario(vet);
+                   GenerarNroOperacion();
+                   this.BuscarIDConsulta();
+                   int resultado =consulta.VerificarfechaxConsulta(NrofechaXOperacion,IDVETERINARIO,IDOperacion,dia,hora);
+            //////        VERIFICAR QUE SI NO HAY VINCULO CON EL DIA, SI HAY CON EL HORARIO....
+                   if(resultado!=0){
+                      JOptionPane.showMessageDialog(null,"La Fecha y Hora Seleccionados se Encuentran Ocupados","Información",JOptionPane.INFORMATION_MESSAGE);
+                   }else{
+                        if(JOptionPane.showConfirmDialog(null,"La Fecha y Hora Seleccionados se Encuentran Disponibles,¿Desea Confirmar?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                            JOptionPane.showMessageDialog(null,"Se Registró la Próxima Fecha a ser Atendido","Información",JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            consulta.CancelarVisita(NrofechaXOperacion);
+                          }               
+                      }
+            }else{
+                consulta.CancelarVisita(NrofechaXOperacion);
+               }
+            
+            }
         }
     }//GEN-LAST:event_buttonActionVERIFICARActionPerformed
+
+    private void jComboBoxHORAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHORAActionPerformed
+//      String seleccion = String.valueOf(this.jComboBoxHORA.getModel().getSelectedItem());      
+//      BuscarIDHORA(seleccion);
+        
+    }//GEN-LAST:event_jComboBoxHORAActionPerformed
+
+    private void jComboBoxHORAPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxHORAPopupMenuWillBecomeVisible
+        LlenarComboHORA();
+        this.buttonActionVERIFICAR.setEnabled(true);
+    }//GEN-LAST:event_jComboBoxHORAPopupMenuWillBecomeVisible
 String coincidencia,medicamentoselec; int indice1;
     /**
      * @param args the command line arguments
@@ -1242,12 +1249,10 @@ String coincidencia,medicamentoselec; int indice1;
     private org.edisoncor.gui.button.ButtonTask buttonTaskAGREGAR;
     private org.edisoncor.gui.button.ButtonTask buttonTaskQUITAR;
     public javax.swing.JComboBox jComboBoxCATEGORIAS;
-    public javax.swing.JComboBox jComboBoxDUEÑOS;
-    private javax.swing.JComboBox jComboBoxMASCOTAS;
+    public javax.swing.JComboBox jComboBoxHORA;
     private javax.swing.JComboBox jComboBoxMEDICAMENTOS;
     public javax.swing.JComboBox jComboBoxTIPOCONSULTA;
-    private com.toedter.calendar.JDateChooser jDateChooserFECHATURNO;
-    private javax.swing.JFormattedTextField jFormattedTextFieldHORARIO;
+    public com.toedter.calendar.JDateChooser jDateChooserFECHATURNO;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -1267,18 +1272,20 @@ String coincidencia,medicamentoselec; int indice1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCantiACTUAL;
-    private javax.swing.JLabel jLabelEdad;
-    private javax.swing.JLabel jLabelEdad1;
-    private javax.swing.JLabel jLabelEspecie;
-    private javax.swing.JLabel jLabelOpcionDespar;
-    private javax.swing.JLabel jLabelPesoActual;
+    public javax.swing.JLabel jLabelDUEÑO;
+    public javax.swing.JLabel jLabelEdad;
+    public javax.swing.JLabel jLabelEdad1;
+    public javax.swing.JLabel jLabelEspecie;
+    public javax.swing.JLabel jLabelMASCOTA;
+    public javax.swing.JLabel jLabelOpcionDespar;
+    public javax.swing.JLabel jLabelPesoActual;
     private javax.swing.JLabel jLabelPesoActual1;
     private javax.swing.JLabel jLabelPesoActual2;
-    private javax.swing.JLabel jLabelProximaDESPAR;
-    private javax.swing.JLabel jLabelRaza;
-    private javax.swing.JLabel jLabelSEXO;
-    private javax.swing.JLabel jLabelSituacionPeso;
-    private javax.swing.JLabel jLabelTiempoDespar;
+    public javax.swing.JLabel jLabelProximaDESPAR;
+    public javax.swing.JLabel jLabelRaza;
+    public javax.swing.JLabel jLabelSEXO;
+    public javax.swing.JLabel jLabelSituacionPeso;
+    public javax.swing.JLabel jLabelTiempoDespar;
     private javax.swing.JLabel jLabelTiempoDespar1;
     public javax.swing.JLabel jLabelVETERINARIO;
     private javax.swing.JPanel jPanel10;
@@ -1302,7 +1309,7 @@ String coincidencia,medicamentoselec; int indice1;
     private javax.swing.JTable jTableVACUNAS;
     private javax.swing.JTextArea jTextAreaALERGIAS;
     private javax.swing.JTextArea jTextAreaCOMPOSICION;
-    private javax.swing.JTextArea jTextAreaDIAGNOSTICO;
+    public javax.swing.JTextArea jTextAreaDIAGNOSTICO;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
 
@@ -1312,7 +1319,7 @@ void fecha(){
     mesactual = Calendario.get(Calendar.MONTH) + 1;
     diaactual = Calendario.get(Calendar.DAY_OF_MONTH);
     
-    fechaActual=diaactual+"/"+mesactual+"/"+añoactual;    
+    fechaActual=añoactual+"/"+mesactual+"/"+diaactual;    
  
 //    f=new Date(Calendario.get(Calendar.YEAR),Calendario.get(Calendar.MONTH) + 1,Calendario.get(Calendar.DAY_OF_MONTH));
     int h=Calendario.get(Calendar.HOUR_OF_DAY);
@@ -1359,38 +1366,6 @@ private void BuscarIDVeterinario(String vet) {
     }
 }
   
-    private void LlenarComboDueños() {
-      try {            
-            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            cn=cm.Conectar();
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT apellido,coma,nombre FROM propietarios");                     
-            while (rs.next()) {
-               modeloCombo.addElement(rs.getString("apellido")+rs.getString("coma")+rs.getString("nombre"));
-            }
-            rs.close();
-            jComboBoxDUEÑOS.setModel(modeloCombo);            
-        } catch (SQLException ex) {
-            ex.getMessage();
-        }
-    }
-
-    private void BuscarCoincidenciasxDueño(String dueñoSelec) {
-       try {            
-            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            cn=cm.Conectar();
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT apellido,coma,nombre FROM propietarios WHERE apellido LIKE '"+dueñoSelec+"%'");                     
-            while (rs.next()) {
-               modeloCombo.addElement(rs.getString("apellido")+rs.getString("coma")+rs.getString("nombre"));
-            }
-            rs.close();
-            jComboBoxDUEÑOS.setModel(modeloCombo);            
-        } catch (SQLException ex) {
-            ex.getMessage();
-        } 
-    }
-
     int IDPROPIETARIO;
     private void BuscarIDDueño(String dueñoSelec) {
         try {           
@@ -1407,87 +1382,15 @@ private void BuscarIDVeterinario(String vet) {
         }
     }
 
- private void LlenarComboMascotas(int dueñoSelec) {
-     try {            
-        DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-        cn=cm.Conectar();
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT mascota FROM propietarios INNER JOIN fichamedica ON propietarios.id=fichamedica.idpropietario WHERE propietarios.id="+dueñoSelec);                     
-        while (rs.next()) {
-           modeloCombo.addElement(rs.getString("mascota"));
-        }
-        rs.close();
-        jComboBoxMASCOTAS.setModel(modeloCombo);            
-    } catch (SQLException ex) {
-            ex.getMessage();
-    } 
- }
-String especie="",cumpleaños="";int edad,IDFICHA,idespecie;
-private void BuscarDatosMascota(String mascotaSelec) {                
-   int pesoActual=0;String situacionpeso="",tiemponac="",raza="",sexo="";
-   try {          
-        cn=cm.Conectar();
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT fichamedica.id,mascota,sexo,edad,tiemponac,situacionpeso,especies.id,especies.nombre,kilaje,razas.nombre,cumpleaños FROM fichamedica INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON razas.id=pelajexraza.idraza INNER JOIN especies ON razas.idespecie=especies.id WHERE mascota LIKE '"+mascotaSelec+"%' AND fichamedica.idpropietario="+IDPROPIETARIO);                     
-        while (rs.next()) {   
-            IDFICHA=rs.getInt("fichamedica.id");
-            situacionpeso=rs.getString("situacionpeso");
-            especie=rs.getString("especies.nombre");
-            edad=rs.getInt("edad");
-            cumpleaños=rs.getString("cumpleaños");
-            idespecie=rs.getInt("especies.id");
-            tiemponac=rs.getString("tiemponac");
-            pesoActual=rs.getInt("kilaje");
-            raza=rs.getString("razas.nombre");
-            sexo=rs.getString("sexo");
-           }
-           rs.close();           
-           this.jLabelEspecie.setText(especie);
-           this.jLabelSEXO.setText(sexo);
-           
-           switch (situacionpeso) {
-           case "SOBREPESO":
-               jLabelSituacionPeso.setForeground(new Color(204,0,0));
-               break;
-           case "NORMAL":
-               jLabelSituacionPeso.setForeground(new Color(0,97,51));
-               break;
-           case "PESO BAJO":
-               jLabelSituacionPeso.setForeground(new Color(255,77,0));
-               break;
-       }
-           this.jLabelSituacionPeso.setText(situacionpeso);
-           this.jLabelEdad.setText(String.valueOf(edad));
-           this.jLabelEdad1.setText(tiemponac);
-           this.jLabelPesoActual.setText(String.valueOf(pesoActual));
-           this.jLabelRaza.setText(raza);
-           
-           BuscarDatosHISTORIAL(IDFICHA);        
-            
-           int cantidad=consulta.CantVacunas(IDHISTORIAL);
-            LlenarTablaVacunas(IDHISTORIAL);
-           if(cantidad==0){
-             BuscarVacunasPendientes(idespecie); 
-           }else{
-             if(tiemponac.equals("DIAS")& edad<100 & edad<40){
-                 JOptionPane.showMessageDialog(null,"La Edad para Recomendar Vacunas,Debe ser Superior a 45 DIAS","Informacion",JOptionPane.INFORMATION_MESSAGE);
-             }else{
-                 LlenarTablaPENDIENTES(IDHISTORIAL);
-                }             
-           }
-    } catch (SQLException ex) {
-            System.out.print(ex);
-    }  
-}
-
-private void LlenarComboCategoriaMedicamentos() {
+ 
+private void LlenarComboCategoriaMedicamento(int IDTipoOperacion) {
    try {            
     DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     cn=cm.Conectar();
     Statement st = (Statement) cn.createStatement();
-    ResultSet rs = st.executeQuery("SELECT nombre FROM categoriamedicamento ORDER BY nombre ASC");                     
+    ResultSet rs = st.executeQuery("SELECT DISTINCT categoriamedicamento.nombre FROM categoriamedicamento INNER JOIN medicamentos ON categoriamedicamento.id=medicamentos.idcategoria INNER JOIN medicamentoxespecieyoperacion ON medicamentos.id=medicamentoxespecieyoperacion.idmedicamento WHERE medicamentoxespecieyoperacion.idtipoop='"+IDTipoOperacion+"' ORDER BY categoriamedicamento.nombre ASC");                     
     while (rs.next()) {
-       modeloCombo.addElement(rs.getString("nombre"));
+       modeloCombo.addElement(rs.getString("categoriamedicamento.nombre"));
     }
     rs.close();
     jComboBoxCATEGORIAS.setModel(modeloCombo);            
@@ -1495,34 +1398,6 @@ private void LlenarComboCategoriaMedicamentos() {
         ex.getMessage();
 } 
  }
-
-private void LimpiarCampos() {
-   jComboBoxDUEÑOS.getModel().setSelectedItem("Seleccione Cliente");
-   this.jComboBoxMASCOTAS.getModel().setSelectedItem("");
-   this.jLabelEdad.setText("");
-   this.jLabelPesoActual.setText("");
-   this.jLabelEdad1.setText("");
-   this.jLabelEspecie.setText("");
-    this.jLabelRaza.setText("");
-   this.jLabelSituacionPeso.setText("");
-   this.jLabelRaza.setText("");
-   this.jLabelOpcionDespar.setText("");
-   jLabelTiempoDespar.setText("");
-   this.jLabelProximaDESPAR.setText("");
-   this.limpiarTabla(jTablePENDIENTES);
-   this.limpiarTabla(jTableVACUNAS);
-   jTextAreaALERGIAS.setText("");
-   this.jTextAreaDIAGNOSTICO.setText("");
-   this.jComboBoxTIPOCONSULTA.getModel().setSelectedItem("Seleccione Concepto");
-   this.jComboBoxCATEGORIAS.getModel().setSelectedItem("Seleccionar Categoría");
-   this.jComboBoxMEDICAMENTOS.getModel().setSelectedItem("Seleccionar Medicamento");
-   this.jLabelCantiACTUAL.setText("");
-   this.jSpinnerCantMedicamento.getModel().setValue("");
-   this.jTextAreaCOMPOSICION.setText("");
-   this.limpiarTabla(TABLA);
-   this.buttonTaskAGREGAR.setVisible(true);
-   this.buttonTaskQUITAR.setVisible(false);
-  }
 
 private void ENLACE() {
   int L=0,ES=0,MOD=0,ELI=0;
@@ -1585,74 +1460,6 @@ private void ENLACE() {
       }
         esp.show();
     }
-int IDHISTORIAL;
-private void BuscarDatosHISTORIAL(int IDFICHA) {
-  String tiempodespar="",alergias="",opcionDesparasitado="";
-  
-  try {          
-        cn=cm.Conectar();
-        Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT id,opcionDesparasitado,DATE_FORMAT(fechadespar,'%d/%m/%Y') AS fecha,alergias FROM historialclinico WHERE idficha="+IDFICHA);                     
-        while (rs.next()) {   
-            IDHISTORIAL=rs.getInt("id");  
-            opcionDesparasitado= rs.getString("opcionDesparasitado");             
-            tiempodespar=rs.getString("fecha"); 
-            alergias=rs.getString("alergias"); 
-           }
-           rs.close();
-           this.jTextAreaALERGIAS.setText(alergias);
-           
-           fecha();           
-           String proxdespar = "";
-           
-           if (opcionDesparasitado.equals("No")||opcionDesparasitado.equals("") ){ 
-              jLabelOpcionDespar.setText("No");
-              jLabelTiempoDespar.setText("Ninguna");
-             
-              proxdespar=diaactual+3+"/"+mesactual+"/"+añoactual; 
-              
-           }else if(opcionDesparasitado.equals("Si")){ 
-              int dia=Integer.parseInt(tiempodespar.substring(0,2)); 
-              int mes=Integer.parseInt(tiempodespar.substring(3,5)); 
-              int año=1+Integer.parseInt(tiempodespar.substring(6,10)); 
-              
-               
-             if(mes==12){
-                proxdespar=dia+"/"+06+"/"+añoactual+1;       
-                              
-             }else if(mes <6 || mes==6){
-                 mes=mes+6;
-                 proxdespar=dia+"/"+mes+"/"+añoactual;       
-                
-             }else if(mes>6 & mes<12){
-                 if(mes==7) {
-                     proxdespar=dia+"/"+01+"/"+año;       
-                     
-                 }else if(mes==8){
-                     proxdespar=dia+"/"+02+"/"+año;       
-                     
-                 }else if(mes==9){
-                     proxdespar=dia+"/"+03+"/"+año;       
-                  
-                 }else if(mes==10){
-                     proxdespar=dia+"/"+04+"/"+año;       
-                     
-                 }else if(mes==11){
-                     proxdespar=dia+"/"+05+"/"+año;       
-                     
-                 }
-             }
-                  
-              jLabelOpcionDespar.setText("Si");
-              jLabelTiempoDespar.setText(tiempodespar);        
-           }
-           
-           jLabelProximaDESPAR.setText(proxdespar);           
-    } catch (SQLException ex) {
-            ex.getMessage();
-    }  
-    }
-
 int IDCATEGORIA;
     private void BuscarIDCategoria(String categoria) {
      cn=cm.Conectar();
@@ -1727,7 +1534,7 @@ private void BuscarMedicamentosxCategoria(String categoria) {
     }
     
 
- private void BuscarVacunasPendientes(int especie) {
+ public void BuscarVacunasPendientes(int especie) {
     String[] titulos = {"Vacuna Pendiente","Tipo"};
     modelo = new DefaultTableModel(null,titulos);
     cn=cm.Conectar();
@@ -1763,7 +1570,7 @@ private void BuscarMedicamentosxCategoria(String categoria) {
        }
     }
  
- private void LlenarTablaVacunas(int IDHISTORIAL) {
+ public void LlenarTablaVacunas(int IDHISTORIAL) {
     String[] titulos = {"Fecha","Vacuna"};
     modelo = new DefaultTableModel(null,titulos);
     cn=cm.Conectar();
@@ -1897,7 +1704,7 @@ private void BuscarIDTipoConsulta(String selec) {
         }   
  }
 
-private void LlenarTablaPENDIENTES(int IDHISTORIAL) {
+public void LlenarTablaPENDIENTES(int IDHISTORIAL) {
     String[] titulos = {"Fecha","Tipo"};
     modelo = new DefaultTableModel(null,titulos);
     cn=cm.Conectar();
@@ -1921,22 +1728,7 @@ private void LlenarTablaPENDIENTES(int IDHISTORIAL) {
         }
     }
 
-    private void MostrarPrimerConcepto() {
-       try {            
-            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            cn=cm.Conectar();
-            Statement st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre FROM tipooperacion WHERE id=1");
-                     
-            while (rs.next()) {
-               modeloCombo.addElement(rs.getString("nombre"));
-            }
-            rs.close();
-            this.jComboBoxTIPOCONSULTA.setModel(modeloCombo);
-        } catch (SQLException ex) {
-            ex.getMessage();
-        }    
-    }
+   
 
  public void EnvioCorreoPropietarios(String dueño) {         
   fecha();  String ubicacion = null;   
@@ -1952,10 +1744,10 @@ private void LlenarTablaPENDIENTES(int IDHISTORIAL) {
          
           while(idficha<=cantidadFichas){               
                obtenerCorreo(idficha);  ////  obtengo e-mail del dueño de la ficha seleccionada que corresponde a una mascota
-               obtenerIDHistorial(idficha);  ////obtengo id de historial y datos de desparasitacion
-               buscarUltimadesparasitacion(idhistorial); 
+               BuscarDatosHISTORIAL(idficha);  ////obtengo id de historial y datos de desparasitacion
+               buscarUltimadesparasitacion(IDHISTORIAL); 
                
-               int cantVacunas=consulta.CantVacunas(idhistorial);
+               int cantVacunas=consulta.CantVacunas(IDHISTORIAL);
               
                if(cantVacunas==0){   ////aca se tendria que registrar en el txt las vacunas faltantes                
                    try {
@@ -2086,21 +1878,73 @@ String correo;
     
     }
 
-    int idhistorial;
- private void obtenerIDHistorial(int idficha) {
-    try {             
+int IDHISTORIAL,NroHistorial;
+private void BuscarDatosHISTORIAL(int IDFICHA) {
+  String tiempodespar="",alergias="",opcionDesparasitado="";
+  
+  try {          
         cn=cm.Conectar();
         Statement st = (Statement) cn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT historialclinico.id FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id WHERE fichamedica.id="+idficha);
-
-        while (rs.next()) {
-           idhistorial=rs.getInt("historialclinico.id");
-        }
-        rs.close();
-
+        ResultSet rs = st.executeQuery("SELECT id,nrohistorial,opcionDesparasitado,DATE_FORMAT(fechadespar,'%d/%m/%Y') AS fecha,alergias FROM historialclinico WHERE idficha="+IDFICHA);                     
+        while (rs.next()) {   
+            IDHISTORIAL=rs.getInt("id");  
+            NroHistorial=rs.getInt("nrohistorial"); 
+            opcionDesparasitado= rs.getString("opcionDesparasitado");             
+            tiempodespar=rs.getString("fecha"); 
+            alergias=rs.getString("alergias"); 
+           }
+           rs.close();
+           this.jTextAreaALERGIAS.setText(alergias);
+           
+           fecha();           
+           String proxdespar = "";
+           
+           if (opcionDesparasitado.equals("No")||opcionDesparasitado.equals("") ){ 
+              jLabelOpcionDespar.setText("No");
+              jLabelTiempoDespar.setText("Ninguna");
+             
+              proxdespar=diaactual+3+"/"+mesactual+"/"+añoactual; 
+              
+           }else if(opcionDesparasitado.equals("Si")){ 
+              int dia=Integer.parseInt(tiempodespar.substring(0,2)); 
+              int mes=Integer.parseInt(tiempodespar.substring(3,5)); 
+              int año=1+Integer.parseInt(tiempodespar.substring(6,10)); 
+              
+               
+             if(mes==12){
+                proxdespar=dia+"/"+06+"/"+añoactual+1;       
+                              
+             }else if(mes <6 || mes==6){
+                 mes=mes+6;
+                 proxdespar=dia+"/"+mes+"/"+añoactual;       
+                
+             }else if(mes>6 & mes<12){
+                 if(mes==7) {
+                     proxdespar=dia+"/"+01+"/"+año;       
+                     
+                 }else if(mes==8){
+                     proxdespar=dia+"/"+02+"/"+año;       
+                     
+                 }else if(mes==9){
+                     proxdespar=dia+"/"+03+"/"+año;       
+                  
+                 }else if(mes==10){
+                     proxdespar=dia+"/"+04+"/"+año;       
+                     
+                 }else if(mes==11){
+                     proxdespar=dia+"/"+05+"/"+año;       
+                     
+                 }
+             }
+                  
+              jLabelOpcionDespar.setText("Si");
+              jLabelTiempoDespar.setText(tiempodespar);        
+           }
+           
+           jLabelProximaDESPAR.setText(proxdespar);           
     } catch (SQLException ex) {
-        ex.getMessage();
-    }    
+            ex.getMessage();
+    }  
     }
 
 String fecha;
@@ -2182,295 +2026,97 @@ private void FORMATO_TABLAMEDICAMENTOS(){
    jTablePENDIENTES.getColumnModel().getColumn(1).setPreferredWidth(130);
     }
 
-  private void LimpiarCamposDATOSMASCOTA() {
-   this.jLabelEdad.setText("");
-   this.jLabelPesoActual.setText("");
-   this.jLabelEdad1.setText("");
-   this.jLabelEspecie.setText("");
-    this.jLabelRaza.setText("");
-   this.jLabelSituacionPeso.setText("");
-   this.jLabelRaza.setText("");
-   this.jLabelOpcionDespar.setText("");
-   jLabelTiempoDespar.setText("");
-   this.jLabelProximaDESPAR.setText("");
-   this.limpiarTabla(jTablePENDIENTES);
-   this.limpiarTabla(jTableVACUNAS);
-   jTextAreaALERGIAS.setText("");
+  
+  int IDFICHA;
+  private void BuscarIDFICHA(String mascotaSelec) {
+     try {             
+        cn=cm.Conectar();
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT id FROM fichamedica WHERE mascota LIKE '"+mascotaSelec+"%'");
+
+        while (rs.next()) {
+           IDFICHA=rs.getInt("id");
+        }
+        rs.close();
+
+    } catch (SQLException ex) {
+        ex.getMessage();
+    }   
 }
-//  private void MostrarVisitasxFechas(String d, String h) {
-//    String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' ORDER BY fecha ASC";
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("hora");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo); 
-//          this.FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }
+  
+  int IDVacuna;
+    private void BuscarIDVACUNAxMedicamento(int IDMEDICAMENTO) {
+       try {   
+        cn=cm.Conectar();
+        Statement st = (Statement) cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT idcontrolvacuna FROM tipovacuna WHERE idmedicamento="+IDMEDICAMENTO);
+
+        while (rs.next()) {
+            IDVacuna=rs.getInt("idcontrolvacuna");
+        }
+            rs.close();        
+    } catch (SQLException ex) {
+        ex.getMessage();
+    }  
+    }
+
+//    private void BuscarIDHORA(String seleccion) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
 
-//private void MostrarVisitasVeterinarioxFechas(String d, String h, String buscar) {
-//    String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("hora");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo);  
-//          FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }    
-//    }
-//
-//    private void MostrarVisitasConceptoxFechas(String d, String h, String buscar) {
-//    String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("hora");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo);  
-//          FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }   
-//    }
-//
-//    private void MostrarVisitasxVeterinario(String buscar) {
-//    String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND veterinarios.apellido LIKE '"+buscar+"%' OR veterinarios.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-//
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("horaturno");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo);  
-//          FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }
-//    }
-//
-//    private void MostrarVisitasxConcepto(String buscar) {
-//    String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND tipooperacion.nombre LIKE '"+buscar+"%' ORDER BY fecha ASC";
-//
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("horaturno");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo); 
-//          FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }
-//    }
-//
-//  private void MostrarVisitasxMascota(String buscar) {
-//    String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
-//
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("horaturno");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo);  
-//          FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }
-//    }
-//
-// private void MostrarVisitasMascotaxFechas(String d, String h, String buscar) {
-//  String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 AND DATE_FORMAT(fecha,'%Y/%m/%d') BETWEEN '"+d+"%' AND '"+h+"%' AND mascota LIKE '"+buscar+"%' ORDER BY fecha ASC";
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("horaturno");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo);  
-//          FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }      
-//    } 
-// 
-//private void FORMATO_TABLA2(){
-//  jTableVISITAS.getColumnModel().getColumn(0).setPreferredWidth(130);
-//  jTableVISITAS.getColumnModel().getColumn(3).setPreferredWidth(80);
-//  jTableVISITAS.getColumnModel().getColumn(4).setPreferredWidth(50);
-//}
-//
-//  private void LlenarTablaVISITAS() {
-//    String[] titulos = {"Veterinario","Fecha","Hora","Tipo de Consulta","Mascota"};
-//    modelo = new DefaultTableModel(null,titulos);
-//    cn=cm.Conectar();
-//    
-//    String[] registro = new String[5];
-//    String sSQL = "SELECT tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE tipooperacion.idcategoria=1 ORDER BY fecha ASC";
-//    try
-//       {
-//        Statement st = (Statement) cn.createStatement();
-//        ResultSet rs = st.executeQuery(sSQL);
-////         
-//         while(rs.next())
-//           {           
-//           registro[0]=rs.getString("veterinarios.apellido")+rs.getString("veterinarios.nombre");
-//           registro[1]=rs.getString("fecha");
-//           registro[2]=rs.getString("horaturno");
-//           registro[3]=rs.getString("tipooperacion.nombre");          
-//           registro[4]=rs.getString("mascota");
-//           modelo.addRow(registro);
-//           limpiarTabla(jTableVISITAS); 
-//           }          
-//          jTableVISITAS.setModel(modelo);  
-//          FORMATO_TABLA2();
-//            }
-//        catch (SQLException ex)
-//           {
-//            JOptionPane.showMessageDialog(null, ex);
-//           }      
-//    }
-
- private void BuscarDatosConsulta(int IDFICHA) {
-    cn=cm.Conectar();
-   
+    private void LlenarComboHORA() {
+       try {            
+            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+            cn=cm.Conectar();
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT hora,minutos FROM horarios");
+                     
+            while (rs.next()) {
+               modeloCombo.addElement(rs.getString("hora")+":"+rs.getString("minutos"));
+            }
+            rs.close();
+            this.jComboBoxHORA.setModel(modeloCombo);
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }  
+    }
+    
+int NrofechaXOperacion;
+private void GenerarNroOperacion() {
+    cn=cm.Conectar();   
     try{
-       String sSQL="SELECT operaciones.id FROM operaciones WHERE idficha="+IDFICHA;
+       String sSQL="SELECT COUNT(nro) AS nro FROM fechasxoperacion";
        Statement st = (Statement) cn.createStatement();
        ResultSet rs = st.executeQuery(sSQL);       
        
         while(rs.next()){//aca se lee el maximo de filas
-            IDFICHA=rs.getInt("operaciones.id");          
+            NrofechaXOperacion=rs.getInt("nro")+1;                              
         }
-        
+       
 //      cmd.close();
 //      cn.close();      
       }catch(Exception ex){
          System.out.println(ex.getMessage());
-      }    
- }
+      }  
+    }
+
+int resultado;
+private void BuscarVacunaxHistorial(int vacuna,int historial) {
+   cn=cm.Conectar();   
+    try{
+       String sSQL="SELECT idvacuna FROM vacunaspendientes WHERE idvacuna='"+vacuna+"' AND idhistorial="+historial;
+       Statement st = (Statement) cn.createStatement();
+       ResultSet rs = st.executeQuery(sSQL);       
+       
+        while(rs.next()){//aca se lee el maximo de filas
+            resultado=rs.getInt("idvacuna");                              
+        }
+       
+//      cmd.close();
+//      cn.close();      
+      }catch(Exception ex){
+         System.out.println(ex.getMessage());
+      } 
+}
 
 }

@@ -43,7 +43,7 @@ public class Auditoria extends javax.swing.JDialog {
     }
 
   
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")int usuarioActual;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -471,9 +471,10 @@ String usuarioCapturado,TablaCapturada,Operacioncapturada;
     Operacioncapturada = ComboBoxOperaciones.getSelectedItem().toString();
     TablaCapturada = ComboBoxTablas.getSelectedItem().toString();
     usuarioCapturado = ComboBoxUsuarios.getSelectedItem().toString();
-    
+    BuscarUsuario();
+    BuscarDatosClinica();
     if(jDateChooser_Desde.getDate()==null & jDateChooser_Hasta.getDate()==null & Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-          ReporteGral();            
+         ReporteGral();            
          }else if(jDateChooser_Desde.getDate()!=null & jDateChooser_Hasta.getDate()!=null){
             String formato = "yyyy/MM/dd";
             desde=new Date( this.jDateChooser_Desde.getDate().getYear(), jDateChooser_Desde.getDate().getMonth(),jDateChooser_Desde.getDate().getDate() );
@@ -484,39 +485,40 @@ String usuarioCapturado,TablaCapturada,Operacioncapturada;
             String h = sdf.format(hasta);
 
             if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                Reporte_AuditoriaxTodos(d,h,Operacioncapturada,TablaCapturada,usuarioCapturado);
+                Reporte_AuditoriaxTodos(d,h,Operacioncapturada,TablaCapturada,usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }else if(Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                GenerarReportexFechas(d,h);
+                GenerarReportexFechas(d,h,USUARIOACTUAL,clinica,imagen);
             }else if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                Reporte_AuditoriaxFechasyOperacion(d,h,Operacioncapturada);
+                Reporte_AuditoriaxFechasyOperacion(d,h,Operacioncapturada,USUARIOACTUAL,clinica,imagen);
             }else if(Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                Reporte_AuditoriaxFechasyTabla(d,h,TablaCapturada);
+                Reporte_AuditoriaxFechasyTabla(d,h,TablaCapturada,USUARIOACTUAL,clinica,imagen);
             }else if(Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                Reporte_AuditoriaxFechasyUsuario(d,h,usuarioCapturado);
+                Reporte_AuditoriaxFechasyUsuario(d,h,usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }else if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                Reporte_AuditoriaFechasxOperacionyTabla(d,h,Operacioncapturada,TablaCapturada);
+                Reporte_AuditoriaFechasxOperacionyTabla(d,h,Operacioncapturada,TablaCapturada,USUARIOACTUAL,clinica,imagen);
             }else if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                Reporte_AuditoriaFechasxOperacionyUsuario(d,h,Operacioncapturada,usuarioCapturado);
+                Reporte_AuditoriaFechasxOperacionyUsuario(d,h,Operacioncapturada,usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }else if(Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                Reporte_AuditoriaFechasxTablayUsuario(d,h,TablaCapturada,usuarioCapturado);
+                Reporte_AuditoriaFechasxTablayUsuario(d,h,TablaCapturada,usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }
         }else if(jDateChooser_Desde.getDate()==null & jDateChooser_Hasta.getDate()==null){
             if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                ReporteAuditoriaxOperacionyTablayUsuario(Operacioncapturada,TablaCapturada,usuarioCapturado);
+                ReporteAuditoriaxOperacionyTablayUsuario(Operacioncapturada,TablaCapturada,usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }else if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                ReporteAuditoriaxOperacionyTabla(Operacioncapturada,TablaCapturada);
+                ReporteAuditoriaxOperacionyTabla(Operacioncapturada,TablaCapturada,USUARIOACTUAL,clinica,imagen);
             }else if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                ReporteAuditoriaxOperacionyUsuario(Operacioncapturada,usuarioCapturado);
+                ReporteAuditoriaxOperacionyUsuario(Operacioncapturada,usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }else if(Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                ReporteAuditoriaxTablayUsuario(TablaCapturada,usuarioCapturado);
+                ReporteAuditoriaxTablayUsuario(TablaCapturada,usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }else if(!Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                GenerarReportexOperacion(Operacioncapturada);
+                GenerarReportexOperacion(Operacioncapturada,USUARIOACTUAL,clinica,imagen);
             }else if(Operacioncapturada.equals("SELECCIONAR OPERACION") & !TablaCapturada.equals("SELECCIONAR TABLA") & usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                GenerarReportexTabla(TablaCapturada);
+                GenerarReportexTabla(TablaCapturada,USUARIOACTUAL,clinica,imagen);
             }else if(Operacioncapturada.equals("SELECCIONAR OPERACION") & TablaCapturada.equals("SELECCIONAR TABLA") & !usuarioCapturado.equals("SELECCIONAR USUARIO")){
-                GenerarReportexUsuario(usuarioCapturado);
+                GenerarReportexUsuario(usuarioCapturado,USUARIOACTUAL,clinica,imagen);
             }
         }
+    this.dispose();
     }//GEN-LAST:event_buttonTaskGenerarReporteActionPerformed
 
     private void ComboBoxTablasPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_ComboBoxTablasPopupMenuWillBecomeVisible
@@ -1146,9 +1148,9 @@ private void ListarxOperacionUsuarioyTabla(String Operacioncapturada, String usu
 ////////// REPORTES.....
  
  
-private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacion, String tabla, String usuario) {
+private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacion, String tabla, String usuario,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
        try {           
-            String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteGeneral.jasper";
+            String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteAuditoriaTodosCriterios.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
              Map parametro=new HashMap();
              parametro.clear();
@@ -1157,6 +1159,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("operacion",operacion);
              parametro.put("tabla", tabla);
              parametro.put("usuario",usuario);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1165,7 +1170,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }
     }
   
-   private void Reporte_AuditoriaxFechasyOperacion(String desde, String hasta, String operacion) {
+   private void Reporte_AuditoriaxFechasyOperacion(String desde, String hasta, String operacion,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
         try {           
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteFechasxOperacion.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1174,6 +1179,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("desde",desde);
              parametro.put("hasta",hasta);
              parametro.put("operacion",operacion);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1182,7 +1190,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }  
     }
    
- private void Reporte_AuditoriaxFechasyTabla(String desde, String hasta, String tabla) {
+ private void Reporte_AuditoriaxFechasyTabla(String desde, String hasta, String tabla,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
        try {           
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteFechasxTabla.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1191,6 +1199,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("desde",desde);
              parametro.put("hasta",hasta);
              parametro.put("tabla",tabla);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1199,7 +1210,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }  
     }
  
-  private void Reporte_AuditoriaxFechasyUsuario(String desde, String hasta, String usuario) {
+  private void Reporte_AuditoriaxFechasyUsuario(String desde, String hasta, String usuario,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
         try {           
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteFechasxUsuario.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1208,6 +1219,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("desde",desde);
              parametro.put("hasta",hasta);
              parametro.put("usuario",usuario);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1216,7 +1230,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }
     }
   
-   private void Reporte_AuditoriaFechasxOperacionyTabla(String desde,String hasta, String operacion, String tabla) {
+   private void Reporte_AuditoriaFechasxOperacionyTabla(String desde,String hasta, String operacion, String tabla,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
           try {           
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/Reporte_AuditoriaxOperacionyTablaentreFechas.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1225,7 +1239,10 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("desde",desde);
              parametro.put("hasta",hasta);             
              parametro.put("tabla",tabla);
-             parametro.put("operacion",operacion);             
+             parametro.put("operacion",operacion);      
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1234,7 +1251,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }
     }
    
-    private void Reporte_AuditoriaFechasxOperacionyUsuario(String desde,String hasta, String operacion, String usuario) {
+    private void Reporte_AuditoriaFechasxOperacionyUsuario(String desde,String hasta, String operacion, String usuario,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
        try {           
             String ubicacion=System.getProperty("user.dir")+"/src/Reportes/ReporteFechasOpUsu.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1244,6 +1261,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("hasta",hasta);
              parametro.put("operacion",operacion);
              parametro.put("usuario",usuario);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1252,7 +1272,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         } 
     }
 
-    private void Reporte_AuditoriaFechasxTablayUsuario(String desde, String hasta, String tabla, String usuario) {
+    private void Reporte_AuditoriaFechasxTablayUsuario(String desde, String hasta, String tabla, String usuario,String USUARIOACTUAL,String CLINICA, String IMAGEN) {
            try {           
             String ubicacion=System.getProperty("user.dir")+"/src/Reportes/Reporte_AuditoriaxTablayUsuarioentreFechas.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1262,6 +1282,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("hasta",hasta);
              parametro.put("tabla",tabla);
              parametro.put("usuario",usuario);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1270,7 +1293,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         } 
     }
 
-    private void ReporteAuditoriaxOperacionyTablayUsuario(String operacion, String tabla, String usuario) {
+    private void ReporteAuditoriaxOperacionyTablayUsuario(String operacion, String tabla, String usuario,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
              try {           
             String ubicacion=System.getProperty("user.dir")+"/src/Reportes/Reporte_AuditoriaxOperacionyTablayUsuario.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1279,6 +1302,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.put("operacion",operacion);
              parametro.put("tabla", tabla);
              parametro.put("usuario",usuario);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1287,7 +1313,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }       
     }
 
-    private void ReporteAuditoriaxOperacionyTabla(String operacion, String tabla) {
+    private void ReporteAuditoriaxOperacionyTabla(String operacion, String tabla,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
            try {           
             String ubicacion=System.getProperty("user.dir")+"/src/Reportes/Reporte_AuditoriaxOperacionyTabla.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1295,6 +1321,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.clear();
              parametro.put("operacion",operacion);
              parametro.put("tabla",tabla);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1303,7 +1332,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         } 
     }
 
-    private void ReporteAuditoriaxOperacionyUsuario(String operacion,String usuario) {
+    private void ReporteAuditoriaxOperacionyUsuario(String operacion,String usuario,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
            try {           
              String ubicacion=System.getProperty("user.dir")+"/src/Reportes/Reporte_AuditoriaxOperacionyUsuario.jasper";
 //             JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1311,6 +1340,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.clear();
              parametro.put("operacion",operacion);
              parametro.put("usuario",usuario);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1319,7 +1351,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         } 
     }
 
-    private void ReporteAuditoriaxTablayUsuario(String tabla, String usuario) {
+    private void ReporteAuditoriaxTablayUsuario(String tabla, String usuario,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
            try {           
             String ubicacion=System.getProperty("user.dir")+"/src/Reportes/Reporte_AuditoriaxTablayUsuario.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);             
@@ -1327,6 +1359,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.clear();
              parametro.put("tabla",tabla);
              parametro.put("usuario",usuario);
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1335,7 +1370,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         } 
     }
 
-   private void GenerarReportexOperacion(String operacion) {
+   private void GenerarReportexOperacion(String operacion,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
         try {           
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/Reporte_AuditoriaxOperacion.jasper";
 //            JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);   
@@ -1343,7 +1378,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              Map parametro=new HashMap();
              parametro.clear();
              parametro.put("operacion",operacion);
-          
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(ubicacion,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1352,7 +1389,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }
     }
 
-    private void GenerarReportexTabla(String tabla) {
+    private void GenerarReportexTabla(String tabla,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
          try {           
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReportexTabla.jasper";
             JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);   
@@ -1360,7 +1397,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              Map parametro=new HashMap();
              parametro.clear();
              parametro.put("tabla",tabla);
-          
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(reportes,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1369,7 +1408,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }
     }
 
-    private void GenerarReportexFechas(String desde,String hasta) {
+    private void GenerarReportexFechas(String desde,String hasta,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
           try {           
             String ubicacion=System.getProperty("user.dir")+"/src/Reportes/ReporteFechas.jasper";
             JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);   
@@ -1378,7 +1417,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              parametro.clear();
              parametro.put("desde",desde);
              parametro.put("hasta",hasta);
-            
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(reportes,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1387,7 +1428,7 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }
     }
 
-    private void GenerarReportexUsuario(String usuario) {
+    private void GenerarReportexUsuario(String usuario,String USUARIOACTUAL,String CLINICA,String IMAGEN) {
          try {           
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReportexUsuario.jasper";
             JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);   
@@ -1395,7 +1436,9 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
              Map parametro=new HashMap();
              parametro.clear();
              parametro.put("usuario",usuario);
-             
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",CLINICA);
+             parametro.put("IMAGEN",IMAGEN);
              JasperPrint print=JasperFillManager.fillReport(reportes,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
@@ -1409,11 +1452,12 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
             String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteGral.jasper";
             JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion);   
            
-//             Map parametro=new HashMap();
-//             parametro.clear();
-//             parametro.put("usuario",usuario);
-             
-             JasperPrint print=JasperFillManager.fillReport(reportes,null,cm.Conectar());             
+             Map parametro=new HashMap();
+             parametro.clear();
+             parametro.put("USUARIOACTUAL",USUARIOACTUAL);
+             parametro.put("CLINICA",clinica);
+             parametro.put("IMAGEN",imagen);
+             JasperPrint print=JasperFillManager.fillReport(reportes,parametro,cm.Conectar());             
              JasperViewer vista= new JasperViewer(print,false);
              vista.setVisible(true);
         } catch (Exception e) {
@@ -1421,5 +1465,45 @@ private void Reporte_AuditoriaxTodos(String desde, String hasta, String operacio
         }
     }
 
+  String USUARIOACTUAL; 
+  private void BuscarUsuario(){
+     cn=cm.Conectar();
+     String   sSQL = "SELECT usuario FROM usuarios WHERE id="+usuarioActual;
+        try
+        {
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while(rs.next())
+            {
+               USUARIOACTUAL=rs.getString("usuario");      
+            }
+            }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+  String imagen,clinica;
+    private void BuscarDatosClinica() {
+     cn=cm.Conectar();
+     String   sSQL = "SELECT nombre,direimagen FROM logoclinica";
+        try
+        {
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+
+            while(rs.next())
+            {
+               clinica=rs.getString("nombre");  
+               imagen=rs.getString("direimagen");
+            }
+            }
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }  
+    }
     
 }

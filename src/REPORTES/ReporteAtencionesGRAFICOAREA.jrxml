@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="780" pageHeight="800" columnWidth="740" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e3917a77-df79-4d6f-a186-e70c5800902f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT tipooperacion.nombre AS operacion,COUNT(idficha) AS fichas,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS cliente FROM tipooperacion INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN fichamedica ON operaciones.idficha=fichamedica.id INNER JOIN propietarios ON fichamedica.idpropietario=propietarios.id GROUP BY operaciones.idficha]]>
+	</queryString>
+	<field name="operacion" class="java.lang.String"/>
+	<field name="fichas" class="java.lang.Long"/>
+	<field name="cliente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2a821e76-81d4-4c17-97e5-626b34dcfef7" mode="Opaque" x="0" y="50" width="740" height="18" forecolor="#000000" backcolor="#009999"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fa27730e-a899-4f1f-b5dc-700b636ad41b" x="158" y="18" width="367" height="32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="12" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Tipos de Atenciones más Solicitadas por Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a821e76-81d4-4c17-97e5-626b34dcfef7" mode="Opaque" x="0" y="0" width="740" height="18" forecolor="#000000" backcolor="#009999"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="243" splitType="Stretch">
+			<stackedAreaChart>
+				<chart>
+					<reportElement uuid="30c94a38-88f5-40cd-b1bb-d65d35116429" x="0" y="0" width="740" height="243"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{cliente}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{operacion}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{fichas}]]></valueExpression>
+						<labelExpression><![CDATA[$F{cliente}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<areaPlot>
+					<plot/>
+				</areaPlot>
+			</stackedAreaChart>
+		</band>
+	</summary>
+</jasperReport>

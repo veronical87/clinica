@@ -411,9 +411,9 @@ int idusuario,idrol,idMedicamento,cantiminimoAnterior,cantiactualAnterior;String
 
     private void JTextFieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTextFieldNombreFocusLost
         String nombre=this.JTextFieldNombre.getText();
-        String h=med.VerificarMedicamento(nombre);
+        int h=med.VerificarMedicamento(nombre);
 
-        if(h!=null){
+        if(h!=0){
             JOptionPane.showMessageDialog(null,"El Medicamento "+nombre+" Se Encuentra Registrado","Atención", JOptionPane.WARNING_MESSAGE);
             JTextFieldNombre.setText("");
             this.jTextAreaDESCRIPCIN.setText("");

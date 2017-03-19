@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteGraficoConsultamasSolicitada_subreport1" language="groovy" pageWidth="595" pageHeight="555" orientation="Landscape" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="69150ad9-7db5-49de-8e8c-d8e975c32408">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT tipooperacion.nombre, COUNT(idtipooperacion) AS operacion FROM tipooperacion INNER JOIN operaciones ON operaciones.idtipooperacion=tipooperacion.id inner join categoriatipo on tipooperacion.idcategoria=categoriatipo.id WHERE fecha LIKE '2017/2/1%' OR '2017/3/2%'   AND categoriatipo.nombre like 'consultas' 
+GROUP BY operaciones.idtipooperacion
+]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="operacion" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="173" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement uuid="2d8a1a35-763d-473b-a307-e4b797365c41" stretchType="RelativeToTallestObject" x="115" y="15" width="466" height="158"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{nombre}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nombre}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{operacion}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</detail>
+</jasperReport>

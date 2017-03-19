@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteFichaMedica_DATOSMASCOTA_HISTORIALMEDICO" language="groovy" pageWidth="555" pageHeight="500" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a6d27700-d9aa-4a7d-807b-59db7a9e81f5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="66"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="VACUNAS" uuid="adddea31-5762-4321-8000-d6706907e870">
+		<parameter name="IDHISTORIAL" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT DATE_FORMAT(vacunasxmascota.fecha,'%d/%m/%Y') AS fecha,controlvacunas.nombre FROM controlvacunas INNER JOIN vacunasxmascota ON controlvacunas.id=vacunasxmascota.idvacuna INNER JOIN historialclinico ON vacunasxmascota.idhistorial=historialclinico.id WHERE historialclinico.id=$P{IDHISTORIAL}]]>
+		</queryString>
+		<field name="fecha" class="java.lang.String"/>
+		<field name="nombre" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="AFECCIONES" uuid="b02ced5d-268f-412d-b0b4-ffde3cadd7c1">
+		<parameter name="IDHISTORIAL" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT afecciones.nombre FROM afecciones INNER JOIN afeccionesxhistorialclinico ON afecciones.id=afeccionesxhistorialclinico.idafeccion INNER JOIN historialclinico ON afeccionesxhistorialclinico.idhistorial=historialclinico.id WHERE historialclinico.id=$P{IDHISTORIAL}]]>
+		</queryString>
+		<field name="nombre" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="IDFICHA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IDHISTORIAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT fichamedica.id AS NROFICHA,mascota,edad,tiemponac,situacionpeso,SEXO,especies.nombre AS ESPECIE,kilaje,razas.nombre AS RAZA,fichamedica.direimagen AS imagenMASCOTA,nrohistorial,opcionvacunas,opcionparasitos,parasitos,opcionalergias,alergias,opciondesparasitado,fechadespar,opcionProblemasResp,opcionpreñada,cantpre,opcionmasveces,opcioncastrado FROM fichamedica INNER JOIN HISTORIALCLINICO ON historialclinico.idficha=fichamedica.id INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON pelajexraza.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.id=$P{IDFICHA} AND historialclinico.id=$P{IDHISTORIAL}]]>
+	</queryString>
+	<field name="NROFICHA" class="java.lang.Integer"/>
+	<field name="mascota" class="java.lang.String"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="tiemponac" class="java.lang.String"/>
+	<field name="situacionpeso" class="java.lang.String"/>
+	<field name="SEXO" class="java.lang.String"/>
+	<field name="ESPECIE" class="java.lang.String"/>
+	<field name="kilaje" class="java.lang.Double"/>
+	<field name="RAZA" class="java.lang.String"/>
+	<field name="imagenMASCOTA" class="java.lang.String"/>
+	<field name="nrohistorial" class="java.lang.Integer"/>
+	<field name="opcionvacunas" class="java.lang.String"/>
+	<field name="opcionparasitos" class="java.lang.String"/>
+	<field name="parasitos" class="java.lang.String"/>
+	<field name="opcionalergias" class="java.lang.String"/>
+	<field name="alergias" class="java.lang.String"/>
+	<field name="opciondesparasitado" class="java.lang.String"/>
+	<field name="fechadespar" class="java.lang.String"/>
+	<field name="opcionProblemasResp" class="java.lang.String"/>
+	<field name="opcionpreñada" class="java.lang.String"/>
+	<field name="cantpre" class="java.lang.Integer"/>
+	<field name="opcionmasveces" class="java.lang.String"/>
+	<field name="opcioncastrado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2a821e76-81d4-4c17-97e5-626b34dcfef7" mode="Opaque" x="0" y="0" width="555" height="18" forecolor="#000000" backcolor="#009999"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL PACIENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2282d1e8-e5b1-4907-9cd2-89bc852556c5" x="244" y="18" width="35" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tiemponac}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="794189f0-b56c-4941-af74-e3f36d6eba99" x="331" y="18" width="32" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="54e7803a-bd6a-4efe-8f51-f509b81f7589" x="174" y="48" width="40" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Raza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="07233a0d-cd77-4467-9527-d291566e1e93" x="174" y="18" width="29" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="159c1b12-c532-4981-af65-cd4e495dd38f" x="214" y="18" width="30" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e08e276f-b332-4bef-862a-58f3da74bcaa" x="0" y="18" width="51" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Mascota]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement uuid="64ac5ed0-75f7-4c25-ac86-5f3ecb6aab2f" x="465" y="18" width="90" height="60"/>
+				<imageExpression><![CDATA[$F{imagenMASCOTA}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="345fbf2d-b89e-4a15-b978-ba654bb9398d" x="0" y="48" width="51" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Especie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c8fd3feb-9e8e-4f53-ae3b-096d5e881f41" x="0" y="78" width="51" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e08e276f-b332-4bef-862a-58f3da74bcaa" x="122" y="78" width="39" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Kilos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="efd8b3d9-2088-4a84-a4fe-283405850558" x="174" y="78" width="96" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Situacion Peso]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="caf64ef7-d714-4130-8c4a-946c02004093" x="51" y="18" width="123" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{mascota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="97e1cfa5-d17a-40f1-8ba9-3ca41a1c2fd3" x="363" y="18" width="68" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SEXO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9129b705-4e32-42c4-86e3-dd8c6280a489" x="51" y="48" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ESPECIE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="538ea593-99ce-451a-9a80-161f611adc18" x="214" y="48" width="217" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RAZA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d18d20c1-ecf2-498e-8fdd-177b86bc13b2" x="51" y="78" width="71" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{kilaje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a93e1a7d-01ab-4f53-95ed-f8b77beecc69" x="270" y="78" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{situacionpeso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="342" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2a821e76-81d4-4c17-97e5-626b34dcfef7" mode="Opaque" x="0" y="0" width="555" height="18" forecolor="#000000" backcolor="#009999"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HISTORIAL CLÍNICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d607c11c-06b5-44d9-befb-108ceebe6e93" x="1" y="100" width="167" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Fue Desparasitado? ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="539c35f0-cadd-41f1-951d-d8b5bf2c40d3" x="258" y="185" width="58" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Cuáles?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="742f8596-0fe5-430c-84fd-81d288a2abdc" x="2" y="288" width="166" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Afecciones que tuvo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="98ba0399-13b4-4cbe-bf90-1cd4292e9461" x="1" y="20" width="110" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Esta Castrado/a?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="539c35f0-cadd-41f1-951d-d8b5bf2c40d3" x="258" y="150" width="58" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Cuáles?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="296e4482-4408-49f4-b0f9-925b53691c7c" x="1" y="60" width="167" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Estuvo Preñada?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7135bd8b-7165-451c-9266-f4437681cc37" x="2" y="120" width="166" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Parásitos que Tuvo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a42cb035-b839-403d-a006-a5e497dc99f6" x="1" y="40" width="167" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Problemas Respiratorios?(*) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="539c35f0-cadd-41f1-951d-d8b5bf2c40d3" x="258" y="60" width="106" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Cuántas Veces?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="15fedbab-61c0-4767-b4a0-6efb26924218" x="0" y="80" width="168" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Tuvo Parásitos?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c9749231-371b-417c-ab58-d81e7af660b8" x="2" y="150" width="216" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Es Alérgico a algún medicamento?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fdc71dae-bc6a-4e49-ab3f-bf0939a938fc" x="258" y="100" width="140" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Última Desparasitación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="742f8596-0fe5-430c-84fd-81d288a2abdc" x="1" y="185" width="166" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Posee vacunas?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="db9c7f04-a3fb-438b-abd4-47ae75b5d702" x="398" y="60" width="56" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Más de 3]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4c95a3a0-89e4-4556-9ed9-0436cbadaaae" x="218" y="185" width="40" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opcionvacunas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3f203284-a7bf-492f-9474-d4f9af74353c" x="218" y="80" width="40" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opcionparasitos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="23120d3a-274b-475a-8281-06cee0b0845d" x="218" y="120" width="324" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{parasitos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6ba22d2f-9b5a-4215-b893-730b1b92a7fd" x="218" y="150" width="40" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opcionalergias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2d11f44a-0b97-41c6-82aa-abbb2f452622" x="455" y="60" width="42" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opcionmasveces}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="aab2c0e4-2e24-47fb-9123-5b4e59de9052" x="364" y="60" width="34" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cantpre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72a6c9e1-abf5-45a2-a5ca-4c3dbcaefeea" x="218" y="20" width="40" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opcioncastrado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="31cd7a6e-5c9b-4e2b-b8a1-d7810568fefd" x="218" y="40" width="40" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opcionProblemasResp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="12c866af-8a54-4fad-ae9b-98355574b607" x="218" y="60" width="40" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opcionpreñada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eea2d7d4-4de4-4270-adc1-cbda23860cc5" x="218" y="100" width="40" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{opciondesparasitado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="21c1547a-2332-477b-a515-385674349750" x="314" y="150" width="228" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{alergias}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="7927462a-2d20-48cf-a945-23c268741c5f" key="table" style="table" x="316" y="185" width="226" height="50"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="VACUNAS" uuid="2e445cd2-7a23-41b9-8eae-91e6f7410e4e">
+						<datasetParameter name="IDHISTORIAL">
+							<datasetParameterExpression><![CDATA[$P{IDHISTORIAL}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="a0996ae4-a6da-45a4-9032-3868fd7e065d" width="80">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="de9ff95e-bbaa-4139-8c91-a5373b7ab5e0" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false"/>
+								</textElement>
+								<text><![CDATA[FECHA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="2d2b1e5e-454f-40fb-b1bd-4b840e7b4ece" x="0" y="0" width="80" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="df346989-cde4-450e-a190-0ac8e7d9400a" width="144">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="a9187ad9-9924-4062-8e8d-d59c1bae5812" x="0" y="0" width="144" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial Rounded MT Bold" isBold="true" isItalic="false"/>
+								</textElement>
+								<text><![CDATA[VACUNA COLOCADA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="65aac6e5-4aa6-4054-b14e-7fb3417c9bff" x="0" y="0" width="144" height="20"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="82a21d08-52ce-4163-a302-5767dafa7bcf" key="table 1" style="table 1" x="314" y="288" width="228" height="31"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="AFECCIONES" uuid="b4b56d6f-1bbf-4998-adcc-245dd87f15cc">
+						<datasetParameter name="IDHISTORIAL">
+							<datasetParameterExpression><![CDATA[$P{IDHISTORIAL}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="3d2eedf6-9ba2-447f-971b-b4c9b31e22b2" width="227">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="dbcb4e3f-e4cf-4986-8016-de5f0b84a6fc" x="0" y="0" width="227" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial Rounded MT Bold" isBold="true"/>
+								</textElement>
+								<text><![CDATA[AFECCIÓN]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="d64b3001-39d4-432c-a4a3-746b64443c56" x="0" y="0" width="227" height="20"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement uuid="1f232e5e-ddc2-4cc3-b35f-ecf84ccd74e8" x="398" y="100" width="144" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechadespar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="800" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23038d1b-475d-41d5-b6f0-a0dc53ed803d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="USUARIO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Vero\\Documents\\NetBeansProjects\\ClinicaVet\\src\\REPORTES\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT logoclinica.nombre AS CLINICA,domicilio,correo,logoclinica.direimagen FROM logoclinica]]>
+	</queryString>
+	<field name="CLINICA" class="java.lang.String"/>
+	<field name="domicilio" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="direimagen" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2a821e76-81d4-4c17-97e5-626b34dcfef7" mode="Opaque" x="0" y="0" width="555" height="20" backcolor="#009999"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fa27730e-a899-4f1f-b5dc-700b636ad41b" x="0" y="20" width="87" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="12" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Veterinaria]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement uuid="6ba0020d-ed81-47f9-b4a5-b095a461b7dd" x="0" y="40" width="118" height="54"/>
+				<imageExpression><![CDATA[$F{direimagen}]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="c91e841a-c26c-43b0-84ea-d48e576cda31" x="441" y="20" width="114" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d3b7ab0e-a926-40f7-97fc-bcd2a437ef02" x="118" y="20" width="213" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLINICA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="dc9f682e-c983-4e93-a02b-6c37d597cdce" x="398" y="20" width="43" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dc9f682e-c983-4e93-a02b-6c37d597cdce" x="347" y="74" width="55" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="43e4ea8a-6a80-4c31-8a95-93096df5fcc6" x="402" y="74" width="153" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{USUARIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d4e41bf9-122a-4ff4-875d-8b60a5a576be" x="140" y="54" width="228" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="149">
+			<subreport>
+				<reportElement uuid="ead856ef-e8c7-4a7f-8c33-dbad33b0d2e0" x="63" y="49" width="200" height="100"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ReporteGraficoConsultamasSolicitada_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement uuid="661665e0-4b8c-4f04-a0e1-56f4539273c6" x="331" y="30" width="184" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="bc41c5b4-fa98-4247-9719-2ee3023b1865" x="515" y="30" width="40" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

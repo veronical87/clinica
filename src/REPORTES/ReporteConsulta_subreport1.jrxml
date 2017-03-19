@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteConsulta_subreport1" language="groovy" pageWidth="595" pageHeight="120" orientation="Landscape" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="79224ded-62c4-4187-b464-513803e0a9a6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteConsulta_subreport1" language="groovy" pageWidth="520" pageHeight="555" orientation="Landscape" columnWidth="520" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0dee2079-4eeb-4c45-90c9-aacfd8f7ffe9">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -7,51 +7,51 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT CONCAT(veterinarios.apellido,veterinarios.nombre)AS veterinario,fechaturno,horaturno FROM fechasxoperacion INNER JOIN veterinarios ON fechasxoperacion.idveterinario=veterinarios.id where fechasxoperacion.idoperacion=$P{IDOPERACION}]]>
+		<![CDATA[SELECT CONCAT(veterinarios.apellido,veterinarios.nombre) AS vet,fechaturno,horaturno FROM  veterinarios INNER JOIN fechasxoperacion ON veterinarios.id=fechasxoperacion.idveterinario  WHERE fechasxoperacion.idoperacion=$P{IDOPERACION}]]>
 	</queryString>
-	<field name="veterinario" class="java.lang.String"/>
+	<field name="vet" class="java.lang.String"/>
 	<field name="fechaturno" class="java.lang.String"/>
 	<field name="horaturno" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="41" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="6bc17ca0-3fa9-43cc-94a8-14fa870c553c" x="220" y="11" width="126" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Veterinario Asignado]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="6bc17ca0-3fa9-43cc-94a8-14fa870c553c" x="139" y="11" width="34" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Hora]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="6bc17ca0-3fa9-43cc-94a8-14fa870c553c" x="10" y="11" width="44" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" isBold="true"/>
+				<reportElement uuid="03222873-9b50-420f-9118-776caa5f8462" x="264" y="0" width="66" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="f793db8d-eb6a-40f8-81ce-9f61603b0f91" x="346" y="11" width="239" height="20"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{veterinario}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="4f760b38-47e5-4ad3-8ffb-5ec339335ca4" x="54" y="11" width="85" height="20"/>
+				<reportElement uuid="b63ef412-77c4-415f-b6cd-689af2d3ec90" x="330" y="0" width="90" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fechaturno}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="6c80423e-3cff-4f32-9b01-4d35b0492a57" x="420" y="0" width="62" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
 			<textField>
-				<reportElement uuid="1d4b12df-a022-41e7-9a8c-9e5303f5175c" x="173" y="11" width="47" height="20"/>
+				<reportElement uuid="da3cdde1-9789-4a68-89a6-75c7e0289866" x="482" y="0" width="38" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{horaturno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ebb1b4f0-92fe-40a6-ab55-08f6633839f9" x="2" y="0" width="67" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Veterinario]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1be10c83-6003-460c-9f63-fa00722aa6bd" x="69" y="0" width="195" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vet}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

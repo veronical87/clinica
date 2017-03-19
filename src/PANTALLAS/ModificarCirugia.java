@@ -25,8 +25,7 @@ public class ModificarCirugia extends javax.swing.JDialog {
     ClaseFichasMedicas ficha=new ClaseFichasMedicas();
     Calendar Calendario = Calendar.getInstance();  
     DefaultTableModel modelo;   
-    GregorianCalendar hoy = new GregorianCalendar(); 
-    
+    GregorianCalendar hoy = new GregorianCalendar();     
     public ModificarCirugia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -36,6 +35,7 @@ public class ModificarCirugia extends javax.swing.JDialog {
         buttonTaskAGREGAR.setToolTipText("Guardar");
         buttonTaskQUITAR.setToolTipText("Quitar");   
         this.buttonActionVERIFICAR.setEnabled(false);
+        jDateChooserFECHATURNO.setMinSelectableDate(hoy.getTime()); 
     }
 
  
@@ -67,10 +67,10 @@ public class ModificarCirugia extends javax.swing.JDialog {
         jLabelPesoActual2 = new javax.swing.JLabel();
         jLabelSEXO = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBoxMASCOTAS = new javax.swing.JComboBox();
+        jLabelMASCOTA = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextAreaSituacionPeso = new javax.swing.JTextArea();
-        jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jComboBoxMEDICAMENTOS = new javax.swing.JComboBox();
@@ -88,7 +88,6 @@ public class ModificarCirugia extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaCOMPOSICION = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxDUEÑOS = new javax.swing.JComboBox();
         jComboBoxTIPOCONSULTA = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -99,12 +98,13 @@ public class ModificarCirugia extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         buttonActionVERIFICAR = new org.edisoncor.gui.button.ButtonAction();
-        jFormattedTextFieldHORARIO = new javax.swing.JFormattedTextField();
+        jComboBoxHORA = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         TABLADETALLE = new javax.swing.JTable();
+        jLabelDUEÑO = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("ModificarCirugia");
@@ -160,11 +160,11 @@ public class ModificarCirugia extends javax.swing.JDialog {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         jPanel4.setBackground(new java.awt.Color(141, 141, 175));
@@ -218,7 +218,7 @@ public class ModificarCirugia extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -228,7 +228,7 @@ public class ModificarCirugia extends javax.swing.JDialog {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabelPesoActual2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelSEXO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabelSEXO, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -278,23 +278,11 @@ public class ModificarCirugia extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Seleccione una Mascota(*)");
 
-        jComboBoxMASCOTAS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxMASCOTAS.setForeground(new java.awt.Color(0, 102, 102));
-        jComboBoxMASCOTAS.setOpaque(false);
-        jComboBoxMASCOTAS.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                jComboBoxMASCOTASPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        jComboBoxMASCOTAS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxMASCOTASActionPerformed(evt);
-            }
-        });
+        jLabelMASCOTA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelMASCOTA.setOpaque(true);
+
+        jPanel10.setBackground(new java.awt.Color(141, 141, 175));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "SITUACIÓN DEL PESO DE LA MASCOTA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jTextAreaSituacionPeso.setEditable(false);
         jTextAreaSituacionPeso.setColumns(20);
@@ -303,9 +291,18 @@ public class ModificarCirugia extends javax.swing.JDialog {
         jTextAreaSituacionPeso.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane8.setViewportView(jTextAreaSituacionPeso);
 
-        jLabel22.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel22.setText("Situación Peso");
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -316,39 +313,29 @@ public class ModificarCirugia extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(14, Short.MAX_VALUE))))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jPanel5.setBackground(new java.awt.Color(141, 141, 175));
@@ -527,23 +514,6 @@ public class ModificarCirugia extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Seleccionar Dueño  (*)");
 
-        jComboBoxDUEÑOS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxDUEÑOS.setOpaque(false);
-        jComboBoxDUEÑOS.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                jComboBoxDUEÑOSPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        jComboBoxDUEÑOS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxDUEÑOSActionPerformed(evt);
-            }
-        });
-
         jComboBoxTIPOCONSULTA.setEditable(true);
         jComboBoxTIPOCONSULTA.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jComboBoxTIPOCONSULTA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Concepto" }));
@@ -615,50 +585,37 @@ public class ModificarCirugia extends javax.swing.JDialog {
             }
         });
 
-        try {
-            jFormattedTextFieldHORARIO.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldHORARIO.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addComponent(jDateChooserFECHATURNO, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addGap(35, 35, 35)
-                .addComponent(jFormattedTextFieldHORARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jComboBoxHORA, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonActionVERIFICAR, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(23, 23, 23))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jFormattedTextFieldHORARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(buttonActionVERIFICAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
-                                .addComponent(jDateChooserFECHATURNO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(buttonActionVERIFICAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooserFECHATURNO, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxHORA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(141, 141, 175));
@@ -723,6 +680,9 @@ public class ModificarCirugia extends javax.swing.JDialog {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
+        jLabelDUEÑO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelDUEÑO.setOpaque(true);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -737,8 +697,8 @@ public class ModificarCirugia extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBoxDUEÑOS, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelDUEÑO, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -756,16 +716,16 @@ public class ModificarCirugia extends javax.swing.JDialog {
                                 .addComponent(jLabel12)
                                 .addGap(10, 10, 10)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 3, Short.MAX_VALUE)))
+                        .addGap(0, 29, Short.MAX_VALUE)))
                 .addGap(5, 5, 5))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxDUEÑOS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDUEÑO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -880,14 +840,6 @@ int idrol,idusuario,IDFICHA;String veterinario,dueño,mascota;
         this.dispose();
         ENLACE();
     }//GEN-LAST:event_buttonActionCANCELARActionPerformed
-
-    private void jComboBoxMASCOTASPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
-     
-    }//GEN-LAST:event_jComboBoxMASCOTASPopupMenuWillBecomeVisible
-
-    private void jComboBoxMASCOTASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMASCOTASActionPerformed
-      
-    }//GEN-LAST:event_jComboBoxMASCOTASActionPerformed
 int indice1;
     private void jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxMEDICAMENTOSPopupMenuWillBecomeVisible
         String combo=coincidencia;
@@ -997,14 +949,6 @@ String medicamentoselec,coincidencia;
         }        
     }//GEN-LAST:event_buttonTaskAGREGARActionPerformed
 
-    private void jComboBoxDUEÑOSPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxDUEÑOSPopupMenuWillBecomeVisible
-    
-    }//GEN-LAST:event_jComboBoxDUEÑOSPopupMenuWillBecomeVisible
-
-    private void jComboBoxDUEÑOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDUEÑOSActionPerformed
-       
-    }//GEN-LAST:event_jComboBoxDUEÑOSActionPerformed
-
     private void jComboBoxTIPOCONSULTAPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBoxTIPOCONSULTAPopupMenuWillBecomeVisible
         LlenarComboTipoOperaciones();
     }//GEN-LAST:event_jComboBoxTIPOCONSULTAPopupMenuWillBecomeVisible
@@ -1029,26 +973,28 @@ String medicamentoselec,coincidencia;
 
     private void buttonActionVERIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionVERIFICARActionPerformed
         String formato = "yyyy/MM/dd";
-        java.sql.Date fechanacimiento=new Date(jDateChooserFECHATURNO.getDate().getYear(),jDateChooserFECHATURNO.getDate().getMonth(),jDateChooserFECHATURNO.getDate().getDate() );
+        java.sql.Date fechaturno=new Date(jDateChooserFECHATURNO.getDate().getYear(),jDateChooserFECHATURNO.getDate().getMonth(),jDateChooserFECHATURNO.getDate().getDate() );
         SimpleDateFormat sdf = new SimpleDateFormat(formato);
-        String dia = sdf.format(fechanacimiento);
-        String hora=this.jFormattedTextFieldHORARIO.getText();
-        if(dia.equals("")& hora.equals("")){
+        String dia = sdf.format(fechaturno);
+        String hora=String.valueOf(jComboBoxHORA.getModel().getSelectedItem());
+        
+        if(dia.equals("")){
            JOptionPane.showMessageDialog(null,"Debe Determinar una Fecha y Hora","Información",JOptionPane.INFORMATION_MESSAGE);
         }else{
             String vet=this.jLabelVETERINARIO.getText();
             this.BuscarIDVeterinario(vet);
+            GenerarNroOperacion();
             this.BuscarIDConsulta();
-            this.GenerarNroOperacion();
-
-            int resultado =consulta.VerificarfechaxConsulta(NroOperacion,IDVETERINARIO,IDTipoOperacion,dia,hora);
+            int resultado =consulta.VerificarfechaxConsulta(NrofechaXOperacion,IDVETERINARIO,IDOperacion,dia,hora);
             //////        VERIFICAR QUE SI NO HAY VINCULO CON EL DIA, SI HAY CON EL HORARIO....
             if(resultado!=0){
                 JOptionPane.showMessageDialog(null,"La Fecha y Hora Seleccionados se Encuentran Ocupados","Información",JOptionPane.INFORMATION_MESSAGE);
-                jFormattedTextFieldHORARIO.setSelectedTextColor(Color.DARK_GRAY);
+                
             }else{
                 if(JOptionPane.showConfirmDialog(null,"La Fecha y Hora Seleccionados se Encuentran Disponibles,¿Desea Confirmar?", "Consulta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                     JOptionPane.showMessageDialog(null,"Se Registró la Próxima Fecha a ser Atendido","Información",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    consulta.CancelarVisita(NrofechaXOperacion);
                 }
             }
         }
@@ -1142,12 +1088,10 @@ String medicamentoselec,coincidencia;
     private org.edisoncor.gui.button.ButtonTask buttonTaskQUITAR;
     public javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBoxCATEGORIAS;
-    public javax.swing.JComboBox jComboBoxDUEÑOS;
-    public javax.swing.JComboBox jComboBoxMASCOTAS;
+    public javax.swing.JComboBox jComboBoxHORA;
     private javax.swing.JComboBox jComboBoxMEDICAMENTOS;
     public javax.swing.JComboBox jComboBoxTIPOCONSULTA;
     public com.toedter.calendar.JDateChooser jDateChooserFECHATURNO;
-    public javax.swing.JFormattedTextField jFormattedTextFieldHORARIO;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -1156,7 +1100,6 @@ String medicamentoselec,coincidencia;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1164,9 +1107,11 @@ String medicamentoselec,coincidencia;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCantiACTUAL;
+    public javax.swing.JLabel jLabelDUEÑO;
     private javax.swing.JLabel jLabelEdad;
     private javax.swing.JLabel jLabelEdad1;
     private javax.swing.JLabel jLabelEspecie;
+    public javax.swing.JLabel jLabelMASCOTA;
     private javax.swing.JLabel jLabelPesoActual;
     private javax.swing.JLabel jLabelPesoActual1;
     private javax.swing.JLabel jLabelPesoActual2;
@@ -1174,6 +1119,7 @@ String medicamentoselec,coincidencia;
     private javax.swing.JLabel jLabelSEXO;
     public javax.swing.JLabel jLabelVETERINARIO;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1193,7 +1139,7 @@ String medicamentoselec,coincidencia;
     private javax.swing.JTextArea jTextAreaALERGIAS;
     private javax.swing.JTextArea jTextAreaCOMPOSICION;
     public javax.swing.JTextArea jTextAreaDIAGNOSTICO;
-    private javax.swing.JTextArea jTextAreaSituacionPeso;
+    public javax.swing.JTextArea jTextAreaSituacionPeso;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
     // End of variables declaration//GEN-END:variables
 
@@ -1627,7 +1573,7 @@ private void InhabilitarSeccionOperacion() {
        this.TABLA.setEnabled(false);
        this.buttonTaskAGREGAR.setEnabled(false);
        this.jDateChooserFECHATURNO.setEnabled(false);
-       this.jFormattedTextFieldHORARIO.setEnabled(false);
+       this.jComboBoxHORA.setEnabled(false);
        this.buttonActionVERIFICAR.setEnabled(false);
     }
     
@@ -1640,11 +1586,11 @@ private void InhabilitarSeccionOperacion() {
        this.TABLA.setEnabled(true);
        this.buttonTaskAGREGAR.setEnabled(true);
        this.jDateChooserFECHATURNO.setEnabled(true);
-       this.jFormattedTextFieldHORARIO.setEnabled(true);
+       this.jComboBoxHORA.setEnabled(true);
        this.buttonActionVERIFICAR.setEnabled(true);
     }
 
-    int NroOperacion;
+ int NrofechaXOperacion;
  private void GenerarNroOperacion() {
     cn=cm.Conectar();   
     try{
@@ -1653,7 +1599,7 @@ private void InhabilitarSeccionOperacion() {
        ResultSet rs = st.executeQuery(sSQL);       
        
         while(rs.next()){//aca se lee el maximo de filas
-            NroOperacion=rs.getInt("nro")+1;                              
+            NrofechaXOperacion=rs.getInt("nro")+1;                              
         }
        
 //      cmd.close();

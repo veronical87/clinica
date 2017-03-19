@@ -12,7 +12,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JTable;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class LISTADO extends javax.swing.JDialog {
     Connection cn;
@@ -140,6 +147,9 @@ public class LISTADO extends javax.swing.JDialog {
         });
 
         jTextField_criteriodeBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_criteriodeBusquedaKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField_criteriodeBusquedaKeyReleased(evt);
             }
@@ -298,16 +308,16 @@ int idrol;
     private void jTextField_criteriodeBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_criteriodeBusquedaKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_criteriodeBusquedaKeyReleased
-
+String criterio,buscar;
     private void jTextField_criteriodeBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_criteriodeBusquedaKeyTyped
-        String criterio = JComboBoxCriterioSeleccionado.getSelectedItem().toString();
-        String buscar = jTextField_criteriodeBusqueda.getText();
+        criterio = JComboBoxCriterioSeleccionado.getSelectedItem().toString();
+        buscar = jTextField_criteriodeBusqueda.getText();
         this.fecha();
         if((jDateChooser_Desde.getDate()==null & jDateChooser_Hasta.getDate()==null)){
             if(criterio.equals("Seleccionar Criterio")) {
                 JOptionPane.showMessageDialog(null,"Debe Seleccionar un Criterio de Búsqueda","Información",JOptionPane.INFORMATION_MESSAGE);
             }else if(criterio.equals("Veterinario")){
-                MostrarVisitasxVeterinario(buscar);
+                MostrarVisitasxVeterinario(buscar);                
             }else if(criterio.equals("Concepto")){
                 MostrarVisitasxConcepto(buscar);
             }else if(criterio.equals("Mascota")){
@@ -335,8 +345,8 @@ int idrol;
     }//GEN-LAST:event_jTextField_criteriodeBusquedaKeyTyped
 
     private void buttonTaskBUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTaskBUSCARActionPerformed
-        String criterio = JComboBoxCriterioSeleccionado.getSelectedItem().toString();
-        String buscar = jTextField_criteriodeBusqueda.getText();
+        criterio = JComboBoxCriterioSeleccionado.getSelectedItem().toString();
+        buscar = jTextField_criteriodeBusqueda.getText();
 
         if((jDateChooser_Desde.getDate()==null & jDateChooser_Hasta.getDate()==null)){
             if(criterio.equals("Seleccionar Criterio")) {
@@ -386,7 +396,10 @@ int idrol;
     }//GEN-LAST:event_jDateChooser_HastaMouseClicked
 
     private void buttonActionGenerarREPORTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGenerarREPORTEActionPerformed
-        // TODO add your handling code here:
+      if(criterio.equals("Veterinario")){
+         BuscarIDVeterinario(buscar);
+         GenerarReporte(IDVETERINARIO);
+      }        
     }//GEN-LAST:event_buttonActionGenerarREPORTEActionPerformed
 
     private void buttonActionGenerarREPORTE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionGenerarREPORTE1ActionPerformed
@@ -411,6 +424,10 @@ int filasel;
             JOptionPane.showMessageDialog(null,"Debe Seleccionar un Ítem de la Lista","Información",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonTaskQUITARActionPerformed
+
+    private void jTextField_criteriodeBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_criteriodeBusquedaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_criteriodeBusquedaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -711,7 +728,7 @@ private void MostrarVisitasVeterinarioxFechas(String d, String h, String buscar)
     cn=cm.Conectar();
     
     String[] registro = new String[6];
-    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE DATE_FORMAT(fechaturno,'%Y/%m/%d') LIKE '"+fechaActual+"%' ORDER BY fecha ASC";
+    String sSQL = "SELECT nro,tipooperacion.nombre,veterinarios.apellido,veterinarios.nombre,mascota,DATE_FORMAT(fechaturno,'%d/%m/%Y') AS fecha,horaturno FROM categoriatipo INNER JOIN tipooperacion ON categoriatipo.id=tipooperacion.idcategoria INNER JOIN operaciones ON tipooperacion.id=operaciones.idtipooperacion INNER JOIN veterinarios ON veterinarios.id=operaciones.idveterinario INNER JOIN fichamedica ON fichamedica.id=operaciones.idficha INNER JOIN fechasxoperacion ON operaciones.id=fechasxoperacion.idoperacion WHERE ORDER BY fecha ASC";
     try
        {
         Statement st = (Statement) cn.createStatement();
@@ -767,7 +784,7 @@ private void BuscarDatosVisita(String id) {
     }
 
 String fechaActual,hor; int min,añoactual,mesactual,diaactual; 
-void fecha(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+void fecha(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     añoactual = Calendario.get(Calendar.YEAR);
     mesactual = Calendario.get(Calendar.MONTH) + 1;
     diaactual = Calendario.get(Calendar.DAY_OF_MONTH);
@@ -780,4 +797,40 @@ void fecha(){
     hor = String.valueOf(h+":"+minutos);
 }
 
+private void GenerarReporte(int IDVETERINARIO) {
+   try {           
+    String ubicacion=System.getProperty("user.dir")+"/src/REPORTES/ReporteLISTADO.jasper";
+    JasperReport reportes=(JasperReport) JRLoader.loadObject(ubicacion); 
+    
+     Map parametro=new HashMap();
+     parametro.clear();
+     parametro.put("IDVETERINARIO",IDVETERINARIO);
+
+     JasperPrint print=JasperFillManager.fillReport(reportes,parametro,cm.Conectar());             
+     JasperViewer vista= new JasperViewer(print,false);
+     vista.setVisible(true);
+    }catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+    }
+}
+
+  int IDVETERINARIO;
+private void BuscarIDVeterinario(String buscar) {
+cn=cm.Conectar();       
+String sSQL = "SELECT id FROM veterinarios WHERE apellido LIKE '%"+buscar+"%' OR nombre LIKE '%"+buscar+"%'";
+try
+   {
+    Statement st = (Statement) cn.createStatement();
+    ResultSet rs = st.executeQuery(sSQL);
+//         
+     while(rs.next())
+       {
+       IDVETERINARIO=rs.getInt("id");                              
+       }   
+   }
+    catch (SQLException ex)
+       {
+        JOptionPane.showMessageDialog(null, ex);
+       }
+    }
 }

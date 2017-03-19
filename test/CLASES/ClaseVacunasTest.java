@@ -42,8 +42,6 @@ public class ClaseVacunasTest {
         DefaultTableModel tabla = null;
         ClaseVacunas instance = new ClaseVacunas();
         instance.LlenarTabla(tabla);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -52,15 +50,13 @@ public class ClaseVacunasTest {
     @Test
     public void testAgregarVacuna() {
         System.out.println("AgregarVacuna");
-        String nombre = "";
-        int especie = 0;
-        String condicion = "";
+        String nombre = "RINOTRAQUEITIS VÍRICA";
+        int especie = 2;
+        String condicion = "OBLIGATORIO";
         ClaseVacunas instance = new ClaseVacunas();
         int expResult = 0;
         int result = instance.AgregarVacuna(nombre, especie, condicion);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -69,44 +65,12 @@ public class ClaseVacunasTest {
     @Test
     public void testModificarVacuna() {
         System.out.println("ModificarVacuna");
-        int id = 0;
-        String nombre = "";
-        int especie = 0;
-        String condicion = "";
+        int id = 6;
+        String nombre = "RINOTRAQUEITIS VÍRICA";
+        int especie = 2;
+        String condicion = "OPCIONAL";
         ClaseVacunas instance = new ClaseVacunas();
         instance.ModificarVacuna(id, nombre, especie, condicion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of EliminarVacuna method, of class ClaseVacunas.
-     */
-    @Test
-    public void testEliminarVacuna() {
-        System.out.println("EliminarVacuna");
-        int idvacuna = 0;
-        ClaseVacunas instance = new ClaseVacunas();
-        int expResult = 0;
-        int result = instance.EliminarVacuna(idvacuna);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of VerificarVacuna method, of class ClaseVacunas.
-     */
-    @Test
-    public void testVerificarVacuna() {
-        System.out.println("VerificarVacuna");
-        String nombre = "";
-        ClaseVacunas instance = new ClaseVacunas();
-        String expResult = "";
-        String result = instance.VerificarVacuna(nombre);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,12 +79,10 @@ public class ClaseVacunasTest {
     @Test
     public void testCargarVacunasPendientesxHistorial() {
         System.out.println("CargarVacunasPendientesxHistorial");
-        int nrohistorial = 0;
-        int especie = 0;
+        int nrohistorial = 12;
+        int especie = 2;
         ClaseVacunas instance = new ClaseVacunas();
         instance.CargarVacunasPendientesxHistorial(nrohistorial, especie);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -129,12 +91,23 @@ public class ClaseVacunasTest {
     @Test
     public void testActualizarVacunaPendiente() {
         System.out.println("ActualizarVacunaPendiente");
-        int historial = 0;
-        int vacuna = 0;
-        String situacion = "";
+        int historial = 12;
+        int vacuna = 6;
+        String situacion = "COLOCADO";
         ClaseVacunas instance = new ClaseVacunas();
         instance.ActualizarVacunaPendiente(historial, vacuna, situacion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of EliminarVacuna method, of class ClaseVacunas.
+     */
+    @Test
+    public void testEliminarVacuna() {
+        System.out.println("EliminarVacuna");
+        int idvacuna = 6;
+        ClaseVacunas instance = new ClaseVacunas();
+        int expResult = 0;
+        int result = instance.EliminarVacuna(idvacuna);
+        assertEquals(expResult, result);
     }
 }

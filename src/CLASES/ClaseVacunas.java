@@ -67,43 +67,7 @@ public class ClaseVacunas {
        }catch(Exception ex){
          System.out.println(ex.getMessage());
        }
-    }  
-     
-
-public int EliminarVacuna(int idvacuna) {
-     int encontrada=0;   
-     String sql="call EliminarVacuna(?,?)";
-        try{
-           cmd=cn.prepareCall(sql);
-           cmd.setInt(1,idvacuna);
-           cmd.registerOutParameter(2, java.sql.Types.INTEGER);
-           cmd.execute();
-           encontrada=cmd.getInt(2);           
-//         cmd.close();
-//         cn.close();    
-        }catch(Exception ex){
-          System.out.println(ex.getMessage());
-           }      
-        return encontrada;
-      }
-    
-  public String VerificarVacuna(String nombre){
-     String encontrada=null;   
-     String sql="call VerificarVacuna(?,?)";
-        try{
-           cmd=cn.prepareCall(sql);
-           cmd.setString(1,nombre);
-           cmd.registerOutParameter(2, java.sql.Types.VARCHAR);
-           cmd.execute();
-           encontrada=cmd.getString(2);
-           
-//         cmd.close();
-//         cn.close();    
-        }catch(Exception ex){
-          System.out.println(ex.getMessage());
-        }      
-        return encontrada;
-    } 
+    }
     
   public void CargarVacunasPendientesxHistorial(int nrohistorial,int especie){      
      String sql="call CargarVacunasPendientesxHistorial(?,?)";
@@ -119,6 +83,21 @@ public int EliminarVacuna(int idvacuna) {
         }         
     }
   
+   public void InsertarVACUNAPENDIENTE(int historial,int vacuna){      
+     String sql="call InsertarVACUNAPENDIENTE(?,?)";
+        try{
+           cmd=cn.prepareCall(sql);
+           cmd.setInt(1,historial);   
+           cmd.setInt(2,vacuna); 
+           
+           cmd.execute();                  
+//         cmd.close();
+//         cn.close();    
+        }catch(Exception ex){
+          System.out.println(ex.getMessage());
+        }       
+    }
+  
    public void ActualizarVacunaPendiente(int historial,int vacuna,String situacion){      
      String sql="call ActualizarVacunaPendiente(?,?,?)";
         try{
@@ -131,8 +110,24 @@ public int EliminarVacuna(int idvacuna) {
 //         cn.close();    
         }catch(Exception ex){
           System.out.println(ex.getMessage());
-        }      
-       
+        }       
     }
+   
+   public int EliminarVacuna(int idvacuna) {
+     int encontrada=0;   
+     String sql="call EliminarVacuna(?,?)";
+        try{
+           cmd=cn.prepareCall(sql);
+           cmd.setInt(1,idvacuna);
+           cmd.registerOutParameter(2, java.sql.Types.INTEGER);
+           cmd.execute();
+           encontrada=cmd.getInt(2);           
+//         cmd.close();
+//         cn.close();    
+        }catch(Exception ex){
+          System.out.println(ex.getMessage());
+           }      
+        return encontrada;
+      }
 
 }

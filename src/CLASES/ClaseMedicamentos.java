@@ -56,53 +56,17 @@ public class ClaseMedicamentos {
         }      
        return resultado;
     }
-     
-     public void ModificarMedicamento(int id,String nombre,int categoria,int actual,int min,String descripcion,String composicion,String accion){
-       String sql="call ModificarMedicamento(?,?,?,?,?,?,?,?)";
-        try{
-          cmd=cn.prepareCall(sql); 
-          cmd.setInt(1,id);
-           cmd.setString(2,nombre);
-           cmd.setInt(3,categoria);
-           cmd.setInt(4,actual);
-           cmd.setInt(5, min); 
-           cmd.setString(6,descripcion);
-           cmd.setString(7,composicion);
-           cmd.setString(8,accion);
-          cmd.execute();
-       }catch(Exception ex){
-         System.out.println(ex.getMessage());
-       }
-    }      
-
-public int EliminarMedicamento(int id) {
-   int encontrada=0;
-   String sql="call EliminarMedicamento(?,?)";
-    try{
-       cmd=cn.prepareCall(sql);
-       cmd.setInt(1,id);
-       cmd.registerOutParameter(2, java.sql.Types.INTEGER);
-       cmd.execute();
-       encontrada=cmd.getInt(2);
-//         cmd.close();
-//         cn.close();    
-    }catch(Exception ex){
-      System.out.println(ex.getMessage());
-    }      
-    return encontrada;
-    }
-
-    
-  public String VerificarMedicamento(String nombre){
-     String encontrada=null;   
+  
+  public int VerificarMedicamento(String nombre){
+     int encontrada=0;   
      String sql="call VerificarMedicamento(?,?)";
         try{
            cmd=cn.prepareCall(sql);           
           
            cmd.setString(1,nombre);
-           cmd.registerOutParameter(2, java.sql.Types.VARCHAR);
+           cmd.registerOutParameter(2, java.sql.Types.INTEGER);
            cmd.execute();
-           encontrada=cmd.getString(2);
+           encontrada=cmd.getInt(2);
            
 //         cmd.close();
 //         cn.close();    
@@ -148,16 +112,69 @@ public int EliminarMedicamento(int id) {
         return encontrada;
     }
 
-    public void AgregarMedxTipoOp(int idMed, int idespecie, int IDTipoOp) {
+    public void AgregarMedxTipoOp(int IDTipoOp,int idMed, int idespecie) {
          String sql="call AgregarMedxTipoOp(?,?,?)";
         try{
           cmd=cn.prepareCall(sql); 
-          cmd.setInt(1,idMed);         
-          cmd.setInt(2,idespecie);
-          cmd.setInt(3,IDTipoOp);         
+          cmd.setInt(1,IDTipoOp); 
+          cmd.setInt(2,idMed);         
+          cmd.setInt(3,idespecie);                  
           cmd.execute();
        }catch(Exception ex){
          System.out.println(ex.getMessage());
        } 
+    }
+     
+     public void ModificarMedicamento(int id,String nombre,int categoria,int actual,int min,String descripcion,String composicion,String accion){
+       String sql="call ModificarMedicamento(?,?,?,?,?,?,?,?)";
+        try{
+          cmd=cn.prepareCall(sql); 
+          cmd.setInt(1,id);
+           cmd.setString(2,nombre);
+           cmd.setInt(3,categoria);
+           cmd.setInt(4,actual);
+           cmd.setInt(5, min); 
+           cmd.setString(6,descripcion);
+           cmd.setString(7,composicion);
+           cmd.setString(8,accion);
+          cmd.execute();
+       }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       }
+    }      
+
+public int EliminarMedicamento(int id) {
+   int encontrada=0;
+   String sql="call EliminarMedicamento(?,?)";
+    try{
+       cmd=cn.prepareCall(sql);
+       cmd.setInt(1,id);
+       cmd.registerOutParameter(2, java.sql.Types.INTEGER);
+       cmd.execute();
+       encontrada=cmd.getInt(2);
+//         cmd.close();
+//         cn.close();    
+    }catch(Exception ex){
+      System.out.println(ex.getMessage());
+    }      
+    return encontrada;
+    }
+
+public int agregarTIPOVACUNAxMEDICAMENTO(int idvacuna,int idremedio) {
+   int encontrada=0;
+   String sql="call agregarTIPOVACUNAxMEDICAMENTO(?,?,?)";
+    try{
+       cmd=cn.prepareCall(sql);
+       cmd.setInt(1,idvacuna);
+       cmd.setInt(2,idremedio);
+       cmd.registerOutParameter(3, java.sql.Types.INTEGER);
+       cmd.execute();
+       encontrada=cmd.getInt(3);
+//         cmd.close();
+//         cn.close();    
+    }catch(Exception ex){
+      System.out.println(ex.getMessage());
+    }      
+    return encontrada;
     }
 }

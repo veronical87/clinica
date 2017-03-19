@@ -164,7 +164,7 @@ public class GestionDatosGrales extends javax.swing.JDialog {
         PANEL.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "BÚSQUEDAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         JComboBoxCriterioSeleccionado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Criterio", "Dueño", "Mascota", "Especie", "Estado Historial", "Todos" }));
+        JComboBoxCriterioSeleccionado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar Criterio", "Apellido del Cliente", "Mascota", "Especie", "Estado Historial", "Todos" }));
         JComboBoxCriterioSeleccionado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JComboBoxCriterioSeleccionadoActionPerformed(evt);
@@ -344,7 +344,7 @@ int IDROL,idusuario,filasel;
             mp.IDUSUARIO= idusuario;
             mp.idpersona=idPersona;
             mp.situacionpeso=situacionpeso;
-                    
+            
             mp.idPropietario=idPropietario;
             modelo2=(DefaultTableModel) mp.TABLA.getModel();
             ficha.LlenarTablaDatosMascotas(modelo2, idPropietario);
@@ -459,7 +459,7 @@ int IDROL,idusuario,filasel;
                 MostrarDatosxEspecie(buscar);
             }else if (criterio.equals("Estado Historial")) {
                 MostrarDatosxSituacion(buscar);
-            }else if (criterio.equals("Dueño")) {
+            }else if (criterio.equals("Apellido del Cliente")) {
                 MostrarDatosxDueño(buscar);
             }
     }else{
@@ -498,7 +498,7 @@ int IDROL,idusuario,filasel;
                 MostrarDatosxEspecie(buscar);
             }else if (criterio.equals("Estado Historial")) {
                 MostrarDatosxSituacion(buscar);
-            }else if (criterio.equals("Apellido")) {
+            }else if (criterio.equals("Apellido del Cliente")) {
                 MostrarDatosxDueño(buscar);
             }
     }else{
@@ -830,7 +830,7 @@ int MOD=0,ELI=0;
         modelo = new javax.swing.table.DefaultTableModel(null,titulos);
         cn=cm.Conectar();
              
-        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,fichamedica.id,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND propietarios.apellido LIKE '"+buscar+"%' OR propietarios.nombre LIKE '"+buscar+"%' ORDER BY fichamedica.id ASC";
+        String sSQL = "SELECT DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha,CONCAT(propietarios.apellido,coma,propietarios.nombre) AS dueño,fichamedica.mascota,fichamedica.id,especies.nombre,razas.nombre,situacion FROM historialclinico INNER JOIN fichamedica ON historialclinico.idficha=fichamedica.id INNER JOIN propietarios ON propietarios.id=fichamedica.idpropietario INNER JOIN pelajexraza ON fichamedica.idpelaje=pelajexraza.id INNER JOIN razas ON PELAJEXRAZA.idraza=razas.id INNER JOIN especies ON razas.idespecie=especies.id WHERE fichamedica.idestado=1 AND propietarios.apellido LIKE '"+buscar+"%' ORDER BY fichamedica.id ASC";
         String registro[]=new String[6];
         
         RendererSituacion clase=new RendererSituacion(5);
@@ -1098,11 +1098,11 @@ private void BuscarUsuario(){
     }
  
  private void FORMATO_TABLA(JTable tab){
-   tab.getColumnModel().getColumn(0).setPreferredWidth(5);
-   tab.getColumnModel().getColumn(1).setPreferredWidth(20);
+   tab.getColumnModel().getColumn(0).setPreferredWidth(3);
+   tab.getColumnModel().getColumn(1).setPreferredWidth(30);
    tab.getColumnModel().getColumn(2).setPreferredWidth(130);
    tab.getColumnModel().getColumn(3).setPreferredWidth(20);
    tab.getColumnModel().getColumn(4).setPreferredWidth(20);     
-   tab.getColumnModel().getColumn(5).setPreferredWidth(40); 
+   tab.getColumnModel().getColumn(5).setPreferredWidth(60); 
     }
 }

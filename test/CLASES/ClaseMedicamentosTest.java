@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package CLASES;
 
 import javax.swing.table.DefaultTableModel;
@@ -46,8 +42,6 @@ public class ClaseMedicamentosTest {
         DefaultTableModel tabla = null;
         ClaseMedicamentos instance = new ClaseMedicamentos();
         instance.LlenarTablaPrincipal(tabla);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -56,54 +50,17 @@ public class ClaseMedicamentosTest {
     @Test
     public void testAgregarMedicamento() {
         System.out.println("AgregarMedicamento");
-        String nombre = "";
-        int categoria = 0;
-        int actual = 0;
-        int min = 0;
-        String descripcion = "";
-        String composicion = "";
-        String accion = "";
+        String nombre = "CLORMADINONA LAMAR X 1000 COMP.";
+        int categoria = 1;
+        int actual = 8;
+        int min = 3;
+        String descripcion = "Hormona sintética de estructura y actividad similar a la progesterona";
+        String composicion = "CLORMADINONA 2 mg comprimidos ";
+        String accion = "Anticonceptivo e inhibidor del celo Para caninos y felinos ";
         ClaseMedicamentos instance = new ClaseMedicamentos();
         int expResult = 0;
         int result = instance.AgregarMedicamento(nombre, categoria, actual, min, descripcion, composicion, accion);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ModificarMedicamento method, of class ClaseMedicamentos.
-     */
-    @Test
-    public void testModificarMedicamento() {
-        System.out.println("ModificarMedicamento");
-        int id = 0;
-        String nombre = "";
-        int categoria = 0;
-        int actual = 0;
-        int min = 0;
-        String descripcion = "";
-        String composicion = "";
-        String accion = "";
-        ClaseMedicamentos instance = new ClaseMedicamentos();
-        instance.ModificarMedicamento(id, nombre, categoria, actual, min, descripcion, composicion, accion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of EliminarMedicamento method, of class ClaseMedicamentos.
-     */
-    @Test
-    public void testEliminarMedicamento() {
-        System.out.println("EliminarMedicamento");
-        int id = 0;
-        ClaseMedicamentos instance = new ClaseMedicamentos();
-        int expResult = 0;
-        int result = instance.EliminarMedicamento(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -112,32 +69,11 @@ public class ClaseMedicamentosTest {
     @Test
     public void testVerificarMedicamento() {
         System.out.println("VerificarMedicamento");
-        String nombre = "";
+        String nombre = "CLORMADINONA LAMAR X 1000 COMP.";
         ClaseMedicamentos instance = new ClaseMedicamentos();
-        String expResult = "";
-        String result = instance.VerificarMedicamento(nombre);
+        int expResult = 18;
+        int result = instance.VerificarMedicamento(nombre);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of InsertarDatosAuditoria method, of class ClaseMedicamentos.
-     */
-    @Test
-    public void testInsertarDatosAuditoria() {
-        System.out.println("InsertarDatosAuditoria");
-        String fechaActual = "";
-        String hor = "";
-        String usu = "";
-        String tabla = "";
-        String operacion = "";
-        String anterior = "";
-        String nuevo = "";
-        ClaseMedicamentos instance = new ClaseMedicamentos();
-        instance.InsertarDatosAuditoria(fechaActual, hor, usu, tabla, operacion, anterior, nuevo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -146,13 +82,11 @@ public class ClaseMedicamentosTest {
     @Test
     public void testVerificarMedicamentoxOperacion() {
         System.out.println("VerificarMedicamentoxOperacion");
-        int idMedicamento = 0;
+        int idMedicamento = 18;
         ClaseMedicamentos instance = new ClaseMedicamentos();
         int expResult = 0;
         int result = instance.VerificarMedicamentoxOperacion(idMedicamento);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -161,12 +95,42 @@ public class ClaseMedicamentosTest {
     @Test
     public void testAgregarMedxTipoOp() {
         System.out.println("AgregarMedxTipoOp");
-        int idMed = 0;
-        int idespecie = 0;
-        int IDTipoOp = 0;
+        int idMed = 18;
+        int idespecie = 1;
+        int IDTipoOp = 1;
         ClaseMedicamentos instance = new ClaseMedicamentos();
         instance.AgregarMedxTipoOp(idMed, idespecie, IDTipoOp);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ModificarMedicamento method, of class ClaseMedicamentos.
+     */
+    @Test
+    public void testModificarMedicamento() {
+        System.out.println("ModificarMedicamento");
+        int id = 18;
+        String nombre = "CLORMADINONA LAMAR X 1000 COMP.";
+        int categoria = 1;
+        int actual = 8;
+        int min = 3;
+        String descripcion = "Hormona sintética de estructura y actividad similar a la progesterona";
+        String composicion = "CLORMADINONA 2 mg comprimidos ";
+        String accion = "Anticonceptivo e inhibidor del celo Para caninos y felinos ";
+        ClaseMedicamentos instance = new ClaseMedicamentos();
+        instance.ModificarMedicamento(id, nombre, categoria, actual, min, descripcion, composicion, accion);
+       
+    }
+
+    /**
+     * Test of EliminarMedicamento method, of class ClaseMedicamentos.
+     */
+    @Test
+    public void testEliminarMedicamento() {
+        System.out.println("EliminarMedicamento");
+        int id = 18;
+        ClaseMedicamentos instance = new ClaseMedicamentos();
+        int expResult = 0;
+        int result = instance.EliminarMedicamento(id);
+        assertEquals(expResult, result);
     }
 }

@@ -175,7 +175,7 @@ public class SeccionesCirugia extends javax.swing.JDialog {
         );
 
         jPanel1.setBackground(new java.awt.Color(141, 141, 175));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "DETERMINA ZONA A OPERAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(153, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "DETERMINA ZONA A OPERAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
@@ -477,9 +477,10 @@ int resultado=seccion.CantSeccionesxOp(IDOperacion);
   if(resultado==0){
      JOptionPane.showMessageDialog(null,"No se Determinó ninguna Sección","Información",JOptionPane.INFORMATION_MESSAGE);
   }else{
-     Alta ac= new Alta(new javax.swing.JFrame(),true);
+     AltaCirugia ac= new AltaCirugia(new javax.swing.JFrame(),true);
      ac.IDFICHA=idficha;
      ac.IDVETERINARIO=IDVETERINARIO;
+     ac.BuscarIDVeterinario(veterinario);
      ac.veterinario=veterinario;
      ac.BuscarDatosMascota(mascota,IDDUEÑO);
      ac.jComboBoxDUEÑOS.getModel().setSelectedItem("");
@@ -515,16 +516,21 @@ int resultado=seccion.CantSeccionesxOp(IDOperacion);
 //            }else if(PATASDELANTERAS!=0 & CUELLO!=0){
 //               ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS-CUELLO.png")));
 //            }
-            if(ATRAS!=0){                 
-                ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ATRAS.png")));
+            if(ATRAS!=0){     
+                ac.ATRAS=ATRAS;
+                ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ATRAS.png")));
             }else if(PATASDELANTERAS!=0){
-                ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS.png")));
+                ac.ADELANTE=PATASDELANTERAS;
+                ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-PATASDELANTERAS.png")));
             }else if(CABEZA!=0){
-                ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-ROSTRO.png")));
+                ac.CABEZA=CABEZA;
+                ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-CABEZA.png")));
             }else if(TRONCO!=0){
-                ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-TRONCO.png")));
+                ac.TRONCO=TRONCO;
+                ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-TRONCO.png")));
             }else if(CUELLO!=0){
-                ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-CUELLO.png")));
+                ac.CUELLO=CUELLO;
+                ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro-CUELLO.png")));
             }            
             
         }else if (idespecie==2){       
@@ -551,26 +557,29 @@ int resultado=seccion.CantSeccionesxOp(IDOperacion);
 //            }
            
            if(ATRAS!=0){
-              ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-ATRAS.png")));
+              ac.ATRAS=ATRAS;
+              ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-ATRAS.png")));
             }else if(PATASDELANTERAS!=0){
-              ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-PATASDELANTERAS.png")));
+              ac.ADELANTE=PATASDELANTERAS;
+              ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-PATASDELANTERAS.png")));
             }else if(CABEZA!=0){
-              ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-CABEZA.png")));
+              ac.CABEZA=CABEZA;
+              ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-CABEZA.png")));
             }else if(TRONCO!=0){
-              ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-TRONCO.png")));
+              ac.TRONCO=TRONCO;
+              ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-TRONCO.png")));
             }else if(CUELLO!=0){
-              ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-CUELLO.png")));
+              ac.CUELLO=CUELLO;
+              ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/silueta de gato2-CUELLO.png")));
             }
-       }
-        
+       }        
         this.dispose();
         ac.show();}
     }//GEN-LAST:event_buttonActionGUARDARActionPerformed
 
     private void buttonActionCANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionCANCELARActionPerformed
-        seccion.eliminarSeccionesxOp(IDOperacion);
-        
-        Alta ac= new Alta(new javax.swing.JFrame(),true);//      
+        seccion.eliminarSeccionesxOp(IDOperacion);        
+        AltaCirugia ac= new AltaCirugia(new javax.swing.JFrame(),true);//      
          ac.IDFICHA=idficha;
          ac.IDVETERINARIO=IDVETERINARIO;
          ac.veterinario=veterinario;
@@ -585,11 +594,12 @@ int resultado=seccion.CantSeccionesxOp(IDOperacion);
          ac.jComboBoxTIPOCONSULTA.setEnabled(true);
          ac.LlenarTablaSecciones(IDOperacion);
          ac.IDPROPIETARIO=IDDUEÑO;
-     
+         ac.idespecie=idespecie;
+         
        if(idespecie==1){
-          ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro.png")));
+          ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/siluetadeperro.png")));
        }else{
-          ac.jButton1.setIcon(new ImageIcon(getClass().getResource("/silueta de gato.png")));
+          ac.jButtonSECCIONES.setIcon(new ImageIcon(getClass().getResource("/silueta de gato.png")));
        }
         this.dispose();
         ac.show();

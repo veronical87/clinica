@@ -49,25 +49,7 @@ public void LlenarTabla(DefaultTableModel tabla){
         return encontrado;                       
     }  
     
-    public int ExisteUsuario_Pantallas(int usuario) {
-     int encontrado=0;   
-     String sql="call ExisteUsuario_Pantallas(?,?)";
-        try{
-           cmd=cn.prepareCall(sql);
-           cmd.setInt(1,usuario);
-           cmd.registerOutParameter(2, java.sql.Types.INTEGER);
-           cmd.execute();
-           encontrado=cmd.getInt(2);
-           
-//         cmd.close();
-//         cn.close();    
-        }catch(Exception ex){
-          System.out.println(ex.getMessage());
-        }
-      
-        return encontrado;                       
-    }
-    
+       
 public int AgregarUsuario(String apellido,String nombre,String usuario,String pass,int persona,int rol){
     int encontrado=0; 
        String sql="call agregarUsuario(?,?,?,?,?,?,?)";

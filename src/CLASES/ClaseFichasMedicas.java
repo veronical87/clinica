@@ -39,7 +39,23 @@ public class ClaseFichasMedicas {
       }catch(Exception ex){
          System.out.println(ex.getMessage());
       }     
-    }  
+    } 
+   
+   
+public int VerificarDNI(int dni) {
+ int encontrada=0; 
+ String sql="call VerificarDocumento(?,?)";
+    try{                
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,dni);
+      cmd.registerOutParameter(2, java.sql.Types.INTEGER);
+      cmd.execute();
+      encontrada=cmd.getInt(2);
+   }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       }
+      return encontrada;
+    }
    
   public int AgregarPropietario(String apellido,String nombre,int documento,int idpersona){
      int encontrada=0;   
@@ -62,32 +78,35 @@ public class ClaseFichasMedicas {
         return encontrada;
     }
      
-     public void ModificarPropietario(int id,String apellido,String nombre){
-       String sql="call ModificarPropietario(?,?,?)";
-        try{
-          cmd=cn.prepareCall(sql);
-          cmd.setInt(1,id);
-          cmd.setString(2,apellido);
-          cmd.setString(3,nombre);
-          cmd.execute();
-       }catch(Exception ex){
+ public void ModificarPropietario(int id,String apellido,String nombre){
+   String sql="call ModificarPropietario(?,?,?)";
+    try{
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,id);
+      cmd.setString(2,apellido);
+      cmd.setString(3,nombre);
+      cmd.execute();
+   }catch(Exception ex){
+     System.out.println(ex.getMessage());
+   }
+} 
+ 
+ public int VerificarMascota(int dueño,String mascota) {
+ int encontrada=0; 
+ String sql="call VerificarMascota(?,?,?)";    
+    try{                
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,dueño);
+      cmd.setString(2,mascota);
+      cmd.registerOutParameter(3, java.sql.Types.INTEGER);
+      cmd.execute();
+      encontrada=cmd.getInt(3);
+   }catch(Exception ex){
          System.out.println(ex.getMessage());
        }
-    } 
-
-public void ActualizarFechaNac(int idficha,int edad,String tiemponac){
-  String sql="UPDATE fichamedica SET edad=?,tiemponac=? WHERE id=?";
-    try {
-          PreparedStatement pst=cn.prepareStatement(sql);
-          pst.setInt(1,idficha);
-          pst.setInt(2,edad);
-          pst.setString(3,tiemponac);
-          pst.execute();
-          
-    }catch (SQLException ex) {
-        System.out.println(ex.getMessage());
+      return encontrada;
     }
-}
+
 public void AgregarDatosMascota(int idPropietario,String fecha,String nombre,String fechaNacimiento,int idpelaje,String sexo,double kilaje,int edad,String tiemponac,String situacion,String datoImagen){
        String sql="INSERT INTO fichamedica(idpropietario,fecha,mascota,cumpleaños,idpelaje,sexo,kilaje,edad,tiemponac,situacionpeso,direimagen,imagen,idestado,idlogo)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
          try {
@@ -114,69 +133,39 @@ public void AgregarDatosMascota(int idPropietario,String fecha,String nombre,Str
        }
      }
 
-public int VerificarDNI(int dni) {
- int encontrada=0; 
- String sql="call VerificarDocumento(?,?)";
-    try{                
-      cmd=cn.prepareCall(sql);
-      cmd.setInt(1,dni);
-      cmd.registerOutParameter(2, java.sql.Types.INTEGER);
-      cmd.execute();
-      encontrada=cmd.getInt(2);
-   }catch(Exception ex){
-         System.out.println(ex.getMessage());
-       }
-      return encontrada;
+public void ActualizarFechaNac(int idficha,int edad,String tiemponac){
+  String sql="UPDATE fichamedica SET edad=?,tiemponac=? WHERE id=?";
+    try {
+          PreparedStatement pst=cn.prepareStatement(sql);
+          pst.setInt(1,idficha);
+          pst.setInt(2,edad);
+          pst.setString(3,tiemponac);
+          pst.execute();
+          
+    }catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
-        
+}        
 
-public void BajaFicha(int idFicha) {
- String sql="call BajaFicha(?)";    
-    try{                
-      cmd=cn.prepareCall(sql);
-      cmd.setInt(1,idFicha);      
-      cmd.execute();
-      
-   }catch(Exception ex){
-         System.out.println(ex.getMessage());
-       }     
-    }
+public void InsertarDatosAuditoria(String fechaActual, String hor, String usu, String tabla, String operacion, String anterior, String nuevo) {
+String sql="call InsertarDatosAuditoria(?,?,?,?,?,?,?)";    
+try{                
+  cmd=cn.prepareCall(sql);
+  cmd.setString(1,fechaActual);
+  cmd.setString(2,hor);
+  cmd.setString(3,usu);
+  cmd.setString(4,tabla);
+  cmd.setString(5,operacion);
+  cmd.setString(6,anterior);
+  cmd.setString(7,nuevo);
+  cmd.execute();
 
-    public void InsertarDatosAuditoria(String fechaActual, String hor, String usu, String tabla, String operacion, String anterior, String nuevo) {
-    String sql="call InsertarDatosAuditoria(?,?,?,?,?,?,?)";    
-    try{                
-      cmd=cn.prepareCall(sql);
-      cmd.setString(1,fechaActual);
-      cmd.setString(2,hor);
-      cmd.setString(3,usu);
-      cmd.setString(4,tabla);
-      cmd.setString(5,operacion);
-      cmd.setString(6,anterior);
-      cmd.setString(7,nuevo);
-      cmd.execute();
+}catch(Exception ex){
+     System.out.println(ex.getMessage());
+   }
+}
     
-   }catch(Exception ex){
-         System.out.println(ex.getMessage());
-       }
-    }
-    
- public int VerificarMascota(int dueño,String mascota) {
- int encontrada=0; 
- String sql="call VerificarMascota(?,?,?)";    
-    try{                
-      cmd=cn.prepareCall(sql);
-      cmd.setInt(1,dueño);
-      cmd.setString(2,mascota);
-      cmd.registerOutParameter(3, java.sql.Types.INTEGER);
-      cmd.execute();
-      encontrada=cmd.getInt(3);
-   }catch(Exception ex){
-         System.out.println(ex.getMessage());
-       }
-      return encontrada;
-    }
-
-  public void agregarHistorial(int idFicha, int nrohistorial, String opcionVacunas,String opcionParasitos, String parasitos, String opcionAlergias, String alergias, String opcionDesparasitado, String tiempodesparcombo, String opcionProbResp, String opcionPreñada,int cantPreñada,String opcionPreñadaMayora3,String opcionCastrado,String situacion) {
+ public void agregarHistorial(int idFicha, int nrohistorial, String opcionVacunas,String opcionParasitos, String parasitos, String opcionAlergias, String alergias, String opcionDesparasitado, String tiempodesparcombo, String opcionProbResp, String opcionPreñada,int cantPreñada,String opcionPreñadaMayora3,String opcionCastrado,String situacion) {
     String sql="call agregarHistorial(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";    
     try{                
       cmd=cn.prepareCall(sql);
@@ -251,7 +240,7 @@ public void ModificarDatosMascota(int idFicha, int idPropietario,String nombre,S
        } 
     }
 
- public int agregarVacunaxMascota(int idFicha, int IDVacuna, String d) {
+ public int agregarVacunaxMascota(int idFicha, int IDVacuna,String d) {
    int encontrada=0; 
     String sql="call agregarVacunaxMascota(?,?,?,?)";    
     try{                
@@ -269,20 +258,19 @@ public void ModificarDatosMascota(int idFicha, int idPropietario,String nombre,S
      return encontrada;
  }
 
- public void QuitarVacunaxMascota(int id) {
-    String sql="call QuitarVacunaxMascota(?)";    
+ public void QuitarVacunaxMascota(int idHistorial,int IDVACUNA) {
+    String sql="call QuitarVacunaxMascota(?,?)";    
     try{                
       cmd=cn.prepareCall(sql);
-      cmd.setInt(1,id);
+      cmd.setInt(1,idHistorial);
+      cmd.setInt(2,IDVACUNA);
       cmd.execute();
       
    }catch(Exception ex){
          System.out.println(ex.getMessage());
        } 
     }
-
-
-
+ 
  public int agregarAfeccionxHC(int idHistorial, int IDAfeccion) {
    int encontrada=0;
    String sql="call agregarAfeccionxHC(?,?,?)";    
@@ -363,4 +351,16 @@ public int contarAfeccionesxHC(int idHistorial) {
        } 
     return cantidad;
  }
+
+public void BajaFicha(int idFicha) {
+ String sql="call BajaFicha(?)";    
+    try{                
+      cmd=cn.prepareCall(sql);
+      cmd.setInt(1,idFicha);      
+      cmd.execute();
+      
+   }catch(Exception ex){
+         System.out.println(ex.getMessage());
+       }     
+    }
 }

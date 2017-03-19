@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package CLASES;
 
 import javax.swing.table.DefaultTableModel;
@@ -46,8 +42,6 @@ public class ClaseOperacionesTest {
         DefaultTableModel tabla = null;
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.LlenarTablaCONSULTAS(tabla);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,8 +53,6 @@ public class ClaseOperacionesTest {
         DefaultTableModel tabla = null;
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.LlenarTablaCIRUGIAS(tabla);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -69,17 +61,15 @@ public class ClaseOperacionesTest {
     @Test
     public void testInsertarDatosOperaciones() {
         System.out.println("insertarDatosOperaciones");
-        int ficha = 0;
-        String fechaActual = "";
-        int idveterinario = 0;
-        int IDLOCALIDAD = 0;
-        int tipoOperacion = 0;
-        String diagnostico = "";
+        int ficha = 12;
+        String fechaActual = "2017/02/28";
+        int idveterinario = 1;
+        int IDLOCALIDAD = 1;
+        int tipoOperacion = 1;
+        String diagnostico = "aaaaaaaaa hombros duelen";
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.insertarDatosOperaciones(ficha, fechaActual, idveterinario, IDLOCALIDAD, tipoOperacion, diagnostico);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+     }
 
     /**
      * Test of modificarDatosOperaciones method, of class ClaseOperaciones.
@@ -87,29 +77,15 @@ public class ClaseOperacionesTest {
     @Test
     public void testModificarDatosOperaciones() {
         System.out.println("modificarDatosOperaciones");
-        int ficha = 0;
-        String fechaActual = "";
-        int idveterinario = 0;
-        int IDLOCALIDAD = 0;
-        int tipoOperacion = 0;
-        String diagnostico = "";
+        int ficha = 12;
+        String fechaActual = "2017/02/28";
+        int idveterinario = 1;
+        int IDLOCALIDAD = 1;
+        int tipoOperacion = 1;
+        String diagnostico = "aaaaaaaaaa";
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.modificarDatosOperaciones(ficha, fechaActual, idveterinario, IDLOCALIDAD, tipoOperacion, diagnostico);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of BajaOperacion method, of class ClaseOperaciones.
-     */
-    @Test
-    public void testBajaOperacion() {
-        System.out.println("BajaOperacion");
-        int id = 0;
-        ClaseOperaciones instance = new ClaseOperaciones();
-        instance.BajaOperacion(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 
     /**
@@ -118,17 +94,16 @@ public class ClaseOperacionesTest {
     @Test
     public void testInsertarDatosAuditoria() {
         System.out.println("InsertarDatosAuditoria");
-        String fechaActual = "";
-        String hor = "";
-        String usu = "";
-        String tabla = "";
-        String operacion = "";
+        String fechaActual = "2017/02/28";
+        String hor = "22:30";
+        String usu = "GIMENA";
+        String tabla = "FICHAS MEDICAS";
+        String operacion = "MODIFICACION";
         String anterior = "";
         String nuevo = "";
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.InsertarDatosAuditoria(fechaActual, hor, usu, tabla, operacion, anterior, nuevo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -137,13 +112,11 @@ public class ClaseOperacionesTest {
     @Test
     public void testCantVacunas() {
         System.out.println("CantVacunas");
-        int IDFICHA = 0;
+        int IDFICHA = 12;
         ClaseOperaciones instance = new ClaseOperaciones();
         int expResult = 0;
         int result = instance.CantVacunas(IDFICHA);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -152,13 +125,11 @@ public class ClaseOperacionesTest {
     @Test
     public void testCantSeccionesxOp() {
         System.out.println("CantSeccionesxOp");
-        int IdOp = 0;
+        int IdOp = 1;
         ClaseOperaciones instance = new ClaseOperaciones();
         int expResult = 0;
         int result = instance.CantSeccionesxOp(IdOp);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -167,13 +138,11 @@ public class ClaseOperacionesTest {
     @Test
     public void testAgregarMedicamentoxOperacion() {
         System.out.println("agregarMedicamentoxOperacion");
-        int IDOPERACION = 0;
-        int IDMEDICAMENTO = 0;
-        int c = 0;
+        int IDOPERACION = 1;
+        int IDMEDICAMENTO = 5;
+        int c = 1;
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.agregarMedicamentoxOperacion(IDOPERACION, IDMEDICAMENTO, c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -182,13 +151,11 @@ public class ClaseOperacionesTest {
     @Test
     public void testActualizarStockMedicamento() {
         System.out.println("actualizarStockMedicamento");
-        int IDMEDICAMENTO = 0;
-        int c = 0;
+        int IDMEDICAMENTO = 5;
+        int c = 1;
         int indicador = 0;
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.actualizarStockMedicamento(IDMEDICAMENTO, c, indicador);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -197,17 +164,15 @@ public class ClaseOperacionesTest {
     @Test
     public void testVerificarfechaxConsulta() {
         System.out.println("VerificarfechaxConsulta");
-        int nro = 0;
-        int idusuario = 0;
-        int idoperacion = 0;
-        String dia = "";
-        String hora = "";
+        int nro = 1;
+        int idusuario = 1;
+        int idoperacion = 1;
+        String dia = "2017/03/01";
+        String hora = "08:30";
         ClaseOperaciones instance = new ClaseOperaciones();
         int expResult = 0;
         int result = instance.VerificarfechaxConsulta(nro, idusuario, idoperacion, dia, hora);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -216,12 +181,10 @@ public class ClaseOperacionesTest {
     @Test
     public void testQuitarMedicamentoxOperacion() {
         System.out.println("quitarMedicamentoxOperacion");
-        int IDMEDICAMENTO = 0;
-        int IDOPERACION = 0;
+        int IDMEDICAMENTO = 5;
+        int IDOPERACION = 1;
         ClaseOperaciones instance = new ClaseOperaciones();
-        instance.quitarMedicamentoxOperacion(IDMEDICAMENTO, IDOPERACION);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.quitarMedicamentoxOperacion(IDMEDICAMENTO, IDOPERACION);       
     }
 
     /**
@@ -230,14 +193,12 @@ public class ClaseOperacionesTest {
     @Test
     public void testInsertarFechaxOperacion() {
         System.out.println("InsertarFechaxOperacion");
-        int idusuario = 0;
-        int operacion = 0;
-        String dia = "";
-        String hora = "";
+        int idusuario = 1;
+        int operacion = 1;
+        String dia = "2017/03/01";
+        String hora = "08:30";
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.InsertarFechaxOperacion(idusuario, operacion, dia, hora);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -246,12 +207,10 @@ public class ClaseOperacionesTest {
     @Test
     public void testActualizarDiagnostico() {
         System.out.println("ActualizarDiagnostico");
-        int IDTipoOperacion = 0;
-        String diagnostico = "";
+        int IDTipoOperacion = 1;
+        String diagnostico = "KSJSKSJS";
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.ActualizarDiagnostico(IDTipoOperacion, diagnostico);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -260,14 +219,12 @@ public class ClaseOperacionesTest {
     @Test
     public void testAgregarSeccionxOperacion() {
         System.out.println("agregarSeccionxOperacion");
-        int IDOperacion = 0;
-        int IDSECCION = 0;
+        int IDOperacion = 1;
+        int IDSECCION = 1;
         ClaseOperaciones instance = new ClaseOperaciones();
         int expResult = 0;
         int result = instance.agregarSeccionxOperacion(IDOperacion, IDSECCION);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -276,12 +233,10 @@ public class ClaseOperacionesTest {
     @Test
     public void testQuitarseccionxOperacion() {
         System.out.println("quitarseccionxOperacion");
-        int IDOperacion = 0;
-        int IDSECCION = 0;
+        int IDOperacion = 1;
+        int IDSECCION = 1;
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.quitarseccionxOperacion(IDOperacion, IDSECCION);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -290,12 +245,10 @@ public class ClaseOperacionesTest {
     @Test
     public void testModificarDiagnostico() {
         System.out.println("modificarDiagnostico");
-        int IDFICHA = 0;
-        String diagnostico = "";
+        int IDFICHA = 1;
+        String diagnostico = "OTRO";
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.modificarDiagnostico(IDFICHA, diagnostico);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -304,11 +257,9 @@ public class ClaseOperacionesTest {
     @Test
     public void testCancelarVisita() {
         System.out.println("CancelarVisita");
-        int NroOperacion = 0;
+        int NroOperacion = 1;
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.CancelarVisita(NroOperacion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -317,10 +268,19 @@ public class ClaseOperacionesTest {
     @Test
     public void testEliminarSeccionesxOp() {
         System.out.println("eliminarSeccionesxOp");
-        int IDOperacion = 0;
+        int IDOperacion = 1;
         ClaseOperaciones instance = new ClaseOperaciones();
         instance.eliminarSeccionesxOp(IDOperacion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of BajaOperacion method, of class ClaseOperaciones.
+     */
+    @Test
+    public void testBajaOperacion() {
+        System.out.println("BajaOperacion");
+        int id = 1;
+        ClaseOperaciones instance = new ClaseOperaciones();
+        instance.BajaOperacion(id);
     }
 }
